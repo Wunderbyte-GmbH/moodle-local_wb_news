@@ -39,6 +39,7 @@ echo $OUTPUT->header();
 
 $coverpic = "/local/wb_news/img/default.jpg";
 
+// Testdata.
 $newsdata = [
     'news' => [
         [
@@ -94,6 +95,10 @@ echo $OUTPUT->render_from_template("local_wb_news/wb_news_bgimage", $newsdata);
 
 echo "<h2>Header Image</h2>";
 echo $OUTPUT->render_from_template("local_wb_news/wb_news_headerimage", $newsdata);
+
+$masonry['news'] = array_merge($newsdata['news'], $newsdata['news']);
+echo "<h2>Masonry (with 12 News)</h2>";
+echo $OUTPUT->render_from_template("local_wb_news/wb_news_masonry", $masonry);
 
 echo $OUTPUT->footer();
 
