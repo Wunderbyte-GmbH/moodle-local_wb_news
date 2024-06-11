@@ -1,0 +1,12 @@
+.wb_news .card-icon {
+    max-width: 100px;
+}
+
+.wb_news .card {
+  background-size: cover;
+}
+
+.wb_news .card-footer {
+    border: none;
+    background: none;
+}
