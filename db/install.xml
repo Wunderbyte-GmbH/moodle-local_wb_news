@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="local/wb_news/db" VERSION="2020191000" COMMENT="XMLDB file for Moodle local/wb_news"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="local_wb_news" COMMENT="News Entries">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="instanceid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="instanceid"/>
+        <FIELD NAME="bgimage" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Bg Image"/>
+        <FIELD NAME="icon" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Possible Icon"/>
+        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="News owner"/>
+        <FIELD NAME="headline" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="News Title"/>
+        <FIELD NAME="subheadline" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="News Subtitle"/>
+        <FIELD NAME="description" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="News Body Description"/>
+        <FIELD NAME="btnlink" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="News Btn Link"/>
+        <FIELD NAME="btntext" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="News Btn Text"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="instanceid" TYPE="foreign" FIELDS="instanceid" REFTABLE="local_wb_news_instance" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="local_wb_news_instance" COMMENT="News Instance">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="template" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Template"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>
