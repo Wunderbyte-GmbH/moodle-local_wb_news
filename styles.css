@@ -20,3 +20,35 @@
   width: 100%;
   margin-bottom: 1rem;
 }
+
+.wb_news .carousel-control-prev,.wb_news .carousel-control-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  border: 0;
+  border-radius: 50%;
+  opacity: 0.7;
+  transition: opacity 0.15s ease;
+}
+
+.wb_news .carousel-control-prev:hover, .wb_news .carousel-control-next:hover {
+  opacity: 1;
+}
+
+.wb_news .carousel-control-prev {
+  left: 10px; /* Adjust the left position as needed */
+}
+
+.wb_news .carousel-control-next {
+  right: 10px; /* Adjust the right position as needed */
+}
