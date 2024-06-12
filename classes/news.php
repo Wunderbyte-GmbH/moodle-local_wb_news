@@ -54,11 +54,18 @@ class news {
     private array $news = [];
 
     /**
-     * Array of news.
+     * Template string.
      *
-     * @var array
+     * @var string
      */
     private string $template = 'local_wb_news/wb_news_grid';
+
+    /**
+     * Name string.
+     *
+     * @var string
+     */
+    private string $name = '';
 
 
     /**
@@ -67,26 +74,22 @@ class news {
      * @param int $instanceid
      *
      */
-    private function __construct(int $instanceid) {
+    private function __construct(int $instanceid = 0, bool $fetchitems = true) {
         global $DB;
 
-        $sql = "SELECT wn.*, wni.id as instanceid, wni.template
-                FROM {local_wb_news} wn
-                LEFT JOIN {local_wb_news_instance} wni ON wni.id = wn.instanceid";
+        $this->instanceid = $instanceid;
+        // When there is no instance id, we fetch all the items from the start.
+        if ($fetchitems) {
+            $news = self::get_items_from_db($instanceid);
 
-        if (!empty($id)) {
-            $params = ['instanceid' => $instanceid];
-            $sql .= " WHERE wni.id =:instanceid";
-        } else {
-            $params = [];
-        }
-
-        $news = $DB->get_records_sql($sql, $params);
-
-        $this->news = array_map(fn($a) => (array)$a, $news);
-
-        if (!empty($this->news[0])) {
-            $this->template = $this->news[0]['template'];
+            foreach ($news as $newsitem) {
+                if ($newsitem->instanceid != $instanceid) {
+                    $news = self::getinstance($newsitem->instanceid ?? 0, false);
+                    $news->add_news($newsitem);
+                } else {
+                    $this->add_news($newsitem);
+                }
+            }
         }
     }
 
@@ -94,12 +97,13 @@ class news {
      * Get singelton instance.
      *
      * @param  int $id
+     * @param  bool $fetchitems
      * @return news
      */
-    public static function getinstance(int $instanceid) {
+    public static function getinstance(int $instanceid, bool $fetchitems = true) {
         // Create the instance if it doesn't exist.
         if (self::$instance[$instanceid] === null) {
-            self::$instance[$instanceid] = new self($instanceid);
+            self::$instance[$instanceid] = new self($instanceid, $fetchitems);
         }
         return self::$instance[$instanceid];
     }
@@ -111,7 +115,27 @@ class news {
      *
      */
     public function return_list_of_news() {
-        return $this->news;
+        return array_map(fn($a) => (array)$a, $this->news);
+    }
+
+    /**
+     * Returns a the template string.
+     *
+     * @return string
+     *
+     */
+    public function return_template() {
+        return $this->template;
+    }
+
+    /**
+     * Returns a the name string.
+     *
+     * @return string
+     *
+     */
+    public function return_name() {
+        return $this->name;
     }
 
     /**
@@ -147,6 +171,22 @@ class news {
             $id = $DB->insert_record('local_wb_news', $data, true);
         }
         return $id;
+    }
+
+    /**
+     * Delete news. On failure, return 0, else id of deleted record.
+     *
+     * @param stdClass $data
+     */
+    public function add_news(stdClass $data) {
+
+        $this->news[] = $data;
+        if (!empty($data->template)) {
+            $this->template = $data->template;
+        }
+        if (!empty($data->name)) {
+            $this->name = $data->name;
+        }
     }
 
     /**
@@ -208,6 +248,45 @@ class news {
     }
 
     /**
+     * Returns the instance as a renderable array.
+     *
+     * @return array
+     *
+     */
+    public function return_instance() {
+
+        global $PAGE;
+
+        $instanceitem = [
+            'instanceid' => $this->instanceid,
+            'template' => $this->template,
+            'name' => $this->name,
+            'editmode' => $PAGE->user_is_editing(),
+        ];
+
+        if (!empty($this->news)) {
+            $instanceitem['news'] = $this->return_list_of_news();
+        }
+
+        switch ($this->template) {
+            case 'local_wb_news/wb_news_masonry':
+                $instanceitem['masonrytemplate'] = true;
+                break;
+            case 'local_wb_news/wb_news_grid':
+                $instanceitem['gridtemplate'] = true;
+                break;
+            case 'local_wb_news/wb_news_slider':
+                $instanceitem['slidertemplate'] = true;
+                break;
+            case 'local_wb_news/wb_news_tabs':
+                $instanceitem['tabstemplate'] = true;
+                break;
+        }
+
+        return $instanceitem;
+    }
+
+    /**
      * As we need it twice, we create a function.
      * @return array
      */
@@ -222,5 +301,55 @@ class news {
             'maxfiles' => EDITOR_UNLIMITED_FILES,
             'noclean' => true,
         ];
+    }
+
+    /**
+     * Fetch Items from DB.
+     *
+     * @param int $instanceid
+     *
+     * @return [type]
+     *
+     */
+    private static function get_items_from_db(int $instanceid) {
+
+        global $DB;
+
+        $sql = "SELECT " . $DB->sql_concat("wni.id", "'-'", "COALESCE(wn.id, '')") . " as ident, wn.*, wni.id as instanceid, wni.template, wni.name
+        FROM {local_wb_news} wn
+        RIGHT JOIN {local_wb_news_instance} wni ON wni.id = wn.instanceid";
+
+        if (!empty($id)) {
+            $params = ['instanceid' => $instanceid];
+            $sql .= " WHERE wni.id =:instanceid";
+        } else {
+            $params = [];
+        }
+
+        return $DB->get_records_sql($sql, $params);
+    }
+
+    /**
+     * Return all instances.
+     *
+     * @return array
+     *
+     */
+    public static function return_all_instances() {
+
+        global $PAGE;
+
+        $returnarray = [];
+        foreach (self::$instance as $instance) {
+            if (empty($instance->instanceid)) {
+                continue;
+            }
+
+            $instanceitem = $instance->return_instance();
+
+            $returnarray[] = $instanceitem;
+        }
+
+        return $returnarray;
     }
 }

@@ -81,6 +81,7 @@ export function addeditformModal(button) {
     console.log('button', button);
 
     const id = button.dataset.id;
+    const instanceid = button.dataset.instanceid;
     const isinstance = button.dataset.isinstance;
 
     let formclass = "local_wb_news\\form\\addeditModal";
@@ -94,7 +95,8 @@ export function addeditformModal(button) {
         formClass: formclass,
         // Add as many arguments as you need, they will be passed to the form:
         args: {
-            id
+            id,
+            instanceid
         },
         // Pass any configuration settings to the modal dialogue, for example, the title:
         modalConfig: {title: getString('addeditform', 'local_wb_news')},
@@ -125,6 +127,7 @@ export function deleteModal(button) {
     console.log('button', button);
 
     const id = button.dataset.id;
+    const instanceid = button.dataset.instanceid;
     const isinstance = button.dataset.isinstance;
 
     let formclass = "local_wb_news\\form\\addeditModal";
@@ -138,7 +141,8 @@ export function deleteModal(button) {
         formClass: formclass,
         // Add as many arguments as you need, they will be passed to the form:
         args: {
-            id
+            id,
+            instanceid
         },
         // Pass any configuration settings to the modal dialogue, for example, the title:
         modalConfig: {title: getString('deletenewsitem', 'local_wb_news')},

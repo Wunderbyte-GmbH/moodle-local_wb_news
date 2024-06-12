@@ -42,6 +42,22 @@
 }}
 
 <div id="wb_news_carousel-{{id}}" class="carousel slide container mt-4 wb_news" data-ride="carousel" data-id="{{id}}">
+        {{#editmode}}
+            <div class="wb-news-addeditbutton btn btn-primary"
+                data-id="{{instanceid}}"
+                data-isinstance="true">
+                {{#str}} editinstance, local_wb_news {{/str}}
+            </div>
+            <div class="wb-news-deletebutton btn btn-primary"
+                data-id="{{instanceid}}"
+                data-isinstance="true">
+                {{#str}} deleteinstance, local_wb_news {{/str}}
+            </div>
+            <div class="wb-news-addeditbutton btn btn-primary"
+                data-instanceid="{{instanceid}}">
+                {{#str}} addnewnews, local_wb_news {{/str}}
+            </div>
+        {{/editmode}}
     <div class="carousel-inner py-2">
         {{#groupednews}}
             <div class="carousel-item{{#firstitem}} active{{/firstitem}}">

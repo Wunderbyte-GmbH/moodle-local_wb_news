@@ -52,6 +52,13 @@ class wb_news implements renderable, templatable {
     private $instanceid = 0;
 
     /**
+     * Template
+     *
+     * @var string
+     */
+    private string $template = '';
+
+    /**
      * Constructor.
      *
      * @param int $instanceid = 0;
@@ -60,12 +67,15 @@ class wb_news implements renderable, templatable {
 
         global $PAGE;
 
+        $this->instanceid = $instanceid;
+
         $news = news::getinstance($instanceid);
 
         foreach ($news->return_list_of_news() as $newsitem) {
             $newsitem['editmode'] = $PAGE->user_is_editing();
             $this->news[] = $newsitem;
         }
+        $this->template = $news->return_template();
     }
 
     /**
@@ -78,14 +88,42 @@ class wb_news implements renderable, templatable {
 
         global $PAGE;
 
+        // If the instanceid here is 0, we return all of them.
+        if (empty($this->instanceid)) {
+            return [
+                'instances' => news::return_all_instances(),
+                'editmode' => $PAGE->user_is_editing(),
+            ];
+        }
+
+        $news = news::getinstance($this->instanceid);
+
+        return [
+            'instances' => [
+                $news->return_instance(),
+            ],
+        ];
+
         if (empty($this->news)) {
             return [
+                'instances' => [
+                [
+                    'instanceid' => $this->instanceid,
+                    'template' => $this->template,
+                ],
+                ],
                 'editmode' => $PAGE->user_is_editing(),
             ];
         }
 
         return [
-            'news' => $this->news,
+            'instances' => [
+                [
+                    'instanceid' => $this->instanceid,
+                    'news' => $this->news,
+                    'template' => $this->template,
+                ],
+            ],
             'editmode' => $PAGE->user_is_editing(),
         ];
     }

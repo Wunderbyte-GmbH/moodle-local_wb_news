@@ -57,11 +57,12 @@ class shortcodes {
         if (!isset($args['instance'])) {
             $instance = 0;
         } else {
-            $instance = $args['instance'];
+            $instance = (int)$args['instance'];
         }
 
-        $data = new wb_news($instance);
-        $out = $OUTPUT->render_from_template('local_wb_news/news', $data);
+        $news = new wb_news($instance);
+        $data = $news->return_list();
+        $out = $OUTPUT->render_from_template('local_wb_news/wb_news_container', $data);
 
         return $out;
     }

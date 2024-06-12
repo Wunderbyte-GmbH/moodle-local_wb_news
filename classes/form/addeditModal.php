@@ -150,7 +150,7 @@ class addeditModal extends dynamic_form {
         $id = $ajaxformdata['id'] ?? 0;
         $instanceid = $ajaxformdata['instanceid'] ?? 0;
         $news = news::getinstance($instanceid);
-        $data = (object)$news->get_news_item($id);
+        $data = $news->get_news_item($id);
 
         $context = context_system::instance();
         $data = file_prepare_standard_editor(

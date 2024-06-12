@@ -41,51 +41,29 @@
     }
 }}
 
+
 {{#editmode}}
     <div class="wb-news-addeditbutton btn btn-primary"
-        data-id="{{instanceid}}"
         data-isinstance="true">
-        {{#str}} editinstance, local_wb_news {{/str}}
-    </div>
-    <div class="wb-news-deletebutton btn btn-primary"
-        data-id="{{instanceid}}"
-        data-isinstance="true">
-        {{#str}} deleteinstance, local_wb_news {{/str}}
-    </div>
-    <div class="wb-news-addeditbutton btn btn-primary"
-        data-instanceid="{{instanceid}}">
-        {{#str}} addnewnews, local_wb_news {{/str}}
+        {{#str}} addinstance, local_wb_news {{/str}}
     </div>
 {{/editmode}}
-<ul class="nav nav-tabs wb_news" id="wb_news_tab-{{id}}" role="tablist">
-    {{#tabs}}
-    <li class="nav-item">
-        <a class="nav-link {{#firstitem}}active{{/firstitem}}" id="{{id}}-tab" data-toggle="tab" href="#{{id}}" role="tab" aria-controls="{{id}}" aria-selected="{{#firstitem}}true{{/firstitem}}{{^firstitem}}false{{/firstitem}}">
-            {{title}}
-        </a>
-    </li>
-    {{/tabs}}
-</ul>
-<div class="tab-content wb_news" id="wb_news_tab_content">
-    {{#tabs}}
-    <div class="tab-pane fade {{#firstitem}}show active{{/firstitem}}" id="{{id}}" role="tabpanel" aria-labelledby="{{id}}-tab">
-        <div class="container mt-5">
-            <div class="row">
-                {{#news}}
-                <div class="col-md-3">
-                    {{#headerimage}}
-                    {{> local_wb_news/wb_news_card_headerimage}}
-                    {{/headerimage}}
-                    {{^headerimage}}
-                    {{> local_wb_news/wb_news_card_bgimage}}
-                    {{/headerimage}}
-                </div>
-                {{/news}}
-            </div>
-        </div>
-    </div>
-    {{/tabs}}
-</div>
+{{#instances}}
+    xxx
+   {{#masonrytemplate}}
+    {{> local_wb_news/wb_news_masonry}}
+   {{/masonrytemplate}}
+   {{#gridtemplate}}
+    {{> local_wb_news/wb_news_grid}}
+   {{/gridtemplate}}
+   {{#slidertemplate}}
+    {{> local_wb_news/wb_news_slider}}
+   {{/slidertemplate}}
+   {{#tabstemplate}}
+    {{> local_wb_news/wb_news_tabs}}
+   {{/tabstemplate}}
+{{/instances}}
+
 
 {{#js}}
     require(['local_wb_news/editnews'], function(fn) {

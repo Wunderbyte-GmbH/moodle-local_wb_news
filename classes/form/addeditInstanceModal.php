@@ -114,24 +114,13 @@ class addeditInstanceModal extends dynamic_form {
         $ajaxformdata = $this->_ajaxformdata;
 
         $id = $ajaxformdata['id'] ?? 0;
-        $instanceid = $ajaxformdata['instanceid'] ?? 0;
-        $news = news::getinstance($instanceid);
-        $data = (object)$news->get_news_item($id);
+        $news = news::getinstance((int)$id);
 
-        $context = context_system::instance();
-        $data = file_prepare_standard_editor(
-                // The existing data.
-                $data,
-                // The field name in the database.
-                'description',
-                // The options.
-                news::get_textfield_options(),
-                // The combination of contextid, component, filearea, and itemid.
-                $context,
-                'local_wb_news',
-                'wb_news',
-                $data->id
-            );
+        $data = new \stdClass();
+
+        $data->id = $news->instanceid;
+        $data->template = $news->return_template();
+        $data->name = $news->return_name();
 
         $this->set_data($data);
     }

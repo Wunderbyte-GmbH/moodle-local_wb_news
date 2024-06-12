@@ -49,8 +49,7 @@ echo $OUTPUT->header();
 
 $news = new wb_news($id);
 $data = $news->return_list();
-$out = $OUTPUT->render_from_template('local_wb_news/wb_news_masonry', $data);
-
+$out = $OUTPUT->render_from_template('local_wb_news/wb_news_container', $data);
 echo $out;
 
 echo $OUTPUT->footer();

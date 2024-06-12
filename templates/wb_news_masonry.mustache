@@ -42,14 +42,6 @@
     <div class="masonry">
         {{#editmode}}
             <div class="wb-news-addeditbutton btn btn-primary"
-                data-instanceid="{{instanceid}}">
-                {{#str}} addnewnews, local_wb_news {{/str}}
-            </div>
-            <div class="wb-news-addeditbutton btn btn-primary"
-                data-isinstance="true">
-                {{#str}} addinstance, local_wb_news {{/str}}
-            </div>
-            <div class="wb-news-addeditbutton btn btn-primary"
                 data-id="{{instanceid}}"
                 data-isinstance="true">
                 {{#str}} editinstance, local_wb_news {{/str}}
@@ -58,6 +50,10 @@
                 data-id="{{instanceid}}"
                 data-isinstance="true">
                 {{#str}} deleteinstance, local_wb_news {{/str}}
+            </div>
+            <div class="wb-news-addeditbutton btn btn-primary"
+                data-instanceid="{{instanceid}}">
+                {{#str}} addnewnews, local_wb_news {{/str}}
             </div>
         {{/editmode}}
         {{#news}}
@@ -70,11 +66,3 @@
         {{/news}}
     </div>
 </div>
-
-
-
-{{#js}}
-    require(['local_wb_news/editnews'], function(fn) {
-        fn.init({{instanceid}});
-    });
-{{/js}}
