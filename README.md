@@ -14,7 +14,7 @@ Der News Manager dient als zentrales Verwaltungstool für jegliche News.
 
 The plugin can be also installed by putting the contents of this directory to
 
-    {your/moodle/dirroot}/local/news_manager
+    {your/moodle/dirroot}/local/wb_news
 
 Afterwards, log in to your Moodle site as an admin and go to _Site administration >
 Notifications_ to complete the installation.

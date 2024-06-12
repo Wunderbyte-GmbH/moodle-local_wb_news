@@ -46,6 +46,6 @@ class news_deleted extends \core\event\base {
     }
 
     public function get_url() {
-        return new \moodle_url('local/news_manager/archive.php', array());
+        return new \moodle_url('local/wb_news/archive.php', array());
     }
 }

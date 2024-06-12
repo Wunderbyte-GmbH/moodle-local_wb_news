@@ -26,7 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'News Manager';
-$string['news_manager'] = 'News Manager';
+$string['wb_news'] = 'News Manager';
 $string['manage'] = 'Bearbeiten';
 $string['delete'] = 'Entfernen';
 $string['form_submit'] = 'Speichern';
@@ -41,5 +41,21 @@ $string['news_updated'] = 'Neuigkeiteneintrag aktualisiert';
 $string['news_created'] = 'Neuigkeiteneintrag erstellt';
 $string['news_deleted'] = 'Neuigkeiteneintrag entfernt';
 
-$string['news_manager:manage'] = "Verwaltung von News";
-$string['news_manager:view'] = "Zugriff auf News";
+$string['wb_news:manage'] = "Verwaltung von News";
+$string['wb_news:view'] = "Zugriff auf News";
+
+$string['addnewnews'] = 'Füge Eintrag hinzu';
+$string['editnewnews'] = 'Bearbeite Eintrag';
+$string['deletenewnews'] = 'Lösche Eintrag';
+
+$string['addeditform'] = 'Hinzufügen oder bearbeiten eines Eintrags';
+$string['instanceid'] = 'Instanz-ID';
+$string['bgimage'] = 'Hintergrundbild';
+$string['icon'] = 'Symbol';
+$string['userid'] = 'Benutzer-ID';
+$string['headline'] = 'Überschrift';
+$string['subheadline'] = 'Unterüberschrift';
+$string['description'] = 'Beschreibung';
+$string['btnlink'] = 'Schaltflächenlink';
+$string['btntext'] = 'Schaltflächentext';
+

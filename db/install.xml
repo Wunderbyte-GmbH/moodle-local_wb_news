@@ -14,6 +14,7 @@
         <FIELD NAME="headline" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="News Title"/>
         <FIELD NAME="subheadline" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="News Subtitle"/>
         <FIELD NAME="description" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="News Body Description"/>
+        <FIELD NAME="descriptionformat" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="News Body Description Format"/>
         <FIELD NAME="btnlink" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="News Btn Link"/>
         <FIELD NAME="btntext" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="News Btn Text"/>
       </FIELDS>

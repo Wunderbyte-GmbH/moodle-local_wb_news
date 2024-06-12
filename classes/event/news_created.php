@@ -46,6 +46,6 @@ class news_created extends \core\event\base {
     }
 
     public function get_url() {
-        return new \moodle_url('/local/news_manager/index.php', array('id' => $this->objectid));
+        return new \moodle_url('/local/wb_news/index.php', array('id' => $this->objectid));
     }
 }

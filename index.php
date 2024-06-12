@@ -23,26 +23,26 @@
 
 namespace local_wb_news;
 
+use local_wb_news\output\wb_news;
+
 // @codingStandardsIgnoreStart
 require('../../config.php');
 // @codingStandardsIgnoreEnd
 require_once($CFG->libdir.'/formslib.php');
 require_once($CFG->libdir.'/datalib.php');
-require_once('classes/common.php');
-
 
 $context = \context_system::instance();
 $PAGE->set_context($context);
 
-$id = required_param('id', PARAM_INT);
+$id = optional_param('id', 0, PARAM_INT);
 
-$pageurl = new \moodle_url('/local/news_manager/index.php?id=' . $id);
+$pageurl = new \moodle_url('/local/wb_news/index.php?id=' . $id);
 $PAGE->set_url($pageurl);
 
-$record = $DB->get_record("local_wb_news", array("id" => $id), '*');
+$record = $DB->get_record("local_wb_news", ["id" => $id], '*');
 
-$PAGE->set_title($record->title);
-$PAGE->set_heading($record->title);
+$PAGE->set_title($record->title ?? 'title');
+$PAGE->set_heading($record->title ?? 'title');
 $PAGE->set_pagelayout('standard');
 
 echo $OUTPUT->header();
@@ -64,7 +64,13 @@ $data = [
     'coverpic' => $coverpic,
     'userlink' => new \moodle_url('/user/profile.php', array("id" => $author->id)),
 ];
-echo text_to_html($OUTPUT->render_from_template("local_wb_news/detail", $data));
+// echo text_to_html($OUTPUT->render_from_template("local_wb_news/detail", $data));
+
+$news = new wb_news($id);
+$data = $news->return_list();
+$out = $OUTPUT->render_from_template('local_wb_news/news', $data);
+
+echo $out;
 
 echo $OUTPUT->footer();
 

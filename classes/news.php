@@ -20,8 +20,8 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->libdir . '/filelib.php');
 
-use core_course_category;
 use stdClass;
+use context_system;
 
 /**
  * Class news.
@@ -32,54 +32,115 @@ use stdClass;
  */
 class news {
 
-    public $schooltypes;
+    /**
+     * [Description for $instanceid]
+     *
+     * @var int
+     */
+    public $instanceid = 0;
 
-    private static array $instance;
+    /**
+     * Array of instances.
+     *
+     * @var array
+     */
+    private static array $instance = [];
 
-    // The constructor is private to prevent direct creation of object
-    private function __construct(int $id) {
+
+    /**
+     * Constructor
+     *
+     * @param int $instanceid
+     *
+     */
+    private function __construct(int $instanceid) {
         global $DB;
-        $sql = "SELECT * FROM {local_wb_news} wn
-                JOIN {local_wb_news_instance} wni ON wni.id = wn.instanceid
-                WHERE wni.id = ?";
 
-        $news = $DB->get_records_sql($sql, [$id], true);
-        $this->instance[$id] = $news;
+        $sql = "SELECT wn.*, wni.id
+                FROM {local_wb_news} wn
+                LEFT JOIN {local_wb_news_instance} wni ON wni.id = wn.instanceid";
+
+        if (!empty($id)) {
+            $params = ['instanceid' => $instanceid];
+            $sql .= " WHERE wni.id =:instanceid";
+        } else {
+            $params = [];
+        }
+
+        $news = $DB->get_records_sql($sql, $params);
+        $this->instance[$instanceid] = $news;
     }
 
     /**
-     * Get singelton
+     * Get singelton instance.
      *
-     * @param  integer $id
-     *
-     * @return void
+     * @param  int $id
+     * @return news
      */
-    public static function getinstance(int $id) {
-        // Create the instance if it doesn't exist
-        if (self::$instance[$id] === null) {
-            self::$instance[$id] = new self($id);
+    public static function getinstance(int $instanceid) {
+        // Create the instance if it doesn't exist.
+        if (self::$instance[$instanceid] === null) {
+            self::$instance[$instanceid] = new self($instanceid);
         }
-        return self::$instance[$id];
+        return self::$instance[$instanceid];
     }
 
-    public function formfields(&$mform) {
-
+    /**
+     * Returns a list of news from the current instance.
+     *
+     * @return array
+     *
+     */
+    public function return_list_of_news() {
+        return $this->instance[$this->instanceid];
     }
 
-    // TODO Replace with setting manager.
+    /**
+     * Returns a list of news from the current instance.
+     *
+     * @param int $id
+     * @return stdClass|null
+     *
+     */
+    public function get_news_item($id) {
+        return $this->instance[$this->instanceid]->news[$id] ?? null;
+    }
+
     /**
      * Update or Create news
      *
-     * @param stdClass|array $data
+     * @param stdClass $data
      * @return int $id
      */
     public function update_news($data) {
-        global $DB;
-        if ($data->id) {
+        global $DB, $USER;
+
+        $id = $data->id ?? false;
+
+        $data->userid = $USER->id;
+        if ($id) {
             $DB->update_record('local_wb_news', $data, true);
             return true;
         } else {
-            $DB->insert_record('local_wb_news', $data, true);
+            $id = $DB->insert_record('local_wb_news', $data, true);
         }
+        return $id;
+    }
+
+    /**
+     * As we need it twice, we create a function.
+     * @return array
+     */
+    public static function get_textfield_options() {
+
+        $context = context_system::instance();
+
+        return [
+            'trusttext' => true,
+            'subdirs' => true,
+            'context' => $context,
+            'maxfiles' => EDITOR_UNLIMITED_FILES,
+            'noclean' => true,
+        ];
     }
 }

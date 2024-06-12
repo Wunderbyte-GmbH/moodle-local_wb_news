@@ -24,7 +24,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $capabilities = array(
-    'local/news_manager:manage' => array(
+    'local/wb_news:manage' => array(
         'riskbitmask'  => RISK_SPAM | RISK_PERSONAL | RISK_XSS | RISK_CONFIG,
         'captype'      => 'write',
         'contextlevel' => CONTEXT_MODULE,
@@ -35,7 +35,7 @@ $capabilities = array(
             'manager'          => CAP_ALLOW
         )
     ),
-    'local/news_manager:view' => array(
+    'local/wb_news:view' => array(
         'riskbitmask'  => RISK_SPAM | RISK_PERSONAL | RISK_XSS | RISK_CONFIG,
         'captype'      => 'read',
         'contextlevel' => CONTEXT_MODULE,
