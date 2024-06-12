@@ -48,14 +48,14 @@ $newsdata = [
             'headline' => 'News 1',
             'subheadline' => 'Image and Icon',
             'description' => 'Image and Icon',
-            'btnlink' => 'https://link1.com',
+            'btnlink' => 'https://www.wunderbyte.at',
             'btntext' => 'Read More'
         ],
         [
             'headline' => 'News 2',
             'subheadline' => 'News 2',
             'description' => 'No Image No Icon',
-            'btnlink' => 'https://link1.com',
+            'btnlink' => 'https://www.wunderbyte.at',
             'btntext' => 'Read More'
         ],
         [
@@ -63,7 +63,7 @@ $newsdata = [
             'headline' => 'News 3',
             'subheadline' => 'Icon no Image',
             'description' => 'Icon no Image',
-            'btnlink' => 'https://link1.com',
+            'btnlink' => 'https://www.wunderbyte.at',
             'btntext' => 'Read More'
         ],
         [
@@ -71,7 +71,7 @@ $newsdata = [
             'headline' => 'News 4',
             'subheadline' => 'Image no Icon',
             'description' => 'Image no Icon',
-            'btnlink' => 'https://link1.com',
+            'btnlink' => 'https://www.wunderbyte.at',
             'btntext' => 'Read More'
         ],
         [
@@ -80,7 +80,7 @@ $newsdata = [
             'headline' => 'News 5',
             'subheadline' => 'Image, Icon, Link, No button',
             'description' => 'Image, Icon, Link, No button',
-            'btnlink' => 'https://link1.com',
+            'btnlink' => 'https://www.wunderbyte.at',
         ],
         [
             'headline' => 'News 6',
