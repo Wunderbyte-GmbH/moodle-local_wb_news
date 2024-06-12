@@ -53,6 +53,13 @@ class news {
      */
     private array $news = [];
 
+    /**
+     * Array of news.
+     *
+     * @var array
+     */
+    private string $template = 'local_wb_news/wb_news_grid';
+
 
     /**
      * Constructor
@@ -63,7 +70,7 @@ class news {
     private function __construct(int $instanceid) {
         global $DB;
 
-        $sql = "SELECT wn.*, wni.id as instanceid
+        $sql = "SELECT wn.*, wni.id as instanceid, wni.template
                 FROM {local_wb_news} wn
                 LEFT JOIN {local_wb_news_instance} wni ON wni.id = wn.instanceid";
 
@@ -77,6 +84,10 @@ class news {
         $news = $DB->get_records_sql($sql, $params);
 
         $this->news = array_map(fn($a) => (array)$a, $news);
+
+        if (!empty($this->news[0])) {
+            $this->template = $this->news[0]['template'];
+        }
     }
 
     /**
@@ -126,10 +137,13 @@ class news {
         $id = $data->id ?? false;
 
         $data->userid = $USER->id;
+        $data->timemodified = time();
+
         if ($id) {
             $DB->update_record('local_wb_news', $data, true);
             return true;
         } else {
+            $data->timecreated = time();
             $id = $DB->insert_record('local_wb_news', $data, true);
         }
         return $id;
@@ -146,6 +160,47 @@ class news {
 
         if (!empty($data->id)) {
             $DB->delete_records('local_wb_news', ['id' => $data->id]);
+            return $data->id;
+        }
+
+        return 0;
+    }
+
+    /**
+     * Update or Create newsinstance
+     *
+     * @param stdClass $data
+     * @return int $id
+     */
+    public function update_newsinstance($data) {
+        global $DB, $USER;
+
+        $id = $data->id ?? false;
+
+        $data->userid = $USER->id;
+        $data->timemodified = time();
+
+        if ($id) {
+            $DB->update_record('local_wb_news_instance', $data, true);
+            return true;
+        } else {
+            $data->timecreated = time();
+            $id = $DB->insert_record('local_wb_news_instance', $data, true);
+        }
+        return $id;
+    }
+
+    /**
+     * Delete newsinstance. On failure, return 0, else id of deleted record.
+     *
+     * @param stdClass $data
+     * @return int $id
+     */
+    public function delete_newsinstance($data) {
+        global $DB, $USER;
+
+        if (!empty($data->id)) {
+            $DB->delete_records('local_wb_news_instance', ['id' => $data->id]);
             return $data->id;
         }
 

@@ -81,11 +81,17 @@ export function addeditformModal(button) {
     console.log('button', button);
 
     const id = button.dataset.id;
+    const isinstance = button.dataset.isinstance;
+
+    let formclass = "local_wb_news\\form\\addeditModal";
+    if (isinstance == 'true') {
+        formclass = "local_wb_news\\form\\addeditInstanceModal";
+    }
 
     const modalForm = new ModalForm({
 
         // Name of the class where form is defined (must extend \core_form\dynamic_form):
-        formClass: "local_wb_news\\form\\addeditModal",
+        formClass: formclass,
         // Add as many arguments as you need, they will be passed to the form:
         args: {
             id
@@ -119,11 +125,17 @@ export function deleteModal(button) {
     console.log('button', button);
 
     const id = button.dataset.id;
+    const isinstance = button.dataset.isinstance;
+
+    let formclass = "local_wb_news\\form\\addeditModal";
+    if (isinstance == 'true') {
+        formclass = "local_wb_news\\form\\addeditInstanceModal";
+    }
 
     const modalForm = new ModalForm({
 
         // Name of the class where form is defined (must extend \core_form\dynamic_form):
-        formClass: "local_wb_news\\form\\deleteModal",
+        formClass: formclass,
         // Add as many arguments as you need, they will be passed to the form:
         args: {
             id

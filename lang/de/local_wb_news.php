@@ -48,6 +48,10 @@ $string['addnewnews'] = 'Füge Eintrag hinzu';
 $string['editnewnews'] = 'Bearbeite Eintrag';
 $string['deletenewnews'] = 'Lösche Eintrag';
 
+$string['addinstance'] = 'Füge Instanz hinzu';
+$string['editinstance'] = 'Bearbeite Instanz';
+$string['deleteinstance'] = 'Lösche Instanz';
+
 $string['addeditform'] = 'Hinzufügen oder bearbeiten eines Eintrags';
 $string['instanceid'] = 'Instanz-ID';
 $string['bgimage'] = 'Hintergrundbild';
@@ -59,3 +63,9 @@ $string['description'] = 'Beschreibung';
 $string['btnlink'] = 'Schaltflächenlink';
 $string['btntext'] = 'Schaltflächentext';
 
+$string['template'] = 'Vorlage';
+$string['name'] = 'Name';
+$string['masonrytemplate'] = 'Bausteine Vorlage';
+$string['slidertemplate'] = 'Slider Vorlage';
+$string['tabstemplate'] = 'Tabs Vorlage';
+$string['gridtemplate'] = 'Gitter Vorlage';

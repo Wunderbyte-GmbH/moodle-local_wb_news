@@ -48,6 +48,10 @@ $string['addnewnews'] = 'Add news';
 $string['editnewnews'] = 'Edit news';
 $string['deletenewnews'] = 'Delete news';
 
+$string['addinstance'] = 'Add instance';
+$string['editinstance'] = 'Edit instance';
+$string['deleteinstance'] = 'Delete instance';
+
 $string['addeditform'] = 'Add or edit entry';
 $string['instanceid'] = 'Instance ID';
 $string['bgimage'] = 'Background Image';
@@ -58,3 +62,10 @@ $string['subheadline'] = 'Subheadline';
 $string['description'] = 'Description';
 $string['btnlink'] = 'Button Link';
 $string['btntext'] = 'Button Text';
+
+$string['template'] = 'Template';
+$string['name'] = 'Name';
+$string['masonrytemplate'] = 'Masonry template';
+$string['slidertemplate'] = 'Slider template';
+$string['tabstemplate'] = 'Tabs template';
+$string['gridtemplate'] = 'Grid template';
