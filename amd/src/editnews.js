@@ -19,12 +19,13 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-import {showNotification} from 'local_shopping_cart/notifications';
+
 import ModalForm from 'core_form/modalform';
 import {get_string as getString} from 'core/str';
 
 const SELECTORS = {
     ADDEDITBUTTON: 'div.wb-news-addeditbutton',
+    DELETEBUTTON: 'div.wb-news-deletebutton',
 };
 
 export const init = () => {
@@ -32,18 +33,38 @@ export const init = () => {
     console.log('run init');
 
     // Cashout functionality.
-    const button = document.querySelector(SELECTORS.ADDEDITBUTTON);
+    const buttons = document.querySelectorAll(SELECTORS.ADDEDITBUTTON);
 
     // eslint-disable-next-line no-console
-    console.log('button', button);
+    console.log('buttons', buttons);
 
-    if (button) {
-        button.addEventListener('click', e => {
+    if (buttons) {
+        buttons.forEach(button => {
+            button.addEventListener('click', e => {
 
-            // eslint-disable-next-line no-console
-            console.log(e.target);
+                // eslint-disable-next-line no-console
+                console.log(e.target);
 
-            addeditformModal(button);
+                addeditformModal(button);
+            });
+        });
+    }
+
+    // Cashout functionality.
+    const deletebuttons = document.querySelectorAll(SELECTORS.DELETEBUTTON);
+
+    // eslint-disable-next-line no-console
+    console.log('deletebuttons', deletebuttons);
+
+    if (deletebuttons) {
+        deletebuttons.forEach(button => {
+            button.addEventListener('click', e => {
+
+                // eslint-disable-next-line no-console
+                console.log(e.target);
+
+                deleteModal(button);
+            });
         });
     }
 };
@@ -64,7 +85,7 @@ export function addeditformModal(button) {
     const modalForm = new ModalForm({
 
         // Name of the class where form is defined (must extend \core_form\dynamic_form):
-        formClass: "local_wb_news\\form\\action_form",
+        formClass: "local_wb_news\\form\\addeditModal",
         // Add as many arguments as you need, they will be passed to the form:
         args: {
             id
@@ -76,12 +97,47 @@ export function addeditformModal(button) {
     });
     // Listen to events if you want to execute something on form submit.
     // Event detail will contain everything the process() function returned:
-    modalForm.addEventListener(modalForm.events.FORM_SUBMITTED, (e) => {
-        const response = e.detail;
-        // eslint-disable-next-line no-console
-        console.log('cashoutModal response: ', response);
+    modalForm.addEventListener(modalForm.events.FORM_SUBMITTED, () => {
 
-        showNotification('x', 'info');
+        location.reload();
+    });
+
+    // Show the form.
+    modalForm.show();
+
+}
+
+/**
+ * Show add edit form.
+  * @param {htmlElement} button
+  * @return [type]
+  *
+  */
+export function deleteModal(button) {
+
+    // eslint-disable-next-line no-console
+    console.log('button', button);
+
+    const id = button.dataset.id;
+
+    const modalForm = new ModalForm({
+
+        // Name of the class where form is defined (must extend \core_form\dynamic_form):
+        formClass: "local_wb_news\\form\\deleteModal",
+        // Add as many arguments as you need, they will be passed to the form:
+        args: {
+            id
+        },
+        // Pass any configuration settings to the modal dialogue, for example, the title:
+        modalConfig: {title: getString('deletenewsitem', 'local_wb_news')},
+        // DOM element that should get the focus after the modal dialogue is closed:
+        returnFocus: button
+    });
+    // Listen to events if you want to execute something on form submit.
+    // Event detail will contain everything the process() function returned:
+    modalForm.addEventListener(modalForm.events.FORM_SUBMITTED, () => {
+
+        location.reload();
     });
 
     // Show the form.

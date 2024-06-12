@@ -33,6 +33,18 @@
 }}
 
 <div class="card shadow-sm h-100" style="background-image: url({{bgimage}})">
+    {{#editmode}}
+        <div class="wb-news-addeditbutton btn btn-primary"
+            data-id="{{id}}"
+            data-instanceid="{{instanceid}}">
+            {{#str}} editnewnews, local_wb_news {{/str}}
+        </div>
+        <div class="wb-news-deletebutton btn btn-primary"
+            data-id="{{id}}"
+            data-instanceid="{{instanceid}}">
+            {{#str}} deletenewnews, local_wb_news {{/str}}
+        </div>
+    {{/editmode}}
     {{^btntext}}
     {{#btnlink}}<a href="{{btnlink}}" class="stretched-link"></a> {{/btnlink}}
     {{/btntext}}

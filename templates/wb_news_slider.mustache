@@ -69,3 +69,9 @@
         <span class="sr-only">Next</span>
     </a>
 </div>
+
+{{#js}}
+    require(['local_wb_news/editnews'], function(fn) {
+        fn.init({{instanceid}});
+    });
+{{/js}}

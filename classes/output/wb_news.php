@@ -58,9 +58,14 @@ class wb_news implements renderable, templatable {
      */
     public function __construct(int $instanceid) {
 
+        global $PAGE;
+
         $news = news::getinstance($instanceid);
 
-        $this->news = $news->return_list_of_news();
+        foreach ($news->return_list_of_news() as $newsitem) {
+            $newsitem['editmode'] = $PAGE->user_is_editing();
+            $this->news[] = $newsitem;
+        }
     }
 
     /**
@@ -71,12 +76,17 @@ class wb_news implements renderable, templatable {
      */
     public function return_list() {
 
+        global $PAGE;
+
         if (empty($this->news)) {
-            return [];
+            return [
+                'editmode' => $PAGE->user_is_editing(),
+            ];
         }
 
         return [
             'news' => $this->news,
+            'editmode' => $PAGE->user_is_editing(),
         ];
     }
 

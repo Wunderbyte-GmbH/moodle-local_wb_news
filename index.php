@@ -47,28 +47,9 @@ $PAGE->set_pagelayout('standard');
 
 echo $OUTPUT->header();
 
-$author = $DB->get_record("user", array("id" => $record->userid), '*');
-
-$coverpic = "/mod/news/img/default.jpg";
-if ($record->filename) {
-    $coverpic = \moodle_url::make_pluginfile_url($record->contextid, $record->component, $record->filearea,
-        $record->userid, $record->filepath, $record->filename, false);
-}
-
-$data = [
-    'cover' => format_string($coverpic),
-    'title' => format_string($record->title),
-    'description' => $record->description,
-    'date' => gmdate("d.m.y", $record->date),
-    'user'  => $author->firstname . ' ' . $author->lastname,
-    'coverpic' => $coverpic,
-    'userlink' => new \moodle_url('/user/profile.php', array("id" => $author->id)),
-];
-// echo text_to_html($OUTPUT->render_from_template("local_wb_news/detail", $data));
-
 $news = new wb_news($id);
 $data = $news->return_list();
-$out = $OUTPUT->render_from_template('local_wb_news/news', $data);
+$out = $OUTPUT->render_from_template('local_wb_news/wb_news_masonry', $data);
 
 echo $out;
 

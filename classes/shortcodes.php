@@ -48,7 +48,7 @@ class shortcodes {
      * @param Closure $next
      * @return string
      */
-    public static function wb_news($shortcode, $args, $content, $env, $next) {
+    public static function wbnews($shortcode, $args, $content, $env, $next) {
 
         global $USER, $PAGE, $OUTPUT;
 
@@ -61,7 +61,7 @@ class shortcodes {
         }
 
         $data = new wb_news($instance);
-        $out = $OUTPUT->render_from_template('local_wb_news/wb_news', $data);
+        $out = $OUTPUT->render_from_template('local_wb_news/news', $data);
 
         return $out;
     }

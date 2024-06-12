@@ -40,6 +40,12 @@
 
 <div class="container mt-5 wb_news">
     <div class="masonry">
+        {{#editmode}}
+            <div class="wb-news-addeditbutton btn btn-primary"
+                data-instanceid="{{instanceid}}">
+                {{#str}} addnewnews, local_wb_news {{/str}}
+            </div>
+        {{/editmode}}
         {{#news}}
             {{#headerimage}}
                 {{> local_wb_news/wb_news_card_headerimage}}
@@ -50,3 +56,11 @@
         {{/news}}
     </div>
 </div>
+
+
+
+{{#js}}
+    require(['local_wb_news/editnews'], function(fn) {
+        fn.init({{instanceid}});
+    });
+{{/js}}

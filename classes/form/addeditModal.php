@@ -40,7 +40,7 @@ use context_system;
  * @author Thomas Winkler
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class action_form extends dynamic_form {
+class addeditModal extends dynamic_form {
 
     /**
      * {@inheritdoc}
@@ -150,7 +150,7 @@ class action_form extends dynamic_form {
         $id = $ajaxformdata['id'] ?? 0;
         $instanceid = $ajaxformdata['instanceid'] ?? 0;
         $news = news::getinstance($instanceid);
-        $data = $news->get_news_item($id);
+        $data = (object)$news->get_news_item($id);
 
         $context = context_system::instance();
         $data = file_prepare_standard_editor(

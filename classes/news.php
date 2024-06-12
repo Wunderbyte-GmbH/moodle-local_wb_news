@@ -33,6 +33,13 @@ use context_system;
 class news {
 
     /**
+     * Array of instances.
+     *
+     * @var array
+     */
+    private static array $instance = [];
+
+    /**
      * [Description for $instanceid]
      *
      * @var int
@@ -40,11 +47,11 @@ class news {
     public $instanceid = 0;
 
     /**
-     * Array of instances.
+     * Array of news.
      *
      * @var array
      */
-    private static array $instance = [];
+    private array $news = [];
 
 
     /**
@@ -56,7 +63,7 @@ class news {
     private function __construct(int $instanceid) {
         global $DB;
 
-        $sql = "SELECT wn.*, wni.id
+        $sql = "SELECT wn.*, wni.id as instanceid
                 FROM {local_wb_news} wn
                 LEFT JOIN {local_wb_news_instance} wni ON wni.id = wn.instanceid";
 
@@ -68,7 +75,8 @@ class news {
         }
 
         $news = $DB->get_records_sql($sql, $params);
-        $this->instance[$instanceid] = $news;
+
+        $this->news = array_map(fn($a) => (array)$a, $news);
     }
 
     /**
@@ -92,7 +100,7 @@ class news {
      *
      */
     public function return_list_of_news() {
-        return $this->instance[$this->instanceid];
+        return $this->news;
     }
 
     /**
@@ -103,7 +111,7 @@ class news {
      *
      */
     public function get_news_item($id) {
-        return $this->instance[$this->instanceid]->news[$id] ?? null;
+        return $this->news[$id] ?? null;
     }
 
     /**
@@ -125,6 +133,23 @@ class news {
             $id = $DB->insert_record('local_wb_news', $data, true);
         }
         return $id;
+    }
+
+    /**
+     * Delete news. On failure, return 0, else id of deleted record.
+     *
+     * @param stdClass $data
+     * @return int $id
+     */
+    public function delete_news($data) {
+        global $DB, $USER;
+
+        if (!empty($data->id)) {
+            $DB->delete_records('local_wb_news', ['id' => $data->id]);
+            return $data->id;
+        }
+
+        return 0;
     }
 
     /**
