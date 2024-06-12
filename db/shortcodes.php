@@ -26,7 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $shortcodes = [
-    'wb_news' => [
+    'wbnews' => [
         'callback' => 'local_wb_news\shortcodes::wb_news',
         'wraps' => false,
         'description' => 'List of wb_news',
