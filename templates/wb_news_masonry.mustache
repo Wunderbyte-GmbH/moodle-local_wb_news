@@ -22,6 +22,7 @@
 
     Example context (json):
     {
+        "id" => "news Masonary 1",
         "news": [
             {
                 'bgimage' => '/local/wb_news/img/wb.jpg',
@@ -30,7 +31,8 @@
                 'subheadline' => 'Image and Icon',
                 'description' => 'Image and Icon',
                 'btnlink' => 'https://link1.com',
-                'btntext' => 'Read More'
+                'btntext' => 'Read More',
+                'headerimage' => 1
             }
         ]
     }
@@ -39,25 +41,12 @@
 <div class="container mt-5 wb_news">
     <div class="masonry">
         {{#news}}
-        <div class="card mb-4 shadow-sm">
-            {{^btntext}}
-            {{#btnlink}}<a href="{{btnlink}}" class="stretched-link"></a> {{/btnlink}}
-            {{/btntext}}
-            {{#bgimage}}
-            <img src="{{bgimage}}" class="card-img-top" alt="Background Image">
-            {{/bgimage}}
-            <div class="card-body">
-            {{#icon}}
-            <img src="{{icon}}" class="card-icon mb-2" alt="Icon">
-            {{/icon}}
-            <h5 class="card-title">{{headline}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{subheadline}}</h6>
-            <p class="card-text">{{description}}</p>
-            {{#btntext}}
-            <a href="{{btnlink}}" class="btn btn-primary mt-auto">{{btntext}}</a>
-            {{/btntext}}
-            </div>
-        </div>
+            {{#headerimage}}
+                {{> local_wb_news/wb_news_card_headerimage}}
+            {{/headerimage}}
+            {{^headerimage}}
+                {{> local_wb_news/wb_news_card_bgimage}}
+            {{/headerimage}}
         {{/news}}
     </div>
 </div>

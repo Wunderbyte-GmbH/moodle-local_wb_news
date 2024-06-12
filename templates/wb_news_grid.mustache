@@ -22,44 +22,33 @@
 
     Example context (json):
     {
+        "id" => "news Grid 1",
         "news": [
             {
+                'id' => 'news1'
                 'bgimage' => '/local/wb_news/img/wb.jpg',
                 'icon' => '/local/wb_news/img/icon.png',
                 'headline' => 'News 1',
                 'subheadline' => 'Image and Icon',
                 'description' => 'Image and Icon',
                 'btnlink' => 'https://link1.com',
-                'btntext' => 'Read More'
+                'btntext' => 'Read More',
+                'headerimage' => 1
             }
         ]
     }
 }}
 
-<div class="container mt-5 wb_news">
+<div class="container mt-5 wb_news" data-id="{{id}}">
 	<div class="row">
 		{{#news}}
 		<div class="col-md-3 mb-4">
-            <div class="card shadow-sm h-100" style="background-image: url({{bgimage}})">
-                {{^btntext}}
-                {{#btnlink}}<a href="{{btnlink}}" class="stretched-link"></a> {{/btnlink}}
-                {{/btntext}}
-                <div class="card-body">
-                {{#icon}}
-                <div class="text-center">
-                    <img src="{{icon}}" class="card-icon mb-2 text-center" alt="Icon">
-                </div>
-                {{/icon}}
-                <h5 class="card-title">{{headline}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">{{subheadline}}</h6>
-                <p class="card-text">{{description}}</p>
-                </div>
-                <div class="card-footer">
-                {{#btntext}}
-                <a href="{{btnlink}}" class="btn btn-primary mt-auto">{{btntext}}</a>
-                {{/btntext}}
-                </div>
-            </div>
+            {{#headerimage}}
+                {{> local_wb_news/wb_news_card_headerimage}}
+            {{/headerimage}}
+            {{^headerimage}}
+                {{> local_wb_news/wb_news_card_bgimage}}
+            {{/headerimage}}
 	    </div>
 	    {{/news}}
 	</div>

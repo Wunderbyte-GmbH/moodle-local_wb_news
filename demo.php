@@ -41,48 +41,59 @@ $coverpic = "/local/wb_news/img/default.jpg";
 
 // Testdata.
 $newsdata = [
+    'id' => 'news',
     'news' => [
         [
+            'id' => 'news1',
             'bgimage' => '/local/wb_news/img/wb.jpg',
             'icon' => '/local/wb_news/img/icon.png',
             'headline' => 'News 1',
-            'subheadline' => 'Image and Icon',
+            'subheadline' => 'Headerimage and Icon',
             'description' => 'Image and Icon',
             'btnlink' => 'https://www.wunderbyte.at',
-            'btntext' => 'Read More'
+            'btntext' => 'Read More',
+            'headerimage' => true,
+            'firstitem' => true,
         ],
         [
+            'id' => 'news2',
             'headline' => 'News 2',
             'subheadline' => 'News 2',
             'description' => 'No Image No Icon',
             'btnlink' => 'https://www.wunderbyte.at',
-            'btntext' => 'Read More'
+            'btntext' => 'Read More',
         ],
         [
+            'id' => 'news3',
             'icon' => '/local/wb_news/img/icon.png',
             'headline' => 'News 3',
             'subheadline' => 'Icon no Image',
             'description' => 'Icon no Image',
             'btnlink' => 'https://www.wunderbyte.at',
-            'btntext' => 'Read More'
+            'btntext' => 'Read More',
         ],
         [
+            'id' => 'news4',
             'bgimage' => '/local/wb_news/img/wb.jpg',
             'headline' => 'News 4',
             'subheadline' => 'Image no Icon',
             'description' => 'Image no Icon',
             'btnlink' => 'https://www.wunderbyte.at',
-            'btntext' => 'Read More'
+            'btntext' => 'Read More',
         ],
         [
+            'id' => 'news5',
             'bgimage' => '/local/wb_news/img/wb.jpg',
             'icon' => '/local/wb_news/img/icon.png',
             'headline' => 'News 5',
-            'subheadline' => 'Image, Icon, Link, No button',
-            'description' => 'Image, Icon, Link, No button',
+            'subheadline' => 'BGImage, Icon, Link, No button',
+            'description' => 'BGImage, Icon, Link, No button',
             'btnlink' => 'https://www.wunderbyte.at',
+            'headerimage' => false,
+
         ],
         [
+            'id' => 'news6',
             'headline' => 'News 6',
             'subheadline' => 'News 6',
             'description' => 'No Image, No Icon, No link',
@@ -90,15 +101,35 @@ $newsdata = [
     ]
 ];
 
-echo "<h2>Bg Image</h2>";
-echo $OUTPUT->render_from_template("local_wb_news/wb_news_bgimage", $newsdata);
-
-echo "<h2>Header Image</h2>";
-echo $OUTPUT->render_from_template("local_wb_news/wb_news_headerimage", $newsdata);
+echo "<h2>Grid</h2>";
+echo $OUTPUT->render_from_template("local_wb_news/wb_news_grid", $newsdata);
 
 $masonry['news'] = array_merge($newsdata['news'], $newsdata['news']);
-echo "<h2>Masonry (with 12 News)</h2>";
+echo "<br><h2>Masonry (with 12 News)</h2>";
 echo $OUTPUT->render_from_template("local_wb_news/wb_news_masonry", $masonry);
+
+$groupednews = grouparray($newsdata['news'], 4);
+
+function grouparray($array, $groupsize) {
+    $grouped = array();
+    for ($i = 0; $i < count($array); $i += $groupsize) {
+        $grouped[] = ['news' => array_slice($array, $i, $groupsize)];
+    }
+    $grouped[0]['firstitem'] = true;
+    $grouped[0]['title'] = "tab1";
+    $grouped[0]['id'] = "tab1";
+
+    $grouped[1]['title'] = "tab2";
+    $grouped[1]['id'] = "tab2";
+
+    return $grouped;
+}
+
+echo "<br><h2>Slider</h2>";
+echo $OUTPUT->render_from_template("local_wb_news/wb_news_slider", ['groupednews' => $groupednews]);
+
+echo "<br><h2>Tabs</h2>";
+echo $OUTPUT->render_from_template("local_wb_news/wb_news_tabs", ['tabs' => $groupednews]);
 
 echo $OUTPUT->footer();
 
