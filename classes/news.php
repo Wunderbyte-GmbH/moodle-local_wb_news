@@ -102,7 +102,7 @@ class news {
      */
     public static function getinstance(int $instanceid, bool $fetchitems = true) {
         // Create the instance if it doesn't exist.
-        if (self::$instance[$instanceid] === null) {
+        if (!isset(self::$instance[$instanceid]) || self::$instance[$instanceid] === null) {
             self::$instance[$instanceid] = new self($instanceid, $fetchitems);
         }
         return self::$instance[$instanceid];
@@ -316,9 +316,14 @@ class news {
 
         global $DB;
 
-        $sql = "SELECT " . $DB->sql_concat("wni.id", "'-'", "COALESCE(wn.id, '')") . " as ident, wn.*, wni.id as instanceid, wni.template, wni.name
+        $sql = $sql = "SELECT " . $DB->sql_concat(
+            $DB->sql_cast_to_char('COALESCE(wni.id, 0)'),
+            "'-'",
+            $DB->sql_cast_to_char('COALESCE(wn.id, 0)')
+        ) . " as ident, wn.*, wni.id as instanceid, wni.template, wni.name
         FROM {local_wb_news} wn
         RIGHT JOIN {local_wb_news_instance} wni ON wni.id = wn.instanceid";
+
 
         if (!empty($id)) {
             $params = ['instanceid' => $instanceid];
