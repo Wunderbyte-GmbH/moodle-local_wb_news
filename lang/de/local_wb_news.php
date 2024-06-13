@@ -54,6 +54,9 @@ $string['deleteinstance'] = 'Lösche Instanz';
 
 $string['addeditform'] = 'Hinzufügen oder bearbeiten eines Eintrags';
 $string['instanceid'] = 'Instanz-ID';
+$string['activenews'] = 'Beim ersten Laden aktiv';
+$string['icon'] = 'Icon';
+$string['sortorder'] = 'Niedrig wird vorgereiht';
 $string['bgimage'] = 'Hintergrundbild';
 $string['icon'] = 'Symbol';
 $string['userid'] = 'Benutzer-ID';
@@ -69,3 +72,6 @@ $string['masonrytemplate'] = 'Bausteine Vorlage';
 $string['slidertemplate'] = 'Slider Vorlage';
 $string['tabstemplate'] = 'Tabs Vorlage';
 $string['gridtemplate'] = 'Gitter Vorlage';
+
+// Errors.
+$string['interror'] = 'Nur ganze Zahlen sind erlaubt.';

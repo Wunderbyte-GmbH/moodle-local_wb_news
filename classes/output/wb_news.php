@@ -103,29 +103,6 @@ class wb_news implements renderable, templatable {
                 $news->return_instance(),
             ],
         ];
-
-        if (empty($this->news)) {
-            return [
-                'instances' => [
-                [
-                    'instanceid' => $this->instanceid,
-                    'template' => $this->template,
-                ],
-                ],
-                'editmode' => $PAGE->user_is_editing(),
-            ];
-        }
-
-        return [
-            'instances' => [
-                [
-                    'instanceid' => $this->instanceid,
-                    'news' => $this->news,
-                    'template' => $this->template,
-                ],
-            ],
-            'editmode' => $PAGE->user_is_editing(),
-        ];
     }
 
 

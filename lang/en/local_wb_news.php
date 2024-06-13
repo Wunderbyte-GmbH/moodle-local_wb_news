@@ -54,6 +54,9 @@ $string['deleteinstance'] = 'Delete instance';
 
 $string['addeditform'] = 'Add or edit entry';
 $string['instanceid'] = 'Instance ID';
+$string['activenews'] = 'Active on first loading';
+$string['icon'] = 'Icon';
+$string['sortorder'] = 'Lower comes first';
 $string['bgimage'] = 'Background Image';
 $string['icon'] = 'Icon';
 $string['userid'] = 'User ID';
@@ -69,3 +72,6 @@ $string['masonrytemplate'] = 'Masonry template';
 $string['slidertemplate'] = 'Slider template';
 $string['tabstemplate'] = 'Tabs template';
 $string['gridtemplate'] = 'Grid template';
+
+// Errors.
+$string['interror'] = 'Only full numbers are allowed.';

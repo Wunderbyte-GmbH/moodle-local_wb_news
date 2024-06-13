@@ -65,6 +65,15 @@ class addeditModal extends dynamic_form {
         $mform->setType('headline', PARAM_TEXT);
         $mform->addRule('headline', null, 'required', null, 'client');
 
+        $mform->addElement('advcheckbox', 'active', get_string('activenews', 'local_wb_news'));
+        $mform->setType('icon', PARAM_TEXT);
+
+        $mform->addElement('text', 'sortorder', get_string('sortorder', 'local_wb_news'));
+        $mform->setType('sortorder', PARAM_INT);
+        // Add client-side validation rule to ensure the value is numeric.
+        $mform->addRule('sortorder', get_string('interror', 'local_wb_news'), 'required', null, 'client');
+        $mform->addRule('sortorder', get_string('interror', 'local_wb_news'), 'numeric', null, 'client');
+
         // Add subheadline field.
         $mform->addElement('text', 'subheadline', get_string('subheadline', 'local_wb_news'));
         $mform->setType('subheadline', PARAM_TEXT);
@@ -78,6 +87,24 @@ class addeditModal extends dynamic_form {
         $mform->addElement('text', 'bgimage', get_string('bgimage', 'local_wb_news'));
         $mform->setType('bgimage', PARAM_TEXT);
         $mform->addRule('bgimage', null, 'required', null, 'client');
+
+        $mform->addElement('filemanager',
+            'bgimagefile',
+            get_string('bgimage', 'local_wb_news'),
+            '',
+            [
+                'accepted_types' => ['.jpg', '.png'],
+                'maxfiles' => 1,
+        ]);
+
+        $mform->addElement('filemanager',
+            'iconfile',
+            get_string('icon', 'local_wb_news'),
+            '',
+            [
+                'accepted_types' => ['.jpg', '.png'],
+                'maxfiles' => 1,
+        ]);
 
         // Add icon field.
         $mform->addElement('text', 'icon', get_string('icon', 'local_wb_news'));
@@ -114,7 +141,17 @@ class addeditModal extends dynamic_form {
     public function process_dynamic_submission() {
         global $CFG, $DB;
 
+        $mform = $this->_form;
+
         $data = $this->get_data();
+
+        $news = news::getinstance($data->instanceid ?? 0);
+        if (empty($data->id)) {
+            // We need to temporarily set sth in the description column.
+            $data->description = '';
+            $data->descriptionformat = 0;
+            $data->id = $news->update_news($data);
+        }
 
         $data = file_postupdate_standard_editor(
             // The submitted data.
@@ -125,12 +162,29 @@ class addeditModal extends dynamic_form {
             news::get_textfield_options(),
             context_system::instance(),
             'local_wb_news',
-            'wb_news',
+            'description',
             $data->id
         );
 
-        $news = news::getinstance($data->instanceid ?? 0);
-        $news->update_news($data);
+        file_save_draft_area_files(
+            $data->bgimagefile,
+            context_system::instance()->id,
+            'local_wb_news',
+            'bgimagefile',
+            $data->id,
+            news::get_textfield_options(),
+        );
+
+        file_save_draft_area_files(
+            $data->iconfile,
+            context_system::instance()->id,
+            'local_wb_news',
+            'iconfile',
+            $data->id,
+            news::get_textfield_options(),
+        );
+
+        $data->id = $news->update_news($data);
 
         return $data;
     }
@@ -163,9 +217,37 @@ class addeditModal extends dynamic_form {
                 // The combination of contextid, component, filearea, and itemid.
                 $context,
                 'local_wb_news',
-                'wb_news',
+                'description',
                 $data->id
             );
+
+        $draftitemid = file_get_submitted_draft_itemid('bgimagefile');
+        // Copy the existing files which were previously uploaded
+        // into the draft area used by this form.
+        file_prepare_draft_area(
+            $draftitemid,
+            $context->id,
+            'local_wb_news',
+            'bgimagefile',
+            $data->id,
+            news::get_textfield_options(),
+        );
+
+        $data->bgimagefile = $draftitemid;
+
+        $draftitemid = file_get_submitted_draft_itemid('iconfile');
+        // Copy the existing files which were previously uploaded
+        // into the draft area used by this form.
+        file_prepare_draft_area(
+            $draftitemid,
+            $context->id,
+            'local_wb_news',
+            'iconfile',
+            $data->id,
+            news::get_textfield_options(),
+        );
+
+        $data->iconfile = $draftitemid;
 
         $this->set_data($data);
     }

@@ -146,6 +146,7 @@ class news {
      *
      */
     public function get_news_item($id) {
+
         return $this->news[$id] ?? null;
     }
 
@@ -180,7 +181,7 @@ class news {
      */
     public function add_news(stdClass $data) {
 
-        $this->news[] = $data;
+        $this->news[$data->id] = $data;
         if (!empty($data->template)) {
             $this->template = $data->template;
         }
