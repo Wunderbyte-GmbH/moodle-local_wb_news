@@ -41,54 +41,21 @@
     }
 }}
 
-{{#editmode}}
-    <div class="wb-news-addeditbutton btn btn-primary"
-        data-id="{{instanceid}}"
-        data-isinstance="true">
-        {{#str}} editinstance, local_wb_news {{/str}}
-    </div>
-    <div class="wb-news-deletebutton btn btn-primary"
-        data-id="{{instanceid}}"
-        data-isinstance="true">
-        {{#str}} deleteinstance, local_wb_news {{/str}}
-    </div>
-    <div class="wb-news-addeditbutton btn btn-primary"
-        data-instanceid="{{instanceid}}">
-        {{#str}} addnewnews, local_wb_news {{/str}}
-    </div>
-{{/editmode}}
 <ul class="nav nav-tabs wb_news" id="wb_news_tab-{{id}}" role="tablist">
-    {{#tabs}}
+    {{#news}}
     <li class="nav-item">
-        <a class="nav-link {{#firstitem}}active{{/firstitem}}" id="{{id}}-tab" data-toggle="tab" href="#{{id}}" role="tab" aria-controls="{{id}}" aria-selected="{{#firstitem}}true{{/firstitem}}{{^firstitem}}false{{/firstitem}}">
-            {{title}}
+        <a class="nav-link{{#active}} active{{/active}}" id="{{id}}-tab" data-toggle="tab" href="#{{id}}" role="tab" aria-controls="{{id}}" aria-selected="{{#firstitem}}true{{/firstitem}}{{^firstitem}}false{{/firstitem}}">
+            {{id}}
         </a>
     </li>
-    {{/tabs}}
+    {{/news}}
 </ul>
 <div class="tab-content wb_news" id="wb_news_tab_content">
-    {{#tabs}}
-    <div class="tab-pane fade {{#firstitem}}show active{{/firstitem}}" id="{{id}}" role="tabpanel" aria-labelledby="{{id}}-tab">
+    {{#news}}
+    <div class="tab-pane fade {{#active}}show active{{/active}}" id="{{id}}" role="tabpanel" aria-labelledby="{{id}}-tab">
         <div class="container mt-5">
-            <div class="row">
-                {{#news}}
-                <div class="col-md-3">
-                    {{#headerimage}}
-                    {{> local_wb_news/wb_news_card_headerimage}}
-                    {{/headerimage}}
-                    {{^headerimage}}
-                    {{> local_wb_news/wb_news_card_bgimage}}
-                    {{/headerimage}}
-                </div>
-                {{/news}}
-            </div>
+            {{> local_wb_news/wb_tab}}
         </div>
     </div>
-    {{/tabs}}
-</div>
-
-{{#js}}
-    require(['local_wb_news/editnews'], function(fn) {
-        fn.init({{instanceid}});
-    });
-{{/js}}
+    {{/news}}
+<div>

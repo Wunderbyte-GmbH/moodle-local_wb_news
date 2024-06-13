@@ -59,11 +59,10 @@
             </div>
         {{/editmode}}
     <div class="carousel-inner py-2">
-        {{#groupednews}}
-            <div class="carousel-item{{#firstitem}} active{{/firstitem}}">
+        {{#news}}
+            <div class="carousel-item{{#active}} active{{/active}}">
                 <div class="row">
-                    {{#news}}
-                        <div class="col-md-3">
+                        <div class="col-md-12">
                             {{#headerimage}}
                                 {{> local_wb_news/wb_news_card_headerimage}}
                             {{/headerimage}}
@@ -71,10 +70,9 @@
                                 {{> local_wb_news/wb_news_card_bgimage}}
                             {{/headerimage}}
                         </div>
-                    {{/news}}
                 </div>
             </div>
-        {{/groupednews}}
+        {{/news}}
     </div>
     <a class="carousel-control-prev" href="#wb_news_carousel-{{id}}" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

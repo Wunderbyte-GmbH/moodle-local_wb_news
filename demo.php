@@ -53,7 +53,7 @@ $newsdata = [
             'btnlink' => 'https://www.wunderbyte.at',
             'btntext' => 'Read More',
             'headerimage' => true,
-            'firstitem' => true,
+            'active' => true,
         ],
         [
             'id' => 'news2',
@@ -108,28 +108,10 @@ $masonry['news'] = array_merge($newsdata['news'], $newsdata['news']);
 echo "<br><h2>Masonry (with 12 News)</h2>";
 echo $OUTPUT->render_from_template("local_wb_news/wb_news_masonry", $masonry);
 
-$groupednews = grouparray($newsdata['news'], 4);
-
-function grouparray($array, $groupsize) {
-    $grouped = array();
-    for ($i = 0; $i < count($array); $i += $groupsize) {
-        $grouped[] = ['news' => array_slice($array, $i, $groupsize)];
-    }
-    $grouped[0]['firstitem'] = true;
-    $grouped[0]['title'] = "tab1";
-    $grouped[0]['id'] = "tab1";
-
-    $grouped[1]['title'] = "tab2";
-    $grouped[1]['id'] = "tab2";
-
-    return $grouped;
-}
+echo "<br><h2>Tabs</h2>";
+echo $OUTPUT->render_from_template("local_wb_news/wb_news_tabs", $newsdata);
 
 echo "<br><h2>Slider</h2>";
-echo $OUTPUT->render_from_template("local_wb_news/wb_news_slider", ['groupednews' => $groupednews]);
-
-echo "<br><h2>Tabs</h2>";
-echo $OUTPUT->render_from_template("local_wb_news/wb_news_tabs", ['tabs' => $groupednews]);
+echo $OUTPUT->render_from_template("local_wb_news/wb_news_slider", $newsdata);
 
 echo $OUTPUT->footer();
-
