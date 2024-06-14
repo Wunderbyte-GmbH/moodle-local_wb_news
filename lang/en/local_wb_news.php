@@ -75,3 +75,6 @@ $string['gridtemplate'] = 'Grid template';
 
 // Errors.
 $string['interror'] = 'Only full numbers are allowed.';
+
+// Shortcodes.
+$string['wbnewslist'] = 'One or all instances of news';

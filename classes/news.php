@@ -115,7 +115,7 @@ class news {
      *
      */
     public function return_list_of_news() {
-        return array_map(fn($a) => (array)$a, $this->news);
+        return array_values(array_map(fn($a) => (array)$a, $this->news));
     }
 
     /**
@@ -331,6 +331,8 @@ class news {
         } else {
             $params = [];
         }
+
+        $sql .= " ORDER By sortorder ASC";
 
         return $DB->get_records_sql($sql, $params);
     }

@@ -75,3 +75,6 @@ $string['gridtemplate'] = 'Gitter Vorlage';
 
 // Errors.
 $string['interror'] = 'Nur ganze Zahlen sind erlaubt.';
+
+// Shortcodes.
+$string['wbnewslist'] = 'Eine oder alle News Instanzen.';
