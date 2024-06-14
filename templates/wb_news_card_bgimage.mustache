@@ -33,18 +33,7 @@
 }}
 
 <div class="card shadow-sm h-100" style="background-image: url({{bgimage}})">
-    {{#editmode}}
-        <div class="wb-news-addeditbutton btn btn-primary"
-            data-id="{{id}}"
-            data-instanceid="{{instanceid}}">
-            {{#str}} editnewnews, local_wb_news {{/str}}
-        </div>
-        <div class="wb-news-deletebutton btn btn-primary"
-            data-id="{{id}}"
-            data-instanceid="{{instanceid}}">
-            {{#str}} deletenewnews, local_wb_news {{/str}}
-        </div>
-    {{/editmode}}
+
     {{^btntext}}
     {{#btnlink}}<a href="{{btnlink}}" class="stretched-link"></a> {{/btnlink}}
     {{/btntext}}
@@ -54,13 +43,17 @@
         <img src="{{icon}}" class="card-icon mb-2 text-center" alt="Icon">
     </div>
     {{/icon}}
-    <h5 class="card-title">{{headline}}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">{{subheadline}}</h6>
-    <p class="card-text">{{description}}</p>
     </div>
     <div class="card-footer">
+    <h5 class="card-title">{{headline}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{subheadline}}</h6>
+    <p class="card-text">{{{description}}}</p>
     {{#btntext}}
     <a href="{{btnlink}}" class="btn btn-primary mt-auto">{{btntext}}</a>
     {{/btntext}}
     </div>
+    {{#editmode}}
+    {{> local_wb_news/editsinglenews}}
+    {{/editmode}}
 </div>
+

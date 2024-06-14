@@ -4,6 +4,8 @@
 
 .wb_news .card {
   background-size: cover;
+  background-position: center;
+  min-height: 350px;
 }
 
 .wb_news .card-footer {

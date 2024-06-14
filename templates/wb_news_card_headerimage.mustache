@@ -33,13 +33,6 @@
 }}
 
 <div class="card shadow-sm h-100">
-    {{#editmode}}
-        <div class="wb-news-addeditbutton btn btn-primary"
-            data-id="{{id}}"
-            data-instanceid="{{instanceid}}">
-            {{#str}} addnewnews, local_wb_news {{/str}}
-        </div>
-    {{/editmode}}
     {{^btntext}}
     {{#btnlink}}<a href="{{btnlink}}" class="stretched-link"></a> {{/btnlink}}
     {{/btntext}}
@@ -61,4 +54,7 @@
         <a href="{{btnlink}}" class="btn btn-primary mt-auto">{{btntext}}</a>
     {{/btntext}}
     </div>
+    {{#editmode}}
+    {{> local_wb_news/editsinglenews}}
+    {{/editmode}}
 </div>
