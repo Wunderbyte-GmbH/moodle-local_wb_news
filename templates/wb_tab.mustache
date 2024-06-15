@@ -1,111 +1,45 @@
+ {{!
+    This file is part of Moodle - http://moodle.org/
 
-<style>
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-    .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
-        background-color: #e9f2f9;
-        border-color: #e9f2f9;
-        color: #004085;
-    }
-    .wb_news_tabcontainer, .section-content {
-        padding: 2rem;
-        border-radius: .25rem;
-    }
-    .section-content .btn-primary {
-        background-color: #0056b3;
-        border-color: #0056b3;
-    }
-    .wb_news_tabcontainer {
-        position: relative;
-        width: 100%;  /* Adjust the width as needed */
-    }
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
 
-        .wb_news_tabcontainer .rounded-background {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #E9F0F3;
-        border-radius: 20px;  /* Adjust the border radius as needed */
-        z-index: -1;  /* Ensure the background is behind the content */
-    }
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template local_wb_news/wb_tab
 
-    .wb_news_tabcontainer .wb_news_tabscontent {
-        position: relative;
-        z-index: 1;  /* Ensure the content is above the background */
-        padding: 40px 20px;  /* Optional: Add padding for better spacing */
-    }
+    Classes required for JS:
+    * none
 
-    .nav-tabs.wb_news .nav-item {
-        list-style: none;
+    Example context (json):
+    {
+        "id" => "news Slider 1",
+        "groupednews": [
+            "firstitem": 1
+            "news": [
+                {
+                    'bgimage' => '/local/wb_news/img/wb.jpg',
+                    'icon' => '/local/wb_news/img/icon.png',
+                    'headline' => 'News 1',
+                    'subheadline' => 'Image and Icon',
+                    'description' => 'Image and Icon',
+                    'btnlink' => 'https://link1.com',
+                    'btntext' => 'Read More',
+                    'headerimage' => 1
+                }
+            ]
+        ]
     }
-
-    .wb_news.nav-tabs {
-        justify-content: center;
-        width: fit-content;
-        margin: auto;
-        border-radius: 5px;
-        padding: 3px;
-        background: #E9F0F3;
-        border-bottom: none;
-
-    }
-    .wb_news.nav-tabs .nav-link {
-        margin-bottom: 1px;
-        border-radius: 5px;
-        color: #547086;
-        font-weight: 600;
-    }
-    .wb_news.nav-tabs .nav-link.active {
-        background: #fff;
-        color: #005C99;
-    }
-    @media (min-width: 981px) {
-    .wb_news_tabcontainer .rounded-background {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 90%;
-        height: 100%;
-        background: #E9F0F3;
-        border-radius: 20px;  /* Adjust the border radius as needed */
-        z-index: -1;  /* Ensure the background is behind the content */
-    }
-
-    .wb_news_tabcontainer .wb_news_tabscontent {
-        position: relative;
-        z-index: 1;  /* Ensure the content is above the background */
-        padding: 40px 20px;  /* Optional: Add padding for better spacing */
-    }
-
-    .nav-tabs.wb_news .nav-item {
-        list-style: none;
-    }
-
-    .wb_news.nav-tabs {
-        justify-content: center;
-        width: fit-content;
-        margin: auto;
-        border-radius: 5px;
-        padding: 3px;
-        background: #E9F0F3;
-        border-bottom: none;
-
-    }
-    .wb_news.nav-tabs .nav-link {
-        margin-bottom: 1px;
-        border-radius: 5px;
-        color: #547086;
-        font-weight: 600;
-    }
-    .wb_news.nav-tabs .nav-link.active {
-        background: #fff;
-        color: #005C99;
-    }
-}
-
-</style>
-
+}}
 
 <div class="container wb_news_tabcontainer">
     {{^btntext}}

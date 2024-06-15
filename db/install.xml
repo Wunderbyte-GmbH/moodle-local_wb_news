@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+g<?xml version="1.0" encoding="UTF-8" ?>
 <XMLDB PATH="local/wb_news/db" VERSION="2020191000" COMMENT="XMLDB file for Moodle local/wb_news"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
