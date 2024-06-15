@@ -114,4 +114,10 @@ echo $OUTPUT->render_from_template("local_wb_news/wb_news_tabs", $newsdata);
 echo "<br><h2>Slider</h2>";
 echo $OUTPUT->render_from_template("local_wb_news/wb_news_slider", $newsdata);
 
+
+echo "<br><h2>Slider</h2>";
+echo $OUTPUT->render_from_template("local_wb_news/wb_tab_old", $newsdata);
+
+echo "<br><h2>Slider</h2>";
+echo $OUTPUT->render_from_template("local_wb_news/wb_slider_style1", $newsdata);
 echo $OUTPUT->footer();

@@ -112,6 +112,9 @@
     {{#btnlink}}<a href="{{btnlink}}" class="stretched-link"></a> {{/btnlink}}
     {{/btntext}}
     <div class="wb_news_tabscontent">
+        {{#editmode}}
+        {{> local_wb_news/editsinglenews}}
+        {{/editmode}}
         <div class="rounded-background"></div>
         <div class="row my-4 p-4">
             <div class="col-lg-6">
