@@ -47,7 +47,7 @@
         {{/editmode}}
     <div class="carousel-inner py-2">
         {{#news}}
-            <div class="carousel-item{{#active}} active{{/active}}">
+            <div class="carousel-item{{#active}} active{{/active}}{{#cssclasses}} {{cssclasses}}{{/cssclasses}}{{#lightmode}} wb_news-light{{/lightmode}}">
                 <div class="row">
                     {{> local_wb_news/wb_news_slide}}
                 </div>
