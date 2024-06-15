@@ -32,8 +32,7 @@
     }
 }}
 
-<div class="card shadow-sm h-100" style="background-image: url({{bgimage}})">
-
+<div class="card shadow-sm h-100{{#lightmode}} wb_news-light{{/lightmode}}{{#cssclasses}}{{cssclasses}}{{/cssclasses}}" style="background-image: url({{bgimage}})">
     {{^btntext}}
     {{#btnlink}}<a href="{{btnlink}}" class="stretched-link"></a> {{/btnlink}}
     {{/btntext}}
@@ -46,7 +45,7 @@
     </div>
     <div class="card-footer">
     <h5 class="card-title">{{headline}}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">{{subheadline}}</h6>
+    <h6 class="card-subtitle mb-2">{{subheadline}}</h6>
     <p class="card-text">{{{description}}}</p>
     {{#btntext}}
     <a href="{{btnlink}}" class="btn btn-primary mt-auto">{{btntext}}</a>

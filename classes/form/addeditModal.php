@@ -108,6 +108,12 @@ class addeditModal extends dynamic_form {
         // Add button text field.
         $mform->addElement('text', 'btntext', get_string('btntext', 'local_wb_news'));
         $mform->setType('btntext', PARAM_TEXT);
+
+        $mform->addElement('checkbox', 'lightmode', get_string('lightmode', 'local_wb_news'));
+        $mform->setType('lightmode', PARAM_INT);
+
+        $mform->addElement('text', 'cssclasses', get_string('cssclasses', 'local_wb_news'));
+        $mform->setType('cssclasses', PARAM_TEXT);
     }
 
     /**
@@ -204,6 +210,7 @@ class addeditModal extends dynamic_form {
 
         // Save the URL for the icon.
         $files = $fs->get_area_files($contextid, $component, 'icon', $data->id);
+        $data->icon = null;
         foreach ($files as $file) {
             $filename = $file->get_filename();
             if ($filename === '.') {

@@ -65,6 +65,8 @@ $string['subheadline'] = 'Subheadline';
 $string['description'] = 'Description';
 $string['btnlink'] = 'Button Link';
 $string['btntext'] = 'Button Text';
+$string['lightmode'] = 'Light Mode';
+$string['cssclasses'] = 'Additionial CSS classes';
 
 $string['template'] = 'Template';
 $string['name'] = 'Name';

@@ -65,6 +65,8 @@ $string['subheadline'] = 'Unterüberschrift';
 $string['description'] = 'Beschreibung';
 $string['btnlink'] = 'Schaltflächenlink';
 $string['btntext'] = 'Schaltflächentext';
+$string['lightmode'] = 'Heller Modus';
+$string['cssclasses'] = 'Zusätzliche CSS Klassen';
 
 $string['template'] = 'Vorlage';
 $string['name'] = 'Name';

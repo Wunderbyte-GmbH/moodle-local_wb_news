@@ -54,3 +54,7 @@
 .wb_news .carousel-control-next {
   right: 10px; /* Adjust the right position as needed */
 }
+
+.wb_news .wb_news-light {
+  color: #fff;
+}

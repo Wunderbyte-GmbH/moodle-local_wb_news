@@ -66,5 +66,4 @@ class shortcodes {
 
         return $out;
     }
-
 }
