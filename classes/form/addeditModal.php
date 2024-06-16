@@ -83,6 +83,11 @@ class addeditModal extends dynamic_form {
         $mform->addElement('editor', 'description_editor', get_string('description', 'local_wb_news'));
         $mform->setType('description_editor', PARAM_RAW);
 
+        $options = [
+            news::IMAGEMODE_HEADER => get_string('useasheaderimage'),
+            news::IMAGEMODE_BACKGROUND => get_string('useasbgimage'),
+        ];
+        $mform->addElement('select', 'imagemode', get_string('imagemode', 'local_wb_news'), $options);
         $mform->addElement('filemanager',
             'bgimage',
             get_string('bgimage', 'local_wb_news'),

@@ -32,6 +32,21 @@ use context_system;
  */
 class news {
 
+
+    /**
+     * IMAGEMODE_HEADER
+     *
+     * @var int
+     */
+    const IMAGEMODE_HEADER = 0;
+
+    /**
+     * IMAGEMODE_BACKGROUND
+     *
+     * @var int
+     */
+    const IMAGEMODE_BACKGROUND = 1;
+
     /**
      * Array of instances.
      *
@@ -193,6 +208,18 @@ class news {
      * @param stdClass $data
      */
     public function add_news(stdClass $data) {
+
+        // Here, we apply the correct value depending on image mode.
+
+        switch ($data->imagemode) {
+            case self::IMAGEMODE_BACKGROUND:
+                // Do nothing as we use the bgimage key already.
+                break;
+            case self::IMAGEMODE_HEADER:
+                $data->headerimage = $data->bgimage;
+                unset($data->bgimage);
+                break;
+        }
 
         $this->news[$data->id] = $data;
         if (!empty($data->template)) {
