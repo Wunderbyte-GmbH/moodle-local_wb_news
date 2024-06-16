@@ -13,6 +13,7 @@ g<?xml version="1.0" encoding="UTF-8" ?>
         <FIELD NAME="sortorder" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Weight for sorting"/>
         <FIELD NAME="bgimage" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Bg Image"/>
         <FIELD NAME="icon" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Possible Icon"/>
+        <FIELD NAME="bgcolor" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Background color as hex"/>
         <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="News owner"/>
         <FIELD NAME="headline" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="News Title"/>
         <FIELD NAME="subheadline" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="News Subtitle"/>

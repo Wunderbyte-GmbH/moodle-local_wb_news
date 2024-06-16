@@ -119,6 +119,25 @@ class addeditModal extends dynamic_form {
 
         $mform->addElement('text', 'cssclasses', get_string('cssclasses', 'local_wb_news'));
         $mform->setType('cssclasses', PARAM_TEXT);
+
+        $mform->addElement('hidden', 'bgcolor', '');
+        $mform->setType('bgcolor', PARAM_TEXT);
+    }
+
+    /**
+     * Definition after data hook.
+     *
+     * @return [type]
+     *
+     */
+    public function definition_after_data() {
+
+        $mform = $this->_form;
+
+        $bgcolor = $this->_form->getElementValue('bgcolor');
+
+        $mform->addElement('html', '<label for="colorpicker">' . get_string('bgcolor', 'local_wb_news') . '</label>');
+        $mform->addElement('html', '<input type="color" id="colorpicker" name="bgcolor" value="' . $bgcolor . '">');
     }
 
     /**

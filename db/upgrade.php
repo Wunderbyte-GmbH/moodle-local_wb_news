@@ -54,7 +54,7 @@ function xmldb_local_wb_news_upgrade($oldversion) {
     }
 
     if ($oldversion < 2024061503) {
-        // Define field lightmode to be added to local_wb_news.
+        // Define field imagemode to be added to local_wb_news.
         $table = new xmldb_table('local_wb_news');
         $field = new xmldb_field('imagemode', XMLDB_TYPE_INTEGER, '2', null, null, null, null, 'active');
 
@@ -65,6 +65,20 @@ function xmldb_local_wb_news_upgrade($oldversion) {
 
         // Wb_news savepoint reached.
         upgrade_plugin_savepoint(true, 2024061503, 'local', 'wb_news');
+    }
+
+    if ($oldversion < 2024061600) {
+        // Define field bgcolor to be added to local_wb_news.
+        $table = new xmldb_table('local_wb_news');
+        $field = new xmldb_field('bgcolor', XMLDB_TYPE_CHAR, '255', null, null, null, null, 'icon');
+
+        // Conditionally launch add field lightmode.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Wb_news savepoint reached.
+        upgrade_plugin_savepoint(true, 2024061600, 'local', 'wb_news');
     }
 
     // Automatically generated Moodle v4.0.0 release upgrade line.
