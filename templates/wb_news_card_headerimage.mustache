@@ -32,12 +32,12 @@
     }
 }}
 
-<div class="card shadow-sm h-100{{#lightmode}} wb_news-light{{/lightmode}}{{#cssclasses}}{{cssclasses}}{{/cssclasses}}">
+<div class="card shadow-sm h-100{{#lightmode}} wb_news-light{{/lightmode}}{{#cssclasses}}{{cssclasses}}{{/cssclasses}}"{{#bgcolor}} style="background-color: {{bgcolor}};"{{/bgcolor}}>
     {{^btntext}}
     {{#btnlink}}<a href="{{btnlink}}" class="stretched-link"></a> {{/btnlink}}
     {{/btntext}}
     {{#headerimage}}
-    <img class="w-100 img-fluid" src="{{headerimage}}">
+    <img class="w-100 img-fluid wb_news-headerimage" src="{{headerimage}}">
     {{/headerimage}}
     <div class="card-body">
     {{#icon}}
@@ -47,7 +47,7 @@
     {{/icon}}
     <h5 class="card-title">{{headline}}</h5>
     <h6 class="card-subtitle mb-2 text-muted">{{subheadline}}</h6>
-    <p class="card-text">{{description}}</p>
+    <p class="card-text">{{{description}}}</p>
     </div>
     <div class="card-footer">
     {{#btntext}}

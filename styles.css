@@ -101,10 +101,6 @@
 .wb_news .carousel-control-next {
   position: static !important;
 }
-.wb_news .carousel-control-prev,
-.wb_news .carousel-control-next {
-  width: 5%;
-}
 
 .wb_news .carousel-control-prev-icon,
 .wb_news .carousel-control-next-icon {
@@ -174,6 +170,13 @@
   border-radius: 5px;
   color: #547086;
   font-weight: 600;
+}
+
+.wb_news .card img.wb_news-headerimage {
+  border-radius: 0px;
+}
+.wb_news.card-body {
+  padding: 20px;
 }
 .wb_news.nav-tabs .nav-link.active {
   background: #fff;

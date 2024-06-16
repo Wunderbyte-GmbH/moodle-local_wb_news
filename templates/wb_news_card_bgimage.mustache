@@ -32,7 +32,8 @@
     }
 }}
 
-<div class="card shadow-sm h-100{{#lightmode}} wb_news-light{{/lightmode}}{{#cssclasses}} {{cssclasses}}{{/cssclasses}}" style="background-image: url({{bgimage}})">
+<div class="card shadow-sm h-100{{#lightmode}} wb_news-light{{/lightmode}}{{#cssclasses}} {{cssclasses}}{{/cssclasses}}"
+style="{{#bgimage}}background-image: url({{bgimage}}); {{/bgimage}}{{#bgcolor}}background-color: {{bgcolor}};{{/bgcolor}}">
     {{^btntext}}
     {{#btnlink}}<a href="{{btnlink}}" class="stretched-link"></a> {{/btnlink}}
     {{/btntext}}
