@@ -171,6 +171,19 @@ class news {
             $data->timecreated = time();
             $id = $DB->insert_record('local_wb_news', $data, true);
         }
+        // We set active for 0 for every other record than our own.
+        if (!empty($data->active)) {
+            $records = $DB->get_records('local_wb_news', $data->instanceid);
+            foreach ($records as $record) {
+
+                if ($record->id == $id) {
+                    continue;
+                }
+                $record->active = 0;
+                $DB->update_record('local_wb_news', $record);
+            }
+        }
+
         return $id;
     }
 
