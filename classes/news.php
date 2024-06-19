@@ -15,6 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace local_wb_news;
+use core_tag_tag;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -130,7 +131,16 @@ class news {
      *
      */
     public function return_list_of_news() {
-        return array_values(array_map(fn($a) => (array)$a, $this->news));
+
+        $returnarray = [];
+
+        foreach ($this->news as $news) {
+
+            $news->tags = array_values(core_tag_tag::get_item_tags_array('local_wb_news', 'news', $news->id));
+            $returnarray[] = (array)$news;
+        }
+
+        return $returnarray;
     }
 
     /**
@@ -177,20 +187,25 @@ class news {
         $id = $data->id ?? false;
 
         $data->userid = $USER->id;
+
+        $data->userfullname = "$USER->firstname $USER->lastname";
         $data->timemodified = time();
 
         if ($id) {
             $DB->update_record('local_wb_news', $data, true);
-            return true;
         } else {
             $data->timecreated = time();
             $id = $DB->insert_record('local_wb_news', $data, true);
         }
+
+        if (isset($data->tags)) {
+            core_tag_tag::set_item_tags('local_wb_news', 'news', $id, context_system::instance(), $data->tags);
+        }
+
         // We set active for 0 for every other record than our own.
         if (!empty($data->active)) {
-            $records = $DB->get_records('local_wb_news', $data->instanceid);
+            $records = $DB->get_records('local_wb_news', ['instanceid' => $data->instanceid]);
             foreach ($records as $record) {
-
                 if ($record->id == $id) {
                     continue;
                 }
@@ -268,6 +283,7 @@ class news {
             $data->timecreated = time();
             $id = $DB->insert_record('local_wb_news_instance', $data, true);
         }
+
         return $id;
     }
 

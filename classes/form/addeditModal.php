@@ -22,17 +22,17 @@
  */
 
 namespace local_wb_news\form;
+use core_tag_tag;
 use local_wb_news\news;
+use context;
+use core_form\dynamic_form;
+use moodle_url;
+use context_system;
 
 defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
 require_once("$CFG->libdir/formslib.php");
-
-use context;
-use core_form\dynamic_form;
-use moodle_url;
-use context_system;
 
 /**
  * Add file form.
@@ -122,6 +122,17 @@ class addeditModal extends dynamic_form {
 
         $mform->addElement('hidden', 'bgcolor', '');
         $mform->setType('bgcolor', PARAM_TEXT);
+
+        if (core_tag_tag::is_enabled('local_wb_news', 'news')) {
+            $mform->addElement('header', 'tagshdr', get_string('tags', 'tag'));
+
+            $mform->addElement(
+                'tags',
+                'tags',
+                get_string('tags'),
+                ['itemtype' => 'news', 'component' => 'local_wb_news']
+            );
+        }
     }
 
     /**
@@ -317,6 +328,10 @@ class addeditModal extends dynamic_form {
         );
 
         $data->icon = $draftitemid;
+
+        if (!empty($id)) {
+            $data->tags = core_tag_tag::get_item_tags_array('local_wb_news', 'news', $id);
+        }
 
         $this->set_data($data);
     }
