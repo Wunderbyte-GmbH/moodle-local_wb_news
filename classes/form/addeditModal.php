@@ -63,7 +63,6 @@ class addeditModal extends dynamic_form {
         // Add headline field.
         $mform->addElement('text', 'headline', get_string('headline', 'local_wb_news'));
         $mform->setType('headline', PARAM_TEXT);
-        $mform->addRule('headline', null, 'required', null, 'client');
 
         $mform->addElement('advcheckbox', 'active', get_string('activenews', 'local_wb_news'));
         $mform->setType('icon', PARAM_TEXT);
@@ -77,7 +76,6 @@ class addeditModal extends dynamic_form {
         // Add subheadline field.
         $mform->addElement('text', 'subheadline', get_string('subheadline', 'local_wb_news'));
         $mform->setType('subheadline', PARAM_TEXT);
-        $mform->addRule('subheadline', null, 'required', null, 'client');
 
         // Add description field.
         $mform->addElement('editor', 'description_editor', get_string('description', 'local_wb_news'));

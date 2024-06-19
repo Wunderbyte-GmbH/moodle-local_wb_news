@@ -2,7 +2,7 @@
 
     <div class="d-flex justify-content-between align-items-center">
         <div class="left-panel{{#lightmode}} text-light{{/lightmode}}">
-            <h5 class="text-info">{{tags}}</h5>
+            {{#tags}} <span class="badge badge-success">{{.}}</span>{{/tags}}
             <h1>{{headline}}</h1>
             {{{description}}}
             <div class="row mt-4 justify-content-center">

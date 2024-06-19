@@ -80,7 +80,7 @@ export function addeditformModal(button) {
     // eslint-disable-next-line no-console
     console.log('button', button);
 
-    const id = button.dataset.id;
+    const id = button.dataset.id ? button.dataset.id : 0;
     const instanceid = button.dataset.instanceid;
     const isinstance = button.dataset.isinstance;
 

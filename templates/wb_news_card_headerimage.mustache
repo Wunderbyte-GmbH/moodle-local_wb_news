@@ -39,6 +39,11 @@
     {{#headerimage}}
     <img class="w-100 img-fluid wb_news-headerimage" src="{{headerimage}}">
     {{/headerimage}}
+
+    <div class="card-header">
+    {{#tags}} <span class="badge badge-success">{{.}}</span>{{/tags}}
+    </div>
+
     <div class="card-body">
     {{#icon}}
     <div class="text-center">
