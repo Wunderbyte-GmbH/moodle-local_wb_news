@@ -136,7 +136,13 @@ class news {
 
         foreach ($this->news as $news) {
 
+            $user = \core_user::get_user($news->userid);
+            $context = \context_user::instance($news->userid);
+            $url = \moodle_url::make_pluginfile_url($context->id, 'user', 'icon', 0, '/', 'f1');
+            $news->profileurl = $url->out();
+            $news->fullname = "$user->firstname $user->lastname";
             $news->tags = array_values(core_tag_tag::get_item_tags_array('local_wb_news', 'news', $news->id));
+            $news->publishedon = userdate($news->timecreated);
             $returnarray[] = (array)$news;
         }
 
@@ -188,7 +194,7 @@ class news {
 
         $data->userid = $USER->id;
 
-        $data->userfullname = "$USER->firstname $USER->lastname";
+        $data->fullname = "$USER->firstname $USER->lastname";
         $data->timemodified = time();
 
         if ($id) {

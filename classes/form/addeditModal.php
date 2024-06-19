@@ -69,6 +69,8 @@ class addeditModal extends dynamic_form {
 
         $mform->addElement('text', 'sortorder', get_string('sortorder', 'local_wb_news'));
         $mform->setType('sortorder', PARAM_INT);
+        $mform->setDefault('sortorder', 0);
+
         // Add client-side validation rule to ensure the value is numeric.
         $mform->addRule('sortorder', get_string('interror', 'local_wb_news'), 'required', null, 'client');
         $mform->addRule('sortorder', get_string('interror', 'local_wb_news'), 'numeric', null, 'client');
