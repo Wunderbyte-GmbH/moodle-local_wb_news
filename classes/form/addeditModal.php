@@ -122,6 +122,7 @@ class addeditModal extends dynamic_form {
 
         $mform->addElement('hidden', 'bgcolor', '');
         $mform->setType('bgcolor', PARAM_TEXT);
+        $mform->setDefault('bgcolor', '#ffffff');
 
         if (core_tag_tag::is_enabled('local_wb_news', 'news')) {
             $mform->addElement('header', 'tagshdr', get_string('tags', 'tag'));

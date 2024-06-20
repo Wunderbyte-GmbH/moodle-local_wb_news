@@ -136,6 +136,10 @@ class news {
 
         foreach ($this->news as $news) {
 
+            if (empty($news->userid)) {
+                continue;
+            }
+
             $user = \core_user::get_user($news->userid);
             $context = \context_user::instance($news->userid);
             $url = \moodle_url::make_pluginfile_url($context->id, 'user', 'icon', 0, '/', 'f1');
