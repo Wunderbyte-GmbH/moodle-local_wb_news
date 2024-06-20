@@ -142,7 +142,7 @@ class news {
             $news->profileurl = $url->out();
             $news->fullname = "$user->firstname $user->lastname";
             $news->tags = array_values(core_tag_tag::get_item_tags_array('local_wb_news', 'news', $news->id));
-            $news->publishedon = userdate($news->timecreated);
+            $news->publishedon = userdate($news->timecreated, get_string('strftimedate', 'core_langconfig'));
             $returnarray[] = (array)$news;
         }
 
@@ -343,6 +343,9 @@ class news {
                 break;
             case 'local_wb_news/wb_news_tabs':
                 $instanceitem['tabstemplate'] = true;
+                break;
+            case 'local_wb_news/wb_news_blog':
+                $instanceitem['blogtemplate'] = true;
                 break;
         }
 

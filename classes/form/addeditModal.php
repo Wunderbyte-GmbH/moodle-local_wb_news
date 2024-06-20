@@ -84,8 +84,8 @@ class addeditModal extends dynamic_form {
         $mform->setType('description_editor', PARAM_RAW);
 
         $options = [
-            news::IMAGEMODE_HEADER => get_string('useasheaderimage'),
-            news::IMAGEMODE_BACKGROUND => get_string('useasbgimage'),
+            news::IMAGEMODE_HEADER => get_string('useasheaderimage', 'local_wb_news'),
+            news::IMAGEMODE_BACKGROUND => get_string('useasbgimage', 'local_wb_news'),
         ];
         $mform->addElement('select', 'imagemode', get_string('imagemode', 'local_wb_news'), $options);
         $mform->addElement('filemanager',
@@ -114,7 +114,7 @@ class addeditModal extends dynamic_form {
         $mform->addElement('text', 'btntext', get_string('btntext', 'local_wb_news'));
         $mform->setType('btntext', PARAM_TEXT);
 
-        $mform->addElement('checkbox', 'lightmode', get_string('lightmode', 'local_wb_news'));
+        $mform->addElement('advcheckbox', 'lightmode', get_string('lightmode', 'local_wb_news'));
         $mform->setType('lightmode', PARAM_INT);
 
         $mform->addElement('text', 'cssclasses', get_string('cssclasses', 'local_wb_news'));
