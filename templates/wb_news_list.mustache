@@ -39,20 +39,17 @@
     }
 }}
 
-<div class="wb-news-container mt-5 wb_news container" data-id="{{id}}">
+<div class="container mt-5 wb_news" data-id="{{id}}">
     {{#editmode}}
         {{> local_wb_news/edit}}
     {{/editmode}}
 	<div class="row">
 		{{#news}}
-		<div class="col-md-4 mb-4">
-            {{#headerimage}}
-                {{> local_wb_news/wb_news_card_headerimage}}
-            {{/headerimage}}
-            {{#bgimage}}
-                {{> local_wb_news/wb_news_card_bgimage}}
-            {{/bgimage}}
-	    </div>
+		<ul class="col-md-12 list-unstyled">
+            <li>
+                {{> local_wb_news/wb_news_card_horizontal}}
+            </li>
+	    </ul>
 	    {{/news}}
 	</div>
 </div>

@@ -32,43 +32,26 @@
     }
 }}
 
-<div class="card shadow-sm h-100{{#lightmode}} wb_news-light{{/lightmode}}{{#cssclasses}} {{cssclasses}}{{/cssclasses}}"
-style="{{#bgimage}}background-image: url({{bgimage}}); {{/bgimage}}{{#bgcolor}}background-color: {{bgcolor}};{{/bgcolor}}">
-    <div class="card-content">
+<div class="card border-0 h-100{{#lightmode}} wb_news-light{{/lightmode}}{{#cssclasses}}{{cssclasses}}{{/cssclasses}}"{{#bgcolor}} style="background-color: {{bgcolor}};"{{/bgcolor}}>
     {{^btntext}}
     {{#btnlink}}<a href="{{btnlink}}" class="stretched-link"></a> {{/btnlink}}
     {{/btntext}}
-    <div>
-    {{#tags}} <span class="badge badge-success">{{.}}</span>{{/tags}}
+    <div class="row">
+    <div class="col-md-6">
+        <img class="w-100 img-fluid wb_news-headerimage" src="{{bgimage}}">
     </div>
-    <div class="card-body">
+    <div class="col-md-6">
     {{#icon}}
     <div class="text-center">
         <img src="{{icon}}" class="card-icon mb-2 text-center" alt="Icon">
     </div>
     {{/icon}}
-    </div>
-    <div class="card-footer">
     <h5 class="card-title">{{headline}}</h5>
-    <h6 class="card-subtitle mb-2">{{subheadline}}</h6>
+    <h6 class="card-subtitle mb-2 text-muted">{{subheadline}}</h6>
     <p class="card-text">{{{description}}}</p>
-    <div class="row no-gutters">
-    <div class="col-md-2 d-flex align-items-center">
-        <img src="{{profileurl}}" class="img-fluid rounded-circle profileimg" alt="Profile Picture">
     </div>
-    <div class="col-md-10">
-        <span><b>{{fullname}}</b></span>
-        <span class="small">{{{publishedon}}}</span>
-    </div>
-
-
-    {{#btntext}}
-    <a href="{{btnlink}}" class="btn btn-primary mt-auto">{{btntext}}</a>
-    {{/btntext}}
     </div>
     {{#editmode}}
     {{> local_wb_news/editsinglenews}}
     {{/editmode}}
-    </div>
 </div>
-

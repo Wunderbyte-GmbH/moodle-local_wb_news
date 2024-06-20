@@ -45,7 +45,7 @@ $newsdata = [
     'news' => [
         [
             'id' => 'news1',
-            'bgimage' => '/local/wb_news/img/wb.jpg',
+            'bgimage' => 'https://192.168.56.6/pluginfile.php/1/local_wb_news/bgimage/7/emis3.png',
             'icon' => '/local/wb_news/img/icon.png',
             'headline' => 'News 1',
             'subheadline' => 'Headerimage and Icon',
@@ -101,23 +101,19 @@ $newsdata = [
     ]
 ];
 
-echo "<h2>Grid</h2>";
-echo $OUTPUT->render_from_template("local_wb_news/wb_news_grid", $newsdata);
+// echo "<h2>Grid</h2>";
+// echo $OUTPUT->render_from_template("local_wb_news/wb_news_grid", $newsdata);
 
-$masonry['news'] = array_merge($newsdata['news'], $newsdata['news']);
-echo "<br><h2>Masonry (with 12 News)</h2>";
-echo $OUTPUT->render_from_template("local_wb_news/wb_news_masonry", $masonry);
+// $masonry['news'] = array_merge($newsdata['news'], $newsdata['news']);
+// echo "<br><h2>Masonry (with 12 News)</h2>";
+// echo $OUTPUT->render_from_template("local_wb_news/wb_news_masonry", $masonry);
 
-echo "<br><h2>Tabs</h2>";
-echo $OUTPUT->render_from_template("local_wb_news/wb_news_tabs", $newsdata);
+// echo "<br><h2>Tabs</h2>";
+// echo $OUTPUT->render_from_template("local_wb_news/wb_news_tabs", $newsdata);
 
-echo "<br><h2>Slider</h2>";
-echo $OUTPUT->render_from_template("local_wb_news/wb_news_slider", $newsdata);
-
-
-echo "<br><h2>Slider</h2>";
-echo $OUTPUT->render_from_template("local_wb_news/wb_tab_old", $newsdata);
+// echo "<br><h2>Slider</h2>";
+// echo $OUTPUT->render_from_template("local_wb_news/wb_news_slider", $newsdata);
 
 echo "<br><h2>Slider</h2>";
-echo $OUTPUT->render_from_template("local_wb_news/wb_slider_style1", $newsdata);
+echo $OUTPUT->render_from_template("local_wb_news/wb_news_list", $newsdata);
 echo $OUTPUT->footer();
