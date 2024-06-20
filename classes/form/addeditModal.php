@@ -223,6 +223,7 @@ class addeditModal extends dynamic_form {
 
         $fs = get_file_storage();
 
+        $data->bgimage = null;
         // Save the URL for the bgimage.
         $files = $fs->get_area_files($contextid, $component, 'bgimage', $data->id);
         foreach ($files as $file) {

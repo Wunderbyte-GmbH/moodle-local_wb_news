@@ -8,14 +8,14 @@
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
         <FIELD NAME="instanceid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="instanceid"/>
-        <FIELD NAME="active" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false" COMMENT="If Item is active"/>
-        <FIELD NAME="imagemode" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false" COMMENT="imagemode"/>
-        <FIELD NAME="sortorder" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Weight for sorting"/>
-        <FIELD NAME="bgimage" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Bg Image"/>
+        <FIELD NAME="active" TYPE="int" LENGTH="2" NOTNULL="false" SEQUENCE="false" COMMENT="If Item is active"/>
+        <FIELD NAME="imagemode" TYPE="int" LENGTH="2" NOTNULL="false" SEQUENCE="false" COMMENT="imagemode"/>
+        <FIELD NAME="sortorder" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Weight for sorting"/>
+        <FIELD NAME="bgimage" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Bg Image"/>
         <FIELD NAME="icon" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Possible Icon"/>
         <FIELD NAME="bgcolor" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Background color as hex"/>
         <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="News owner"/>
-        <FIELD NAME="headline" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="News Title"/>
+        <FIELD NAME="headline" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="News Title"/>
         <FIELD NAME="subheadline" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="News Subtitle"/>
         <FIELD NAME="description" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="News Body Description"/>
         <FIELD NAME="descriptionformat" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="News Body Description Format"/>
