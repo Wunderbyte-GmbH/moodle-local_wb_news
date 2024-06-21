@@ -79,6 +79,7 @@ $string['masonrytemplate'] = 'Bausteine Vorlage';
 $string['slidertemplate'] = 'Slider Vorlage';
 $string['tabstemplate'] = 'Tabs Vorlage';
 $string['gridtemplate'] = 'Gitter Vorlage';
+$string['blogtemplate'] = 'Blog Vorlage';
 
 // Errors.
 $string['interror'] = 'Nur ganze Zahlen sind erlaubt.';

@@ -79,6 +79,7 @@ $string['masonrytemplate'] = 'Masonry template';
 $string['slidertemplate'] = 'Slider template';
 $string['tabstemplate'] = 'Tabs template';
 $string['gridtemplate'] = 'Grid template';
+$string['blogtemplate'] = 'Blog template';
 
 // Errors.
 $string['interror'] = 'Only full numbers are allowed.';

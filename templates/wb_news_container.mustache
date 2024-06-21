@@ -49,6 +49,11 @@
     </div>
 {{/editmode}}
 {{#instances}}
+{{#instancenameonindex}}
+<div>
+<span class="h4">{{instancenameonindex}}</span> <span>{{shortcode}}</span>
+</div>
+{{/instancenameonindex}}
    {{#masonrytemplate}}
     {{> local_wb_news/wb_news_masonry}}
    {{/masonrytemplate}}

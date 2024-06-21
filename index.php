@@ -49,6 +49,14 @@ echo $OUTPUT->header();
 
 $news = new wb_news($id);
 $data = $news->return_list();
+
+// Here, we want the information how to include the instance:
+foreach ($data['instances'] as $key => $value) {
+    $data['instances'][$key]['instancenameonindex'] = $value["name"];
+    $data['instances'][$key]['shortcode'] = "[wbnews instance=" . $value["instanceid"] . "]";
+}
+
+
 $out = $OUTPUT->render_from_template('local_wb_news/wb_news_container', $data);
 echo $out;
 
