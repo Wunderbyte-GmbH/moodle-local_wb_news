@@ -26,8 +26,5 @@
 defined('MOODLE_INTERNAL') || die();
 
 $observers = [
-    [
-        'eventname' => '\mod_quiz\event\attempt_started',
-        'callback' => '\local_wb_news\observer::attempt_started',
-    ],
+
 ];
