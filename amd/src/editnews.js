@@ -24,6 +24,7 @@ import ModalForm from 'core_form/modalform';
 import {get_string as getString} from 'core/str';
 
 const SELECTORS = {
+    ALLINSTANCES: '[data-id="wb-news-all-instances-container"]', // Via shortcodes, we can have more than one of these.
     ADDEDITBUTTON: 'div.wb-news-addeditbutton',
     DELETEBUTTON: 'div.wb-news-deletebutton',
 };
@@ -33,41 +34,63 @@ export const init = () => {
     console.log('run init');
 
     // Cashout functionality.
-    const buttons = document.querySelectorAll(SELECTORS.ADDEDITBUTTON);
+    const containers = document.querySelectorAll(SELECTORS.ALLINSTANCES);
 
     // eslint-disable-next-line no-console
-    console.log('buttons', buttons);
+    console.log('containers', containers);
 
-    if (buttons) {
-        buttons.forEach(button => {
-            button.addEventListener('click', e => {
+    containers.forEach(container => {
 
-                // eslint-disable-next-line no-console
-                console.log(e.target);
+        if (container.dataset.initialized) {
+            return;
+        }
 
-                addeditformModal(button);
-            });
+        container.dataset.initialized = 'true';
+
+        container.addEventListener('click', e => {
+            handleClickEvent(e);
         });
-    }
-
-    // Cashout functionality.
-    const deletebuttons = document.querySelectorAll(SELECTORS.DELETEBUTTON);
-
-    // eslint-disable-next-line no-console
-    console.log('deletebuttons', deletebuttons);
-
-    if (deletebuttons) {
-        deletebuttons.forEach(button => {
-            button.addEventListener('click', e => {
-
-                // eslint-disable-next-line no-console
-                console.log(e.target);
-
-                deleteModal(button);
-            });
-        });
-    }
+    });
 };
+
+
+/**
+ * Handles the click event on the wb news container.
+ *
+ * @param {mixed} event
+ *
+ * @return void
+ *
+ */
+function handleClickEvent(event) {
+
+    // eslint-disable-next-line no-console
+    console.log(event.target);
+
+    // Get event target.
+    if (event.target && event.target.dataset.action) {
+
+        const action = event.target.dataset.action;
+
+        switch (action) {
+            case 'add':
+                addeditformModal(event.target);
+                break;
+            case 'edit':
+                addeditformModal(event.target);
+                break;
+            case 'delete':
+                deleteModal(event.target);
+                break;
+            case 'copy':
+                copyModal(event.target);
+                break;
+            default:
+                // eslint-disable-next-line no-console
+                console.log('Unknown action:', action);
+        }
+    }
+}
 
 /**
  * Show add edit form.
@@ -84,9 +107,9 @@ export function addeditformModal(button) {
     const instanceid = button.dataset.instanceid;
     const isinstance = button.dataset.isinstance;
 
-    let formclass = "local_wb_news\\form\\addeditModal";
+    let formclass = "local_wb_news\\form\\addeditmodal";
     if (isinstance == 'true') {
-        formclass = "local_wb_news\\form\\addeditInstanceModal";
+        formclass = "local_wb_news\\form\\addeditinstancemodal";
     }
 
     const modalForm = new ModalForm({
@@ -130,9 +153,9 @@ export function deleteModal(button) {
     const instanceid = button.dataset.instanceid;
     const isinstance = button.dataset.isinstance;
 
-    let formclass = "local_wb_news\\form\\addeditModal";
+    let formclass = "local_wb_news\\form\\deletemodal";
     if (isinstance == 'true') {
-        formclass = "local_wb_news\\form\\addeditInstanceModal";
+        formclass = "local_wb_news\\form\\deleteinstancemodal";
     }
 
     const modalForm = new ModalForm({
@@ -146,6 +169,53 @@ export function deleteModal(button) {
         },
         // Pass any configuration settings to the modal dialogue, for example, the title:
         modalConfig: {title: getString('deletenewsitem', 'local_wb_news')},
+        // DOM element that should get the focus after the modal dialogue is closed:
+        returnFocus: button
+    });
+    // Listen to events if you want to execute something on form submit.
+    // Event detail will contain everything the process() function returned:
+    modalForm.addEventListener(modalForm.events.FORM_SUBMITTED, () => {
+
+        location.reload();
+    });
+
+    // Show the form.
+    modalForm.show();
+
+}
+
+/**
+ * Copy form.
+  * @param {htmlElement} button
+  * @return [type]
+  *
+  */
+export function copyModal(button) {
+
+    // eslint-disable-next-line no-console
+    console.log('button', button);
+
+    const id = button.dataset.id;
+    const instanceid = button.dataset.instanceid;
+    const isinstance = button.dataset.isinstance;
+
+    let formclass = "local_wb_news\\form\\addeditmodal";
+    if (isinstance == 'true') {
+        formclass = "local_wb_news\\form\\addeditinstancemodal";
+    }
+
+    const modalForm = new ModalForm({
+
+        // Name of the class where form is defined (must extend \core_form\dynamic_form):
+        formClass: formclass,
+        // Add as many arguments as you need, they will be passed to the form:
+        args: {
+            id,
+            instanceid,
+            copy: 1
+        },
+        // Pass any configuration settings to the modal dialogue, for example, the title:
+        modalConfig: {title: getString('copyitem', 'local_wb_news')},
         // DOM element that should get the focus after the modal dialogue is closed:
         returnFocus: button
     });

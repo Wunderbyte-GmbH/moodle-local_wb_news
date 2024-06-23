@@ -81,6 +81,13 @@ $string['tabstemplate'] = 'Tabs Vorlage';
 $string['gridtemplate'] = 'Gitter Vorlage';
 $string['blogtemplate'] = 'Blog Vorlage';
 
+// Modal.
+$string['confirmdelete'] = "Bestätige das Löschen. Dieser Vorgang kann nicht rückgängig gemacht werden.";
+$string['deletenewsitem'] = "Bestätige das Löschen dieses Artikels";
+$string['deleteinstance'] = "Bestätige des Löschens aller Artikel und der Instanz";
+$string['confirmcopy'] = "Bestätige das Kopieren";
+$string['copyitem'] = "Kopieren";
+
 // Errors.
 $string['interror'] = 'Nur ganze Zahlen sind erlaubt.';
 

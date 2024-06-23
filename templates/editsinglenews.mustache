@@ -50,10 +50,17 @@
 
 <div class="wb-news-edit-single mt-1">
     <div class="wb-news-addeditbutton btn btn-outline-dark fa fa-edit"
+        data-action="edit"
+        data-id="{{id}}"
+        data-instanceid="{{instanceid}}">
+    </div>
+    <div class="wb-news-copybutton btn btn-outline-dark fa fa-copy"
+        data-action="copy"
         data-id="{{id}}"
         data-instanceid="{{instanceid}}">
     </div>
     <div class="wb-news-deletebutton btn btn-outline-dark fa fa-trash"
+        data-action="delete"
         data-id="{{id}}"
         data-instanceid="{{instanceid}}">
     </div>

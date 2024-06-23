@@ -41,11 +41,27 @@
     }
 }}
 
-
+<div data-id="wb-news-all-instances-container">
 {{#editmode}}
     <div class="wb-news-addeditbutton btn btn-primary"
+        data-action="add"
         data-isinstance="true">
         {{#str}} addinstance, local_wb_news {{/str}}
+    </div>
+        <div class="wb-news-addeditbutton btn btn-primary fa-edit fa"
+        data-action="edit"
+        data-id="{{instanceid}}"
+        data-isinstance="true">
+    </div>
+    <div class="wb-news-deletebutton btn btn-primary fa-trash fa"
+        data-action="delete"
+        data-id="{{instanceid}}"
+        data-isinstance="true">
+    </div>
+    <div class="wb-news-copybutton btn btn-primary fa-copy fa"
+        data-action="copy"
+        data-id="{{instanceid}}"
+        data-isinstance="true">
     </div>
 {{/editmode}}
 {{#instances}}
@@ -70,6 +86,7 @@
     {{> local_wb_news/wb_news_blog}}
    {{/blogtemplate}}
 {{/instances}}
+</div>
 
 
 {{#js}}

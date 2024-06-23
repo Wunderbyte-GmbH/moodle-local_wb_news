@@ -257,6 +257,8 @@ class news {
 
     /**
      * Delete news. On failure, return 0, else id of deleted record.
+     * We don't actually delete the record, but just make an update.
+     * The instanceid is made negative, so instance 3 becomes -3. This allows later attribution.
      *
      * @param stdClass $data
      * @return int $id
@@ -265,8 +267,45 @@ class news {
         global $DB, $USER;
 
         if (!empty($data->id)) {
-            $DB->delete_records('local_wb_news', ['id' => $data->id]);
-            return $data->id;
+
+            if ($record = $DB->get_record('local_wb_news', ['id' => $data->id])) {
+
+                // Deleted news get the negative instanceid which they had so we can attribute them later.
+                $record->instanceid = -$record->instanceid;
+                $record->userid = $USER->id;
+                $record->timemodified = time();
+
+                $DB->update_record('local_wb_news', $record);
+
+                return $data->id;
+            }
+        }
+
+        return 0;
+    }
+
+    /**
+     * Delete news. On failure, return 0, else id of deleted record.
+     *
+     * @param stdClass $data
+     * @return int $id
+     */
+    public function copy_news($data) {
+        global $DB, $USER;
+
+        if (!empty($data->id)) {
+
+            if ($record = $DB->get_record('local_wb_news', ['id' => $data->id])) {
+
+                // Deleted news get the negative instanceid which they had so we can attribute them later.
+                $record->userid = $USER->id;
+                $record->timemodified = time();
+                unset($record->id);
+
+                $id = $DB->insert_record('local_wb_news', $record);
+
+                return $id;
+            }
         }
 
         return 0;
@@ -328,7 +367,7 @@ class news {
             'instanceid' => $this->instanceid,
             'template' => $this->template,
             'name' => $this->name,
-            'editmode' => $PAGE->user_is_editing(),
+            'editmode' => $PAGE->user_is_editing() && has_capability('local/wb_news:manage', context_system::instance()),
         ];
 
         if (!empty($this->news)) {
@@ -389,14 +428,15 @@ class news {
             $DB->sql_cast_to_char('COALESCE(wni.id, 0)'),
             "'-'",
             $DB->sql_cast_to_char('COALESCE(wn.id, 0)')
-        ) . " as ident, wn.*, wni.id as instanceid, wni.template, wni.name
-        FROM {local_wb_news} wn
-        RIGHT JOIN {local_wb_news_instance} wni ON wni.id = wn.instanceid";
+            ) . " as ident, wn.*, wni.id as instanceid, wni.template, wni.name
+            FROM {local_wb_news} wn
+            RIGHT JOIN {local_wb_news_instance} wni ON wni.id = wn.instanceid
+            WHERE (wn.instanceid > 0 OR wn.instanceid IS NULL) "; // Deleted Items are not normally included in the results.
 
 
         if (!empty($id)) {
             $params = ['instanceid' => $instanceid];
-            $sql .= " WHERE wni.id =:instanceid";
+            $sql .= " AND wni.id =:instanceid";
         } else {
             $params = [];
         }

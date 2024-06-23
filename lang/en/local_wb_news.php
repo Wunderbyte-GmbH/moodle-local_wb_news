@@ -81,6 +81,13 @@ $string['tabstemplate'] = 'Tabs template';
 $string['gridtemplate'] = 'Grid template';
 $string['blogtemplate'] = 'Blog template';
 
+// Modal.
+$string['confirmdelete'] = "Confirm deletion. This action can not be reversed.";
+$string['deletenewsitem'] = "Confirm deletion of this news item";
+$string['deleteinstance'] = "Confirm deletion of this whole instance and all articles";
+$string['confirmcopy'] = "Confirm copy.";
+$string['copyitem'] = "Copy item";
+
 // Errors.
 $string['interror'] = 'Only full numbers are allowed.';
 

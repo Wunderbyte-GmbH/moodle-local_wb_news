@@ -40,7 +40,7 @@ require_once("$CFG->libdir/formslib.php");
  * @author Thomas Winkler
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class addeditModal extends dynamic_form {
+class addeditmodal extends dynamic_form {
 
     /**
      * {@inheritdoc}
@@ -59,6 +59,11 @@ class addeditModal extends dynamic_form {
         // ID of the news item.
         $mform->addElement('hidden', 'id', $customdata['id'] ?? 0);
         $mform->setType('id', PARAM_INT);
+
+        // ID of the news item.
+        $mform->addElement('hidden', 'copy', $customdata['copy'] ?? 0);
+        $mform->setType('copy', PARAM_INT);
+        $mform->setDefault('copy', 0);
 
         // Add headline field.
         $mform->addElement('text', 'headline', get_string('headline', 'local_wb_news'));
@@ -179,8 +184,9 @@ class addeditModal extends dynamic_form {
         $data = $this->get_data();
 
         $news = news::getinstance($data->instanceid ?? 0);
-        if (empty($data->id)) {
+        if (empty($data->id) || !empty($data->copy)) {
             // We need to temporarily set sth in the description column.
+            unset($data->id); // Make sure we create a new id.
             $data->description = '';
             $data->descriptionformat = 0;
             $data->id = $news->update_news($data);
@@ -285,11 +291,15 @@ class addeditModal extends dynamic_form {
 
         $id = $ajaxformdata['id'] ?? 0;
         $instanceid = $ajaxformdata['instanceid'] ?? 0;
+        $copy = $ajaxformdata['copy'] ?? 0;
         $news = news::getinstance($instanceid);
         $data = $news->get_news_item($id);
 
-        $context = context_system::instance();
-        $data = file_prepare_standard_editor(
+        if (!empty($data)) {
+            $data->copy = $copy;
+
+            $context = context_system::instance();
+            $data = file_prepare_standard_editor(
                 // The existing data.
                 $data,
                 // The field name in the database.
@@ -303,36 +313,40 @@ class addeditModal extends dynamic_form {
                 $data->id
             );
 
-        $draftitemid = file_get_submitted_draft_itemid('bgimage');
-        // Copy the existing files which were previously uploaded
-        // into the draft area used by this form.
-        file_prepare_draft_area(
-            $draftitemid,
-            $context->id,
-            'local_wb_news',
-            'bgimage',
-            $data->id,
-            news::get_textfield_options(),
-        );
+            $draftitemid = file_get_submitted_draft_itemid('bgimage');
+            // Copy the existing files which were previously uploaded
+            // into the draft area used by this form.
+            file_prepare_draft_area(
+                $draftitemid,
+                $context->id,
+                'local_wb_news',
+                'bgimage',
+                $data->id,
+                news::get_textfield_options(),
+            );
 
-        $data->bgimage = $draftitemid;
+            $data->bgimage = $draftitemid;
 
-        $draftitemid = file_get_submitted_draft_itemid('icon');
-        // Copy the existing files which were previously uploaded
-        // into the draft area used by this form.
-        file_prepare_draft_area(
-            $draftitemid,
-            $context->id,
-            'local_wb_news',
-            'icon',
-            $data->id,
-            news::get_textfield_options(),
-        );
+            $draftitemid = file_get_submitted_draft_itemid('icon');
+            // Copy the existing files which were previously uploaded
+            // into the draft area used by this form.
+            file_prepare_draft_area(
+                $draftitemid,
+                $context->id,
+                'local_wb_news',
+                'icon',
+                $data->id,
+                news::get_textfield_options(),
+            );
 
-        $data->icon = $draftitemid;
+            $data->icon = $draftitemid;
 
-        if (!empty($id)) {
-            $data->tags = core_tag_tag::get_item_tags_array('local_wb_news', 'news', $id);
+            if (!empty($id)) {
+                $data->tags = core_tag_tag::get_item_tags_array('local_wb_news', 'news', $id);
+            }
+        } else {
+            $data = new \stdClass();
+            $data->instanceid = $instanceid;
         }
 
         $this->set_data($data);

@@ -40,7 +40,7 @@ use context_system;
  * @author Thomas Winkler
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class deleteModal extends dynamic_form {
+class deleteinstancemodal extends dynamic_form {
 
     /**
      * {@inheritdoc}
@@ -60,7 +60,7 @@ class deleteModal extends dynamic_form {
         $mform->addElement('hidden', 'id', $customdata['id'] ?? 0);
         $mform->setType('id', PARAM_INT);
 
-        $mform->addElement('static', 'confirmdelete', get_string('confirmdelete', 'local_wb_news'));
+        $mform->addElement('static', 'confirmdelete', '', get_string('deleteinstance', 'local_wb_news'));
     }
 
     /**
@@ -88,7 +88,7 @@ class deleteModal extends dynamic_form {
         $data = $this->get_data();
 
         $news = news::getinstance($data->instanceid ?? 0);
-        $news->delete_news($data);
+        $news->delete_newsinstance($data);
 
         return $data;
     }
@@ -107,23 +107,10 @@ class deleteModal extends dynamic_form {
 
         $id = $ajaxformdata['id'] ?? 0;
         $instanceid = $ajaxformdata['instanceid'] ?? 0;
-        $news = news::getinstance($instanceid);
-        $data = $news->get_news_item($id);
 
-        $context = context_system::instance();
-        $data = file_prepare_standard_editor(
-                // The existing data.
-                $data,
-                // The field name in the database.
-                'description',
-                // The options.
-                news::get_textfield_options(),
-                // The combination of contextid, component, filearea, and itemid.
-                $context,
-                'local_wb_news',
-                'wb_news',
-                $data->id
-            );
+        $data = new \stdClass();
+        $data->id = $id;
+        $data->instanceid = $instanceid;
 
         $this->set_data($data);
     }
