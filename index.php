@@ -43,7 +43,7 @@ $record = $DB->get_record("local_wb_news", ["id" => $id], '*');
 
 $PAGE->set_title($record->title ?? 'title');
 $PAGE->set_heading($record->title ?? 'title');
-$PAGE->set_pagelayout('standard');
+$PAGE->set_pagelayout('base');
 
 echo $OUTPUT->header();
 
