@@ -40,7 +40,7 @@ use context_system;
  * @author Thomas Winkler
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class addeditInstanceModal extends dynamic_form {
+class addeditinstancemodal extends dynamic_form {
 
     /**
      * {@inheritdoc}

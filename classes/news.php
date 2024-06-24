@@ -147,6 +147,7 @@ class news {
             $news->fullname = "$user->firstname $user->lastname";
             $news->tags = array_values(core_tag_tag::get_item_tags_array('local_wb_news', 'news', $news->id));
             $news->publishedon = userdate($news->timecreated, get_string('strftimedate', 'core_langconfig'));
+            $news->cssclasses = empty($news->cssclasses) ? false : $news->cssclasses;
             $returnarray[] = (array)$news;
         }
 
