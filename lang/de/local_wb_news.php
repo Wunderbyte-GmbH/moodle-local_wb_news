@@ -87,6 +87,7 @@ $string['deletenewsitem'] = "Bestätige das Löschen dieses Artikels";
 $string['deleteinstance'] = "Bestätige des Löschens aller Artikel und der Instanz";
 $string['confirmcopy'] = "Bestätige das Kopieren";
 $string['copyitem'] = "Kopieren";
+$string['alloweditincontext'] = "Editieren erlauben in...";
 
 // Errors.
 $string['interror'] = 'Nur ganze Zahlen sind erlaubt.';
