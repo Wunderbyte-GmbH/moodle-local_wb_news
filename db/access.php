@@ -23,28 +23,25 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$capabilities = array(
-    'local/wb_news:manage' => array(
-        'riskbitmask'  => RISK_SPAM | RISK_PERSONAL | RISK_XSS | RISK_CONFIG,
+$capabilities = [
+    'local/wb_news:manage' => [
+        'riskbitmask'  => RISK_PERSONAL | RISK_XSS | RISK_CONFIG,
         'captype'      => 'write',
-        'contextlevel' => CONTEXT_MODULE,
-        'archetypes'   => array(
+        'contextlevel' => CONTEXT_COURSECAT,
+        'archetypes'   => [
             'student'        => CAP_PROHIBIT,
             'teacher'        => CAP_PROHIBIT,
             'editingteacher' => CAP_PROHIBIT,
-            'manager'          => CAP_ALLOW
-        )
-    ),
-    'local/wb_news:view' => array(
-        'riskbitmask'  => RISK_SPAM | RISK_PERSONAL | RISK_XSS | RISK_CONFIG,
+            'manager'          => CAP_ALLOW,
+        ],
+    ],
+    'local/wb_news:view' => [
+        'riskbitmask'  => RISK_PERSONAL,
         'captype'      => 'read',
-        'contextlevel' => CONTEXT_MODULE,
-        'archetypes' => array(
+        'contextlevel' => CONTEXT_SYSTEM,
+        'archetypes' => [
             'guest' => CAP_ALLOW,
-            'student' => CAP_ALLOW,
-            'teacher' => CAP_ALLOW,
-            'editingteacher' => CAP_ALLOW,
-            'manager' => CAP_ALLOW
-        )
-    ),
-);
+            'user' => CAP_ALLOW,
+        ],
+    ],
+];

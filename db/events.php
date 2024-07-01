@@ -19,7 +19,7 @@
  *
  * @package     local_wb_news
  * @category    event
- * @copyright   2021 Wunderbyte GmbH<info@wunderbyte.at>
+ * @copyright   2024 Wunderbyte GmbH<info@wunderbyte.at>
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
