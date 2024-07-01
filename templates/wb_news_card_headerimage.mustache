@@ -32,6 +32,11 @@
     }
 }}
 
+   {{#editmode}}
+    <div class="w-100 text-right">
+    {{> local_wb_news/editsinglenews}}
+    </div>
+    {{/editmode}}
 <div class="card h-100{{#lightmode}} wb_news-light{{/lightmode}}{{#cssclasses}}{{cssclasses}}{{/cssclasses}}"{{#bgcolor}} style="background-color: {{bgcolor}};"{{/bgcolor}}>
     {{^btntext}}
     {{#btnlink}}<a href="{{btnlink}}" class="stretched-link"></a> {{/btnlink}}
@@ -59,7 +64,4 @@
         <a href="{{btnlink}}" class="btn btn-primary mt-auto">{{btntext}}</a>
     {{/btntext}}
     </div>
-    {{#editmode}}
-    {{> local_wb_news/editsinglenews}}
-    {{/editmode}}
 </div>
