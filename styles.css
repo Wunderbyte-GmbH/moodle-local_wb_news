@@ -275,3 +275,10 @@
       padding: 0.625rem;
   }
 }
+
+.wb_news_card_blog .card-body {
+  display: block;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: scroll;
+}
