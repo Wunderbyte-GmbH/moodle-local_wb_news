@@ -442,7 +442,7 @@ class news {
             $params = [];
         }
 
-        $sql .= " ORDER By sortorder ASC";
+        $sql .= " ORDER By wni.id ASC";
 
         return $DB->get_records_sql($sql, $params);
     }
