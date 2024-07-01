@@ -32,7 +32,7 @@
     }
 }}
 
-<div class="card h-100 wb_news_card_blog {{#lightmode}} wb_news-light{{/lightmode}}{{#cssclasses}}{{cssclasses}}{{/cssclasses}}"{{#bgcolor}} style="background-color: {{bgcolor}};"{{/bgcolor}}>
+<div class="card h-100 wb_news_card_blog{{#lightmode}} wb_news-light{{/lightmode}}{{#cssclasses}}{{cssclasses}}{{/cssclasses}}"{{#bgcolor}} style="background-color: {{bgcolor}};"{{/bgcolor}}>
     {{^btntext}}
     {{#btnlink}}<a href="{{btnlink}}" class="stretched-link"></a> {{/btnlink}}
     {{/btntext}}
@@ -54,7 +54,7 @@
     </div>
     {{/icon}}
     <h5 class="card-title">{{headline}}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">{{subheadline}}</h6>
+    <h6 class="card-subtitle mb-2{{^lightmode}} text-muted{{/lightmode}}">{{subheadline}}</h6>
     <p class="card-text">{{{description}}}</p>
     </div>
     <div class="card-footer">

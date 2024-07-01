@@ -282,3 +282,9 @@
   justify-content: center;
   overflow-y: scroll;
 }
+
+/* Slider. */
+
+.wb_news_slide .image-container img {
+  border-bottom-left-radius: 15px;
+}

@@ -43,48 +43,56 @@
 
 <div data-id="wb-news-all-instances-container">
 {{#editmode}}
-    <div class="wb-news-addeditbutton btn btn-primary"
-        data-action="add"
-        data-isinstance="true">
-        {{#str}} addinstance, local_wb_news {{/str}}
-    </div>
-    <div class="wb-news-addeditbutton btn btn-primary fa-edit fa"
-        data-action="edit"
-        data-id="{{instanceid}}"
-        data-isinstance="true">
-    </div>
-    <div class="wb-news-deletebutton btn btn-primary fa-trash fa"
-        data-action="delete"
-        data-id="{{instanceid}}"
-        data-isinstance="true">
-    </div>
-    <div class="wb-news-copybutton btn btn-primary fa-copy fa"
-        data-action="copy"
-        data-id="{{instanceid}}"
-        data-isinstance="true">
+    <div class="text-center">
+        <div class="wb-news-addeditbutton btn btn-primary"
+            data-action="add"
+            data-isinstance="true">
+            {{#str}} addinstance, local_wb_news {{/str}}
+        </div>
+        <div class="wb-news-addeditbutton btn btn-primary fa-edit fa"
+            data-action="edit"
+            data-id="{{instanceid}}"
+            data-isinstance="true">
+        </div>
+        <div class="wb-news-deletebutton btn btn-primary fa-trash fa"
+            data-action="delete"
+            data-id="{{instanceid}}"
+            data-isinstance="true">
+        </div>
+        <div class="wb-news-copybutton btn btn-primary fa-copy fa"
+            data-action="copy"
+            data-id="{{instanceid}}"
+            data-isinstance="true">
+        </div>
     </div>
 {{/editmode}}
 {{#instances}}
-{{#instancenameonindex}}
-<div>
-<span class="h4">{{instancenameonindex}}</span> <span>{{shortcode}}</span>
-</div>
-{{/instancenameonindex}}
-   {{#masonrytemplate}}
-    {{> local_wb_news/wb_news_masonry}}
-   {{/masonrytemplate}}
-   {{#gridtemplate}}
-    {{> local_wb_news/wb_news_grid}}
-   {{/gridtemplate}}
-   {{#slidertemplate}}
-    {{> local_wb_news/wb_news_slider}}
-   {{/slidertemplate}}
-   {{#tabstemplate}}
-    {{> local_wb_news/wb_news_tabs}}
-   {{/tabstemplate}}
-   {{#blogtemplate}}
-    {{> local_wb_news/wb_news_blog}}
-   {{/blogtemplate}}
+    {{#instancenameonindex}}
+    <div class="my-4">
+    <button class="btn btn-primary btn-collapse" type="button" data-toggle="collapse" data-target="#instance-{{instanceid}}" aria-expanded="false">
+    <i class="fa fa-chevron-down"></i>
+    <i class="fa fa-chevron-up"></i>
+    </button>
+    <span class="h4">{{instancenameonindex}}</span> <span>{{shortcode}}</span>
+    </div>
+    {{/instancenameonindex}}
+    <div id="instance-{{instanceid}}" class="card-body collapse">
+    {{#masonrytemplate}}
+        {{> local_wb_news/wb_news_masonry}}
+    {{/masonrytemplate}}
+    {{#gridtemplate}}
+        {{> local_wb_news/wb_news_grid}}
+    {{/gridtemplate}}
+    {{#slidertemplate}}
+        {{> local_wb_news/wb_news_slider}}
+    {{/slidertemplate}}
+    {{#tabstemplate}}
+        {{> local_wb_news/wb_news_tabs}}
+    {{/tabstemplate}}
+    {{#blogtemplate}}
+        {{> local_wb_news/wb_news_blog}}
+    {{/blogtemplate}}
+    </div>
 {{/instances}}
 </div>
 
@@ -94,3 +102,18 @@
         fn.init({{instanceid}});
     });
 {{/js}}
+
+<style>
+    .btn-collapse[aria-expanded="true"] .fa-chevron-down {
+        display: none;
+    }
+    .btn-collapse[aria-expanded="true"] .fa-chevron-up {
+        display: inline;
+    }
+    .btn-collapse[aria-expanded="false"] .fa-chevron-down {
+        display: inline;
+    }
+    .btn-collapse[aria-expanded="false"] .fa-chevron-up {
+        display: none;
+    }
+</style>

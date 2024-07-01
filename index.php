@@ -24,6 +24,7 @@
 namespace local_wb_news;
 
 use local_wb_news\output\wb_news;
+use stdClass;
 
 // @codingStandardsIgnoreStart
 require('../../config.php');
@@ -41,6 +42,10 @@ $PAGE->set_url($pageurl);
 
 $record = $DB->get_record("local_wb_news", ["id" => $id], '*');
 
+if ($id == 0) {
+    $record = new stdClass();
+    $record->title = get_string('wb_news', 'local_wb_news');
+}
 $PAGE->set_title($record->title ?? 'title');
 $PAGE->set_heading($record->title ?? 'title');
 $PAGE->set_pagelayout('base');
