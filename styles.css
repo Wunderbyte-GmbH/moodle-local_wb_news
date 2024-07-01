@@ -63,6 +63,9 @@
   color: #fff;
 }
 
+.wb_news-userinfo {
+  font-size: 0.82em;
+}
 
 .wb_news .carousel-inner {
   height: 100%;
@@ -261,4 +264,14 @@
 
 .wb-news-container {
   max-width: 100vw;
+}
+
+.wb_news .card .card-body {
+  padding: 1.25rem;
+}
+
+@media (max-width: 767.98px) {
+  .wb_news .card .card-body {
+      padding: 0.625rem;
+  }
 }
