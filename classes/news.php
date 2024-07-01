@@ -142,7 +142,6 @@ class news {
         $returnarray = [];
 
         foreach ($this->news as $news) {
-
             if (empty($news->userid)) {
                 continue;
             }
@@ -422,6 +421,30 @@ class news {
         }
 
         return $instanceitem;
+    }
+
+    /**
+     * Function will return an array of instances with names and ids.
+     *
+     * @return array
+     *
+     */
+    public static function get_instance_options() {
+
+        global $DB;
+
+        $returnarray = [];
+
+        $sql = "SELECT wni.id, wni.name
+                FROM {local_wb_news_instance} wni";
+
+        $instances = $DB->get_records_sql($sql);
+
+        foreach ($instances as $instance) {
+            $returnarray[$instance->id] = "$instance->name ($instance->id)";
+        }
+
+        return $returnarray;
     }
 
     /**

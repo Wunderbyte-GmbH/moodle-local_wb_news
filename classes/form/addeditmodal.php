@@ -52,9 +52,11 @@ class addeditmodal extends dynamic_form {
 
         $mform = $this->_form; // Don't forget the underscore!
 
+        $options = news::get_instance_options();
+
         // ID of the news instance.
-        $mform->addElement('hidden', 'instanceid', $customdata['instanceid'] ?? 0);
-        $mform->setType('instanceid', PARAM_INT);
+        $mform->addElement('select', 'instanceid', '', $options);
+        $mform->hideIf('instanceid', 'copy', 'eq', '0');
 
         // ID of the news item.
         $mform->addElement('hidden', 'id', $customdata['id'] ?? 0);

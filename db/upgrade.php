@@ -96,7 +96,6 @@ function xmldb_local_wb_news_upgrade($oldversion) {
         upgrade_plugin_savepoint(true, 2024070100, 'local', 'wb_news');
     }
 
-
     // Automatically generated Moodle v4.0.0 release upgrade line.
     // Put any upgrade step following this.
 
