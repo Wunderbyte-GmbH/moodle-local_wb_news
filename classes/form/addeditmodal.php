@@ -54,9 +54,13 @@ class addeditmodal extends dynamic_form {
 
         $options = news::get_instance_options();
 
+        $mform->addElement('hidden', 'hiddeninstanceid', $customdata['instanceid'] ?? 0);
+        $mform->setType('hiddeninstanceid', PARAM_INT);
+
         // ID of the news instance.
         $mform->addElement('select', 'instanceid', '', $options);
         $mform->hideIf('instanceid', 'copy', 'eq', '0');
+        $mform->setDefault('instanceid', $customdata['instanceid'] ?? 0);
 
         // ID of the news item.
         $mform->addElement('hidden', 'id', $customdata['id'] ?? 0);
@@ -185,7 +189,11 @@ class addeditmodal extends dynamic_form {
 
         $data = $this->get_data();
 
-        $news = news::getinstance($data->instanceid ?? 0);
+        if (empty($data->instanceid)) {
+            $data->instanceid = $data->hiddeninstanceid ?? 0;
+        }
+
+        $news = news::getinstance($data->instanceid);
         if (empty($data->id) || !empty($data->copy)) {
             // We need to temporarily set sth in the description column.
             unset($data->id); // Make sure we create a new id.

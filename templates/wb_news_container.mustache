@@ -76,7 +76,7 @@
     <span class="h4">{{instancenameonindex}}</span> <span>{{shortcode}}</span>
     </div>
     {{/instancenameonindex}}
-    <div id="instance-{{instanceid}}" class="card-body collapse">
+    <div id="instance-{{instanceid}}" class="card-body {{#instancenameonindex}}collapse{{/instancenameonindex}}">
     {{#masonrytemplate}}
         {{> local_wb_news/wb_news_masonry}}
     {{/masonrytemplate}}

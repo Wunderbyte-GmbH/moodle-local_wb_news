@@ -154,6 +154,10 @@ class news {
             $news->tags = array_values(core_tag_tag::get_item_tags_array('local_wb_news', 'news', $news->id));
             $news->publishedon = userdate($news->timecreated, get_string('strftimedate', 'core_langconfig'));
             $news->cssclasses = empty($news->cssclasses) ? false : $news->cssclasses;
+            $news->headline = strip_tags(format_text($news->headline));
+            $news->subheadline = strip_tags(format_text($news->subheadline));
+            $news->btntext = strip_tags(format_text($news->btntext));
+            $news->description = format_text($news->description);
             $returnarray[] = (array)$news;
         }
 
@@ -269,11 +273,11 @@ class news {
         }
 
         $this->news[$data->id] = $data;
-        if (!empty($data->template && empty($this->template))) {
+        if (!empty($data->template)) {
             $this->template = $data->template;
         }
         if (!empty($data->name) && empty($this->name)) {
-            $this->name = $data->name;
+            $this->name = strip_tags(format_text($data->name));
         }
 
         if (!empty($data->contextids) && empty($this->contextids)) {
@@ -350,6 +354,7 @@ class news {
 
         $data->userid = $USER->id;
         $data->timemodified = time();
+        $data->name = empty($data->name) ? $id : $data->name;
 
         $data->contextids = implode(',', $data->contextids);
 
@@ -395,6 +400,7 @@ class news {
             'instanceid' => $this->instanceid,
             'template' => $this->template,
             'name' => $this->name,
+            'contextids' => $this->contextids,
             'editmode' => $PAGE->user_is_editing() && has_capability('local/wb_news:manage', context_system::instance()),
         ];
 
@@ -487,7 +493,7 @@ class news {
 
         if (!empty($instanceid)) {
             $params = ['instanceid' => $instanceid];
-            $sql .= " AND wni.id =:instanceid";
+            $sql .= " AND wn.instanceid =:instanceid";
         } else {
             $params = [];
         }
