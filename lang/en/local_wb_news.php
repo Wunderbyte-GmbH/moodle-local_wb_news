@@ -96,3 +96,4 @@ $string['interror'] = 'Only full numbers are allowed.';
 // Shortcodes.
 $string['wbnewslist'] = 'One or all instances of news';
 $string['novalidinstance'] = 'This is not a valid instance with the id {$a}';
+$string['tagarea_news'] = "WB News";

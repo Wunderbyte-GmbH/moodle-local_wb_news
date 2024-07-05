@@ -96,3 +96,4 @@ $string['interror'] = 'Nur ganze Zahlen sind erlaubt.';
 // Shortcodes.
 $string['wbnewslist'] = 'Eine oder alle News Instanzen.';
 $string['novalidinstance'] = 'Das ist keine verfügbare Instanz mit der id {$a}';
+$string['tagarea_news'] = "WB News";
