@@ -153,9 +153,7 @@ class news {
             if (empty($news->userid)) {
                 continue;
             }
-
-            $returnarray[] = $this->get_formatted_news_item($news->id);
-            $returnarray[] = (array)$news;
+            $returnarray[] = (array)$this->get_formatted_news_item($news->id);
         }
 
         return $returnarray;
