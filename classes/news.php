@@ -90,6 +90,13 @@ class news {
      */
     private string $contextids = '';
 
+    /**
+     * Columns
+     *
+     * @var int
+     */
+    private int $columns = 4;
+
 
     /**
      * Constructor
@@ -190,6 +197,17 @@ class news {
     }
 
     /**
+     * Return number of columns in this instance.
+     *
+     * @return int
+     *
+     */
+    public function return_columns() {
+
+        return (int)$this->columns;
+    }
+
+    /**
      * Returns a the name string.
      *
      * @return string
@@ -283,6 +301,8 @@ class news {
         if (!empty($data->contextids) && empty($this->contextids)) {
             $this->contextids = $data->contextids;
         }
+
+        $this->columns = empty($data->columns) ? $this->columns : $data->columns;
     }
 
     /**
@@ -399,6 +419,7 @@ class news {
         $instanceitem = [
             'instanceid' => $this->instanceid,
             'template' => $this->template,
+            'columns' => $this->columns,
             'name' => $this->name,
             'contextids' => $this->contextids,
             'editmode' => $PAGE->user_is_editing() && has_capability('local/wb_news:manage', context_system::instance()),
@@ -486,7 +507,7 @@ class news {
             $DB->sql_cast_to_char('COALESCE(wni.id, 0)'),
             "'-'",
             $DB->sql_cast_to_char('COALESCE(wn.id, 0)')
-            ) . " as ident, wn.*, wni.id as instanceid, wni.template, wni.name, wni.contextids
+            ) . " as ident, wn.*, wni.id as instanceid, wni.template, wni.name, wni.contextids, wni.columns
             FROM {local_wb_news} wn
             RIGHT JOIN {local_wb_news_instance} wni ON wni.id = wn.instanceid
             WHERE (wn.instanceid > 0 OR wn.instanceid IS NULL) "; // Deleted Items are not normally included in the results.

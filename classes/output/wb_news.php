@@ -59,6 +59,13 @@ class wb_news implements renderable, templatable {
     private string $template = '';
 
     /**
+     * Columns
+     *
+     * @var int
+     */
+    private int $columns = 4;
+
+    /**
      * Constructor.
      *
      * @param int $instanceid = 0;
@@ -76,6 +83,7 @@ class wb_news implements renderable, templatable {
             $this->news[] = $newsitem;
         }
         $this->template = $news->return_template();
+        $this->columns = $news->return_columns();
     }
 
     /**

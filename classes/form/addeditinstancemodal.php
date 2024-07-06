@@ -71,6 +71,19 @@ class addeditinstancemodal extends dynamic_form {
         // Add subheadline field.
         $mform->addElement('select', 'template', get_string('template', 'local_wb_news'), $options);
 
+        $options = [
+            12 => 1,
+            6 => 2,
+            4 => 3,
+            3 => 4,
+            2 => 6,
+            1 => 12,
+        ];
+
+        // Add subheadline field.
+        $mform->addElement('select', 'columns', get_string('columns', 'local_wb_news'), $options);
+        $mform->setDefault('columns', 4);
+
         $categories = news::get_contextid_options();
 
         $options = [
@@ -133,6 +146,7 @@ class addeditinstancemodal extends dynamic_form {
         $data->template = $news->return_template();
         $data->name = $news->return_name();
         $data->contextids = $news->return_contextids();
+        $data->columns = $news->return_columns();
 
         $this->set_data($data);
     }

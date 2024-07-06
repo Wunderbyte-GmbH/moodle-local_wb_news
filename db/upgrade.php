@@ -96,6 +96,21 @@ function xmldb_local_wb_news_upgrade($oldversion) {
         upgrade_plugin_savepoint(true, 2024070100, 'local', 'wb_news');
     }
 
+    if ($oldversion < 2024070601) {
+
+        // Define field columns to be added to local_wb_news_instance.
+        $table = new xmldb_table('local_wb_news_instance');
+        $field = new xmldb_field('columns', XMLDB_TYPE_INTEGER, '2', null, null, null, '4', 'userid');
+
+        // Conditionally launch add field columns.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Wb_news savepoint reached.
+        upgrade_plugin_savepoint(true, 2024070601, 'local', 'wb_news');
+    }
+
     // Automatically generated Moodle v4.0.0 release upgrade line.
     // Put any upgrade step following this.
 
