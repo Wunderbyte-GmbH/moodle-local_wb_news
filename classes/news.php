@@ -16,6 +16,7 @@
 
 namespace local_wb_news;
 use core_tag_tag;
+use moodle_url;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -153,18 +154,7 @@ class news {
                 continue;
             }
 
-            $user = \core_user::get_user($news->userid);
-            $context = \context_user::instance($news->userid);
-            $url = \moodle_url::make_pluginfile_url($context->id, 'user', 'icon', 0, '/', 'f1');
-            $news->profileurl = $url->out();
-            $news->fullname = "$user->firstname $user->lastname";
-            $news->tags = array_values(core_tag_tag::get_item_tags_array('local_wb_news', 'news', $news->id));
-            $news->publishedon = userdate($news->timecreated, get_string('strftimedate', 'core_langconfig'));
-            $news->cssclasses = empty($news->cssclasses) ? false : $news->cssclasses;
-            $news->headline = strip_tags(format_text($news->headline));
-            $news->subheadline = strip_tags(format_text($news->subheadline));
-            $news->btntext = strip_tags(format_text($news->btntext));
-            $news->description = format_text($news->description);
+            $returnarray[] = $this->get_formatted_news_item($news->id);
             $returnarray[] = (array)$news;
         }
 
@@ -218,7 +208,7 @@ class news {
     }
 
     /**
-     * Returns a list of news from the current instance.
+     * Returns a specifc news item from the current instance.
      *
      * @param int $id
      * @return stdClass|null
@@ -226,7 +216,49 @@ class news {
      */
     public function get_news_item($id) {
 
-        return $this->news[$id] ?? null;
+        $news = $this->news[$id];
+
+        return $news ?? null;
+    }
+
+    /**
+     * Returns a specific news item formatted from the current instance.
+     *
+     * @param int $id
+     * @return stdClass|null
+     *
+     */
+    public function get_formatted_news_item($id) {
+
+        global $PAGE;
+
+        $news = $this->news[$id];
+
+        $user = \core_user::get_user($news->userid);
+        $context = \context_user::instance($news->userid);
+        $url = moodle_url::make_pluginfile_url($context->id, 'user', 'icon', 0, '/', 'f1');
+        $news->profileurl = $url->out();
+        $news->fullname = "$user->firstname $user->lastname";
+        $news->tags = array_values(core_tag_tag::get_item_tags_array('local_wb_news', 'news', $news->id));
+        $news->publishedon = userdate($news->timecreated, get_string('strftimedate', 'core_langconfig'));
+        $news->cssclasses = empty($news->cssclasses) ? false : $news->cssclasses;
+        $news->headline = strip_tags(format_text($news->headline));
+        $news->subheadline = strip_tags(format_text($news->subheadline));
+        $news->btntext = strip_tags(format_text($news->btntext));
+        $news->description = format_text($news->description);
+
+        $returntourl = $returnurl = $PAGE->url->out();;
+
+        $url = new moodle_url('/local/wb_news/newsview.php', [
+            'id' => $news->id,
+            'instanceid' => $this->instanceid,
+            'returnto' => 'url',
+            'returnurl' => $returnurl,
+        ]);
+
+        $news->detailviewurl = $url->out(false);
+
+        return $news ?? null;
     }
 
     /**
