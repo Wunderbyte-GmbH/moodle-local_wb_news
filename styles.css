@@ -51,11 +51,11 @@
 
 .wb_news .carousel-control-prev:hover,
 .wb_news .carousel-control-next:hover {
-   opacity: 1;
+    opacity: 1;
 }
 
 .wb_news .carousel-control-prev {
-   left: 10px;
+    left: 10px;
 }
 
 .wb_news .carousel-control-next {
@@ -125,8 +125,8 @@
 
 .wb_news_tabcontainer,
 .section-content {
-   padding: 2rem;
-   border-radius: 0.25rem;
+    padding: 2rem;
+    border-radius: 0.25rem;
 }
 
 .section-content .btn-primary {
