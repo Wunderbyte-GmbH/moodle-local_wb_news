@@ -43,7 +43,6 @@
     }
 }}
 
-
 <div data-id="wb-news-all-instances-container">
 {{#editmode}}
     <div class="text-center">
@@ -99,13 +98,6 @@
 {{/instances}}
 </div>
 
-
-{{#js}}
-    require(['local_wb_news/editnews'], function(fn) {
-        fn.init({{instanceid}});
-    });
-{{/js}}
-
 <style>
     .btn-collapse[aria-expanded="true"] .fa-chevron-down {
         display: none;
@@ -120,3 +112,9 @@
         display: none;
     }
 </style>
+
+{{#js}}
+    require(['local_wb_news/editnews'], function(fn) {
+        fn.init({{instanceid}});
+    });
+{{/js}}

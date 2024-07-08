@@ -178,7 +178,7 @@
 }
 
 .wb_news .card img.wb_news-headerimage {
-  border-radius: 0px;
+  border-radius: none;
 }
 
 .wb_news.card-body {
@@ -269,8 +269,7 @@
   overflow-y: scroll;
 }
 
-/* Slider. */
-
+/* Slider */
 .wb_news_slide .image-container img {
   border-bottom-left-radius: 15px;
 }
@@ -278,7 +277,7 @@
 /* GitHub Actions warnings fixed */
 .wb_news .carousel-control-prev,
 .wb_news .carousel-control-next {
-  position: static !important;
+  position: static;
 }
 
 .wb_news .carousel-control-prev-icon,
