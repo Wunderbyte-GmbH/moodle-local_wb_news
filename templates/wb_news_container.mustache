@@ -42,6 +42,20 @@
         ]
     }
 }}
+<style>
+    .btn-collapse[aria-expanded="true"] .fa-chevron-down {
+        display: none;
+    }
+    .btn-collapse[aria-expanded="true"] .fa-chevron-up {
+        display: inline;
+    }
+    .btn-collapse[aria-expanded="false"] .fa-chevron-down {
+        display: inline;
+    }
+    .btn-collapse[aria-expanded="false"] .fa-chevron-up {
+        display: none;
+    }
+</style>
 
 <div data-id="wb-news-all-instances-container">
 {{#editmode}}
@@ -97,21 +111,6 @@
     </div>
 {{/instances}}
 </div>
-
-<style>
-    .btn-collapse[aria-expanded="true"] .fa-chevron-down {
-        display: none;
-    }
-    .btn-collapse[aria-expanded="true"] .fa-chevron-up {
-        display: inline;
-    }
-    .btn-collapse[aria-expanded="false"] .fa-chevron-down {
-        display: inline;
-    }
-    .btn-collapse[aria-expanded="false"] .fa-chevron-up {
-        display: none;
-    }
-</style>
 
 {{#js}}
     require(['local_wb_news/editnews'], function(fn) {
