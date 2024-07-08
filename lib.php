@@ -21,7 +21,22 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-function local_wb_news_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options=array()) {
+/**
+ * Handles file requests for the 'local_wb_news' plugin.
+ *
+ * This function serves files from the 'bgimage' and 'icon' file areas of the 'local_wb_news' plugin.
+ * It checks for the correct context, retrieves the requested file, and sends it to the client.
+ *
+ * @param stdClass $course The course object.
+ * @param stdClass $cm The course module object.
+ * @param stdClass $context The context object.
+ * @param string $filearea The file area (expected values: 'bgimage', 'icon').
+ * @param array $args Additional arguments (e.g., file path components).
+ * @param bool $forcedownload Whether to force download.
+ * @param array $options Additional options affecting file serving.
+ * @return bool|void Returns false if any conditions are not met, otherwise sends the file.
+ */
+function local_wb_news_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options=[]) {
     global $DB;
 
     // @codingStandardsIgnoreStart

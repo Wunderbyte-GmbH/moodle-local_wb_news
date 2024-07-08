@@ -56,6 +56,7 @@ echo $OUTPUT->header();
 $news = new wb_news($id);
 $data = $news->return_list();
 
+// phpcs:ignore
 // Here, we want the information how to include the instance:
 foreach ($data['instances'] as $key => $value) {
     if (!empty($data['instances'][$key]['contextids'])) {

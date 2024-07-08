@@ -17,18 +17,18 @@
 /**
  * Tag areas in component mod_forum
  *
- * @package   mod_forum
+ * @package   local_wb_news
  * @copyright 2017 Andrew Hancox <andrewdchancox@googlemail.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
+$tagareas = [
+    [
+        'itemtype'   => 'news',
+        'component'  => 'local_wb_news',
+        'areaname'   => 'news',
+    ],
+];
 
-$tagareas = array(
-    array(
-        'itemtype' => 'news',
-        'component' => 'local_wb_news',
-        'areaname' => 'news',
-    ),
-);

@@ -31,21 +31,39 @@ namespace local_wb_news\event;
  */
 class news_created extends \core\event\base {
 
+    /**
+     * The init function
+     */
     protected function init() {
         $this->data['crud'] = 'c';
         $this->data['edulevel'] = self::LEVEL_PARTICIPATING;
         $this->data['objecttable'] = 'local_wb_news';
     }
 
+    /**
+     * Returns the name
+     *
+     * @return string
+     */
     public static function get_name() {
         return get_string('news_created', 'local_wb_news');
     }
 
+    /**
+     * Returns the description
+     *
+     * @return string
+     */
     public function get_description() {
         return "User with id '{$this->userid}' created 'news entry' with id '{$this->objectid}'.";
     }
 
+    /**
+     * Returns the moodle url
+     *
+     * @return string
+     */
     public function get_url() {
-        return new \moodle_url('/local/wb_news/index.php', array('id' => $this->objectid));
+        return new \moodle_url('/local/wb_news/index.php', ['id' => $this->objectid]);
     }
 }

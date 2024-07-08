@@ -103,7 +103,7 @@ class news {
      * Constructor
      *
      * @param int $instanceid
-     *
+     * @param bool $fetchitems
      */
     private function __construct(int $instanceid = 0, bool $fetchitems = true) {
         global $DB;
@@ -127,7 +127,7 @@ class news {
     /**
      * Get singelton instance.
      *
-     * @param  int $id
+     * @param  int  $instanceid
      * @param  bool $fetchitems
      * @return news
      */

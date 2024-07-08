@@ -98,9 +98,10 @@ $newsdata = [
             'subheadline' => 'News 6',
             'description' => 'No Image, No Icon, No link',
         ],
-    ]
+    ],
 ];
 
+// phpcs:disable
 // echo "<h2>Grid</h2>";
 // echo $OUTPUT->render_from_template("local_wb_news/wb_news_grid", $newsdata);
 
@@ -113,6 +114,7 @@ $newsdata = [
 
 // echo "<br><h2>Slider</h2>";
 // echo $OUTPUT->render_from_template("local_wb_news/wb_news_slider", $newsdata);
+// phpcs:enable
 
 echo "<br><h2>Slider</h2>";
 echo $OUTPUT->render_from_template("local_wb_news/wb_news_list", $newsdata);

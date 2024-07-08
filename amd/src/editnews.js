@@ -94,10 +94,10 @@ function handleClickEvent(event) {
 
 /**
  * Show add edit form.
-  * @param {htmlElement} button
-  * @return [type]
-  *
-  */
+ * @param {htmlElement} button
+ * @return [type]
+ *
+ */
 export function addeditformModal(button) {
 
     // eslint-disable-next-line no-console
@@ -140,10 +140,10 @@ export function addeditformModal(button) {
 
 /**
  * Show add edit form.
-  * @param {htmlElement} button
-  * @return [type]
-  *
-  */
+ * @param {htmlElement} button
+ * @return [type]
+ *
+ */
 export function deleteModal(button) {
 
     // eslint-disable-next-line no-console
@@ -186,10 +186,10 @@ export function deleteModal(button) {
 
 /**
  * Copy form.
-  * @param {htmlElement} button
-  * @return [type]
-  *
-  */
+ * @param {htmlElement} button
+ * @return [type]
+ *
+ */
 export function copyModal(button) {
 
     // eslint-disable-next-line no-console

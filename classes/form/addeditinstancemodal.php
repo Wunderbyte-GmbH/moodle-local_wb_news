@@ -16,7 +16,7 @@
 
 /**
  * Entitiesrelation form implemantion to use entities in other plugins
- * @package     local_emis
+ * @package     local_wb_news
  * @copyright   2023 Wunderbyte GmbH
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -101,6 +101,7 @@ class addeditinstancemodal extends dynamic_form {
      * @return void
      */
     protected function check_access_for_dynamic_submission(): void {
+        // phpcs:ignore
         // TODO: capability to create advisors
 
     }
