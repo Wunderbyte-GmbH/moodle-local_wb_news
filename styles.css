@@ -304,3 +304,7 @@
     background: #fff;
     color: #005c99;
 }
+
+.wb-news-edit-single {
+    z-index: 1000;
+}
