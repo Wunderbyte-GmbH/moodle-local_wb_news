@@ -66,6 +66,7 @@ class addeditinstancemodal extends dynamic_form {
             'local_wb_news/wb_news_tabs' => get_string('tabstemplate', 'local_wb_news'),
             'local_wb_news/wb_news_grid' => get_string('gridtemplate', 'local_wb_news'),
             'local_wb_news/wb_news_blog' => get_string('blogtemplate', 'local_wb_news'),
+            'local_wb_news/wb_news_crosslinks' => get_string('crosslinkstemplate', 'local_wb_news'),
         ];
 
         // Add subheadline field.

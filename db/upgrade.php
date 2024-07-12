@@ -81,7 +81,7 @@ function xmldb_local_wb_news_upgrade($oldversion) {
         upgrade_plugin_savepoint(true, 2024061600, 'local', 'wb_news');
     }
 
-    if ($oldversion < 2024070100) {
+    if ($oldversion < 2024070139) {
 
         // Define field contextids to be added to local_wb_news_instance.
         $table = new xmldb_table('local_wb_news_instance');
@@ -93,10 +93,10 @@ function xmldb_local_wb_news_upgrade($oldversion) {
         }
 
         // Wb_news savepoint reached.
-        upgrade_plugin_savepoint(true, 2024070100, 'local', 'wb_news');
+        upgrade_plugin_savepoint(true, 2024070139, 'local', 'wb_news');
     }
 
-    if ($oldversion < 2024070601) {
+    if ($oldversion < 2024071201) {
 
         // Define field columns to be added to local_wb_news_instance.
         $table = new xmldb_table('local_wb_news_instance');

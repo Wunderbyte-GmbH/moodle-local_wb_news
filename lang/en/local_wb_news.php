@@ -72,6 +72,7 @@ $string['btnlink'] = 'Button Link';
 $string['btntext'] = 'Button Text';
 $string['lightmode'] = 'Light Mode';
 $string['cssclasses'] = 'Additionial CSS classes';
+$string['columns'] = 'Columns';
 
 $string['template'] = 'Template';
 $string['name'] = 'Name';
@@ -80,6 +81,7 @@ $string['slidertemplate'] = 'Slider template';
 $string['tabstemplate'] = 'Tabs template';
 $string['gridtemplate'] = 'Grid template';
 $string['blogtemplate'] = 'Blog template';
+$string['crosslinkstemplate'] = 'Crosslinks template';
 
 // Modal.
 $string['confirmdelete'] = "Confirm deletion. This action can not be reversed.";

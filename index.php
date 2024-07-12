@@ -86,8 +86,8 @@ foreach ($data['instances'] as $key => $value) {
 
     $data['instances'][$key]['instancenameonindex'] = $value["name"];
     $data['instances'][$key]['shortcode'] = "[wbnews instance=" . $value["instanceid"] . "]";
+    $data['instances'][$key]['isadminpage'] = true;
 }
-
 
 $out = $OUTPUT->render_from_template('local_wb_news/wb_news_container', $data);
 echo $out;

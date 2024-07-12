@@ -70,11 +70,21 @@
 {{#instances}}
     {{#instancenameonindex}}
     <div class="my-4">
-    <button class="btn btn-primary btn-collapse" type="button" data-toggle="collapse" data-target="#instance-{{instanceid}}" aria-expanded="false">
+
+    <button class="btn btn-primary btn-collapse mr-2" type="button" data-toggle="collapse" data-target="#instance-{{instanceid}}" aria-expanded="false">
     <i class="fa fa-chevron-down"></i>
     <i class="fa fa-chevron-up"></i>
     </button>
-    <span class="h4">{{instancenameonindex}}</span> <span>{{shortcode}}</span>
+    <div class="wb-news-addeditbutton btn btn-secondary fa-plus fa"
+    data-action="add"
+    data-instanceid="{{instanceid}}">
+    </div>
+    <div class="wb-news-addeditbutton btn btn-secondary fa-edit fa"
+        data-action="edit"
+        data-id="{{instanceid}}"
+        data-isinstance="true">
+    </div>
+    <span class="h4 ml-2">{{instancenameonindex}}</span> <span>{{shortcode}}</span>
     </div>
     {{/instancenameonindex}}
     <div id="instance-{{instanceid}}" class="card-body {{#instancenameonindex}}collapse{{/instancenameonindex}}">
@@ -93,6 +103,9 @@
     {{#blogtemplate}}
         {{> local_wb_news/wb_news_blog}}
     {{/blogtemplate}}
+    {{#crosslinkstemplate}}
+        {{> local_wb_news/wb_news_crosslinks}}
+    {{/crosslinkstemplate}}
     </div>
 {{/instances}}
 </div>

@@ -484,6 +484,9 @@ class news {
             case 'local_wb_news/wb_news_blog':
                 $instanceitem['blogtemplate'] = true;
                 break;
+            case 'local_wb_news/wb_news_crosslinks':
+                $instanceitem['crosslinkstemplate'] = true;
+                break;
         }
 
         return $instanceitem;
