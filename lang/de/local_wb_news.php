@@ -75,6 +75,8 @@ $string['cssclasses'] = 'Zusätzliche CSS Klassen';
 $string['columns'] = 'Spalten';
 $string['keyvaluepairs'] = 'Schlüssel: Wert';
 $string['additionaldata'] = 'Zusatzdaten';
+$string['timelinetemplate'] = 'Timeline Vorlage';
+$string['timelinetemplate2'] = 'Timeline Modus2 Vorlage';
 
 
 $string['template'] = 'Vorlage';
