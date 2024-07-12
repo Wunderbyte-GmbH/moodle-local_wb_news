@@ -149,11 +149,20 @@ class news {
 
         $returnarray = [];
 
+        $isactive = false;
         foreach ($this->news as $news) {
+
+            if (!empty($news->active)) {
+                $isactive = true;
+            }
             if (empty($news->userid)) {
                 continue;
             }
             $returnarray[] = (array)$this->get_formatted_news_item($news->id);
+        }
+        // If no item is active, we set the first active.
+        if (!$isactive) {
+            $returnarray[0]['active'] = 1;
         }
 
         return $returnarray;
