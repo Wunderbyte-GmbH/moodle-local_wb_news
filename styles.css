@@ -297,3 +297,93 @@
 .wb_news_slide .image-container img {
     border-bottom-left-radius: 15px;
 }
+
+/* Timeline. */
+.wb-news-timeline .container-timeline {
+    text-align: right;
+}
+.wb-news-timeline .container-timeline.right .timeline-content{
+    text-align: left;
+    margin: 40px;
+}
+.wb-news-timeline  .timeline {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.wb-news-timeline .timeline::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background-color: #edf3f8;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
+}
+.wb-news-timeline .container-timeline {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+}
+.wb-news-timeline .container-timeline::after {
+    content: attr(data-number);
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    right: -45px;
+    background-color: #e9f2f9;
+    color: white;
+    border: 4px solid #e9f2f9;
+    top: 65px;
+    border-radius: 50%;
+    z-index: 1;
+    text-align: center;
+    font-size: 30px;
+    line-height: 80px;
+    font-weight: bold;
+}
+.wb-news-timeline .left {
+    left: 0;
+}
+.wb-news-timeline .right {
+    left: 50%;
+}
+.wb-news-timeline .left::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    right: 45px;
+    border: medium solid white;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent white;
+}
+.wb-news-timeline .container-timeline.right::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    border: medium solid white;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent white transparent transparent;
+}
+.wb-news-timeline .right::after {
+    left: -46px;
+}
+.wb-news-timeline .timeline-content {
+    padding: 20px 30px;
+    background-color: white;
+    position: relative;
+    border-radius: 6px;
+}
+
+.wb-news-timeline .left .circle {
+    right: auto;
+    left: -17px;
+}

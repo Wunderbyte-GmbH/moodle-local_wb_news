@@ -253,8 +253,10 @@ class news {
         $news->subheadline = strip_tags(format_text($news->subheadline));
         $news->btntext = strip_tags(format_text($news->btntext));
         $news->description = format_text($news->description);
-
-        $returntourl = $returnurl = $PAGE->url->out();;
+        if ($news->json) {
+            $news->additionaldata = json_decode($news->json);
+        }
+        $returntourl = $returnurl = $PAGE->url->out();
 
         $url = new moodle_url('/local/wb_news/newsview.php', [
             'id' => $news->id,
@@ -487,6 +489,9 @@ class news {
             case 'local_wb_news/wb_news_crosslinks':
                 $instanceitem['crosslinkstemplate'] = true;
                 break;
+            case 'local_wb_news/wb_news_timeline':
+                $instanceitem['timelinetemplate'] = true;
+                break;
         }
 
         return $instanceitem;
@@ -561,7 +566,7 @@ class news {
             $params = [];
         }
 
-        $sql .= " ORDER By wni.id ASC";
+        $sql .= " ORDER By wni.id ASC, wn.sortorder";
 
         return $DB->get_records_sql($sql, $params);
     }

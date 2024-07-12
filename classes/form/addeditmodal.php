@@ -135,6 +135,11 @@ class addeditmodal extends dynamic_form {
         $mform->setType('bgcolor', PARAM_TEXT);
         $mform->setDefault('bgcolor', '#ffffff');
 
+        $mform->addElement('header', 'additionaldatahdr', get_string('additionaldata', 'local_wb_news'));
+
+        $mform->addElement('textarea', 'keyvaluepairs', get_string('keyvaluepairs', 'local_wb_news'), 'wrap="virtual" rows="10" cols="50"');
+        $mform->setType('keyvaluepairs', PARAM_TEXT);
+
         if (core_tag_tag::is_enabled('local_wb_news', 'news')) {
             $mform->addElement('header', 'tagshdr', get_string('tags', 'tag'));
 
@@ -145,6 +150,8 @@ class addeditmodal extends dynamic_form {
                 ['itemtype' => 'news', 'component' => 'local_wb_news']
             );
         }
+
+
     }
 
     /**
@@ -282,7 +289,20 @@ class addeditmodal extends dynamic_form {
 
             $data->icon = $url->out();
         }
+        $keyvaluepairs = trim($data->keyvaluepairs);
+        $lines = explode("\n", $keyvaluepairs);
+        $array = [];
 
+        foreach ($lines as $line) {
+            $parts = explode(':', $line, 2);
+            if (count($parts) == 2) {
+                $key = trim($parts[0]);
+                $value = trim($parts[1]);
+                $array[$key] = $value;
+            }
+        }
+
+        $data->json = json_encode($array);
         $data->id = $news->update_news($data);
 
         return $data;
@@ -308,6 +328,15 @@ class addeditmodal extends dynamic_form {
 
         if (!empty($data)) {
             $data->copy = $copy;
+            $array = json_decode($data->json, true);
+            $formatteddata = '';
+
+            foreach ($array as $key => $value) {
+                $formatteddata .= "$key: $value\n";
+            }
+
+            // Set the default value for the form
+            $data->keyvaluepairs = trim($formatteddata);
 
             $context = context_system::instance();
             $data = file_prepare_standard_editor(

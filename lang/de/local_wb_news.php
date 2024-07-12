@@ -73,6 +73,9 @@ $string['btntext'] = 'Schaltflächentext';
 $string['lightmode'] = 'Heller Modus';
 $string['cssclasses'] = 'Zusätzliche CSS Klassen';
 $string['columns'] = 'Spalten';
+$string['keyvaluepairs'] = 'Schlüssel: Wert';
+$string['additionaldata'] = 'Zusatzdaten';
+
 
 $string['template'] = 'Vorlage';
 $string['name'] = 'Name';
@@ -82,7 +85,6 @@ $string['tabstemplate'] = 'Tabs Vorlage';
 $string['gridtemplate'] = 'Gitter Vorlage';
 $string['blogtemplate'] = 'Blog Vorlage';
 $string['crosslinkstemplate'] = 'Crosslinks Vorlage';
-
 
 // Modal.
 $string['confirmdelete'] = "Bestätige das Löschen. Dieser Vorgang kann nicht rückgängig gemacht werden.";
