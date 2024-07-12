@@ -306,12 +306,12 @@
     text-align: left;
     margin: 40px;
 }
-.wb-news-timeline  .timeline {
+.wb-news-timeline {
     position: relative;
     max-width: 600px;
     margin: 0 auto;
 }
-.wb-news-timeline .timeline::after {
+.wb-news-timeline::after {
     content: '';
     position: absolute;
     width: 6px;
