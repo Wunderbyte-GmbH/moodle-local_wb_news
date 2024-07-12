@@ -277,7 +277,7 @@
 
 .wb-news-edit-single {
     position: absolute;
-    z-index: 9999;
+    z-index: 4;
 }
 
 .wb-news-edit-single .btn-outline-dark {

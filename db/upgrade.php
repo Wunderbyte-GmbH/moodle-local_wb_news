@@ -108,7 +108,7 @@ function xmldb_local_wb_news_upgrade($oldversion) {
         }
 
         // Wb_news savepoint reached.
-        upgrade_plugin_savepoint(true, 2024070601, 'local', 'wb_news');
+        upgrade_plugin_savepoint(true, 2024071201, 'local', 'wb_news');
     }
 
     if ($oldversion < 2024071205) {
