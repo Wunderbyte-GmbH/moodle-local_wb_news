@@ -161,7 +161,7 @@ class news {
             $returnarray[] = (array)$this->get_formatted_news_item($news->id);
         }
         // If no item is active, we set the first active.
-        if (!$isactive) {
+        if (count($returnarray) > 0 && !$isactive) {
             $returnarray[0]['active'] = 1;
         }
 
