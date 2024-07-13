@@ -52,7 +52,8 @@ $string['addinstance'] = 'Add instance';
 $string['editinstance'] = 'Edit instance';
 $string['deleteinstance'] = 'Delete instance';
 
-$string['addeditform'] = 'Add or edit entry';
+$string['editform'] = 'Edit an entry';
+$string['addform'] = 'Add an entry';
 $string['instanceid'] = 'Instance ID';
 $string['activenews'] = 'Active on first loading';
 $string['icon'] = 'Icon';

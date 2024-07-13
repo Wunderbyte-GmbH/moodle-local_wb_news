@@ -52,7 +52,8 @@ $string['addinstance'] = 'Füge Instanz hinzu';
 $string['editinstance'] = 'Bearbeite Instanz';
 $string['deleteinstance'] = 'Lösche Instanz';
 
-$string['addeditform'] = 'Hinzufügen oder bearbeiten eines Eintrags';
+$string['addform'] = 'Hinzufügen eines Eintrags';
+$string['editform'] = 'Bearbeiten eines Eintrags';
 $string['instanceid'] = 'Instanz-ID';
 $string['activenews'] = 'Beim ersten Laden aktiv';
 $string['icon'] = 'Icon';

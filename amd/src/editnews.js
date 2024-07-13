@@ -112,6 +112,11 @@ export function addeditformModal(button) {
         formclass = "local_wb_news\\form\\addeditinstancemodal";
     }
 
+    var title = getString('addform', 'local_wb_news');
+    if (id > 0) {
+        title = getString('editform', 'local_wb_news');
+    }
+
     const modalForm = new ModalForm({
 
         // Name of the class where form is defined (must extend \core_form\dynamic_form):
@@ -122,7 +127,7 @@ export function addeditformModal(button) {
             instanceid
         },
         // Pass any configuration settings to the modal dialogue, for example, the title:
-        modalConfig: {title: getString('addeditform', 'local_wb_news')},
+        modalConfig: {title},
         // DOM element that should get the focus after the modal dialogue is closed:
         returnFocus: button
     });
