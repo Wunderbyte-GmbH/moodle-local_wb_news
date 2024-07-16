@@ -253,9 +253,10 @@ class news {
         $news->subheadline = strip_tags(format_text($news->subheadline));
         $news->btntext = strip_tags(format_text($news->btntext));
         $news->description = format_text($news->description);
-        if ($news->json) {
+        if (isset($news->json) && $news->json) {
             $news->additionaldata = json_decode($news->json);
         }
+
         $returntourl = $returnurl = $PAGE->url->out();
 
         $url = new moodle_url('/local/wb_news/newsview.php', [
