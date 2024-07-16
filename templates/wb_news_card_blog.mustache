@@ -32,7 +32,8 @@
     }
 }}
 
-<div class="h-100 card wb_news_card_blog{{#lightmode}} wb_news-light{{/lightmode}}{{#cssclasses}} {{cssclasses}}{{/cssclasses}}"{{#bgcolor}} style="background-color: {{bgcolor}};"{{/bgcolor}}>
+<div class="card h-100 wb_news_card_blog{{#lightmode}} wb_news-light{{/lightmode}}{{#cssclasses}} {{cssclasses}}{{/cssclasses}}"{{#bgcolor}} style="background-color: {{bgcolor}};"{{/bgcolor}}>
+    {{#detailviewurl}}<a href="{{detailviewurl}}" class="stretched-link"></a> {{/detailviewurl}}
     {{#headerimage}}
     <img class="w-100 img-fluid wb_news-headerimage h-50" style="object-fit:cover;" src="{{headerimage}}" alt="">
     {{/headerimage}}
@@ -65,21 +66,9 @@
             <span class="pl-2 smaller"><b>{{fullname}}</b></span>
             <span class="smaller pl-2 ml-auto text-black-50">{{{publishedon}}}</span>
         </div>
-        {{#detailviewurl}}
-            <a href="{{detailviewurl}}" class="stretched-link"></a> 
-        {{/detailviewurl}}
-        {{#icon}}
-            <div class="text-center">
-                <img src="{{icon}}" class="card-icon mb-2 text-center" alt="Icon">
-            </div>
-        {{/icon}}
-        <h5 class="card-title">{{headline}}</h5>
-        <h6 class="card-subtitle mb-2{{^lightmode}} text-muted{{/lightmode}}">{{subheadline}}</h6>
-        <p class="card-text">{{{description}}}</p>
     </div>
     </div>
     {{#editmode}}
         {{> local_wb_news/editsinglenews}}
     {{/editmode}}
-    </div>
 </div>
