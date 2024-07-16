@@ -493,9 +493,6 @@ class news {
             case 'local_wb_news/wb_news_timeline':
                 $instanceitem['timelinetemplate'] = true;
                 break;
-            case 'local_wb_news/wb_news_timeline2':
-                $instanceitem['timelinetemplate2'] = true;
-                break;
         }
 
         return $instanceitem;
