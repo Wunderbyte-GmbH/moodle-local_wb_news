@@ -50,21 +50,6 @@
             data-isinstance="true">
             {{#str}} addinstance, local_wb_news {{/str}}
         </div>
-        <div class="wb-news-addeditbutton btn btn-primary fa-edit fa"
-            data-action="edit"
-            data-id="{{instanceid}}"
-            data-isinstance="true">
-        </div>
-        <div class="wb-news-deletebutton btn btn-primary fa-trash fa"
-            data-action="delete"
-            data-id="{{instanceid}}"
-            data-isinstance="true">
-        </div>
-        <div class="wb-news-copybutton btn btn-primary fa-copy fa"
-            data-action="copy"
-            data-id="{{instanceid}}"
-            data-isinstance="true">
-        </div>
     </div>
 {{/editmode}}
 {{#instances}}
@@ -81,6 +66,16 @@
     </div>
     <div class="wb-news-addeditbutton btn btn-secondary fa-edit fa"
         data-action="edit"
+        data-id="{{instanceid}}"
+        data-isinstance="true">
+    </div>
+    <div class="wb-news-copybutton btn btn-secondary fa-copy fa"
+        data-action="copy"
+        data-id="{{instanceid}}"
+        data-isinstance="true">
+    </div>
+        <div class="wb-news-deletebutton btn btn-secondary fa-trash fa"
+        data-action="delete"
         data-id="{{instanceid}}"
         data-isinstance="true">
     </div>
