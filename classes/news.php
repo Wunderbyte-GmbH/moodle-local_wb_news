@@ -113,6 +113,13 @@ class news {
         if ($fetchitems) {
             $news = self::get_items_from_db($instanceid);
 
+            if (count($news) < 1) {
+                $instance = $DB->get_record('local_wb_news_instance', ['id' => $instanceid]);
+
+                $this->name = $instance->name ?? 'noname';
+                $this->template = $instance->template ?? 'notemplate';
+            }
+
             foreach ($news as $newsitem) {
                 if ($newsitem->instanceid != $instanceid) {
                     $news = self::getinstance($newsitem->instanceid ?? 0, false);
