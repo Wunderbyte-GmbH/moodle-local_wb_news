@@ -61,8 +61,8 @@
         data-instanceid="{{instanceid}}">
         {{#str}} addnewnews, local_wb_news {{/str}}
     </div>
-  <h2>{{headline}}</h2>
-  <h3>{{subheadline}}</h3>
+  <h2>{{{headline}}}</h2>
+  <h3>{{{subheadline}}}</h3>
   <div class="news-meta">
     <span><strong>User ID:</strong> {{userid}}</span>
     <span><strong>Instance ID:</strong> {{instanceid}}</span>
@@ -74,7 +74,7 @@
     {{/icon}}
   </div>
   <div class="news-description">
-    {{{description}}}
+    {{{{description}}}}
   </div>
   {{#btnlink}}
     <a href="{{btnlink}}" class="news-button">{{btntext}}</a>
