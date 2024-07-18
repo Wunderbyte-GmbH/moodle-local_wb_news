@@ -117,6 +117,9 @@ class addeditmodal extends dynamic_form {
                 'maxfiles' => 1,
         ]);
 
+        $mform->addElement('advcheckbox', 'lightmode', get_string('lightmode', 'local_wb_news'));
+        $mform->setType('lightmode', PARAM_INT);
+
         // Add button link field.
         $mform->addElement('text', 'btnlink', get_string('btnlink', 'local_wb_news'));
         $mform->setType('btnlink', PARAM_TEXT);
@@ -124,9 +127,6 @@ class addeditmodal extends dynamic_form {
         // Add button text field.
         $mform->addElement('text', 'btntext', get_string('btntext', 'local_wb_news'));
         $mform->setType('btntext', PARAM_TEXT);
-
-        $mform->addElement('advcheckbox', 'lightmode', get_string('lightmode', 'local_wb_news'));
-        $mform->setType('lightmode', PARAM_INT);
 
         $mform->addElement('text', 'cssclasses', get_string('cssclasses', 'local_wb_news'));
         $mform->setType('cssclasses', PARAM_TEXT);
