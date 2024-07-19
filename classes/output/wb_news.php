@@ -29,6 +29,7 @@ use local_wb_news\news;
 use renderable;
 use renderer_base;
 use templatable;
+use context_system;
 
 /**
  * viewtable class to display view.php
@@ -100,7 +101,7 @@ class wb_news implements renderable, templatable {
         if (empty($this->instanceid)) {
             return [
                 'instances' => news::return_all_instances(),
-                'editmode' => $PAGE->user_is_editing(),
+                'editmode' => has_capability('local/wb_news:manage', context_system::instance()),
             ];
         }
 

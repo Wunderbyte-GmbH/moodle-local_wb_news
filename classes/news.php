@@ -471,7 +471,7 @@ class news {
             'columns' => $this->columns,
             'name' => $this->name,
             'contextids' => $this->contextids,
-            'editmode' => $PAGE->user_is_editing() && has_capability('local/wb_news:manage', context_system::instance()),
+            'editmode' => ($PAGE->user_is_editing() || (strpos($PAGE->url, 'local/wb_news/index.php') !== false)) && has_capability('local/wb_news:manage', context_system::instance()),
         ];
 
         if (!empty($this->news)) {
