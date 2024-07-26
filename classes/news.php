@@ -260,6 +260,14 @@ class news {
         $news->subheadline = strip_tags(format_text($news->subheadline));
         $news->btntext = strip_tags(format_text($news->btntext));
         $news->description = format_text($news->description);
+
+        $strippeddesc = strip_tags($news->description);
+        if (strlen($strippeddesc) > 300) {
+            $news->shortdescription = substr($strippeddesc, 0, 300) . '...';
+        } else {
+            $news->shortdescription = $strippeddesc;
+        }
+
         if (isset($news->json) && $news->json) {
             $news->additionaldata = json_decode($news->json);
         }
@@ -493,6 +501,9 @@ class news {
                 break;
             case 'local_wb_news/wb_news_blog':
                 $instanceitem['blogtemplate'] = true;
+                break;
+            case 'local_wb_news/wb_news_vertical_blog':
+                $instanceitem['verticalblogtemplate'] = true;
                 break;
             case 'local_wb_news/wb_news_crosslinks':
                 $instanceitem['crosslinkstemplate'] = true;

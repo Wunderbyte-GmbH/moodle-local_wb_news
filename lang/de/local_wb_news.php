@@ -87,6 +87,7 @@ $string['slidertemplate'] = 'Slider Vorlage';
 $string['tabstemplate'] = 'Tabs Vorlage';
 $string['gridtemplate'] = 'Gitter Vorlage';
 $string['blogtemplate'] = 'Blog Vorlage';
+$string['verticalblogtemplate'] = 'Vertical Blog template';
 $string['crosslinkstemplate'] = 'Crosslinks Vorlage';
 
 // Modal.
