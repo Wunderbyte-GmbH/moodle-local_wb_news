@@ -78,6 +78,7 @@ $string['keyvaluepairs'] = 'Schlüssel: Wert';
 $string['additionaldata'] = 'Zusatzdaten';
 $string['timelinetemplate'] = 'Timeline Vorlage';
 $string['timelinetemplate2'] = 'Timeline Modus2 Vorlage';
+$string['to_offer'] = 'Zum Angebot';
 
 
 $string['template'] = 'Vorlage';
@@ -89,6 +90,8 @@ $string['gridtemplate'] = 'Gitter Vorlage';
 $string['blogtemplate'] = 'Blog Vorlage';
 $string['verticalblogtemplate'] = 'Vertical Blog template';
 $string['crosslinkstemplate'] = 'Crosslinks Vorlage';
+$string['imagecolumntemplate'] = 'Image Column';
+
 
 // Modal.
 $string['confirmdelete'] = "Bestätige das Löschen. Dieser Vorgang kann nicht rückgängig gemacht werden.";

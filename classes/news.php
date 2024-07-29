@@ -256,7 +256,7 @@ class news {
         $news->tags = array_values(core_tag_tag::get_item_tags_array('local_wb_news', 'news', $news->id));
         $news->publishedon = userdate($news->timecreated, get_string('strftimedate', 'core_langconfig'));
         $news->cssclasses = empty($news->cssclasses) ? false : $news->cssclasses;
-        $news->headline = strip_tags(format_text($news->headline));
+        $news->headline = strip_tags(format_text($news->headline, FORMAT_HTML, ['noclean' => true]));
         $news->subheadline = strip_tags(format_text($news->subheadline));
         $news->btntext = strip_tags(format_text($news->btntext));
         $news->description = format_text($news->description);
@@ -501,6 +501,9 @@ class news {
                 break;
             case 'local_wb_news/wb_news_blog':
                 $instanceitem['blogtemplate'] = true;
+                break;
+            case 'local_wb_news/wb_news_image_column':
+                $instanceitem['imagetemplate'] = true;
                 break;
             case 'local_wb_news/wb_news_vertical_blog':
                 $instanceitem['verticalblogtemplate'] = true;
