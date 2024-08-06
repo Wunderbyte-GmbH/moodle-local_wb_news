@@ -32,7 +32,7 @@
     }
 }}
 
-<div class="card h-100 wb_news_card_blog{{#lightmode}} wb_news-light{{/lightmode}}{{#cssclasses}} {{cssclasses}}{{/cssclasses}}"{{#bgcolor}} style="background-color: {{bgcolor}};"{{/bgcolor}}>
+<div class="card h-100 wb_news_card_blog{{#lightmode}} wb_news-light{{/lightmode}}{{#cssclasses}} {{cssclasses}}{{/cssclasses}}" style="background-color: {{{bgcolor}}}; border: none;">
     {{#detailviewurl}}<a href="{{detailviewurl}}" class="stretched-link"></a> {{/detailviewurl}}
     {{#headerimage}}
     <img class="w-100 img-fluid wb_news-headerimage h-50" style="object-fit:cover;" src="{{headerimage}}" alt="">
@@ -41,17 +41,18 @@
     <img class="w-100 img-fluid wb_news-headerimage h-50" style="object-fit:cover;"  src="{{bgimage}}" alt="">
     {{/bgimage}}
 
-    <div>
-    {{#tags}} <span class="badge badge-success">{{.}}</span>{{/tags}}
-    </div>
+
 
     <div class="card-body">
+        <div     {{#tags.0}}class="mb-2" {{/tags.0}}>
+    {{#tags}} <span class="text-primary mr-1 rounded-sm p-1 px-2 small mb-2" style="border: 1px solid #D9E1E7; font-size: 0.75rem;">{{.}}</span>{{/tags}}
+    </div>
     {{#icon}}
     <div class="text-center">
         <img src="{{icon}}" class="card-icon mb-2 text-center" alt="Icon">
     </div>
     {{/icon}}
-    <h5 class="card-title">{{{headline}}}</h5>
+    <h5 class="card-title font-weight-normal">{{{headline}}}</h5>
     <h6 class="card-subtitle mb-2{{^lightmode}} text-muted{{/lightmode}}">{{{subheadline}}}</h6>
     </div>
     <div class="card-footer">
@@ -63,8 +64,8 @@
             {{#profileurl}}
                 <img src="{{profileurl}}" class="img-fluid rounded-circle profileimg" alt="Profile Picture">
             {{/profileurl}}
-            <span class="pl-2 smaller"><b>{{fullname}}</b></span>
-            <span class="smaller pl-2 ml-auto text-black-50">{{{publishedon}}}</span>
+            <span class="pl-2 smaller text-primary"><b>{{fullname}}</b></span>
+            <span class="smaller pl-2 ml-auto" style="color: #809FB8">{{{publishedon}}}</span>
         </div>
     </div>
     </div>
