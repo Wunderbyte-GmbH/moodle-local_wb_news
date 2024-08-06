@@ -12,6 +12,26 @@
     min-height: 350px;
 }
 
+.wb_news .card.infoslide {
+    /* eslint-disable-next-line */
+    min-height: auto !important;
+}
+
+.wb_news .card.infoslide .infoslideimg {
+    position: relative;
+}
+
+.wb_news .card.infoslide .infoslideimg::after {
+    content: '';
+    position: absolute;
+    width: 70%;
+    height: 65%;
+    left: 12.5%;
+    top: 10%;
+    background: #E9F0F3;
+    border-radius: 35%;
+}
+
 .wb_news .wb_news_card_crosslinks {
     min-height: unset;
     padding: 20px 20px;

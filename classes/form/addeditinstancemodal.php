@@ -67,6 +67,7 @@ class addeditinstancemodal extends dynamic_form {
             'local_wb_news/wb_news_grid' => get_string('gridtemplate', 'local_wb_news'),
             'local_wb_news/wb_news_blog' => get_string('blogtemplate', 'local_wb_news'),
             'local_wb_news/wb_news_vertical_blog' => get_string('verticalblogtemplate', 'local_wb_news'),
+            'local_wb_news/wb_news_infoslides' => get_string('infoslidestemplate', 'local_wb_news'),
             'local_wb_news/wb_news_image_column' => get_string('imagecolumntemplate', 'local_wb_news'),
             'local_wb_news/wb_news_crosslinks' => get_string('crosslinkstemplate', 'local_wb_news'),
             'local_wb_news/wb_news_timeline' => get_string('timelinetemplate', 'local_wb_news'),

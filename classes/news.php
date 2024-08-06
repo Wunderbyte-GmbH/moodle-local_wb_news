@@ -508,6 +508,9 @@ class news {
             case 'local_wb_news/wb_news_vertical_blog':
                 $instanceitem['verticalblogtemplate'] = true;
                 break;
+            case 'local_wb_news/wb_news_infoslides':
+                $instanceitem['infoslidestemplate'] = true;
+                break;
             case 'local_wb_news/wb_news_crosslinks':
                 $instanceitem['crosslinkstemplate'] = true;
                 break;

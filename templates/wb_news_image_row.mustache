@@ -44,7 +44,7 @@
         {{> local_wb_news/edit}}
     {{/editmode}}
     {{#news}}
-	<div class="col-md-10 row m-auto {{#additionaldata.left}}flex-row-reverse{{/additionaldata.left}}">
+	<div class="col-md-12 row m-auto {{#additionaldata.left}}flex-row-reverse{{/additionaldata.left}} p-0">
                 <div class="col-md-6
                 no-gutter p-4 d-flex flex-column pl-3">
                     {{#headline}}
@@ -80,8 +80,8 @@
                             {{/btntext}}
                     {{/detailviewurl}}
                 </div>
-                 <div class="col-md-6 
-                  no-gutter" style="min-height: 500px">
+                 <div class="col-md-6 {{#additionaldata.left}}pl-0{{/additionaldata.left}} {{^additionaldata.left}}pr-0{{/additionaldata.left}}
+                  no-gutter " style="min-height: 500px">
                     {{#headerimage}}
                         <img class="img-fluid w-100" style="object-fit:{{#additionaldata.objectfit}}{{.}}{{/additionaldata.objectfit}}
                         {{^additionaldata.objectfit}}cover{{/additionaldata.objectfit}}; border-radius: 100px 0 0 100px; height: 500px;" src="{{headerimage}}" alt="">

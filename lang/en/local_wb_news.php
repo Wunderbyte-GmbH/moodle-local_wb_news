@@ -84,6 +84,7 @@ $string['tabstemplate'] = 'Tabs template';
 $string['gridtemplate'] = 'Grid template';
 $string['blogtemplate'] = 'Blog template';
 $string['verticalblogtemplate'] = 'Vertical Blog template';
+$string['infoslidestemplate'] = 'Infoslides template';
 $string['crosslinkstemplate'] = 'Crosslinks template';
 $string['timelinetemplate'] = 'Timeline template';
 $string['timelinetemplate2'] = 'Timeline Mode2 template';
