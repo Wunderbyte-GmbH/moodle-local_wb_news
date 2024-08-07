@@ -306,6 +306,21 @@
 
 
 @media (max-width: 767.98px) {
+
+.wb_news .bg-imageslider {
+    /* eslint-disable-next-line */
+    position: relative !important;
+    display: block;
+    /* eslint-disable-next-line */
+    height: 250px !important;
+    /* eslint-disable-next-line */
+    width: 100% !important;
+    background-size: contain;
+    border-radius: 50px;
+    left: 20px;
+}
+
+
 .wb_news .card .card-body {
     padding: 0.625rem;
 }

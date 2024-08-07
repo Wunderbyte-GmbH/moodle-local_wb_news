@@ -44,31 +44,43 @@
         {{> local_wb_news/edit}}
     {{/editmode}}
     {{#news}}
-	<div class="col-md-12 row m-auto {{#additionaldata.left}}flex-row-reverse{{/additionaldata.left}} p-0">
+    <div class="d-block position-relative">
+        <span class="bg-imageslider" style="background-image: url({{headerimage}});    width: 50%;
+    position: absolute;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    {{#additionaldata.right}}right: 0;{{/additionaldata.right}}
+    {{#additionaldata.left}}left: 0;{{/additionaldata.left}}
+    {{#additionaldata.right}}border-radius: 90px 0 0 90px;{{/additionaldata.right}}
+    {{#additionaldata.left}}border-radius: 0px 90px 90px 0px;{{/additionaldata.left}}
+    bottom: 0;
+    background-repeat: no-repeat;"></span>
+        <div class="container-xl">
+            	<div class="col-md-12 row m-auto {{#additionaldata.left}}flex-row-reverse{{/additionaldata.left}} p-4">
                 <div class="col-md-6
-                no-gutter p-4 d-flex flex-column pl-3">
+                no-gutter p-4 d-flex flex-column p-3">
                     {{#headline}}
                     <div class="row">
                         <div class="col-md-10 m-auto">
-                            <h1 class="font-weight-light" style="font-size: 4rem">{{.}}</h1>
+                            <h1 class="font-weight-light">{{.}}</h1>
                         </div>
                     </div>
                     {{/headline}}
                     {{#subheadline}}
                     <div class="row">
                         <div class="col-md-10 m-auto">
-                            <h2  class="font-weight-light" style="font-size: 3rem">{{.}}</h2>
+                            <h2  class="font-weight-light" >{{.}}</h2>
                         </div>
                     </div>
                     {{/subheadline}}
                     {{#shortdescription}}
                     <div class="row">
                         <div class="col-md-10 m-auto">
-                            <p  class="font-weight-light" style="font-size: 1.2rem">{{.}}</p>
+                            <p  class="font-weight-light">{{.}}</p>
                         </div>
                     </div>
                     {{/shortdescription}}
-                    {{#detailviewurl}}
                          {{#btntext}}
                         <div class="row mt-3">
                             <div class="col-md-10 m-auto">
@@ -78,21 +90,13 @@
                             </div>
                         </div>
                             {{/btntext}}
-                    {{/detailviewurl}}
                 </div>
-                 <div class="col-md-6 {{#additionaldata.left}}pl-0{{/additionaldata.left}} {{^additionaldata.left}}pr-0{{/additionaldata.left}}
-                  no-gutter " style="min-height: 500px">
-                    {{#headerimage}}
-                        <img class="img-fluid w-100" style="object-fit:{{#additionaldata.objectfit}}{{.}}{{/additionaldata.objectfit}}
-                        {{^additionaldata.objectfit}}cover{{/additionaldata.objectfit}}; border-radius: 100px 0 0 100px; height: 500px;" src="{{headerimage}}" alt="">
-                    {{/headerimage}}
-                    {{#bgimage}}
-                        <img class="img-fluid w-100" style="object-fit:cover; border-radius: 100px 0 0 100px; height: 500px;"  src="{{bgimage}}" alt="">
-                    {{/bgimage}}
-                </div>
-                {{#editmode}}
-        {{> local_wb_news/editsinglenews}}
+    {{#editmode}}
+    {{> local_wb_news/editsinglenews}}
     {{/editmode}}
 	</div>
+
+        </div>
+    </div>
     {{/news}}
 </div>
