@@ -39,12 +39,12 @@
     }
 }}
 
-<div class="wb-news-container mt-5 wb_news" data-id="{{id}}">
+<div class="wb-news-container mt-5 wb_news" style="" data-id="{{id}}">
     {{#editmode}}
         {{> local_wb_news/edit}}
     {{/editmode}}
     {{#news}}
-    <div class="d-block position-relative">
+    <div class="d-block position-relative" style="{{#additionaldata.height}} min-height:{{.}}px {{/additionaldata.height}}">
         <span class="bg-imageslider" style="background-image: url({{headerimage}});    width: 50%;
     position: absolute;
     height: 100%;
