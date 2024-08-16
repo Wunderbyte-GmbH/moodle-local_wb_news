@@ -73,7 +73,7 @@ class newsview implements renderable, templatable {
 
         $newsitem['headline'] = format_string($newsitem['headline']);
         $newsitem['subheadline'] = format_string($newsitem['subheadline']);
-        $newsitem['description'] = format_string($newsitem['description']);
+        $newsitem['description'] = format_text($newsitem['description']);
         $newsitem['btntext'] = format_string($newsitem['btntext']);
 
         $this->newsitem = $newsitem;
