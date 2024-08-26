@@ -260,6 +260,13 @@ class news {
         $news->subheadline = strip_tags(format_text($news->subheadline));
         $news->btntext = strip_tags(format_text($news->btntext));
         $news->description = format_text($news->description);
+        if (!empty($news->bgimagetext)) {
+            $news->bgimagetext = strip_tags(format_text($news->bgimagetext));
+        }
+        if (!empty($news->headerimagetext)) {
+            $news->headerimagetext = strip_tags(format_text($news->headerimagetext));
+        }
+        $news->icontext = strip_tags(format_text($news->icontext));
 
         $strippeddesc = strip_tags($news->description);
         if (strlen($strippeddesc) > 300) {
@@ -344,6 +351,8 @@ class news {
             case self::IMAGEMODE_HEADER:
                 $data->headerimage = $data->bgimage;
                 unset($data->bgimage);
+                $data->headerimagetext = $data->bgimagetext;
+                unset($data->bgimagetext);
                 break;
         }
 

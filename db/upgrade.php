@@ -126,6 +126,28 @@ function xmldb_local_wb_news_upgrade($oldversion) {
         upgrade_plugin_savepoint(true, 2024071205, 'local', 'wb_news');
     }
 
+    if ($oldversion < 2024082600) {
+
+        // Define field bgimagetext to be added to local_wb_news.
+        $table = new xmldb_table('local_wb_news');
+        $field = new xmldb_field('bgimagetext', XMLDB_TYPE_CHAR, '1333', null, null, null, null, 'bgimage');
+
+        // Conditionally launch add field bgimagetext.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        $field = new xmldb_field('icontext', XMLDB_TYPE_CHAR, '1333', null, null, null, null, 'icon');
+
+        // Conditionally launch add field icontext.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Wb_news savepoint reached.
+        upgrade_plugin_savepoint(true, 2024082600, 'local', 'wb_news');
+    }
+
     // Automatically generated Moodle v4.0.0 release upgrade line.
     // Put any upgrade step following this.
 

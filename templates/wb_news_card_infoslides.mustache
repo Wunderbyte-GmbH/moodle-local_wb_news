@@ -36,11 +36,11 @@
 <div class="infoslideimg d-flex align-items-start justify-content-center" style="height: 260px">
     {{#headerimage}}
     <img class="w-100 img-fluid wb_news-headerimage" style="object-fit: contain; max-height: 60%;
-    z-index: 99;" src="{{headerimage}}" alt="">
+    z-index: 99;" src="{{headerimage}}" alt="{{headerimagetext}}">
     {{/headerimage}}
     {{#bgimage}}
     <img class="w-100 img-fluid wb_news-headerimage" style="object-fit: contain; max-height: 60%;
-    z-index: 99;"  src="{{bgimage}}" alt="">
+    z-index: 99;"  src="{{bgimage}}" alt="{{bgimagetext}}">
     {{/bgimage}}
 </div>
 
@@ -51,7 +51,7 @@
     </div>
     {{#icon}}
     <div class="text-center">
-        <img src="{{icon}}" class="card-icon mb-2 text-center" alt="Icon">
+        <img src="{{icon}}" class="card-icon mb-2 text-center" alt="{{icontext}}">
     </div>
     {{/icon}}
     <h5 class="card-title">{{{headline}}}</h5>

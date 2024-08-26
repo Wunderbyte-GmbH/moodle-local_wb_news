@@ -12,7 +12,9 @@
         <FIELD NAME="imagemode" TYPE="int" LENGTH="2" NOTNULL="false" SEQUENCE="false" COMMENT="imagemode"/>
         <FIELD NAME="sortorder" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Weight for sorting"/>
         <FIELD NAME="bgimage" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Bg Image"/>
+        <FIELD NAME="bgimagetext" TYPE="char" LENGTH="1333" NOTNULL="false" SEQUENCE="false" COMMENT="Alt text for bgimage."/>
         <FIELD NAME="icon" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Possible Icon"/>
+        <FIELD NAME="icontext" TYPE="char" LENGTH="1333" NOTNULL="false" SEQUENCE="false" COMMENT="Alt text for icon."/>
         <FIELD NAME="bgcolor" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Background color as hex"/>
         <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="News owner"/>
         <FIELD NAME="headline" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="News Title"/>

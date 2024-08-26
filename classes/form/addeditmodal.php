@@ -108,6 +108,9 @@ class addeditmodal extends dynamic_form {
                 'maxfiles' => 1,
         ]);
 
+        $mform->addElement('text', 'bgimagetext', get_string('bgimagetext', 'local_wb_news'));
+        $mform->setType('bgimagetext', PARAM_TEXT);
+
         $mform->addElement('filemanager',
             'icon',
             get_string('icon', 'local_wb_news'),
@@ -116,6 +119,9 @@ class addeditmodal extends dynamic_form {
                 'accepted_types' => ['.jpg', '.png'],
                 'maxfiles' => 1,
         ]);
+
+        $mform->addElement('text', 'icontext', get_string('icontext', 'local_wb_news'));
+        $mform->setType('icontext', PARAM_TEXT);
 
         $mform->addElement('advcheckbox', 'lightmode', get_string('lightmode', 'local_wb_news'));
         $mform->setType('lightmode', PARAM_INT);
