@@ -42,6 +42,9 @@
             <h1>{{{headline}}}</h1>
         {{/headline}}
         {{{description}}}
+        {{#btntext}}
+        <a href="{{btnlink}}" class="btn btn-primary mt-4">{{btntext}}</a>
+        {{/btntext}}
         <div class="row mt-4 justify-content-center">
             <a class="carousel-control-prev mt-4 mr-2" href="#wb_news_carousel-{{instanceid}}" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
