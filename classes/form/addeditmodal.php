@@ -41,7 +41,6 @@ require_once("$CFG->libdir/formslib.php");
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class addeditmodal extends dynamic_form {
-
     /**
      * {@inheritdoc}
      * @see moodleform::definition()
@@ -99,26 +98,30 @@ class addeditmodal extends dynamic_form {
             news::IMAGEMODE_BACKGROUND => get_string('useasbgimage', 'local_wb_news'),
         ];
         $mform->addElement('select', 'imagemode', get_string('imagemode', 'local_wb_news'), $options);
-        $mform->addElement('filemanager',
+        $mform->addElement(
+            'filemanager',
             'bgimage',
             get_string('bgimage', 'local_wb_news'),
             '',
             [
-                'accepted_types' => ['.jpg', '.png'],
+                'accepted_types' => ['.jpg', '.png', '.pdf'],
                 'maxfiles' => 1,
-        ]);
+            ]
+        );
 
         $mform->addElement('text', 'bgimagetext', get_string('bgimagetext', 'local_wb_news'));
         $mform->setType('bgimagetext', PARAM_TEXT);
 
-        $mform->addElement('filemanager',
+        $mform->addElement(
+            'filemanager',
             'icon',
             get_string('icon', 'local_wb_news'),
             '',
             [
                 'accepted_types' => ['.jpg', '.png'],
                 'maxfiles' => 1,
-        ]);
+            ]
+        );
 
         $mform->addElement('text', 'icontext', get_string('icontext', 'local_wb_news'));
         $mform->setType('icontext', PARAM_TEXT);

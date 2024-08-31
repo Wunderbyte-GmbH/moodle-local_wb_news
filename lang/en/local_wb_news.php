@@ -26,6 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'News Manager';
+$string['pdfgallery'] = 'PDF gallery';
 $string['wb_news'] = 'News Manager';
 $string['manage'] = 'Manage';
 $string['delete'] = 'Delete';

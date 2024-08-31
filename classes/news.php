@@ -279,6 +279,13 @@ class news {
             $news->additionaldata = json_decode($news->json);
         }
 
+        if (
+            $this->template === "local_wb_news/wb_news_pdfgallery"
+            && !empty($news->headerimage)
+        ) {
+            $news->pdflink = $news->headerimage;
+        }
+
         $returntourl = $returnurl = $PAGE->url->out();
 
         $url = new moodle_url('/local/wb_news/newsview.php', [
@@ -525,6 +532,9 @@ class news {
                 break;
             case 'local_wb_news/wb_news_timeline':
                 $instanceitem['timelinetemplate'] = true;
+                break;
+            case 'local_wb_news/wb_news_pdfgallery':
+                $instanceitem['pdfgallery'] = true;
                 break;
         }
 
