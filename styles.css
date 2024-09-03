@@ -430,93 +430,174 @@
 }
 
 /* Timeline2. */
+@media (min-width: 768.1px) {
+    .wb-news-timeline2 {
+        position: relative;
+        max-width: inherit;
+        margin: 0 auto;
+    }
+    .timeline2-content {
+        margin-bottom: 0px;
+        height: 500px;
+        display: flex;
+        align-items: center;
+    }
+    .container-timeline2::before {
+        content: attr(data-number);
+        position: absolute;
+        width: 90px;
+        height: 90px;
+        top: 122px;
+        left: 20px;
+        background-color: #fff;
+        color: #000;
+        border-radius: 50%;
+        font-size: 36px;
+        text-align: center;
+        line-height: 78px;
+        z-index: 103;
+        border: none;
+        box-sizing: border-box;
+        filter: drop-shadow(0px 1.125px 3.6px rgba(19, 16, 34, 0.03)) drop-shadow(0px 2.475px 6.75px rgba(19, 16, 34, 0.06));
+    }
+    .timeline2-content {
+        background-color: white;
+        padding: 10px;
+        margin-left: 180px;
+        border-radius: 6px;
+        width: calc(100% - 80px);
+    }
+    .timeline2-content img {
+        float: left;
+        margin-right: 30px;
+        width: 30%;
+        height: auto;
+    }
 
-.wb-news-timeline2 {
-    position: relative;
-    max-width: inherit;
-    margin: 0 auto;
-}
-.timeline2-content {
-    margin-bottom: 0px;
-    height: 500px;
-    display: flex;
-    align-items: center;
-}
-.container-timeline2::before {
-    content: attr(data-number);
-    position: absolute;
-    width: 90px;
-    height: 90px;
-    top: 122px;
-    left: 20px;
-    background-color: #fff;
-    color: #000;
-    border-radius: 50%;
-    font-size: 36px;
-    text-align: center;
-    line-height: 78px;
-    z-index: 103;
-    border: none;
-    box-sizing: border-box;
-}
-.timeline2-content {
-    background-color: white;
-    padding: 10px;
-    margin-left: 180px;
-    border-radius: 6px;
-    width: calc(100% - 80px);
-}
-.timeline2-content img {
-    float: left;
-    margin-right: 30px;
-    width: 30%;
-    height: auto;
+    .wb-news-timeline2-container {
+        margin-top: 50px;
+    }
+    .wb-news-timeline2 {
+        position: relative;
+        max-width: inherit;
+        margin: 0 auto;
+    }
+    .wb-news-timeline2::before {
+        content: '';
+        position: absolute;
+        width: 1px;
+        background-color: #99B2C6;;
+        top: 150px;
+        bottom: 300px;
+        left: 78px;
+        margin-left: 0px;
+    }
+    .container-timeline2 {
+        display: flex;
+        align-items: flex-start;
+        margin-left: ppx;
+        margin-bottom: 20px;
+        position: relative;
+        padding-left: 40px;
+    }
+
+    .container-timeline2::after {
+        content: '';
+        position: absolute;
+        width: 122px;
+        height: 122px;
+        top: 106px;
+        left: 4px;
+        background-color: #fff;
+        color: #000;
+        border-radius: 50%;
+        font-size: 36px;
+        text-align: center;
+        line-height: 52px;
+        border: 16px solid rgba(12, 185, 197, .2);
+        z-index: 2;
+        box-sizing: border-box;
+    }
+    .wb-news-timeline2::before {
+        z-index: 100;
+    }
 }
 
-.wb-news-timeline2-container {
-    margin-top: 50px;
-}
-.wb-news-timeline2 {
-    position: relative;
-    max-width: inherit;
-    margin: 0 auto;
-}
-.wb-news-timeline2::before {
-    content: '';
-    position: absolute;
-    width: 1px;
-    background-color: #99B2C6;;
-    top: 150px;
-    bottom: 300px;
-    left: 78px;
-    margin-left: 0px;
-}
-.container-timeline2 {
-    display: flex;
-    align-items: flex-start;
-    margin-left: ppx;
-    margin-bottom: 20px;
-    position: relative;
-    padding-left: 40px;
-}
+@media (max-width: 768.1px) {
+    .wb-news-timeline2 {
+        position: relative;
+        max-width: inherit;
+        margin: 0 auto;
+    }
+    .container-timeline2::before {
+        content: attr(data-number);
+        position: absolute;
+        width: 51px;
+        height: 51px;
+        top: 115px;
+        left: -11px;
+        background-color: #fff;
+        color: #000;
+        border-radius: 50%;
+        font-size: 36px;
+        text-align: center;
+        line-height: 43px;
+        z-index: 103;
+        border: none;
+        box-sizing: border-box;
+        filter: drop-shadow(0px 1.125px 3.6px rgba(19, 16, 34, 0.03)) drop-shadow(0px 2.475px 6.75px rgba(19, 16, 34, 0.06));
+    }
+    .timeline2-content {
+        background-color: white;
+        padding: 10px;
+        margin-left: 25px;
+        border-radius: 6px;
+    }
 
-.container-timeline2::after {
-    content: '';
-    position: absolute;
-    width: 122px;
-    height: 122px;
-    top: 106px;
-    left: 4px;
-    background-color: #fff;
-    color: #000;
-    border-radius: 50%;
-    font-size: 36px;
-    text-align: center;
-    line-height: 52px;
-    border: 16px solid rgba(12, 185, 197, .2);
-    z-index: 2;
-    box-sizing: border-box;
-}
-.wb-news-timeline2::before {
-    z-index: 100;
+    .wb-news-timeline2-container {
+        margin-top: 50px;
+    }
+    .wb-news-timeline2 {
+        position: relative;
+        max-width: inherit;
+        margin: 0 auto;
+    }
+    .wb-news-timeline2::before {
+        content: '';
+        position: absolute;
+        width: 1px;
+        background-color: #99B2C6;;
+        top: 166px;
+        bottom: 295px;
+        left: 30px;
+        margin-left: 0px;
+    }
+    .container-timeline2 {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        position: relative;
+        padding-left: 40px;
+    }
+
+    .container-timeline2::after {
+        content: '';
+        position: absolute;
+        width: 68.625px;
+        height: 68.625px;
+        top: 106px;
+        left: -20px;
+        background-color: #fff;
+        color: #000;
+        border-radius: 50%;
+        font-size: 20.25px;
+        text-align: center;
+        line-height: 32px;
+        border: 9px solid rgba(12, 185, 197, .2);
+        z-index: 2;
+        box-sizing: border-box;
+    }
+    .wb-news-timeline2::before {
+        z-index: 100;
+    }
 }
