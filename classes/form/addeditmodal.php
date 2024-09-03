@@ -109,7 +109,7 @@ class addeditmodal extends dynamic_form {
             get_string('bgimage', 'local_wb_news'),
             '',
             [
-                'accepted_types' => ['.jpg', '.png', '.pdf'],
+                'accepted_types' => ['.jpg', '.png', '.pdf', '.mp4', '.mov'],
                 'maxfiles' => 1,
             ]
         );
@@ -164,7 +164,6 @@ class addeditmodal extends dynamic_form {
                 ['itemtype' => 'news', 'component' => 'local_wb_news']
             );
         }
-
 
     }
 
