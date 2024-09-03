@@ -92,6 +92,7 @@ $string['crosslinkstemplate'] = 'Crosslinks template';
 $string['timelinetemplate'] = 'Timeline template';
 $string['timelinetemplate2'] = 'Timeline Mode2 template';
 $string['imagecolumntemplate'] = 'Image Column';
+$string['imgseparator'] = 'Image Separator';
 
 $string['keyvaluepairs'] = 'Key: Value';
 $string['additionaldata'] = 'Additionaldata for some templates';

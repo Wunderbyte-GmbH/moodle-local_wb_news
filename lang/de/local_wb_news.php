@@ -95,6 +95,7 @@ $string['verticalblogtemplate'] = 'Vertical Blog template';
 $string['infoslidestemplate'] = 'Infoslides template';
 $string['crosslinkstemplate'] = 'Crosslinks Vorlage';
 $string['imagecolumntemplate'] = 'Image Column';
+$string['imgseparator'] = 'Image Separator';
 
 
 // Modal.

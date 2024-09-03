@@ -536,6 +536,9 @@ class news {
             case 'local_wb_news/wb_news_pdfgallery':
                 $instanceitem['pdfgallery'] = true;
                 break;
+            case 'local_wb_news/wb_news_imageseparator':
+                $instanceitem['imageseparator'] = true;
+                break;
         }
 
         return $instanceitem;
