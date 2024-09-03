@@ -41,12 +41,13 @@ require_once("$CFG->libdir/formslib.php");
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class addeditmodal extends dynamic_form {
-
     /**
      * {@inheritdoc}
      * @see moodleform::definition()
      */
     public function definition() {
+        global $DB;
+
         $mform = $this->_form;
         $customdata = $this->_ajaxformdata;
 
@@ -80,7 +81,10 @@ class addeditmodal extends dynamic_form {
 
         $mform->addElement('text', 'sortorder', get_string('sortorder', 'local_wb_news'));
         $mform->setType('sortorder', PARAM_INT);
-        $mform->setDefault('sortorder', 0);
+
+        $sortorder = self::return_sortorder($customdata['instanceid'] ?? 0);
+
+        $mform->setDefault('sortorder', $sortorder);
 
         // Add client-side validation rule to ensure the value is numeric.
         $mform->addRule('sortorder', get_string('interror', 'local_wb_news'), 'required', null, 'client');
@@ -99,26 +103,30 @@ class addeditmodal extends dynamic_form {
             news::IMAGEMODE_BACKGROUND => get_string('useasbgimage', 'local_wb_news'),
         ];
         $mform->addElement('select', 'imagemode', get_string('imagemode', 'local_wb_news'), $options);
-        $mform->addElement('filemanager',
+        $mform->addElement(
+            'filemanager',
             'bgimage',
             get_string('bgimage', 'local_wb_news'),
             '',
             [
-                'accepted_types' => ['.jpg', '.png'],
+                'accepted_types' => ['.jpg', '.png', '.pdf'],
                 'maxfiles' => 1,
-        ]);
+            ]
+        );
 
         $mform->addElement('text', 'bgimagetext', get_string('bgimagetext', 'local_wb_news'));
         $mform->setType('bgimagetext', PARAM_TEXT);
 
-        $mform->addElement('filemanager',
+        $mform->addElement(
+            'filemanager',
             'icon',
             get_string('icon', 'local_wb_news'),
             '',
             [
                 'accepted_types' => ['.jpg', '.png'],
                 'maxfiles' => 1,
-        ]);
+            ]
+        );
 
         $mform->addElement('text', 'icontext', get_string('icontext', 'local_wb_news'));
         $mform->setType('icontext', PARAM_TEXT);
@@ -334,6 +342,10 @@ class addeditmodal extends dynamic_form {
 
         if (!empty($data)) {
             $data->copy = $copy;
+
+            if (!empty($copy)) {
+                $data->sortorder = self::return_sortorder($instanceid);
+            }
             $array = json_decode($data->json, true);
             $formatteddata = '';
 
@@ -445,5 +457,30 @@ class addeditmodal extends dynamic_form {
     public function get_data() {
         $data = parent::get_data();
         return $data;
+    }
+
+    /**
+     * Returns the next sortorder.
+     *
+     * @param int $instanceid
+     *
+     * @return int
+     *
+     */
+    public static function return_sortorder(int $instanceid) {
+
+        global $DB;
+
+        $sql = "SELECT MAX(sortorder)
+                FROM {local_wb_news}
+                WHERE instanceid = :instanceid";
+        $params = [
+            'instanceid' => $instanceid,
+        ];
+
+        $sortorder = $DB->get_field_sql($sql, $params) ?? 0;
+        $sortorder++;
+
+        return $sortorder;
     }
 }
