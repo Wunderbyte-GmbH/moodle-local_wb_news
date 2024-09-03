@@ -430,47 +430,34 @@
 }
 
 /* Timeline2. */
-.wb-news-timeline2-container {
-    margin-top: 50px;
-}
+
 .wb-news-timeline2 {
     position: relative;
     max-width: inherit;
     margin: 0 auto;
 }
-.wb-news-timeline2::before {
-    content: '';
-    position: absolute;
-    width: 6px;
-    background-color: #e9f2f9;
-    top: 0;
-    bottom: 0;
-    left: 78px;
-    margin-left: -3px;
-}
-.container-timeline2 {
+.timeline2-content {
+    margin-bottom: 0px;
+    height: 500px;
     display: flex;
-    align-items: flex-start;
-    margin-left: 20px;
-    margin-bottom: 20px;
-    position: relative;
-    padding-left: 40px;
+    align-items: center;
 }
 .container-timeline2::before {
     content: attr(data-number);
     position: absolute;
     width: 90px;
     height: 90px;
-    top: 60px;
-    left: 0;
-    background-color: #e9f2f9;
-    color: white;
-    border: 3px solid #e9f2f9;
+    top: 122px;
+    left: 20px;
+    background-color: #fff;
+    color: #000;
     border-radius: 50%;
-    font-size: 30px;
+    font-size: 36px;
     text-align: center;
-    line-height: 80px;
-    font-weight: bold;
+    line-height: 78px;
+    z-index: 103;
+    border: none;
+    box-sizing: border-box;
 }
 .timeline2-content {
     background-color: white;
@@ -484,4 +471,52 @@
     margin-right: 30px;
     width: 30%;
     height: auto;
+}
+
+.wb-news-timeline2-container {
+    margin-top: 50px;
+}
+.wb-news-timeline2 {
+    position: relative;
+    max-width: inherit;
+    margin: 0 auto;
+}
+.wb-news-timeline2::before {
+    content: '';
+    position: absolute;
+    width: 1px;
+    background-color: #99B2C6;;
+    top: 150px;
+    bottom: 300px;
+    left: 78px;
+    margin-left: 0px;
+}
+.container-timeline2 {
+    display: flex;
+    align-items: flex-start;
+    margin-left: ppx;
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 40px;
+}
+
+.container-timeline2::after {
+    content: '';
+    position: absolute;
+    width: 122px;
+    height: 122px;
+    top: 106px;
+    left: 4px;
+    background-color: #fff;
+    color: #000;
+    border-radius: 50%;
+    font-size: 36px;
+    text-align: center;
+    line-height: 52px;
+    border: 16px solid rgba(12, 185, 197, .2);
+    z-index: 2;
+    box-sizing: border-box;
+}
+.wb-news-timeline2::before {
+    z-index: 100;
 }
