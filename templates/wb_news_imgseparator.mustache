@@ -40,18 +40,17 @@
 }}
 
 <div class="wb-news-container mt-5 wb_news" data-id="{{id}}">
-		{{#news}}
-            {{#editmode}}
-    {{> local_wb_news/editsinglenews}}
-    {{/editmode}}
-            {{#headerimage}}
-                 <div class="d-flex justify-content-start align-items-end" style="height: 100px; background: url({{headerimage}}) no-repeat center center;
-    background-size: cover;
-                    {{#additionaldata.height}} height:{{.}}px {{/additionaldata.height}}">
-                      <div class="uskils-community-title title bg-primary px-5 py-2 h-auto text-white">{{{headline}}}
-                    </div>
-                 <div>
-            {{/headerimage}}
-	    {{/news}}
-	</div>
+    {{#news}}
+        {{#editmode}}
+            {{> local_wb_news/editsinglenews}}
+        {{/editmode}}
+        {{#headerimage}}
+            <div class="d-flex justify-content-start align-items-end" style="height: 100px; background: url({{headerimage}}) no-repeat center center; background-size: cover;
+                {{#additionaldata.height}} height:{{.}}px {{/additionaldata.height}}">
+                <div class="uskils-community-title title bg-primary px-5 py-2 h-auto text-white">
+                    {{{headline}}}
+                </div>
+            </div>
+        {{/headerimage}}
+    {{/news}}
 </div>
