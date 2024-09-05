@@ -39,12 +39,12 @@
     }
 }}
 
-<div class="wb-news-container mt-5 wb_news" style="" data-id="{{id}}">
+<div class="wb-news-container wb-news-image-row mt-5 wb_news" style="" data-id="{{id}}">
     {{#editmode}}
         {{> local_wb_news/edit}}
     {{/editmode}}
     {{#news}}
-    <div class="d-block position-relative" style="{{#additionaldata.height}} height:{{.}}px {{/additionaldata.height}}">
+    <div class="d-block position-relative mainrow" style="{{#additionaldata.height}} height:{{.}}px {{/additionaldata.height}}">
         {{^additionaldata.video}} 
              <span class="bg-imageslider" style="background-image: url({{headerimage}});    width: 50%;
     position: absolute;
@@ -59,7 +59,7 @@
     background-repeat: no-repeat;"></span>
         {{/additionaldata.video}} 
         <div class="container-xl h-100 px-0">
-            	<div class="col-md-12 h-100 row m-auto {{#additionaldata.left}}flex-row-reverse{{/additionaldata.left}} px-0 py-4
+            	<div class="col-md-12 h-100 row m-auto reverseonmobile {{#additionaldata.left}}flex-row-reverse{{/additionaldata.left}} px-0 py-4
                 ">
                 <div class="col-md-6
                 no-gutter d-flex flex-column p-3" style="{{#additionaldata.pl}}padding-left: {{.}}px !important{{/additionaldata.pl}}
@@ -96,7 +96,7 @@
                             {{/btntext}}
                 </div>
                        {{#additionaldata.video}} 
-                <div class="col-md-6 d-flex h-100 {{#additionaldata.right}}pr-0{{/additionaldata.right}} {{#additionaldata.left}}justify-content-end pl-0{{/additionaldata.left}}" >
+                <div class="col-md-6 d-flex h-100 {{#additionaldata.right}}pr-0{{/additionaldata.right}} {{#additionaldata.left}}justify-content-end pl-0{{/additionaldata.left}} wb-videocolumn" >
                     <video preload="auto" height="100%"  width="100%" controls  poster="{{{icon}}}"  style="object-fit: cover; {{#additionaldata.right}}border-radius: 90px 0 0 90px;{{/additionaldata.right}}
     {{#additionaldata.left}}border-radius: 0px 90px 90px 0px;{{/additionaldata.left}}">
                         <source src="{{headerimage}}"> 

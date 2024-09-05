@@ -600,4 +600,16 @@
     .wb-news-timeline2::before {
         z-index: 100;
     }
+
+    .wb-news-image-row .mainrow {
+        height: fit-content !important;
+    }
+
+    .wb-news-image-row .wb-videocolumn {
+        height: 250px !important;
+    }
+
+    .wb-news-image-row .reverseonmobile {
+        flex-direction: column-reverse !important;
+    }
 }
