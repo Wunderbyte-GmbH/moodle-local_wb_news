@@ -75,6 +75,8 @@ foreach ($data['instances'] as $key => $value) {
                         $hasaccess = true;
                     }
                 }
+            } else {
+                $hasaccess = true;
             }
         }
 
