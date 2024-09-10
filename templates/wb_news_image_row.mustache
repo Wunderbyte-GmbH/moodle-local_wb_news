@@ -50,7 +50,9 @@
     position: absolute;
     height: 100%;
     background-size: cover;
+    {{#additionaldata.objectfit}}background-size: {{.}};{{/additionaldata.objectfit}}
     background-position: center;
+    {{#additionaldata.backgroundposition}}background-position: {{.}};{{/additionaldata.backgroundposition}}
     {{#additionaldata.right}}right: 0;{{/additionaldata.right}}
     {{#additionaldata.left}}left: 0;{{/additionaldata.left}}
     {{#additionaldata.right}}border-radius: 90px 0 0 90px;{{/additionaldata.right}}
@@ -61,7 +63,8 @@
         <div class="container-xl h-100 px-0">
             	<div class="col-md-12 h-100 row m-auto reverseonmobile {{#additionaldata.left}}flex-row-reverse{{/additionaldata.left}} px-0 py-4
                 ">
-                <div class="col-md-6
+                <div class="col-md-1"></div>
+                <div class="col-md-5
                 no-gutter d-flex flex-column p-3" style="{{#additionaldata.pl}}padding-left: {{.}}px !important{{/additionaldata.pl}}
                 {{#additionaldata.pr}}padding-right: {{.}}px !important{{/additionaldata.pr}}">
                     {{#headline}}
