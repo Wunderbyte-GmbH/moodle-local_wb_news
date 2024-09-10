@@ -39,21 +39,22 @@
     }
 }}
 
-<div class="wb-news-container wb-news-timeline2-container wb_news container" data-id="{{id}}">
+
+<div class="wb-news-container wb-news-timeline2-container wb_news" data-id="{{id}}">
     {{#editmode}}
         {{> local_wb_news/editsinglenews}}
     {{/editmode}}
-      <div class="container-timeline2" data-number="
-      {{^additionaldata.date}}{{sortorder}}{{/additionaldata.date}}
-      {{#additionaldata.date}}{{additionaldata.date}}{{/additionaldata.date}}
-      "
-      >
-        <div class="timeline2-content">
-          <img src="{{headerimage}}" alt="Step Image" class="img-fluid mb-3">
-          <div>
-            <h5>{{headline}}{{sortorder}}</h5>
-            <p>{{{description}}}</p>
-          </div>
-        </div>
-      </div>
+	<div class="container-timeline2" data-number="
+	{{^additionaldata.date}}{{sortorder}}{{/additionaldata.date}}
+	{{#additionaldata.date}}{{additionaldata.date}}{{/additionaldata.date}}
+	"
+	>
+		<div class="timeline2-content">
+			<img src="{{headerimage}}" alt="Step Image" class="img-fluid mb-3">
+			<div>
+				<h5>{{headline}}{{sortorder}}</h5>
+				<p>{{{description}}}</p>
+			</div>
+		</div>
+	</div>
 </div>
