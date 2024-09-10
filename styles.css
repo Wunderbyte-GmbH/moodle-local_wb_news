@@ -200,12 +200,6 @@
     font-weight: 600;
 }
 
-.wb_news .card img.wb_news-headerimage {
-    border-radius: 0px;
-}
-.wb_news.card-body {
-    adding: 20px;
-}
 .wb_news.nav-tabs .nav-link.active {
     background: #fff;
     color: #005C99;
