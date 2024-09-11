@@ -308,7 +308,7 @@
     /* eslint-disable-next-line */
     height: 250px !important;
     /* eslint-disable-next-line */
-    width: 100% !important;
+    width: calc(100% - 20px) !important;
     background-size: contain;
     border-radius: 50px;
     left: 20px;
