@@ -529,13 +529,13 @@
         width: 51px;
         height: 51px;
         top: 115px;
-        left: -11px;
+        left: 0px;
         background-color: #fff;
         color: #000;
         border-radius: 50%;
         font-size: 36px;
         text-align: center;
-        /* line-height: 90px; */
+        line-height: 52px;
         z-index: 103;
         border: none;
         box-sizing: border-box;
@@ -562,8 +562,8 @@
         width: 1px;
         background-color: #99B2C6;;
         top: 166px;
-        bottom: 295px;
-        left: 30px;
+        bottom: 500px;
+        left: 25px;
         margin-left: 0px;
     }
     .container-timeline2 {
@@ -580,7 +580,7 @@
         width: 68.625px;
         height: 68.625px;
         top: 106px;
-        left: -20px;
+        left: -9px;
         background-color: #fff;
         color: #000;
         border-radius: 50%;
