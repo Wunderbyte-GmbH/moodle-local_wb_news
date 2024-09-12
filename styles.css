@@ -24,9 +24,8 @@
 .wb_news .card.infoslide .infoslideimg::after {
     content: '';
     position: absolute;
-    width: 70%;
+    width: 50%;
     height: 65%;
-    left: 12.5%;
     top: 10%;
     background: #E9F0F3;
     border-radius: 35%;
