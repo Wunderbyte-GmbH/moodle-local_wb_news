@@ -45,7 +45,7 @@
     {{/editmode}}
     {{#news}}
     <div class="d-block position-relative mainrow" style="{{#additionaldata.height}} height:{{.}}px {{/additionaldata.height}}">
-        {{^additionaldata.video}} 
+        {{^additionaldata.video}}
              <span class="bg-imageslider" style="background-image: url({{headerimage}});    width: 50%;
     position: absolute;
     height: 100%;
@@ -59,7 +59,7 @@
     {{#additionaldata.left}}border-radius: 0px 90px 90px 0px;{{/additionaldata.left}}
     bottom: 0;
     background-repeat: no-repeat;"></span>
-        {{/additionaldata.video}} 
+        {{/additionaldata.video}}
         <div class="container-xl h-100 px-0">
             	<div class="col-md-12 h-100 row m-auto reverseonmobile {{#additionaldata.left}}flex-row-reverse{{/additionaldata.left}} px-0 py-4
                 ">
@@ -70,21 +70,21 @@
                     {{#headline}}
                     <div class="row">
                         <div class="col-md-10">
-                            <h1 class="font-weight-light">{{.}}</h1>
+                            <h1 class="font-weight-light">{{{.}}}</h1>
                         </div>
                     </div>
                     {{/headline}}
                     {{#subheadline}}
                     <div class="row">
                         <div class="col-md-10">
-                            <h2  class="font-weight-light" >{{.}}</h2>
+                            <h2  class="font-weight-light" >{{{.}}}</h2>
                         </div>
                     </div>
                     {{/subheadline}}
                     {{#shortdescription}}
                     <div class="row">
                         <div class="col-md-10">
-                            <p  class="font-weight-light">{{.}}</p>
+                            <p  class="font-weight-light">{{{.}}}</p>
                         </div>
                     </div>
                     {{/shortdescription}}
@@ -98,14 +98,14 @@
                         </div>
                             {{/btntext}}
                 </div>
-                       {{#additionaldata.video}} 
+                       {{#additionaldata.video}}
                 <div class="col-md-6 d-flex h-100 {{#additionaldata.right}}pr-0{{/additionaldata.right}} {{#additionaldata.left}}justify-content-end pl-0{{/additionaldata.left}} wb-videocolumn" >
                     <video preload="auto" height="100%"  width="100%" controls  poster="{{{icon}}}"  style="object-fit: cover; {{#additionaldata.right}}border-radius: 90px 0 0 90px;{{/additionaldata.right}}
     {{#additionaldata.left}}border-radius: 0px 90px 90px 0px;{{/additionaldata.left}}">
-                        <source src="{{headerimage}}"> 
+                        <source src="{{headerimage}}">
                     </video>
 	            </div>
-        {{/additionaldata.video}} 
+        {{/additionaldata.video}}
                 </div>
     {{#editmode}}
     {{> local_wb_news/editsinglenews}}
