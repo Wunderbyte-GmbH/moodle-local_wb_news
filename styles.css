@@ -440,7 +440,7 @@
         position: absolute;
         width: 90px;
         height: 90px;
-        top: 122px;
+        top: calc(50% - 45px);
         left: 20px;
         background-color: #fff;
         color: #000;
@@ -481,15 +481,14 @@
         position: absolute;
         width: 1px;
         background-color: #99B2C6;;
-        top: 150px;
-        bottom: 300px;
+        top: 230px;
+        bottom: 230px;
         left: 65px;
         margin-left: 0px;
     }
     .container-timeline2 {
         display: flex;
         align-items: flex-start;
-        margin-left: ppx;
         margin-bottom: 20px;
         position: relative;
         padding-left: 40px;
@@ -500,7 +499,7 @@
         position: absolute;
         width: 122px;
         height: 122px;
-        top: 106px;
+        top: calc(50% - 61px);
         left: 4px;
         background-color: #fff;
         color: #000;
