@@ -11,20 +11,20 @@
         <FIELD NAME="active" TYPE="int" LENGTH="2" NOTNULL="false" SEQUENCE="false" COMMENT="If Item is active"/>
         <FIELD NAME="imagemode" TYPE="int" LENGTH="2" NOTNULL="false" SEQUENCE="false" COMMENT="imagemode"/>
         <FIELD NAME="sortorder" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Weight for sorting"/>
-        <FIELD NAME="bgimage" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Bg Image"/>
+        <FIELD NAME="bgimage" TYPE="char" LENGTH="1333" NOTNULL="false" SEQUENCE="false" COMMENT="Bg Image"/>
         <FIELD NAME="bgimagetext" TYPE="char" LENGTH="1333" NOTNULL="false" SEQUENCE="false" COMMENT="Alt text for bgimage."/>
-        <FIELD NAME="icon" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Possible Icon"/>
+        <FIELD NAME="icon" TYPE="char" LENGTH="1333" NOTNULL="false" SEQUENCE="false" COMMENT="Possible Icon"/>
         <FIELD NAME="icontext" TYPE="char" LENGTH="1333" NOTNULL="false" SEQUENCE="false" COMMENT="Alt text for icon."/>
         <FIELD NAME="bgcolor" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Background color as hex"/>
         <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="News owner"/>
-        <FIELD NAME="headline" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="News Title"/>
-        <FIELD NAME="subheadline" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="News Subtitle"/>
+        <FIELD NAME="headline" TYPE="char" LENGTH="1333" NOTNULL="false" SEQUENCE="false" COMMENT="News Title"/>
+        <FIELD NAME="subheadline" TYPE="char" LENGTH="1333" NOTNULL="true" SEQUENCE="false" COMMENT="News Subtitle"/>
         <FIELD NAME="description" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="News Body Description"/>
         <FIELD NAME="descriptionformat" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="News Body Description Format"/>
-        <FIELD NAME="btnlink" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="News Btn Link"/>
-        <FIELD NAME="btntext" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="News Btn Text"/>
+        <FIELD NAME="btnlink" TYPE="char" LENGTH="1333" NOTNULL="false" SEQUENCE="false" COMMENT="News Btn Link"/>
+        <FIELD NAME="btntext" TYPE="char" LENGTH="1333" NOTNULL="false" SEQUENCE="false" COMMENT="News Btn Text"/>
         <FIELD NAME="lightmode" TYPE="int" LENGTH="2" NOTNULL="false" SEQUENCE="false" COMMENT="Light Mode"/>
-        <FIELD NAME="cssclasses" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Extra CSS classes"/>
+        <FIELD NAME="cssclasses" TYPE="char" LENGTH="1333" NOTNULL="false" SEQUENCE="false" COMMENT="Extra CSS classes"/>
         <FIELD NAME="json" TYPE="char" LENGTH="1000" NOTNULL="true" SEQUENCE="false" COMMENT="Json"/>
         <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Time created"/>
         <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Time modified"/>

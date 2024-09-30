@@ -155,4 +155,53 @@ function xmldb_local_wb_news_upgrade($oldversion) {
     // Put any upgrade step following this.
 
     return true;
+
+    if ($oldversion < 2024093002) {
+        // Changing precision of field bgimage on table local_wb_news to (1333).
+        $table = new xmldb_table('local_wb_news');
+        $field = new xmldb_field('bgimage', XMLDB_TYPE_CHAR, '1333', null, null, null, null, 'sortorder');
+
+        // Launch change of precision for field bgimage.
+        $dbman->change_field_precision($table, $field);
+
+        // Changing precision of field bgimage on table local_wb_news to (1333).
+        $field = new xmldb_field('icon', XMLDB_TYPE_CHAR, '1333', null, null, null, null, 'bgimagetext');
+
+        // Launch change of precision for field bgimage.
+        $dbman->change_field_precision($table, $field);
+
+        // Changing precision of field bgimage on table local_wb_news to (1333).
+        $field = new xmldb_field('headline', XMLDB_TYPE_CHAR, '1333', null, null, null, null, 'userid');
+
+        // Launch change of precision for field bgimage.
+        $dbman->change_field_precision($table, $field);
+
+        // Changing precision of field bgimage on table local_wb_news to (1333).
+        $field = new xmldb_field('subheadline', XMLDB_TYPE_CHAR, '1333', null, null, null, null, 'headline');
+
+        // Launch change of precision for field bgimage.
+        $dbman->change_field_precision($table, $field);
+
+        // Changing precision of field bgimage on table local_wb_news to (1333).
+        $field = new xmldb_field('btnlink', XMLDB_TYPE_CHAR, '1333', null, null, null, null, 'descriptionformat');
+
+        // Launch change of precision for field bgimage.
+        $dbman->change_field_precision($table, $field);
+
+        // Changing precision of field bgimage on table local_wb_news to (1333).
+        $field = new xmldb_field('btntext', XMLDB_TYPE_CHAR, '1333', null, null, null, null, 'btnlink');
+
+        // Launch change of precision for field bgimage.
+        $dbman->change_field_precision($table, $field);
+
+        // Changing precision of field bgimage on table local_wb_news to (1333).
+        $field = new xmldb_field('cssclasses', XMLDB_TYPE_CHAR, '1333', null, null, null, null, 'lightmode');
+
+        // Launch change of precision for field bgimage.
+        $dbman->change_field_precision($table, $field);
+
+
+        // Wb_news savepoint reached.
+        upgrade_plugin_savepoint(true, 2024093002, 'local', 'wb_news');
+    }
 }
