@@ -192,6 +192,32 @@ class addeditmodal extends dynamic_form {
         // phpcs:ignore
         // TODO: capability to create advisors!
 
+        $ajaxformdata = $this->_ajaxformdata;
+
+        $id = $ajaxformdata['id'] ?? 0;
+        $news = news::getinstance((int)$id);
+
+        $contextids = $news->return_contextids();
+
+        $hasaccess = false;
+
+        foreach ($contextids as $contextid) {
+            try {
+                $context = context::instance_by_id($contextid);
+                if (has_capability('local/wb_news:manage', $context)) {
+                    $hasaccess = true;
+                     break;
+                }
+            } catch (\Exception $e) {
+                // Do nothing, we will skip this entry.
+                if (is_siteadmin()) {
+                    $hasaccess = true;
+                }
+            }
+        }
+        if (!empty($contextids) && !$hasaccess) {
+            throw new \moodle_exception(get_string('accessdenied', 'local_wb_news'));
+        }
     }
 
     /**

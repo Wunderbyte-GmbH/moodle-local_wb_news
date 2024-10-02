@@ -35,6 +35,17 @@ $capabilities = [
             'manager'          => CAP_ALLOW,
         ],
     ],
+    'local/wb_news:editinstances' => [
+        'riskbitmask'  => RISK_PERSONAL | RISK_XSS | RISK_CONFIG,
+        'captype'      => 'write',
+        'contextlevel' => CONTEXT_SYSTEM,
+        'archetypes'   => [
+            'student'        => CAP_PROHIBIT,
+            'teacher'        => CAP_PROHIBIT,
+            'editingteacher' => CAP_PROHIBIT,
+            'manager'          => CAP_ALLOW,
+        ],
+    ],
     'local/wb_news:view' => [
         'riskbitmask'  => RISK_PERSONAL,
         'captype'      => 'read',

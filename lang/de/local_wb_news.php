@@ -44,6 +44,7 @@ $string['news_deleted'] = 'Neuigkeiteneintrag entfernt';
 
 $string['wb_news:manage'] = "Verwaltung von News";
 $string['wb_news:view'] = "Zugriff auf News";
+$string['wb_news:editinstances'] = "Zugriff auf die Überblicksseite";
 
 $string['addnewnews'] = 'Füge Eintrag hinzu';
 $string['editnewnews'] = 'Bearbeite Eintrag';

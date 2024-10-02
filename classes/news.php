@@ -197,6 +197,8 @@ class news {
 
         $contextids = explode(',', $this->contextids);
 
+        $contextids = array_filter($contextids, fn($a) => !empty($a));
+
         return $contextids;
     }
 
