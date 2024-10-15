@@ -23,6 +23,7 @@
 
 namespace local_wb_news;
 
+use context_system;
 use local_wb_news\output\wb_news;
 use stdClass;
 use context;
@@ -53,6 +54,8 @@ $PAGE->set_pagelayout('base');
 
 echo $OUTPUT->header();
 
+require_capability('local/wb_news:editinstances', context_system::instance());
+
 $news = new wb_news($id);
 $data = $news->return_list();
 
@@ -68,6 +71,7 @@ foreach ($data['instances'] as $key => $value) {
                     $context = context::instance_by_id($contextid);
                     if (has_capability('local/wb_news:manage', $context)) {
                         $hasaccess = true;
+                        $data['instances'][$key]['editmode'] = true;
                     }
                 } catch (\Exception $e) {
                     // Do nothing, we will skip this entry.
@@ -84,9 +88,12 @@ foreach ($data['instances'] as $key => $value) {
             unset($data['instances'][$key]);
             continue;
         }
+    } else {
+        $data['instances'][$key]['editmode'] = true;
     }
 
-    $data['instances'][$key]['instancenameonindex'] = $value["name"];
+    $data['instances'][$key]['instancenameonindex'] = empty($value["name"])
+        ? get_string('noname', 'local_wb_news') : $value["name"];
     $data['instances'][$key]['shortcode'] = "[wbnews instance=" . $value["instanceid"] . "]";
     $data['instances'][$key]['isadminpage'] = true;
 }

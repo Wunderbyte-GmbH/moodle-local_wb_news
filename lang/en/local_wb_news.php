@@ -44,6 +44,7 @@ $string['news_deleted'] = 'News entry deleted';
 
 $string['wb_news:manage'] = "Manage news";
 $string['wb_news:view'] = "View News";
+$string['wb_news:editinstances'] = "Access to overview page";
 
 $string['addnewnews'] = 'Add news';
 $string['editnewnews'] = 'Edit news';
@@ -62,6 +63,7 @@ $string['sortorder'] = 'Lower comes first';
 $string['bgimage'] = 'Main Image';
 $string['bgimagetext'] = 'Main image alt text';
 $string['bgcolor'] = 'Background color as hex';
+$string['noname'] = 'No name';
 $string['novalidhexcolor'] = 'This is not a valid hex color';
 $string['imagemode'] = 'Image mode';
 $string['useasbgimage'] = 'Use as background image';

@@ -44,6 +44,7 @@ $string['news_deleted'] = 'Neuigkeiteneintrag entfernt';
 
 $string['wb_news:manage'] = "Verwaltung von News";
 $string['wb_news:view'] = "Zugriff auf News";
+$string['wb_news:editinstances'] = "Zugriff auf die Überblicksseite";
 
 $string['addnewnews'] = 'Füge Eintrag hinzu';
 $string['editnewnews'] = 'Bearbeite Eintrag';
@@ -62,6 +63,7 @@ $string['sortorder'] = 'Niedrig wird vorgereiht';
 $string['bgimage'] = 'Hauptbild';
 $string['bgimagetext'] = 'Hauptbild alt Text';
 $string['bgcolor'] = 'Farbe als Hex-Code';
+$string['noname'] = 'Kein Name eingegeben';
 $string['novalidhexcolor'] = 'Das ist kein gültiger Hex-Code';
 $string['imagemode'] = 'Anzeige des Bildes';
 $string['useasbgimage'] = 'Als Hintergrundbild verwenden';

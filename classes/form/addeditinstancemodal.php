@@ -197,6 +197,10 @@ class addeditinstancemodal extends dynamic_form {
 
         $errors = [];
 
+        if (empty($data['name'])) {
+            $errors['name'] = get_string('noname', 'local_wb_news');
+        }
+
         return $errors;
     }
 
