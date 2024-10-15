@@ -63,6 +63,7 @@ $string['sortorder'] = 'Niedrig wird vorgereiht';
 $string['bgimage'] = 'Hauptbild';
 $string['bgimagetext'] = 'Hauptbild alt Text';
 $string['bgcolor'] = 'Farbe als Hex-Code';
+$string['noname'] = 'Kein Name eingegeben';
 $string['novalidhexcolor'] = 'Das ist kein gültiger Hex-Code';
 $string['imagemode'] = 'Anzeige des Bildes';
 $string['useasbgimage'] = 'Als Hintergrundbild verwenden';
