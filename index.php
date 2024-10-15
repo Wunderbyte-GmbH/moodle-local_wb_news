@@ -92,7 +92,8 @@ foreach ($data['instances'] as $key => $value) {
         $data['instances'][$key]['editmode'] = true;
     }
 
-    $data['instances'][$key]['instancenameonindex'] = $value["name"];
+    $data['instances'][$key]['instancenameonindex'] = empty($value["name"])
+        ? get_string('noname', 'local_wb_news') : $value["name"];
     $data['instances'][$key]['shortcode'] = "[wbnews instance=" . $value["instanceid"] . "]";
     $data['instances'][$key]['isadminpage'] = true;
 }
