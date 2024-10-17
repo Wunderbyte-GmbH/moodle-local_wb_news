@@ -24,6 +24,7 @@
 namespace local_wb_news;
 
 use context_system;
+use local_wb_news\event\overview_viewed;
 use local_wb_news\output\wb_news;
 use stdClass;
 use context;
@@ -43,6 +44,13 @@ $pageurl = new \moodle_url('/local/wb_news/index.php?id=' . $id);
 $PAGE->set_url($pageurl);
 
 $record = $DB->get_record("local_wb_news", ["id" => $id], '*');
+
+$event = overview_viewed::create([
+    'context' => context_system::instance(),
+    'userid' => $USER->id,
+]);
+
+$event->trigger();
 
 if ($id == 0) {
     $record = new stdClass();

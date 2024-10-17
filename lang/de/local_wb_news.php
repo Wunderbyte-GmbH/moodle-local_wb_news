@@ -25,94 +25,85 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'News Manager';
-$string['pdfgallery'] = 'PDF Gallerie';
-$string['wb_news'] = 'News Manager';
-$string['manage'] = 'Bearbeiten';
-$string['delete'] = 'Entfernen';
-$string['form_submit'] = 'Speichern';
-$string['form_cover'] = 'Coverbild';
-$string['form_date'] = 'Datum';
-$string['form_content'] = 'Inhalt';
-$string['form_title'] = 'Titel';
-$string['redirect'] = "Sie werden gleich weitergeleitet";
-$string['success'] = 'News erfolgreich gespeichert!';
-$string['manage_new'] = 'Neue News anlegen';
-$string['news_updated'] = 'Neuigkeiteneintrag aktualisiert';
-$string['news_created'] = 'Neuigkeiteneintrag erstellt';
-$string['news_deleted'] = 'Neuigkeiteneintrag entfernt';
-
-$string['wb_news:manage'] = "Verwaltung von News";
-$string['wb_news:view'] = "Zugriff auf News";
-$string['wb_news:editinstances'] = "Zugriff auf die Überblicksseite";
-
-$string['addnewnews'] = 'Füge Eintrag hinzu';
-$string['editnewnews'] = 'Bearbeite Eintrag';
-$string['deletenewnews'] = 'Lösche Eintrag';
-
-$string['addinstance'] = 'Füge Instanz hinzu';
-$string['editinstance'] = 'Bearbeite Instanz';
-$string['deleteinstance'] = 'Lösche Instanz';
-
-$string['addform'] = 'Hinzufügen eines Eintrags';
-$string['editform'] = 'Bearbeiten eines Eintrags';
-$string['instanceid'] = 'Instanz-ID';
 $string['activenews'] = 'Beim ersten Laden aktiv';
-$string['icon'] = 'Icon';
-$string['sortorder'] = 'Niedrig wird vorgereiht';
+$string['addform'] = 'Hinzufügen eines Eintrags';
+$string['addinstance'] = 'Füge Instanz hinzu';
+$string['addnewnews'] = 'Füge Eintrag hinzu';
+$string['additionaldata'] = 'Zusatzdaten';
+$string['alloweditincontext'] = "Editieren erlauben in...";
+$string['bgcolor'] = 'Farbe als Hex-Code';
 $string['bgimage'] = 'Hauptbild';
 $string['bgimagetext'] = 'Hauptbild alt Text';
-$string['bgcolor'] = 'Farbe als Hex-Code';
-$string['noname'] = 'Kein Name eingegeben';
-$string['novalidhexcolor'] = 'Das ist kein gültiger Hex-Code';
-$string['imagemode'] = 'Anzeige des Bildes';
-$string['useasbgimage'] = 'Als Hintergrundbild verwenden';
-$string['useasheaderimage'] = 'Als Kopfzeilenbild verwenden';
-$string['icon'] = 'Symbol';
-$string['icontext'] = 'Icon alt Text';
-$string['userid'] = 'Benutzer-ID';
-$string['headline'] = 'Überschrift';
-$string['subheadline'] = 'Unterüberschrift';
-$string['description'] = 'Beschreibung';
+$string['blogtemplate'] = 'Blog Vorlage';
 $string['btnlink'] = 'Schaltflächenlink';
 $string['btntext'] = 'Schaltflächentext';
-$string['lightmode'] = 'Heller Modus';
-$string['cssclasses'] = 'Zusätzliche CSS Klassen';
 $string['columns'] = 'Spalten';
+$string['confirmcopy'] = "Bestätige das Kopieren";
+$string['confirmdelete'] = "Bestätige das Löschen. Dieser Vorgang kann nicht rückgängig gemacht werden.";
+$string['copyitem'] = "Kopieren";
+$string['crosslinkstemplate'] = 'Crosslinks Vorlage';
+$string['cssclasses'] = 'Zusätzliche CSS Klassen';
+$string['delete'] = 'Entfernen';
+$string['deleteinstance'] = 'Lösche Instanz';
+$string['deleteinstance'] = "Bestätige des Löschens aller Artikel und der Instanz";
+$string['deletenewnews'] = 'Lösche Eintrag';
+$string['deletenewsitem'] = "Bestätige das Löschen dieses Artikels";
+$string['description'] = 'Beschreibung';
+$string['editform'] = 'Bearbeiten eines Eintrags';
+$string['editinstance'] = 'Bearbeite Instanz';
+$string['editnewnews'] = 'Bearbeite Eintrag';
+$string['form_content'] = 'Inhalt';
+$string['form_cover'] = 'Coverbild';
+$string['form_date'] = 'Datum';
+$string['form_submit'] = 'Speichern';
+$string['form_title'] = 'Titel';
+$string['gridtemplate'] = 'Gitter Vorlage';
+$string['headline'] = 'Überschrift';
+$string['icon'] = 'Symbol';
+$string['icon'] = 'Icon';
+$string['icontext'] = 'Icon alt Text';
+$string['imagecolumntemplate'] = 'Image Column';
+$string['imagemode'] = 'Anzeige des Bildes';
+$string['imgseparator'] = 'Image Separator';
+$string['infoslidestemplate'] = 'Infoslides template';
+$string['instance_created'] = 'Instanz erstellt';
+$string['instance_deleted'] = 'Instanz gelöscht';
+$string['instance_updated'] = 'Instanz aktualisiert';
+$string['instanceid'] = 'Instanz-ID';
+$string['interror'] = 'Nur ganze Zahlen sind erlaubt.';
 $string['keyvaluepairs'] = 'Schlüssel: Wert';
-$string['additionaldata'] = 'Zusatzdaten';
+$string['lightmode'] = 'Heller Modus';
+$string['manage'] = 'Bearbeiten';
+$string['manage_new'] = 'Neue News anlegen';
+$string['masonrytemplate'] = 'Bausteine Vorlage';
+$string['name'] = 'Name';
+$string['news_created'] = 'Neuigkeiteneintrag erstellt';
+$string['news_deleted'] = 'Neuigkeiteneintrag entfernt';
+$string['news_updated'] = 'Neuigkeiteneintrag aktualisiert';
+$string['noname'] = 'Kein Name eingegeben';
+$string['novalidhexcolor'] = 'Das ist kein gültiger Hex-Code';
+$string['novalidinstance'] = 'Das ist keine verfügbare Instanz mit der id {$a}';
+$string['overviewviewed'] = 'Übersicht angesehen';
+$string['pdfgallery'] = 'PDF Gallerie';
+$string['pluginname'] = 'News Manager';
+$string['redirect'] = "Sie werden gleich weitergeleitet";
+$string['slidertemplate'] = 'Slider Vorlage';
+$string['sortorder'] = 'Niedrig wird vorgereiht';
+$string['subheadline'] = 'Unterüberschrift';
+$string['success'] = 'News erfolgreich gespeichert!';
+$string['system'] = "Systemweit";
+$string['tabstemplate'] = 'Tabs Vorlage';
+$string['template'] = 'Vorlage';
 $string['timelinetemplate'] = 'Timeline Vorlage';
 $string['timelinetemplate2'] = 'Timeline Modus2 Vorlage';
 $string['to_offer'] = 'Zum Angebot';
-
-
-$string['template'] = 'Vorlage';
-$string['name'] = 'Name';
-$string['masonrytemplate'] = 'Bausteine Vorlage';
-$string['slidertemplate'] = 'Slider Vorlage';
-$string['tabstemplate'] = 'Tabs Vorlage';
-$string['gridtemplate'] = 'Gitter Vorlage';
-$string['blogtemplate'] = 'Blog Vorlage';
+$string['userid'] = 'Benutzer-ID';
+$string['useasbgimage'] = 'Als Hintergrundbild verwenden';
+$string['useasheaderimage'] = 'Als Kopfzeilenbild verwenden';
 $string['verticalblogtemplate'] = 'Vertical Blog template';
-$string['infoslidestemplate'] = 'Infoslides template';
-$string['crosslinkstemplate'] = 'Crosslinks Vorlage';
-$string['imagecolumntemplate'] = 'Image Column';
-$string['imgseparator'] = 'Image Separator';
-
-
-// Modal.
-$string['confirmdelete'] = "Bestätige das Löschen. Dieser Vorgang kann nicht rückgängig gemacht werden.";
-$string['deletenewsitem'] = "Bestätige das Löschen dieses Artikels";
-$string['deleteinstance'] = "Bestätige des Löschens aller Artikel und der Instanz";
-$string['confirmcopy'] = "Bestätige das Kopieren";
-$string['copyitem'] = "Kopieren";
-$string['alloweditincontext'] = "Editieren erlauben in...";
-$string['system'] = "Systemweit";
-
-// Errors.
-$string['interror'] = 'Nur ganze Zahlen sind erlaubt.';
-
-// Shortcodes.
+$string['wb_news'] = 'News Manager';
+$string['wb_news:editinstances'] = "Zugriff auf die Überblicksseite";
+$string['wb_news:manage'] = "Verwaltung von News";
+$string['wb_news:view'] = "Zugriff auf News";
 $string['wbnewslist'] = 'Eine oder alle News Instanzen.';
-$string['novalidinstance'] = 'Das ist keine verfügbare Instanz mit der id {$a}';
 $string['tagarea_news'] = "WB News";
