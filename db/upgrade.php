@@ -204,4 +204,57 @@ function xmldb_local_wb_news_upgrade($oldversion) {
         // Wb_news savepoint reached.
         upgrade_plugin_savepoint(true, 2024093002, 'local', 'wb_news');
     }
+
+    if ($oldversion < 2024101801) {
+        // Changing field bgimage on table local_wb_news to handle a large text size.
+        $table = new xmldb_table('local_wb_news');
+        $field = new xmldb_field('bgimage', XMLDB_TYPE_TEXT, 'medium', null, null, null, null, 'sortorder');
+
+        // Launch change of field type to TEXT for bgimage.
+        $dbman->change_field_type($table, $field);
+
+        $field = new xmldb_field('bgimagetext', XMLDB_TYPE_TEXT, 'medium', null, null, null, null, 'bgimage');
+
+        // Launch change of field type to TEXT for bgimagetext.
+        $dbman->change_field_type($table, $field);
+
+        $field = new xmldb_field('icon', XMLDB_TYPE_TEXT, 'medium', null, null, null, null, 'bgimagetext');
+
+        // Launch change of field type to TEXT for icon.
+        $dbman->change_field_type($table, $field);
+
+        $field = new xmldb_field('icontext', XMLDB_TYPE_TEXT, 'medium', null, null, null, null, 'icon');
+
+        // Launch change of field type to TEXT for icon.
+        $dbman->change_field_type($table, $field);
+
+        $field = new xmldb_field('headline', XMLDB_TYPE_TEXT, 'medium', null, null, null, null, 'userid');
+
+        // Launch change of field type to TEXT for headline.
+        $dbman->change_field_type($table, $field);
+
+        $field = new xmldb_field('subheadline', XMLDB_TYPE_TEXT, 'medium', null, null, null, null, 'headline');
+
+        // Launch change of field type to TEXT for subheadline.
+        $dbman->change_field_type($table, $field);
+
+        $field = new xmldb_field('btnlink', XMLDB_TYPE_TEXT, 'medium', null, null, null, null, 'descriptionformat');
+
+        // Launch change of field type to TEXT for btnlink.
+        $dbman->change_field_type($table, $field);
+
+        $field = new xmldb_field('btntext', XMLDB_TYPE_TEXT, 'medium', null, null, null, null, 'btnlink');
+
+        // Launch change of field type to TEXT for btntext.
+        $dbman->change_field_type($table, $field);
+
+        $field = new xmldb_field('cssclasses', XMLDB_TYPE_TEXT, 'medium', null, null, null, null, 'lightmode');
+
+        // Launch change of field type to TEXT for cssclasses.
+        $dbman->change_field_type($table, $field);
+
+
+        // Wb_news savepoint reached.
+        upgrade_plugin_savepoint(true, 2024101801, 'local', 'wb_news');
+    }
 }
