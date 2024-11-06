@@ -26,9 +26,8 @@ defined('MOODLE_INTERNAL') || die();
 
 $tagareas = [
     [
-        'itemtype'   => 'news',
+        'itemtype'   => 'local_wb_news',
         'component'  => 'local_wb_news',
-        'areaname'   => 'news',
+        'areaname'   => 'local_wb_news',
     ],
 ];
-

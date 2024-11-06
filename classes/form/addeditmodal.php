@@ -154,14 +154,14 @@ class addeditmodal extends dynamic_form {
         $mform->addElement('textarea', 'keyvaluepairs', get_string('keyvaluepairs', 'local_wb_news'), 'wrap="virtual" rows="10" cols="50"');
         $mform->setType('keyvaluepairs', PARAM_TEXT);
 
-        if (core_tag_tag::is_enabled('local_wb_news', 'news')) {
+        if (core_tag_tag::is_enabled('local_wb_news', 'local_wb_news')) {
             $mform->addElement('header', 'tagshdr', get_string('tags', 'tag'));
 
             $mform->addElement(
                 'tags',
                 'tags',
                 get_string('tags'),
-                ['itemtype' => 'news', 'component' => 'local_wb_news']
+                ['itemtype' => 'local_wb_news', 'component' => 'local_wb_news']
             );
         }
 
@@ -425,7 +425,7 @@ class addeditmodal extends dynamic_form {
             $data->icon = $draftitemid;
 
             if (!empty($id)) {
-                $data->tags = core_tag_tag::get_item_tags_array('local_wb_news', 'news', $id);
+                $data->tags = core_tag_tag::get_item_tags_array('local_wb_news', 'local_wb_news', $id);
             }
         } else {
             $data = new \stdClass();

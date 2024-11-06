@@ -106,4 +106,4 @@ $string['wb_news:editinstances'] = "Zugriff auf die Überblicksseite";
 $string['wb_news:manage'] = "Verwaltung von News";
 $string['wb_news:view'] = "Zugriff auf News";
 $string['wbnewslist'] = 'Eine oder alle News Instanzen.';
-$string['tagarea_news'] = "WB News";
+$string['tagarea_local_wb_news'] = "WB News";

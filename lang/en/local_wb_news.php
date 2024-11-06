@@ -105,4 +105,4 @@ $string['wb_news:editinstances'] = "Access to overview page";
 $string['wb_news:manage'] = "Manage news";
 $string['wb_news:view'] = "View News";
 $string['wbnewslist'] = 'One or all instances of news';
-$string['tagarea_news'] = "WB News";
+$string['tagarea_local_wb_news'] = "WB News";

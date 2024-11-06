@@ -351,7 +351,7 @@ class news {
         }
 
         if (isset($data->tags)) {
-            core_tag_tag::set_item_tags('local_wb_news', 'news', $id, context_system::instance(), $data->tags);
+            core_tag_tag::set_item_tags('local_wb_news', 'local_wb_news', $id, context_system::instance(), $data->tags);
         }
 
         // We set active for 0 for every other record than our own.
