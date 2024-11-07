@@ -74,7 +74,7 @@ class addeditmodal extends dynamic_form {
 
         // Add headline field.
         $mform->addElement('text', 'headline', get_string('headline', 'local_wb_news'));
-        $mform->setType('headline', PARAM_TEXT);
+        $mform->setType('headline', PARAM_RAW);
 
         $mform->addElement('advcheckbox', 'active', get_string('activenews', 'local_wb_news'));
         $mform->setType('icon', PARAM_TEXT);
