@@ -48,14 +48,13 @@
         <div class="wb-news-addeditbutton btn btn-primary"
             data-action="add"
             data-isinstance="true">
-            {{#str}} addinstance, local_wb_news {{/str}}
+            {{#str}} addinstanceasdasd, local_wb_news {{/str}}
         </div>
     </div>
 {{/editmode}}
 {{#instances}}
     {{#instancenameonindex}}
     <div class="my-4">
-
     <button class="btn btn-primary btn-collapse mr-2" type="button" data-toggle="collapse" data-target="#instance-{{instanceid}}" aria-expanded="false">
     <i class="fa fa-chevron-down"></i>
     <i class="fa fa-chevron-up"></i>
@@ -121,27 +120,9 @@
 {{/instances}}
 </div>
 
-<script>
-    var style = document.createElement('style');
-    style.innerHTML = `
-    .btn-collapse[aria-expanded="true"] .fa-chevron-down {
-        display: none;
-    }
-    .btn-collapse[aria-expanded="true"] .fa-chevron-up {
-        display: inline;
-    }
-    .btn-collapse[aria-expanded="false"] .fa-chevron-down {
-        display: inline;
-    }
-    .btn-collapse[aria-expanded="false"] .fa-chevron-up {
-        display: none;
-    }
-    `;
-    document.head.appendChild(style);
-</script>
-
 {{#js}}
-    require(['local_wb_news/editnews'], function(fn) {
-        fn.init({{instanceid}});
+    require(['local_wb_news/editnews', 'local_wb_news/anchor'], function(editnews, anchor) {
+        anchor.init();
+        editnews.init({{instanceid}});
     });
 {{/js}}

@@ -110,8 +110,6 @@ $data['instances'] = array_values($data['instances']);
 
 $data['editmode'] = true;
 
-$out = $OUTPUT->render_from_template('local_wb_news/wb_news_container', $data);
-echo $out;
-
+echo $OUTPUT->render_from_template('local_wb_news/wb_news_container', $data);
 echo $OUTPUT->footer();
 
