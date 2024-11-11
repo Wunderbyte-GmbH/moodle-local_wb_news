@@ -181,6 +181,8 @@ export function deleteModal(button) {
     // Listen to events if you want to execute something on form submit.
     // Event detail will contain everything the process() function returned:
     modalForm.addEventListener(modalForm.events.FORM_SUBMITTED, () => {
+        let anchor = `#instance-${instanceid}`;
+        location.href = `${location.origin}${location.pathname}${anchor}`;
         location.reload();
     });
 
@@ -227,7 +229,8 @@ export function copyModal(button) {
     // Listen to events if you want to execute something on form submit.
     // Event detail will contain everything the process() function returned:
     modalForm.addEventListener(modalForm.events.FORM_SUBMITTED, () => {
-
+        let anchor = `#instance-${instanceid}`;
+        location.href = `${location.origin}${location.pathname}${anchor}`;
         location.reload();
     });
 

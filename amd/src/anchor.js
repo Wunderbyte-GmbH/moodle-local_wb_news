@@ -29,7 +29,7 @@ export const init = () => {
         const targetElement = document.querySelector(hash);
         if (targetElement && targetElement.classList.contains('collapse')) {
             // Show the element by changing its display style
-            targetElement.style.display = "block";
+            targetElement.classList.add('show');
         }
     }
 
