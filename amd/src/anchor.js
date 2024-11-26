@@ -34,7 +34,7 @@ export const init = () => {
     }
 
     // Optional: Toggle collapse on clicking the anchor link
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    document.querySelectorAll('#page-local-wb_news-index a[href^="#"]').forEach(anchor => {
         anchor.addEventListener("click", (e) => {
             const target = document.querySelector(e.currentTarget.getAttribute("href"));
             if (target && target.classList.contains("collapse")) {
