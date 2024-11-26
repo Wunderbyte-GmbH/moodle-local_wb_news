@@ -32,15 +32,4 @@ export const init = () => {
             targetElement.classList.add('show');
         }
     }
-
-    // Optional: Toggle collapse on clicking the anchor link
-    document.querySelectorAll('#page-local-wb_news-index a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", (e) => {
-            const target = document.querySelector(e.currentTarget.getAttribute("href"));
-            if (target && target.classList.contains("collapse")) {
-                // Toggle the display property
-                target.style.display = target.style.display === "block" ? "none" : "block";
-            }
-        });
-    });
 };
