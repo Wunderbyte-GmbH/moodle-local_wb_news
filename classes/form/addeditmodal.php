@@ -410,6 +410,10 @@ class addeditmodal extends dynamic_form {
 
             $data->bgimage = $draftitemid;
 
+            if (!empty($data->headerimagetext)) {
+                $data->bgimagetext = $data->headerimagetext;
+            }
+
             $draftitemid = file_get_submitted_draft_itemid('icon');
             // Copy the existing files which were previously uploaded
             // into the draft area used by this form.
