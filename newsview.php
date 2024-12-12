@@ -27,7 +27,7 @@ use local_wb_news\output\newsview;
 
 require_once(__DIR__ . '/../../config.php'); // phpcs:ignore moodle.Files.RequireLogin.Missing
 
-global $DB, $PAGE, $OUTPUT, $USER;
+global $DB, $PAGE, $OUTPUT, $USER, $CFG;
 
 // We do not want to check login here...
 // ...as this page should also be available for not logged in users!
@@ -43,7 +43,7 @@ require_capability('local/wb_news:view', $context);
 
 $PAGE->set_context($context);
 
-$url = new moodle_url('/local/wbnews/newsview.php', ['id' => $id, 'instanceid' => $instanceid]);
+$url = new moodle_url($CFG->dirroot . '/local/wb_news/newsview.php', ['id' => $id, 'instanceid' => $instanceid]);
 $PAGE->set_url($url);
 
 $newsview = new newsview($id, $instanceid);
