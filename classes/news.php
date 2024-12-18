@@ -168,14 +168,22 @@ class news {
             if (empty($news->userid)) {
                 continue;
             }
-            $returnarray[] = (array)$this->get_formatted_news_item($news->id);
+
+            $item = (array)$this->get_formatted_news_item($news->id);
+            $returnarray[] = $item;
+
+            if ($item['active']) {
+                $isactive = true;
+            }
         }
 
-        foreach ($returnarray as $index => &$item) {
-            $item['sliderindex'] = $index;
-            if ($index == '0') {
-                $item['slideactive'] = true;
-            }
+        if (count($returnarray) === 1) {
+            $returnarray[0]['dontshowarrows'] = true;
+            $returnarray[0]['active'] = true;
+        }
+
+        if (!$isactive) {
+            $returnarray[0]['active'] = true;
         }
 
         return $returnarray;
@@ -558,6 +566,13 @@ class news {
 
         if (!empty($this->news)) {
             $instanceitem['news'] = $this->return_list_of_news();
+        }
+
+        foreach ($instanceitem['news'] as $index => &$item) {
+            $item['sliderindex'] = $index;
+            if ($index == '0') {
+                $item['slideactive'] = true;
+            }
         }
 
         switch ($this->template) {
