@@ -42,8 +42,7 @@ $context = context_system::instance();
 require_capability('local/wb_news:view', $context);
 
 $PAGE->set_context($context);
-
-$url = new moodle_url($CFG->dirroot . '/local/wb_news/newsview.php', ['id' => $id, 'instanceid' => $instanceid]);
+$url = new moodle_url('/local/wb_news/newsview.php', ['id' => $id, 'instanceid' => $instanceid]);
 $PAGE->set_url($url);
 
 $newsview = new newsview($id, $instanceid);
