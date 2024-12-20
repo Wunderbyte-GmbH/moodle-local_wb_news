@@ -34,7 +34,7 @@
 
 <div class="card h-100{{#lightmode}} wb_news-light{{/lightmode}}{{#cssclasses}} {{cssclasses}}{{/cssclasses}}"{{#bgcolor}} style="background-color: {{bgcolor}};"{{/bgcolor}}>
     {{^btntext}}
-    {{#btnlink}}<a href="{{btnlink}}" class="stretched-link"></a> {{/btnlink}}
+    {{#btnlink}}<a href="{{btnlink}}" class="stretched-link" {{#btnlinktarget}}target="{{.}}"{{/btnlinktarget}} {{#btnlinkrel}}rel="{{.}}"{{/btnlinkrel}}>{{btntext}}></a> {{/btnlink}}
     {{/btntext}}
     {{#headerimage}}
     <img class="w-100 img-fluid wb_news-headerimage" src="{{headerimage}}" aria-label="{{headerimagetext}}">
@@ -56,7 +56,7 @@
     </div>
     <div class="card-footer">
     {{#btntext}}
-        <a href="{{btnlink}}" class="btn btn-primary mt-auto">{{btntext}}</a>
+        <a href="{{btnlink}}" class="btn btn-primary mt-auto" {{#btnlinktarget}}target="{{.}}"{{/btnlinktarget}} {{#btnlinkrel}}rel="{{.}}"{{/btnlinkrel}}>{{btntext}}>{{btntext}}</a>
     {{/btntext}}
     </div>
     {{#editmode}}

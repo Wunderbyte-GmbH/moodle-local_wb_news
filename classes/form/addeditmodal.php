@@ -138,6 +138,20 @@ class addeditmodal extends dynamic_form {
         $mform->addElement('text', 'btnlink', get_string('btnlink', 'local_wb_news'));
         $mform->setType('btnlink', PARAM_TEXT);
 
+        $mform->addElement('autocomplete', 'btnlinkattributes', get_string('btnlinkattributes', 'local_wb_news'), [
+            '_blank' => get_string('btnlinkblank', 'local_wb_news'),
+            '_self' => get_string('btnlinkself', 'local_wb_news'),
+            '_parent' => get_string('btnlinkparent', 'local_wb_news'),
+            '_top' => get_string('btnlinktop', 'local_wb_news'),
+            'nofollow' => get_string('btnlinknofollow', 'local_wb_news'),
+            'noopener' => get_string('btnlinknoopener', 'local_wb_news'),
+            'noreferrer' => get_string('btnlinknoreferrer', 'local_wb_news'),
+        ], [
+            'multiple' => true,
+        ]);
+
+        $mform->setType('btnlinkattributes', PARAM_TEXT);
+
         // Add button text field.
         $mform->addElement('text', 'btntext', get_string('btntext', 'local_wb_news'));
         $mform->setType('btntext', PARAM_TEXT);
@@ -164,7 +178,6 @@ class addeditmodal extends dynamic_form {
                 ['itemtype' => 'local_wb_news', 'component' => 'local_wb_news']
             );
         }
-
     }
 
     /**
@@ -342,6 +355,9 @@ class addeditmodal extends dynamic_form {
         }
 
         $data->json = json_encode($array);
+
+        $data->btnlinkattributes = implode(',', (array)$data->btnlinkattributes);
+
         $data->id = $news->update_news($data);
 
         return $data;
@@ -435,6 +451,8 @@ class addeditmodal extends dynamic_form {
             $data = new \stdClass();
             $data->instanceid = $instanceid;
         }
+
+        $data->btnlinkattributes = explode(',', $data->btnlinkattributes);
 
         $this->set_data($data);
     }

@@ -276,6 +276,16 @@ class news {
         $news->subheadline = strip_tags(format_text($news->subheadline), '<br>');
         $news->btntext = strip_tags(format_text($news->btntext), '<br>');
         $news->btnlink = format_string($news->btnlink);
+
+        $attributes = explode(',', $news->btnlinkattributes);
+        foreach ($attributes as $attribute) {
+            if (strpos($attribute, '_') === 0) {
+                $news->btnlinktarget[] = $attribute;
+            } else {
+                $news->btnlinkrel[] = $attribute;
+            }
+        }
+
         $news->description = format_text($news->description);
         if (!empty($news->bgimagetext)) {
             $news->bgimagetext = strip_tags(format_text($news->bgimagetext), '<br>');

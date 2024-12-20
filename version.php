@@ -26,6 +26,6 @@ defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'local_wb_news';
 $plugin->release = '1.1.24';
-$plugin->version   = 2024122000;       // The current module version (Date: YYYYMMDDXX).
+$plugin->version   = 2024122004;       // The current module version (Date: YYYYMMDDXX).
 $plugin->requires  = 2022041200;    // Requires this Moodle version.
 $plugin->maturity = MATURITY_ALPHA;

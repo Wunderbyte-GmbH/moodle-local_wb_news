@@ -82,7 +82,6 @@ function xmldb_local_wb_news_upgrade($oldversion) {
     }
 
     if ($oldversion < 2024070139) {
-
         // Define field contextids to be added to local_wb_news_instance.
         $table = new xmldb_table('local_wb_news_instance');
         $field = new xmldb_field('contextids', XMLDB_TYPE_CHAR, '1333', null, null, null, null, 'userid');
@@ -97,7 +96,6 @@ function xmldb_local_wb_news_upgrade($oldversion) {
     }
 
     if ($oldversion < 2024071201) {
-
         // Define field columns to be added to local_wb_news_instance.
         $table = new xmldb_table('local_wb_news_instance');
         $field = new xmldb_field('columns', XMLDB_TYPE_INTEGER, '2', null, null, null, '4', 'userid');
@@ -112,7 +110,6 @@ function xmldb_local_wb_news_upgrade($oldversion) {
     }
 
     if ($oldversion < 2024071205) {
-
         // Define field columns to be added to local_wb_news_instance.
         $table = new xmldb_table('local_wb_news');
         $field = new xmldb_field('json', XMLDB_TYPE_CHAR, '1333', null, null, null, null, 'cssclasses');
@@ -127,7 +124,6 @@ function xmldb_local_wb_news_upgrade($oldversion) {
     }
 
     if ($oldversion < 2024082600) {
-
         // Define field bgimagetext to be added to local_wb_news.
         $table = new xmldb_table('local_wb_news');
         $field = new xmldb_field('bgimagetext', XMLDB_TYPE_CHAR, '1333', null, null, null, null, 'bgimage');
@@ -153,8 +149,6 @@ function xmldb_local_wb_news_upgrade($oldversion) {
 
     // Automatically generated Moodle v4.1.0 release upgrade line.
     // Put any upgrade step following this.
-
-    return true;
 
     if ($oldversion < 2024093002) {
         // Changing precision of field bgimage on table local_wb_news to (1333).
@@ -257,4 +251,20 @@ function xmldb_local_wb_news_upgrade($oldversion) {
         // Wb_news savepoint reached.
         upgrade_plugin_savepoint(true, 2024101801, 'local', 'wb_news');
     }
+
+    if ($oldversion < 2024122004) {
+        // Define field btnlinkattributes to be added to local_wb_news.
+        $table = new xmldb_table('local_wb_news');
+        $field = new xmldb_field('btnlinkattributes', XMLDB_TYPE_TEXT, null, null, null, null, null, 'btnlink');
+
+        // Conditionally launch add field btnlinkattributes.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Wb_news savepoint reached.
+        upgrade_plugin_savepoint(true, 2024122004, 'local', 'wb_news');
+    }
+
+    return true;
 }

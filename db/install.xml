@@ -22,6 +22,7 @@
         <FIELD NAME="description" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="News Body Description"/>
         <FIELD NAME="descriptionformat" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="News Body Description Format"/>
         <FIELD NAME="btnlink" TYPE="text" LENGTH="medium" NOTNULL="false" SEQUENCE="false" COMMENT="News Btn Link"/>
+        <FIELD NAME="btnlinkattributes" TYPE="text" LENGTH="medium" NOTNULL="false" SEQUENCE="false" COMMENT="News Btn Link attributes"/>
         <FIELD NAME="btntext" TYPE="text" LENGTH="medium" NOTNULL="false" SEQUENCE="false" COMMENT="News Btn Text"/>
         <FIELD NAME="lightmode" TYPE="int" LENGTH="2" NOTNULL="false" SEQUENCE="false" COMMENT="Light Mode"/>
         <FIELD NAME="cssclasses" TYPE="text" LENGTH="medium" NOTNULL="false" SEQUENCE="false" COMMENT="Extra CSS classes"/>
