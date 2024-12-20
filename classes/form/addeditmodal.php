@@ -141,11 +141,6 @@ class addeditmodal extends dynamic_form {
         $mform->addElement('autocomplete', 'btnlinkattributes', get_string('btnlinkattributes', 'local_wb_news'), [
             '_blank' => get_string('btnlinkblank', 'local_wb_news'),
             '_self' => get_string('btnlinkself', 'local_wb_news'),
-            '_parent' => get_string('btnlinkparent', 'local_wb_news'),
-            '_top' => get_string('btnlinktop', 'local_wb_news'),
-            'nofollow' => get_string('btnlinknofollow', 'local_wb_news'),
-            'noopener' => get_string('btnlinknoopener', 'local_wb_news'),
-            'noreferrer' => get_string('btnlinknoreferrer', 'local_wb_news'),
         ], [
             'multiple' => true,
         ]);
