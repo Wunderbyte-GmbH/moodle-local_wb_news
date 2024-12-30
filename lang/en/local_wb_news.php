@@ -90,6 +90,7 @@ $string['novalidinstance'] = 'This is not a valid instance with the id {$a}';
 $string['pdfgallery'] = 'PDF gallery';
 $string['pluginname'] = 'News Manager';
 $string['previous'] = 'Previous';
+$string['profilepicture'] = 'Profile picture';
 $string['profilepicturealttext'] = 'Picture of {$a}';
 $string['redirect'] = "You'll be redirected shortly";
 $string['slidertemplate'] = 'Slider template';

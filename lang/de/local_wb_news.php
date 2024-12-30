@@ -90,5 +90,6 @@ $string['novalidinstance'] = 'Das ist keine verfügbare Instanz mit der id {$a}'
 $string['pdfgallery'] = 'PDF Gallerie';
 $string['pluginname'] = 'News Manager';
 $string['previous'] = 'Zurück';
+$string['profilepicture'] = 'Profilbild';
 $string['profilepicturealttext'] = 'Bild von {$a}';
 $string['redirect'] = 'Sie werden gleich weitergeleitet';
