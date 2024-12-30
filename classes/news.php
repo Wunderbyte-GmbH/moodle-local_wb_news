@@ -277,7 +277,7 @@ class news {
         $news->btntext = strip_tags(format_text($news->btntext), '<br>');
         $news->btnlink = format_string($news->btnlink);
 
-        $attributes = explode(',', $news->btnlinkattributes);
+        $attributes = explode(',', $news->btnlinkattributes ?? '');
         foreach ($attributes as $attribute) {
             if (strpos($attribute, '_') === 0) {
                 $news->btnlinktarget[] = $attribute;
