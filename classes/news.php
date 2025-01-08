@@ -276,6 +276,7 @@ class news {
         $news->subheadline = strip_tags(format_text($news->subheadline), '<br>');
         $news->btntext = strip_tags(format_text($news->btntext), '<br>');
         $news->btnlink = format_string($news->btnlink);
+        $news->btnlink = htmlspecialchars_decode($news->btnlink, ENT_QUOTES);
 
         $attributes = explode(',', $news->btnlinkattributes ?? '');
         foreach ($attributes as $attribute) {
