@@ -109,6 +109,7 @@ $string['useasheaderimage'] = 'Use as header image';
 $string['userid'] = 'User ID';
 $string['verticalblogtemplate'] = 'Vertical Blog template';
 $string['wb_news'] = 'News Manager';
+$string['wb_news:editinstances'] = 'Edit instances';
 $string['wb_news:manage'] = 'Manage news';
 $string['wb_news:view'] = 'View News';
 $string['wbnewslist'] = 'One or all instances of news';
