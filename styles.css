@@ -26,6 +26,10 @@
     padding: 20px 20px;
 }
 
+.wb_news .wb_news_card_crosslinks > div {
+    overflow: hidden;
+}
+
 .wb_news .card-footer {
     border: none;
     background: none;
