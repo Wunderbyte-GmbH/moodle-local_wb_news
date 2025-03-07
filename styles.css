@@ -198,6 +198,10 @@
     color: #005C99;
 }
 
+.wb_news .carousel-inner {
+  overflow: visible;
+}
+
 @media (min-width: 981px) {
 
     .wb_news_tabcontainer .rounded-background {
