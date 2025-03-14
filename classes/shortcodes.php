@@ -88,11 +88,15 @@ class shortcodes {
      * @return string
      */
     public static function wbnews_course($shortcode, $args, $content, $env, $next) {
-
         global $USER, $PAGE, $OUTPUT, $CFG;
-        $data = new stdClass();
         require_once($CFG->dirroot . '/course/externallib.php');
-        $courseids = [9, 8]; // Replace with your IDs
+
+        $data = new stdClass();
+        if (!isset($args['ids'])) {
+            return 'please enter ids';
+        } else {
+            $courseids = array_map('trim', explode(",", $args['ids']));
+        }
         $params = ['ids' => $courseids];
         $courses = [];
         $renderer = $PAGE->get_renderer(component: 'core');
@@ -112,9 +116,24 @@ class shortcodes {
                 $course->courseimage = "https://placehold.co/600x400";
             }
         }
-        $courses[0]->first = true;
-        $data->courses = $formattedcourses;
-        $out = $OUTPUT->render_from_template('local_wb_news/courses/courselist', $data); 
+
+        $chunks = array_chunk($formattedcourses, 3);
+        $templatecontext['chunks'] = [];
+        
+        foreach ($chunks as $index => $chunk) {
+            $templatecontext['chunks'][] = [
+                'courses' => $chunk,
+                'first' => ($index === 0),
+                'index' => $index,
+            ];
+        }
+        
+        if (!isset($args['template'])) {
+            $template = 'courselist';
+        } else {
+            $template = $args['template'];
+        }
+        $out = $OUTPUT->render_from_template('local_wb_news/courses/' . $template, $templatecontext); 
         return $out;
     }
 }

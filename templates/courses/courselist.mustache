@@ -35,7 +35,9 @@
     }
 }}
 <div class="card-deck dashboard-card-deck {{$classes}}{{/classes}}" data-region="card-deck" role="list">
-{{#courses}}
+{{#chunks}}
+    {{#.}}
     {{> local_wb_news/courses/coursecard }}
-{{/courses}}
+    {{/.}}
+{{/chunks}}
 </div>
