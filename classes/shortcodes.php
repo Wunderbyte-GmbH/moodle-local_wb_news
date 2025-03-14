@@ -112,8 +112,8 @@ class shortcodes {
             $formattedcourse->courseimage = helper::get_course_image($course);
 
             $formattedcourses[] = $formattedcourse;
-            if (!$course->courseimage) {
-                $course->courseimage = "https://placehold.co/600x400";
+            if (!$formattedcourse->courseimage) {
+                $formattedcourse->courseimage = "https://placehold.co/600x400";
             }
         }
 
