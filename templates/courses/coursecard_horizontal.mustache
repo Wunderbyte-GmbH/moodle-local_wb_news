@@ -1,0 +1,24 @@
+<li class="list-course-card d-flex flex-row align-items-stretch list-unstyled mt-2" role="listitem" data-region="course-content" data-course-id="{{courseid}}">
+    <!-- Image Section -->
+    <div class="col-md-3 p-0">
+        <a href="{{viewurl}}" tabindex="-1">
+            <div class="h-100 w-100" style="background-image: url('{{courseimage}}'); background-size: cover; background-position: center;"></div>
+        </a>
+    </div>
+    
+    <!-- Content Section -->
+    <div class="col-md-9 d-flex flex-column justify-content-center p-4">
+        <h3 class="fw-bold">{{fullname}}</h3>
+        <p class="text-muted">{{coursedescription}}</p>
+        
+        <div>
+            <a href="{{viewurl}}" class="btn btn-primary">zum Kurs</a>
+        </div>
+    </div>
+</li>
+
+<style>
+.list-course-card  {
+   min-height: 20em;
+}
+</style>
