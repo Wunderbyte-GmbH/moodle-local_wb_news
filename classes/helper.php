@@ -14,27 +14,36 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-/**
- * Shortcodes for local_wb_news
- *
- * @package local_wb_news
- * @subpackage db
- * @copyright 2024 Georg Maißer
- * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
+namespace local_wb_news;
+
 
 defined('MOODLE_INTERNAL') || die();
 
-$shortcodes = [
-    'wbnews' => [
-        'callback' => 'local_wb_news\shortcodes::wbnews',
-        'wraps' => false,
-        'description' => 'wbnewslist',
-    ],
-    'wbnewscourse' => [
-        'callback' => 'local_wb_news\shortcodes::wbnews_course',
-        'wraps' => false,
-        'description' => 'wbnews_course',
-    ],
-];
+require_once($CFG->libdir . '/filelib.php');
 
+use stdClass;
+use core_course\external\course_summary_exporter;
+
+
+/**
+ * Class news.
+ * @package local_wb_news
+ * @author Thomas Winkler
+ * @copyright 2024 Wunderbyte GmbH
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class helper {
+ 
+    /**
+     * Returns the URL of the image associated with the given course ID,
+     * or a placeholder image URL if no image is associated with the course.
+     *
+     * @param stdclass $course The course record
+     * @return string The URL of the image associated with the item.
+     */
+    public static function get_course_image($course) {
+
+        $courseimage = course_summary_exporter::get_course_image((object)$course);
+        return $courseimage;
+    }
+}

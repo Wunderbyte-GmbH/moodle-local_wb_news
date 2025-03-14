@@ -28,7 +28,6 @@ namespace local_wb_news;
 use local_wb_news\output\wb_news;
 use local_wb_news\helper;
 use stdClass;
-use core_course\external\course_summary_exporter;
 
 
 
@@ -95,25 +94,17 @@ class shortcodes {
         $courseids = [9, 8]; // Replace with your IDs
         $params = ['ids' => $courseids];
         $courses = [];
-        $renderer = $PAGE->get_renderer(component: 'core');
-
         foreach ($courseids as $id) {
             $courses[] = get_course($id);
         }
         foreach ($courses as $course) {
-            $context = \context_course::instance($course->id);
-            $exporter = new course_summary_exporter($course, ['context' => $context, 'isfavourite' => false]);
-
-            $formattedcourse = $exporter->export($renderer);
-            $formattedcourse->courseimage = helper::get_course_image($course);
-
-            $formattedcourses[] = $formattedcourse;
+            $course->courseimage = helper::get_course_image($course);
             if (!$course->courseimage) {
                 $course->courseimage = "https://placehold.co/600x400";
             }
         }
         $courses[0]->first = true;
-        $data->courses = $formattedcourses;
+        $data->courses = $courses;
         $out = $OUTPUT->render_from_template('local_wb_news/courses/courselist', $data); 
         return $out;
     }
