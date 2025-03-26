@@ -112,4 +112,5 @@ $string['wb_news'] = 'News Manager';
 $string['wb_news:editinstances'] = 'Edit instances';
 $string['wb_news:manage'] = 'Manage news';
 $string['wb_news:view'] = 'View News';
+$string['wbnewscourse'] = 'List of courses';
 $string['wbnewslist'] = 'One or all instances of news';

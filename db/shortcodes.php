@@ -34,7 +34,7 @@ $shortcodes = [
     'wbnewscourse' => [
         'callback' => 'local_wb_news\shortcodes::wbnews_course',
         'wraps' => false,
-        'description' => 'wbnews_course',
+        'description' => 'wbnewscourse',
     ],
 ];
 
