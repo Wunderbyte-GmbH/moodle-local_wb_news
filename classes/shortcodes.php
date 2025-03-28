@@ -29,6 +29,7 @@ use local_wb_news\output\wb_news;
 use local_wb_news\helper;
 use stdClass;
 use core_course\external\course_summary_exporter;
+use Throwable;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -98,12 +99,13 @@ class shortcodes {
         $params = ['ids' => $courseids];
         $courses = [];
         $renderer = $PAGE->get_renderer(component: 'core');
+        $warnings = [];
 
         foreach ($courseids as $id) {
             try {
-                $course = get_course($id);
-                $courses[] = $course;
-            } catch (dml_missing_record_exception $e) {
+                $courses[] = get_course($id);
+            } catch (Throwable $e) {
+                $warnings[] = "course not found: $id";
                 continue;
             }
         }
@@ -122,7 +124,7 @@ class shortcodes {
 
         $chunks = array_chunk($formattedcourses, 3);
         $templatecontext['chunks'] = [];
-        
+
         foreach ($chunks as $index => $chunk) {
             $templatecontext['chunks'][] = [
                 'courses' => $chunk,
@@ -130,14 +132,14 @@ class shortcodes {
                 'index' => $index,
             ];
         }
-        
+
         if (!isset($args['template'])) {
             $template = 'courselist';
         } else {
             $template = $args['template'];
         }
-        $out = $OUTPUT->render_from_template('local_wb_news/courses/' . $template, $templatecontext); 
-        return $out;
+        $out = $OUTPUT->render_from_template('local_wb_news/courses/' . $template, $templatecontext);
+        return $out . implode("<br>", $warnings);
     }
 
     /**
