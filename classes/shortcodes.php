@@ -102,7 +102,12 @@ class shortcodes {
         $renderer = $PAGE->get_renderer(component: 'core');
 
         foreach ($courseids as $id) {
-            $courses[] = get_course($id);
+            try {
+                $course = get_course($id);
+                $courses[] = $course;
+            } catch (dml_missing_record_exception $e) {
+                continue;
+            }
         }
         foreach ($courses as $course) {
             $context = \context_course::instance($course->id);
