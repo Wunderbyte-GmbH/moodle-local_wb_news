@@ -116,4 +116,7 @@ $string['wb_news:view'] = 'View News';
 $string['wbnewscourse'] = 'List of courses';
 $string['wbnewslist'] = 'One or all instances of news';
 $string['wbnewsavailablecourses'] = 'All available courses';
+$string['wbnewsacompltedcourses'] = 'All completed courses';
+$string['wbnewsinprogresscourses'] = 'All active courses';
+
 $string['wbnewsmycourses'] = 'My courses';

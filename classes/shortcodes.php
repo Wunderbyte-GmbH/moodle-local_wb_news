@@ -177,7 +177,7 @@ class shortcodes {
      * @param Closure $next
      * @return string
      */
-    public static function wbnews_availableacourses($shortcode, $args, $content, $env, $next) {
+    public static function wbnews_availablecourses($shortcode, $args, $content, $env, $next) {
         global $USER, $PAGE, $OUTPUT, $CFG;
         return '';
         require_once($CFG->dirroot . '/course/externallib.php');
@@ -204,7 +204,7 @@ class shortcodes {
      * @param Closure $next
      * @return string
      */
-    public static function wbnews_availablecourses($shortcode, $args, $content, $env, $next) {
+    public static function wbnews_inprogresscourses($shortcode, $args, $content, $env, $next) {
         global $USER, $PAGE, $OUTPUT, $CFG;
         require_once($CFG->dirroot . '/course/externallib.php');
         require_once($CFG->dirroot . '/blocks/mycourses/classes/output/inprogress_view.php');
@@ -213,9 +213,34 @@ class shortcodes {
         $mycompletion = mycourses_get_my_completion();
 
         $availableview = new \block_mycourses\output\inprogress_view($mycompletion);
+        $templatecontext = $availableview->export_for_template($OUTPUT);
+        if (empty($templatecontext['courses'])) {
+            return '';
+        }
+        return $OUTPUT->render_from_template('local_wb_news/block_mycourses/inprogress-view', $templatecontext);
+    }
+
+    /**
+     * use wbnews to get courselist
+     *
+     * @param string $shortcode
+     * @param array $args
+     * @param string|null $content
+     * @param object $env
+     * @param Closure $next
+     * @return string
+     */
+    public static function wbnews_completedcourses($shortcode, $args, $content, $env, $next) {
+        global $USER, $PAGE, $OUTPUT, $CFG;
+        require_once($CFG->dirroot . '/course/externallib.php');
+        require_once($CFG->dirroot . '/blocks/mycourses/classes/output/completed_view.php');
+        require_once($CFG->dirroot . '/blocks/mycourses/locallib.php');
+
+        $mycompletion = mycourses_get_my_archive();
+    
+        $availableview = new \block_mycourses\output\completed_view($mycompletion);
         $formattedcourses = $availableview->export_for_template($OUTPUT);
         $chunks = array_chunk($formattedcourses['courses'], 3);
-
         $templatecontext['chunks'] = [];
         foreach ($chunks as $index => $chunk) {
             $templatecontext['chunks'][] = [
@@ -224,7 +249,6 @@ class shortcodes {
                 'index' => $index,
             ];
         }
-
 
         return $OUTPUT->render_from_template('local_wb_news/block_mycourses/slider', $templatecontext);
     }
