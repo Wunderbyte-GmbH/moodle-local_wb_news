@@ -30,8 +30,6 @@ use local_wb_news\helper;
 use stdClass;
 use core_course\external\course_summary_exporter;
 
-
-
 defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->dirroot . '/local/wb_news/lib.php');
@@ -140,5 +138,94 @@ class shortcodes {
         }
         $out = $OUTPUT->render_from_template('local_wb_news/courses/' . $template, $templatecontext); 
         return $out;
+    }
+
+    /**
+     * use wbnews to get courselist
+     *
+     * @param string $shortcode
+     * @param array $args
+     * @param string|null $content
+     * @param object $env
+     * @param Closure $next
+     * @return string
+     */
+    public static function wbnews_mycourses($shortcode, $args, $content, $env, $next) {
+        global $USER, $PAGE, $OUTPUT, $CFG;
+
+        require_once($CFG->dirroot . '/course/externallib.php');
+        require_once($CFG->dirroot . '/blocks/mycourses/classes/output/inprogress_view.php');
+        require_once($CFG->dirroot . '/blocks/mycourses/locallib.php');
+
+        $mycompletion = mycourses_get_my_completion();
+
+        $availableview = new \block_mycourses\output\inprogress_view($mycompletion);
+        $templatecontext = $availableview->export_for_template($OUTPUT);
+        if (empty($templatecontext['courses'])) {
+            return '';
+        }
+        return $OUTPUT->render_from_template('local_wb_news/block_mycourses/inprogress-view', $templatecontext);
+    }
+
+    /**
+     * use wbnews to get courselist
+     *
+     * @param string $shortcode
+     * @param array $args
+     * @param string|null $content
+     * @param object $env
+     * @param Closure $next
+     * @return string
+     */
+    public static function wbnews_availableacourses($shortcode, $args, $content, $env, $next) {
+        global $USER, $PAGE, $OUTPUT, $CFG;
+        return '';
+        require_once($CFG->dirroot . '/course/externallib.php');
+        require_once($CFG->dirroot . '/blocks/mycourses/classes/output/available_view.php');
+        require_once($CFG->dirroot . '/blocks/mycourses/locallib.php');
+
+        $mycompletion = mycourses_get_my_completion();
+
+        $availableview = new \block_mycourses\output\available_view($mycompletion);
+        $templatecontext = $availableview->export_for_template($OUTPUT);
+        if (empty($templatecontext['courses'])) {
+            return '';
+        }
+        return $OUTPUT->render_from_template('local_wb_news/block_mycourses/available-view', $templatecontext);
+    }
+
+    /**
+     * use wbnews to get courselist
+     *
+     * @param string $shortcode
+     * @param array $args
+     * @param string|null $content
+     * @param object $env
+     * @param Closure $next
+     * @return string
+     */
+    public static function wbnews_availablecourses($shortcode, $args, $content, $env, $next) {
+        global $USER, $PAGE, $OUTPUT, $CFG;
+        require_once($CFG->dirroot . '/course/externallib.php');
+        require_once($CFG->dirroot . '/blocks/mycourses/classes/output/inprogress_view.php');
+        require_once($CFG->dirroot . '/blocks/mycourses/locallib.php');
+
+        $mycompletion = mycourses_get_my_completion();
+
+        $availableview = new \block_mycourses\output\inprogress_view($mycompletion);
+        $formattedcourses = $availableview->export_for_template($OUTPUT);
+        $chunks = array_chunk($formattedcourses['courses'], 3);
+
+        $templatecontext['chunks'] = [];
+        foreach ($chunks as $index => $chunk) {
+            $templatecontext['chunks'][] = [
+                'courses' => $chunk,
+                'first' => ($index === 0),
+                'index' => $index,
+            ];
+        }
+
+
+        return $OUTPUT->render_from_template('local_wb_news/block_mycourses/slider', $templatecontext);
     }
 }

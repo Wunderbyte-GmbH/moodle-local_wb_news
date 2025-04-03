@@ -36,5 +36,15 @@ $shortcodes = [
         'wraps' => false,
         'description' => 'wbnewscourse',
     ],
+    'wbnewsmycourses' => [
+        'callback' => 'local_wb_news\shortcodes::wbnews_mycourses',
+        'wraps' => false,
+        'description' => 'wbnewscourse',
+    ],
+    'wbnewsavailablecourses' => [
+        'callback' => 'local_wb_news\shortcodes::wbnews_availablecourses',
+        'wraps' => false,
+        'description' => 'wbnewscourse',
+    ],
 ];
 
