@@ -1,0 +1,19 @@
+<div class="container">
+<h2 class="underline mb-4">Neuigkeiten</h2>
+<ul class="list-group">
+  {{#news}}
+  <li class="list-group-item">
+    <div class="d-flex justify-content-between">
+      <small class="text-muted">{{date}}</small>
+      <span class="badge bg-primary text-white">{{category}}</span>
+    </div>
+    <h5 class="mt-2 mb-1">
+      <a href="{{link}}" target="_blank">
+        {{title}}
+      </a>
+    </h5>
+    <p class="mb-1">{{teaser}}</p>
+  </li>
+  {{/news}}
+</ul>
+</div>
