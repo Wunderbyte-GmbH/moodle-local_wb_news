@@ -445,6 +445,7 @@ class addeditmodal extends dynamic_form {
         } else {
             $data = new \stdClass();
             $data->instanceid = $instanceid;
+            $data->btnlinkattributes = '';
         }
 
         $data->btnlinkattributes = explode(',', $data->btnlinkattributes);

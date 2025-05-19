@@ -246,7 +246,7 @@ class news {
      */
     public function get_news_item($id) {
 
-        $news = $this->news[$id];
+        $news = $this->news[$id] ?? null;
 
         return $news ?? null;
     }
@@ -344,8 +344,17 @@ class news {
         $data->fullname = "$USER->firstname $USER->lastname";
         $data->timemodified = time();
 
+        // We need to keep our element intact.5
+        $insertdata = clone($data);
+        // Unset all unwanted arrays.
+        foreach ($insertdata as $key => $value) {
+            if (is_array($value) || is_object($value)) {
+                unset($insertdata->$key);
+            }
+        }
+
         if ($id) {
-            $DB->update_record('local_wb_news', $data, true);
+            $DB->update_record('local_wb_news', $insertdata, true);
 
             $event = news_updated::create([
                 'context' => context_system::instance(),
@@ -355,8 +364,9 @@ class news {
 
             $event->trigger();
         } else {
-            $data->timecreated = time();
-            $id = $DB->insert_record('local_wb_news', $data, true);
+            $insertdata->timecreated = time();
+
+            $id = $DB->insert_record('local_wb_news', $insertdata, true);
 
             $event = news_created::create([
                 'context' => context_system::instance(),
@@ -366,6 +376,8 @@ class news {
 
             $event->trigger();
         }
+
+        $data->id = $id;
 
         if (isset($data->tags)) {
             core_tag_tag::set_item_tags('local_wb_news', 'local_wb_news', $id, context_system::instance(), $data->tags);
