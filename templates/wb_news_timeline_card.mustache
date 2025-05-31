@@ -22,20 +22,17 @@
 
     Example context (json):
     {
-        "id": "news Grid 1",
-        "news": [
-            {
-                "id": "news1",
-                "bgimage": "/local/wb_news/img/wb.jpg",
-                "icon": "/local/wb_news/img/icon.png",
-                "headline": "News 1",
-                "subheadline": "Image and Icon",
-                "description": "Image and Icon",
-                "btnlink": "https://link1.com",
-                "btntext": "Read More",
-                "headerimage": 1
-            }
-        ]
+        "id": "news1",
+        "bgimage": "/local/wb_news/img/wb.jpg",
+        "icon": "/local/wb_news/img/icon.png",
+        "headline": "News 1",
+        "sortorder": "ASC",
+        "subheadline": "Image and Icon",
+        "description": "Description: Image and Icon",
+        "btnlink": "https://link1.com",
+        "btntext": "Read More",
+        "headerimage": "/local/wb_news/img/wb.jpg",
+        "headerimagetext": "Header Image"
     }
 }}
 
@@ -49,7 +46,7 @@
       "
       >
         <div class="timeline-content">
-          <img src="{{headerimage}}" aria-label="{{headerimagetext}}" class="img-fluid mb-3">
+          <img src="{{headerimage}}" aria-label="{{headerimagetext}}" class="img-fluid mb-3" alt="{{headerimagetext}}">
           <h5>{{{headline}}}{{sortorder}}</h5>
           <p>{{{description}}}</p>
         </div>

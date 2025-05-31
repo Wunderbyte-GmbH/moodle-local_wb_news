@@ -25,7 +25,9 @@
     This template renders the completed view for the mycourses block.
 
     Example context (json):
-    {}
+    {
+        "nocourses": "/local/wb_news/img/wb.jpg"
+    }
 }}
   <div id="paged-content-container-{{uniqid}}" data-region="paged-content-container">
                 <div id="page-container-1" data-region="page-container" class="paged-content-page-container" aria-live="polite">
@@ -83,7 +85,7 @@
                             {{^courses}}
                                 <li class="list-group-item course-listitem border-left-0 border-right-0 border-top-0 px-2 rounded-0" data-region="course-content">
                                     <div class="text-xs-center text-center m-t-3">
-                                        <img class="empty-placeholder-image-lg" src="{{nocourses}}" alt="{{#str}} noinprogress, block_mycourses {{/str}}" role="presentation">
+                                        <img class="empty-placeholder-image-lg" src="{{nocourses}}" alt="{{#str}} noinprogress, block_mycourses {{/str}}">
                                         <p class="text-muted m-t-1">{{#str}} noinprogress, block_mycourses {{/str}}</p>
                                     </div>
                                 </li>
