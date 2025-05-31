@@ -27,6 +27,6 @@ $definitions = [
         'mode' => cache_store::MODE_APPLICATION,
         'simplekeys' => true,
         'simpledata' => true,
-        'ttl' => 3600 // Cache lifetime in seconds (e.g., 1 hour)
-    ]
+        'ttl' => 3600, // Cache lifetime in seconds (e.g., 1 hour).
+    ],
 ];

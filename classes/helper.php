@@ -33,7 +33,6 @@ use core_course\external\course_summary_exporter;
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class helper {
- 
     /**
      * Returns the URL of the image associated with the given course ID,
      * or a placeholder image URL if no image is associated with the course.

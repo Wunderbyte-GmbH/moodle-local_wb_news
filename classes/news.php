@@ -344,7 +344,7 @@ class news {
         $data->fullname = "$USER->firstname $USER->lastname";
         $data->timemodified = time();
 
-        // We need to keep our element intact.5
+        // We need to keep our element intact.5.
         $insertdata = clone($data);
         // Unset all unwanted arrays.
         foreach ($insertdata as $key => $value) {

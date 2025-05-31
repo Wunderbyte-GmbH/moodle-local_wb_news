@@ -39,7 +39,6 @@ require_once($CFG->dirroot . '/local/wb_news/lib.php');
  * Deals with local_shortcodes regarding booking.
  */
 class shortcodes {
-
     /**
      * Prints out list of previous history items in a card..
      * Arguments can be 'userid'.
@@ -261,79 +260,78 @@ class shortcodes {
     }
 
     /**
- * Render HLFS news list in a Moodle-compatible Mustache template.
- *
- * @param string $shortcode
- * @param array $args
- * @param string|null $content
- * @param object $env
- * @param Closure $next
- * @return string
- */
-public static function wbnews_hlfs_news($shortcode, $args, $content, $env, $next) {
-    global $OUTPUT;
+     * Render HLFS news list in a Moodle-compatible Mustache template.
+     *
+     * @param string $shortcode
+     * @param array $args
+     * @param string|null $content
+     * @param object $env
+     * @param Closure $next
+     * @return string
+     */
+    public static function wbnews_hlfs_news($shortcode, $args, $content, $env, $next) {
+        global $OUTPUT;
 
-    $news_url = "https://hlfs.hessen.de/aktuelles/neuigkeiten";
+        $newsurl = "https://hlfs.hessen.de/aktuelles/neuigkeiten";
 
-    // Step 1: Fetch the HTML
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $news_url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0");
-    $html = curl_exec($ch);
-    curl_close($ch);
+        // Step 1: Fetch the HTML.
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $newsurl);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0");
+        $html = curl_exec($ch);
+        curl_close($ch);
 
-    if (!$html) {
-        return ''; // Return empty string if fetch fails
-    }
+        if (!$html) {
+            return ''; // Return empty string if fetch fails.
+        }
 
-    // Step 2: Parse the HTML
-    libxml_use_internal_errors(true);
-    $dom = new \DOMDocument();
-    $dom->loadHTML($html);
-    libxml_clear_errors();
-    $xpath = new \DOMXPath($dom);
+        // Step 2: Parse the HTML.
+        libxml_use_internal_errors(true);
+        $dom = new \DOMDocument();
+        $dom->loadHTML($html);
+        libxml_clear_errors();
+        $xpath = new \DOMXPath($dom);
 
-    $articles = $xpath->query("//article[contains(@class, 'hw-article')]");
+        $articles = $xpath->query("//article[contains(@class, 'hw-article')]");
 
-    $cache = \cache::make('local_wb_news', 'hlfsnews'); // Define a store/component & key
-    $newsitems = $cache->get('latestnews');
+        $cache = \cache::make('local_wb_news', 'hlfsnews'); // Define a store/component & key.
+        $newsitems = $cache->get('latestnews');
 
-    if ($newsitems === false) {
-        $newsitems = [];
+        if ($newsitems === false) {
+            $newsitems = [];
 
-        foreach ($articles as $article) {
-            $atag = $xpath->query(".//a[contains(@class, 'teaser--area-link')]", $article)->item(0);
-            $link = $atag ? 'https://hlfs.hessen.de' . $atag->getAttribute('href') : '';
+            foreach ($articles as $article) {
+                $atag = $xpath->query(".//a[contains(@class, 'teaser--area-link')]", $article)->item(0);
+                $link = $atag ? 'https://hlfs.hessen.de' . $atag->getAttribute('href') : '';
 
-            $datenode = $xpath->query(".//p[contains(@class, 'date')]", $article)->item(0);
-            $date = $datenode && $datenode->textContent ? trim($datenode->textContent) : '';
-        
-            $categorynode = $xpath->query(".//p[contains(@class, 'teaser-generic__field-pt-dateline')]", $article)->item(0);
-            $category = $categorynode && $categorynode->textContent ? trim($categorynode->textContent) : '';
-        
-            $titlenode = $xpath->query(".//h2[contains(@class, 'headline')]", $article)->item(0);
-            $title = $titlenode && $titlenode->textContent ? trim($titlenode->textContent) : '';
-        
-            $teasernode = $xpath->query(".//div[contains(@class, 'teasertext')]", $article)->item(0);
-            $teaser = $teasernode && $teasernode->textContent ? trim($teasernode->textContent) : '';
-        
-            if ($title && $link) {
-                $newsitems[] = [
-                    'date' => $date,
-                    'category' => $category,
-                    'title' => $title,
-                    'teaser' => $teaser,
-                    'link' => $link
-                ];
+                $datenode = $xpath->query(".//p[contains(@class, 'date')]", $article)->item(0);
+                $date = $datenode && $datenode->textContent ? trim($datenode->textContent) : '';
+
+                $categorynode = $xpath->query(".//p[contains(@class, 'teaser-generic__field-pt-dateline')]", $article)->item(0);
+                $category = $categorynode && $categorynode->textContent ? trim($categorynode->textContent) : '';
+
+                $titlenode = $xpath->query(".//h2[contains(@class, 'headline')]", $article)->item(0);
+                $title = $titlenode && $titlenode->textContent ? trim($titlenode->textContent) : '';
+
+                $teasernode = $xpath->query(".//div[contains(@class, 'teasertext')]", $article)->item(0);
+                $teaser = $teasernode && $teasernode->textContent ? trim($teasernode->textContent) : '';
+
+                if ($title && $link) {
+                    $newsitems[] = [
+                        'date' => $date,
+                        'category' => $category,
+                        'title' => $title,
+                        'teaser' => $teaser,
+                        'link' => $link,
+                    ];
+                }
             }
         }
-    }
-    
-    // Step 3: Template context
-    $templatecontext = ['news' => $newsitems];
 
-    return $OUTPUT->render_from_template('local_wb_news/extnews/externnews', $templatecontext);
-    }
+        // Step 3: Template context.
+        $templatecontext = ['news' => $newsitems];
 
+        return $OUTPUT->render_from_template('local_wb_news/extnews/externnews', $templatecontext);
+    }
 }
