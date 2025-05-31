@@ -25,6 +25,21 @@
 
     Example context (json):
     {
+        "bgimage": "https://example.com/images/background.jpg",
+        "bgimagetext": "Background image showing a classroom",
+        "headerimage": "https://example.com/images/header.jpg",
+        "headerimagetext": "Header image with Moodle logo",
+        "publishedon": "31 May 2025",
+        "tags": [
+            "Moodle",
+            "Education",
+            "Release Notes"
+        ],
+        "headline": "Moodle 4.5 LTS Released",
+        "subheadline": "New features and long-term support improvements",
+        "description": "Moodle 4.5 brings exciting new features, enhanced performance, and extended support for institutions worldwide.",
+        "profileurl": "https://example.com/images/userprofile.jpg",
+        "fullname": "Jane Doe"
     }
 }}
 
@@ -34,10 +49,10 @@
             <div class="col-md-12">
                 <div class="row">
                 {{#bgimage}}
-                    <img class="img-fluid rounded-lg" src="{{bgimage}}" aria-label="{{bgimagetext}}"/>
+                    <img class="img-fluid rounded-lg" src="{{bgimage}}" aria-label="{{bgimagetext}}" alt="{{bgimagetext}}">
                 {{/bgimage}}
                 {{#headerimage}}
-                    <img class="img-fluid rounded-lg" src="{{headerimage}}" aria-label="{{headerimagetext}}"/>
+                    <img class="img-fluid rounded-lg" src="{{headerimage}}" aria-label="{{headerimagetext}}" alt="{{headerimagetext}}">
                 {{/headerimage}}
                 </div>
                 <div style="margin-top: 60px" class="row align-items-center mb-3">
@@ -58,7 +73,7 @@
                 <div class="content"><p>{{{description}}}</p>
                 </div>
                 <div class="row no-gutters wb_news-userinfo align-items-center w-100">
-                        <img src="{{profileurl}}" class="img-fluid rounded-circle" style="height: 50px" aria-label="{{#str}} profilepicture, local_wb_news, {{fullname}} {{/str}}">
+                        <img src="{{profileurl}}" class="img-fluid rounded-circle" style="height: 50px" aria-label="{{#str}} profilepicture, local_wb_news, {{fullname}} {{/str}}" alt="{{#str}} profilepicture, local_wb_news, {{fullname}} {{/str}}">
                         <span class="pl-2 smaller text-primary"><b>{{fullname}}</b></span>
                 </div>
             </div>
