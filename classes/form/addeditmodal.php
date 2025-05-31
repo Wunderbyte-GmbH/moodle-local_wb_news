@@ -160,7 +160,12 @@ class addeditmodal extends dynamic_form {
 
         $mform->addElement('header', 'additionaldatahdr', get_string('additionaldata', 'local_wb_news'));
 
-        $mform->addElement('textarea', 'keyvaluepairs', get_string('keyvaluepairs', 'local_wb_news'), 'wrap="virtual" rows="10" cols="50"');
+        $mform->addElement(
+            'textarea',
+            'keyvaluepairs',
+            get_string('keyvaluepairs', 'local_wb_news'),
+            'wrap="virtual" rows="10" cols="50"'
+        );
         $mform->setType('keyvaluepairs', PARAM_TEXT);
 
         if (core_tag_tag::is_enabled('local_wb_news', 'local_wb_news')) {
@@ -389,7 +394,7 @@ class addeditmodal extends dynamic_form {
                 $formatteddata .= "$key: $value\n";
             }
 
-            // Set the default value for the form
+            // Set the default value for the form.
             $data->keyvaluepairs = trim($formatteddata);
 
             $context = context_system::instance();
