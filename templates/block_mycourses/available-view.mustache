@@ -25,7 +25,9 @@
     This template renders the available view for the mycourses block.
 
     Example context (json):
-    {}
+    {
+        "nocourses": "/local/wb_news/img/wb.jpg"
+    }
 }}
 <div id="available-view-{{uniqid}}" data-region="available-view">
     <div id="paged-content-container-{{uniqid}}" data-region="paged-content-container">
@@ -50,20 +52,18 @@
                                             </span>
                                             {{{fullname}}}
                                         </a>
-                                        </br>
+                                        <br>
                                         {{ summary}}
                                 </div>
                             </div>
                         </li>
                     {{/courses}}
                     {{^courses}}
-                        </br>
                         <li class="list-group-item course-listitem border-left-0 border-right-0 border-top-0 px-2 rounded-0" data-region="course-content" data-course-id="5">
                             <div class="text-xs-center text-center m-t-3">
                                 <img class="empty-placeholder-image-lg"
                                     src="{{nocourses}}"
-                                    alt="{{#str}} noavailable, block_mycourses {{/str}}"
-                                    role="presentation">
+                                    alt="{{#str}} noavailable, block_mycourses {{/str}}">
                                 <p class="text-muted m-t-1">{{#str}} noavailable, block_mycourses {{/str}}</p>
                             </div>
                         </li>
