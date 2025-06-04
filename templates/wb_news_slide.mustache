@@ -22,16 +22,23 @@
 
     Example context (json):
     {
-        "headline": "Sample Headline",
-        "description": "Sample description text.",
-        "bgimage": "path/to/image.jpg",
-        "headerimage": "path/to/headerimage.jpg",
-        "imagecaption": "Sample image caption",
-        "instanceid": "unique_id",
-        "editmode": true,
         "lightmode": true,
-        "cssclasses": "extra-class",
-        "tags": ["tag1", "tag2"]
+        "cssclasses": "bg-dark p-5",
+        "tags": ["Update", "Feature", "Release"],
+        "headline": "Moodle 4.5: Now with AI Integration",
+        "description": "<p>Moodle 4.5 introduces seamless AI tools for grading, feedback, and student engagement.</p>",
+        "btntext": "Read More",
+        "btnlink": "https://moodle.example.com/news/moodle45-ai",
+        "btnlinktarget": "_blank",
+        "btnlinkrel": "noopener",
+        "dontshowarrows": false,
+        "instanceid": 7,
+        "editmode": false,
+        "bgimage": "https://moodle.example.com/images/slide-bg.jpg",
+        "headerimage": "/local/wb_news/img/wb.jpg",
+        "bgimagetext": "AI interface background",
+        "headerimagetext": "Header Image Text",
+        "imagecaption": "Screenshot of the new AI grading interface"
     }
 }}
 
@@ -63,7 +70,7 @@
     </div>
     <div class="right-panel">
         <div class="image-container w-100">
-            <img src="{{bgimage}}{{headerimage}}" class="img-fluid w-100" aria-label="{{bgimagetext}}{{headerimagetext}}">
+            <img src="{{bgimage}}{{headerimage}}" class="img-fluid w-100" aria-label="{{bgimagetext}}{{headerimagetext}}" alt="{{bgimagetext}}{{headerimagetext}}">
             {{#imagecaption}}
             <div class="image-caption">{{imagecaption}}</div>
             {{/imagecaption}}
