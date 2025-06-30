@@ -12,7 +12,7 @@ jobs:
     with:
       min_php: '7.4'
 
-      # mustache_ignore_names: ''
+      mustache_ignore_names: 'coursecard_horizontal.mustache,coursecard.mustache'
 
       workarounds: |
         # WORKAROUND 17/04/2025: The following code is a workaround for the "File is stale and needs to be rebuilt" error
