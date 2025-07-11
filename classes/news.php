@@ -122,6 +122,8 @@ class news {
 
                 $this->name = $instance->name ?? 'noname';
                 $this->template = $instance->template ?? 'notemplate';
+                $this->columns = $instance->columns ?? 0;
+                $this->contextids = $instance->contextids ?? '';
             }
 
             foreach ($news as $newsitem) {
