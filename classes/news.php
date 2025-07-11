@@ -527,7 +527,7 @@ class news {
             return true;
         } else {
             $data->timecreated = time();
-            $id = $DB->insert_record('local_wb_news_instance', $data, true);
+            $data->id = $DB->insert_record('local_wb_news_instance', $data, true);
 
             $event = instance_created::create([
                 'context' => context_system::instance(),
