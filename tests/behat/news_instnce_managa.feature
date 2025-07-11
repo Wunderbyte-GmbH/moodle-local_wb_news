@@ -59,3 +59,32 @@ Feature: Test management of the wb_news instance.
     ## Validate tab template
     And I click on "button[data-target^='#instance-']" "css_element"
     And "//ul[contains(@id, 'wb_news_tab-')]" "xpath_element" should exist
+
+  @javascript
+  Scenario: News: Add instance via DB, edit and delete it via UI
+    Given the following "local_wb_news > news instances" exist:
+      | name       | template                   | columns | contexts                |
+      | Instance 0 | local_wb_news/wb_news_grid | 2       | System wide, Category 1 |
+    And I log in as "admin"
+    When I visit "/local/wb_news/index.php"
+    ## View the instance
+    Then I should see "Instance 0" in the "[data-id=\"wb-news-all-instances-container\"]" "css_element"
+    ## Edit the instance
+    And I click on ".wb-news-addeditbutton.fa-edit" "css_element"
+    And I wait "1" seconds
+    And I set the field "Name" to "News instance 0"
+    And I set the field "Template" to "Tabs template"
+    And I should see "System wide" in the "//div[contains(@id, 'fitem_id_contextids_')]//div[contains(@id, 'form_autocomplete_selection-')]" "xpath_element"
+    And I should see "Category 1" in the "//div[contains(@id, 'fitem_id_contextids_')]//div[contains(@id, 'form_autocomplete_selection-')]" "xpath_element"
+    And I press "Save changes"
+    And I wait "1" seconds
+    ## View updated instance
+    Then I should see "News instance 0" in the "[data-id=\"wb-news-all-instances-container\"]" "css_element"
+    ## Validate tab template
+    And I click on "button[data-target^='#instance-']" "css_element"
+    And "//ul[contains(@id, 'wb_news_tab-')]" "xpath_element" should exist
+    ## Delete the instance
+    And I click on ".wb-news-deletebutton.fa-trash" "css_element"
+    And I should see "Confirm deletion of this news item" in the ".modal.show .modal-header" "css_element"
+    And I press "Save changes"
+    And I should not see "News instance 0" in the "[data-id=\"wb-news-all-instances-container\"]" "css_element"
