@@ -16,7 +16,7 @@ Feature: Test management of the wb_news instance.
       | name  | category | idnumber |
       | Cat 1 | 0        | CAT1     |
     And the following "courses" exist:
-      | category | fullname | shortname | 
+      | category | fullname | shortname |
       | CAT1     | Course 1 | C1        |
     And the following "course enrolments" exist:
       | user     | course | role           |
@@ -49,8 +49,8 @@ Feature: Test management of the wb_news instance.
     And I wait "1" seconds
     And I set the field "Name" to "News instance 1"
     And the field "Columns" matches value "6"
-    And I should see "Cat 1" in the "//div[contains(@id, 'fitem_id_contextids_')]//div[contains(@id, 'form_autocomplete_selection-')]" "xpath_element"
-    And I should see "Category 1" in the "//div[contains(@id, 'fitem_id_contextids_')]//div[contains(@id, 'form_autocomplete_selection-')]" "xpath_element"
+    And I should see "Cat 1" in the "//div[contains(@id, 'fitem_id_contextids_')]//div[contains(@class, 'form-autocomplete-multiple')]" "xpath_element"
+    And I should see "Category 1" in the "//div[contains(@id, 'fitem_id_contextids_')]//div[contains(@class, 'form-autocomplete-multiple')]" "xpath_element"
     And I set the field "Template" to "Tabs template"
     And I press "Save changes"
     And I wait "1" seconds
@@ -74,8 +74,8 @@ Feature: Test management of the wb_news instance.
     And I wait "1" seconds
     And I set the field "Name" to "News instance 0"
     And I set the field "Template" to "Tabs template"
-    And I should see "System wide" in the "//div[contains(@id, 'fitem_id_contextids_')]//div[contains(@id, 'form_autocomplete_selection-')]" "xpath_element"
-    And I should see "Category 1" in the "//div[contains(@id, 'fitem_id_contextids_')]//div[contains(@id, 'form_autocomplete_selection-')]" "xpath_element"
+    And I should see "System wide" in the "//div[contains(@id, 'fitem_id_contextids_')]//div[contains(@class, 'form-autocomplete-multiple')]" "xpath_element"
+    And I should see "Category 1" in the "//div[contains(@id, 'fitem_id_contextids_')]//div[contains(@class, 'form-autocomplete-multiple')]" "xpath_element"
     And I press "Save changes"
     And I wait "1" seconds
     ## View updated instance
