@@ -36,6 +36,27 @@ class behat_local_wb_news_generator extends behat_generator_base {
                 'datagenerator' => 'news_instance',
                 'required' => ['name', 'template', 'contexts'],
             ],
+            'news items' => [
+                'singular' => 'news item',
+                'datagenerator' => 'news_item',
+                'required' => ['instance', 'headline'],
+                'switchids' => ['instance' => 'instanceid', 'user' => 'userid'],
+            ],
         ];
+    }
+
+    /**
+     * Get the news instance ID using the instance name.
+     *
+     * @param string $instancename
+     * @return int The instance id
+     */
+    protected function get_instance_id(string $instancename): int {
+        global $DB;
+
+        if (!$id = $DB->get_field('local_wb_news_instance', 'id', ['name' => $instancename])) {
+            throw new Exception('The specified news instance with name "' . $instancename . '" does not exist');
+        }
+        return $id;
     }
 }
