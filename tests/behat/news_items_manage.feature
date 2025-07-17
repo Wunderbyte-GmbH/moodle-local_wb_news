@@ -95,9 +95,9 @@ Feature: Test management of the wb_news instance items.
   @javascript
   Scenario: News: Add and edit instance items via DB
     Given the following "local_wb_news > news items" exist:
-      | instance  | headline  | description  | bgimagefilepath                               | iconfilepath                                 |
-      | Instance1 | HeadNews1 | Description1 | local/wb_news/tests/fixtures/image_sample.png |                                              |
-      | Instance1 | HeadNews2 | Description2 |                                               | local/wb_news/tests/fixtures/icon_sample.png |
+      | instance  | headline  | description  | bgimagefilepath                               | bgimagetext  | iconfilepath                                 | icontext    |
+      | Instance1 | HeadNews1 | Description1 | local/wb_news/tests/fixtures/image_sample.png | N1 image alt |                                              |             |
+      | Instance1 | HeadNews2 | Description2 |                                               |              | local/wb_news/tests/fixtures/icon_sample.png | N2 icon alt |
     And I log in as "admin"
     When I visit "/local/wb_news/index.php"
     Then I should see "Instance1" in the "[data-id=\"wb-news-all-instances-container\"]" "css_element"
@@ -106,5 +106,5 @@ Feature: Test management of the wb_news instance items.
     And I should see "HeadNews2" in the ".wb-news-container" "css_element"
     And I should see "Description1" in the ".wb-news-container" "css_element"
     And I should see "Description2" in the ".wb-news-container" "css_element"
-    ##And the image at "//div[contains(@class, 'wb-news-container')]//img[contains(@class, 'wb_news-headerimage') and contains(@src, 'pluginfile.php') and contains(@src, '/local_wb_news/bgimage/') and @alt='I1 adv image alt text']" "xpath_element" should be identical to "local/wb_news/tests/fixtures/image_sample.png"
-    ##And the image at "//div[contains(@class, 'wb-news-container')]//img[contains(@class, 'card-icon') and contains(@src, 'pluginfile.php') and contains(@src, '/local_wb_news/icon/') and @alt='I1 adv icon alt text']" "xpath_element" should be identical to "local/wb_news/tests/fixtures/icon_sample.png"
+    And the image at "//div[contains(@class, 'wb-news-container')]//img[contains(@class, 'wb_news-headerimage') and contains(@src, 'pluginfile.php') and contains(@src, '/local_wb_news/bgimage/') and @alt='N1 image alt']" "xpath_element" should be identical to "local/wb_news/tests/fixtures/image_sample.png"
+    And the image at "//div[contains(@class, 'wb-news-container')]//img[contains(@class, 'card-icon') and contains(@src, 'pluginfile.php') and contains(@src, '/local_wb_news/icon/') and @alt='N2 icon alt']" "xpath_element" should be identical to "local/wb_news/tests/fixtures/icon_sample.png"
