@@ -61,15 +61,17 @@ class local_wb_news_generator extends testing_module_generator {
      * @return stdClass the news item object
      */
     public function create_news_item($record = null) {
-        global $USER, $DB;
+        global $CFG, $USER, $DB;
 
         $record = (object) $record;
 
-                // Some defaults.
+        // Required defaults.
         $record->subheadline = $record->subheadline ?? '';
         $record->description = $record->description ?? '';
         $record->descriptionformat = $record->descriptionformat ?? 0;
         $record->userid = $record->userid ?? $USER->id;
+        $record->json = $record->json ?? '{}';
+        $record->btnlinkattributes = $record->btnlinkattributes ?? '';
 
         $news = news::getinstance($record->instanceid);
         if (empty($record->id)) {
@@ -81,30 +83,37 @@ class local_wb_news_generator extends testing_module_generator {
         $contextid = context_system::instance()->id;
 
         $fs = get_file_storage();
-        // Create a dummy bgimage file.
-        $filerecord = [
-            'contextid' => $contextid,
-            'component' => $component,
-            'filearea' => 'bgimage',
-            'itemid' => $record->id,
-            'filepath' => '/',
-            'filename' => basename($record->bgimagefilepath),
-        ];
-        if (file_exists($record->bgimagefilepath)) {
-            $fs->create_file_from_pathname($filerecord, $record->bgimagefilepath);
+
+        if (!empty($record->bgimagefilepath)) {
+            $record->bgimagefilepath = "{$CFG->dirroot}/{$record->bgimagefilepath}";
+            // Create a dummy bgimage file.
+            $filerecord = [
+                'contextid' => $contextid,
+                'component' => $component,
+                'filearea' => 'bgimage',
+                'itemid' => $record->id,
+                'filepath' => '/',
+                'filename' => basename($record->bgimagefilepath),
+            ];
+            if (file_exists($record->bgimagefilepath)) {
+                $fs->create_file_from_pathname($filerecord, $record->bgimagefilepath);
+            }
         }
 
-        // Create a dummy bgimage file.
-        $filerecord = [
-            'contextid' => $contextid,
-            'component' => $component,
-            'filearea' => 'icon',
-            'itemid' => $record->id,
-            'filepath' => '/',
-            'filename' => basename($record->iconfilepath),
-        ];
-        if (file_exists($record->iconfilepath)) {
-            $fs->create_file_from_pathname($filerecord, $record->iconfilepath);
+        if (!empty($record->iconfilepath)) {
+            $record->iconfilepath = "{$CFG->dirroot}/{$record->iconfilepath}";
+            // Create a dummy bgimage file.
+            $filerecord = [
+                'contextid' => $contextid,
+                'component' => $component,
+                'filearea' => 'icon',
+                'itemid' => $record->id,
+                'filepath' => '/',
+                'filename' => basename($record->iconfilepath),
+            ];
+            if (file_exists($record->iconfilepath)) {
+                $fs->create_file_from_pathname($filerecord, $record->iconfilepath);
+            }
         }
 
         $record->bgimage = null;
