@@ -772,11 +772,11 @@ class news {
     /**
      * Summary of get_id_from_slug
      * @param string $slug
-     * @return int
+     * @return array
      */
-    public static function get_id_from_slug(string $slug): int {
+    public static function get_ids_from_slug(string $slug): array {
         global $DB;
-        $id = $DB->get_field('local_wb_news', 'id', ['slug' => $slug], MUST_EXIST);
-        return $id;
+        $record = $DB->get_record('local_wb_news', ['slug' => $slug], 'id, instanceid', MUST_EXIST);
+        return [$record->id, $record->instanceid];
     }
 }

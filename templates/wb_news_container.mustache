@@ -55,7 +55,7 @@
 {{#instances}}
     {{#instancenameonindex}}
     <div class="my-4">
-    <button class="btn btn-primary btn-collapse mr-2" type="button" data-toggle="collapse" data-target="#instance-{{instanceid}}" aria-expanded="false">
+    <button class="btn btn-primary btn-collapse mr-2" type="button" data-bs-toggle="collapse" data-bs-target="#instance-{{instanceid}}" aria-expanded="false">
     <i class="fa fa-chevron-down"></i>
     <i class="fa fa-chevron-up"></i>
     </button>
@@ -68,10 +68,11 @@
         data-id="{{instanceid}}"
         data-isinstance="true">
     </div>
-    <div class="wb-news-deletebutton btn btn-secondary fa-trash fa"
+    <div class="wb-news-deletebutton btn btn-secondary"
         data-action="delete"
         data-id="{{instanceid}}"
         data-isinstance="true">
+        <i class="fa fa-trash" aria-hidden="true"></i>
     </div>
     <span class="h4 ml-2">{{instancenameonindex}}</span> <span>{{shortcode}}</span>
     </div>

@@ -24,7 +24,7 @@
  */
 
 use local_wb_news\news;
-use local_wb_news\output\wb_news;
+use local_wb_news\output\newsview;
 
 require_once(__DIR__ . '/../../config.php'); // phpcs:ignore moodle.Files.RequireLogin.Missing
 
@@ -42,8 +42,8 @@ $PAGE->set_pagelayout('standard');
 $PAGE->set_context($context);
 $PAGE->set_url('/verkehrserziehung/' . $slug);
 
-$id = news::get_id_from_slug($slug);
-$newsview = new wb_news($id);
+list($id, $instanceid) = news::get_ids_from_slug($slug);
+$newsview = new newsview($id, $instanceid);
 
 echo $OUTPUT->header();
 
@@ -63,6 +63,6 @@ if (
 }
 $output = $PAGE->get_renderer('local_wb_news');
 
-echo $output->render_newsinstance($newsview);
+echo $output->render_newsview($newsview);
 
 echo $OUTPUT->footer();
