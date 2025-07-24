@@ -266,5 +266,19 @@ function xmldb_local_wb_news_upgrade($oldversion) {
         upgrade_plugin_savepoint(true, 2024122004, 'local', 'wb_news');
     }
 
+    if ($oldversion < 2025072400) {
+        // Define field slug to be added to local_wb_news.
+        $table = new xmldb_table('local_wb_news');
+        $field = new xmldb_field('slug', XMLDB_TYPE_CHAR, '255', null, null, null, null, 'instanceid'); // oder ein anderes Feld, nach dem es eingefügt werden soll
+
+        // Conditionally launch add field slug.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Local wb_news upgrade savepoint.
+        upgrade_plugin_savepoint(true, 2025072400, 'local', 'wb_news');
+    }
+
     return true;
 }

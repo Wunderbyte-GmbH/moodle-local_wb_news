@@ -768,4 +768,15 @@ class news {
 
         return $returnarray;
     }
+
+    /**
+     * Summary of get_id_from_slug
+     * @param string $slug
+     * @return int
+     */
+    public static function get_id_from_slug(string $slug): int {
+        global $DB;
+        $id = $DB->get_field('local_wb_news', 'id', ['slug' => $slug], MUST_EXIST);
+        return $id;
+    }
 }

@@ -76,6 +76,9 @@ class addeditmodal extends dynamic_form {
         $mform->addElement('text', 'headline', get_string('headline', 'local_wb_news'));
         $mform->setType('headline', PARAM_RAW);
 
+        $mform->addElement('text', 'slug', get_string('slug', 'local_wb_news'));
+        $mform->setType('slug', PARAM_TEXT);
+
         $mform->addElement('advcheckbox', 'active', get_string('activenews', 'local_wb_news'));
         $mform->setType('icon', PARAM_TEXT);
 
@@ -489,7 +492,10 @@ class addeditmodal extends dynamic_form {
     public function validation($data, $files) {
 
         $errors = [];
-
+        
+        if (!preg_match('/^[a-zA-Z0-9-]+$/', $data['slug'])) {
+            $errors['slug'] = get_string('invalidslug', 'local_wb_news');
+        }
         return $errors;
     }
 
