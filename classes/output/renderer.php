@@ -49,4 +49,17 @@ class renderer extends plugin_renderer_base {
         $data = $data->export_for_template($this);
         return $this->render_from_template('local_wb_news/wb_news_blog_detail_view', $data);
     }
+
+    /**
+     * Render wbnews instance
+     *
+     * @param mixed $data
+     *
+     * @return [type]
+     *
+     */
+    public function render_newsinstance($data) {
+        $data = $data->export_for_template($this);
+        return $this->render_from_template('local_wb_news/wb_news_container', $data);
+    }
 }

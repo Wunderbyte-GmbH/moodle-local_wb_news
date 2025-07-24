@@ -40,15 +40,14 @@ $returnurl = optional_param('returnurl', '', PARAM_URL);
 
 $context = context_system::instance();
 require_capability('local/wb_news:view', $context);
-
+$PAGE->set_pagetype("local-wb_news-newsview-id$id");
+$PAGE->set_pagelayout('standard');
 $PAGE->set_context($context);
 $url = new moodle_url('/local/wb_news/newsview.php', ['id' => $id, 'instanceid' => $instanceid]);
 $PAGE->set_url($url);
 
 $newsview = new newsview($id, $instanceid);
-
 $PAGE->set_title($newsview->return_headline());
-$PAGE->set_pagelayout('base');
 
 echo $OUTPUT->header();
 
