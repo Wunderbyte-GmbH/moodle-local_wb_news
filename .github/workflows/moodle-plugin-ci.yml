@@ -12,6 +12,10 @@ jobs:
     with:
       min_php: '7.4'
 
+      # If you need to install additional plugins as dependencies
+      extra_plugin_runners: |
+        moodle-plugin-ci add-plugin --branch master branchup/moodle-filter_shortcodes
+
       mustache_ignore_names: 'coursecard_horizontal.mustache,coursecard.mustache'
 
       workarounds: |
