@@ -108,3 +108,21 @@ Feature: Test management of the wb_news instance items.
     And I should see "Description2" in the ".wb-news-container" "css_element"
     And the image at "//div[contains(@class, 'wb-news-container')]//img[contains(@class, 'wb_news-headerimage') and contains(@src, 'pluginfile.php') and contains(@src, '/local_wb_news/bgimage/') and @alt='N1 image alt']" "xpath_element" should be identical to "local/wb_news/tests/fixtures/image_sample.png"
     And the image at "//div[contains(@class, 'wb-news-container')]//img[contains(@class, 'card-icon') and contains(@src, 'pluginfile.php') and contains(@src, '/local_wb_news/icon/') and @alt='N2 icon alt']" "xpath_element" should be identical to "local/wb_news/tests/fixtures/icon_sample.png"
+
+  @javascript
+  Scenario: News: Add instance items via DB and view them as student on Moodle page
+    Given the following "activities" exist:
+      | activity | name       | intro      | course | idnumber |
+      | page     | PageNews1  | PageDesc1  | C1     | PAGE1    |
+    And the following "local_wb_news > news items" exist:
+      | instance  | headline  | description  | bgimagefilepath                               | bgimagetext  | iconfilepath                                 | icontext    |
+      | Instance1 | HeadNews1 | Description1 | local/wb_news/tests/fixtures/image_sample.png | N1 image alt |                                              |             |
+      | Instance1 | HeadNews2 | Description2 |                                               |              | local/wb_news/tests/fixtures/icon_sample.png | N2 icon alt |
+    And News instance "Instance1" has been added to the Page resource "PageNews1"
+    And I am on the "PageNews1" "page activity" page logged in as student1
+    And I should see "HeadNews1" in the ".wb-news-container" "css_element"
+    And I should see "HeadNews2" in the ".wb-news-container" "css_element"
+    And I should see "Description1" in the ".wb-news-container" "css_element"
+    And I should see "Description2" in the ".wb-news-container" "css_element"
+    And the image at "//div[contains(@class, 'wb-news-container')]//img[contains(@class, 'wb_news-headerimage') and contains(@src, 'pluginfile.php') and contains(@src, '/local_wb_news/bgimage/') and @alt='N1 image alt']" "xpath_element" should be identical to "local/wb_news/tests/fixtures/image_sample.png"
+    And the image at "//div[contains(@class, 'wb-news-container')]//img[contains(@class, 'card-icon') and contains(@src, 'pluginfile.php') and contains(@src, '/local_wb_news/icon/') and @alt='N2 icon alt']" "xpath_element" should be identical to "local/wb_news/tests/fixtures/icon_sample.png"
