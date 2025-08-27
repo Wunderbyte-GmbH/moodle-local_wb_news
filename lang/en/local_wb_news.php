@@ -100,6 +100,7 @@ $string['success'] = 'News saved successfully!';
 $string['system'] = 'System wide';
 $string['tabstemplate'] = 'Tabs template';
 $string['tagarea_news'] = 'WB News';
+$string['tagarea_local_wb_news'] = 'WB News items';
 $string['template'] = 'Template';
 $string['timelinetemplate'] = 'Timeline template';
 $string['timelinetemplate2'] = 'Timeline Mode2 template';

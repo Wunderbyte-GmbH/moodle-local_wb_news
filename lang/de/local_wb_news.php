@@ -93,6 +93,7 @@ $string['previous'] = 'Zurück';
 $string['profilepicture'] = 'Profilbild';
 $string['profilepicturealttext'] = 'Bild von {$a}';
 $string['redirect'] = 'Sie werden gleich weitergeleitet';
+$string['tagarea_local_wb_news'] = 'WB News Einträge';
 $string['tocourse'] = 'Zum Kurs';
 $string['wbnewscourse'] = 'Liste von Kursen';
 $string['wbnewslist'] = 'Liste von News';
