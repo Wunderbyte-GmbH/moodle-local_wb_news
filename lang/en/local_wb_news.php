@@ -45,6 +45,7 @@ $string['btnlinkparent'] = 'Opens the link in the parent frame';
 $string['btnlinkself'] = 'Opens the link in the same frame as it was clicked';
 $string['btnlinktop'] = 'Opens the link in the full body of the window';
 $string['btntext'] = 'Button Text';
+$string['cachedef_hlfsnews'] = 'Wunderbyte News: Cache for news';
 $string['columns'] = 'Columns';
 $string['confirmcopy'] = 'Confirm copy.';
 $string['confirmdelete'] = 'Confirm deletion. This action cannot be reversed.';
