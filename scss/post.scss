@@ -1,0 +1,590 @@
+#inst51 {
+    margin-bottom: 0px !important;
+  }
+  
+  #page-site-index #page-header {
+    display: none;
+  }        
+  .fullwidth-image {
+              position: relative;
+              width: 100%;
+              max-height: 70vh;
+              height: 750px;
+              background: url('https://hlfs.wunderbyte.at/pluginfile.php/1/theme_boost_union/additionalresources/0/fw-stock.jpg') no-repeat center center/cover;
+          }
+  .fullwidth-image.fullwidth-faq {
+              background: url('https://hlfs.wunderbyte.at/pluginfile.php/1/theme_boost_union/additionalresources/0/faqheader.png') no-repeat center center/cover;
+       background-color: rgba(0, 0, 0, 0.03);
+  }
+  .fullwidth-image.fullwidth-info {
+       background:url(https://hlfs.wunderbyte.at/pluginfile.php/1/theme_boost_union/additionalresources/0/infoseite.jpg) no-repeat center center/cover
+  }
+  
+          .fullwidth-image .text-block {
+              position: absolute;
+              top: 300px;
+              left: 0%;
+              transform: translateY(-50%);
+              background: white;
+              padding: 30px;
+              max-width: 400px;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+              border-radius: 10px;
+          }
+  
+  @media (min-width: 768px) {
+      body:not(.editing) #page.drawers #theme-block-region-outside-bottom{
+          margin-left: -3rem;
+          margin-right: -3rem;
+          max-width: 100vw;
+      }
+  #page-footer {
+    margin-left: -3rem;
+    margin-right: -3rem;
+    max-width: 100vw;
+  }
+  }
+  body:not(.editing)  #block-region-outside-bottom, #footnote {
+    max-width: 100vw;
+  }
+  
+  
+    .stats-box {
+              background-color: white;
+              padding: 20px;
+              text-align: center;
+              border-radius: 10px;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+              padding: 50px;
+          }
+          .stats-container {
+              background: url('https://hlfs.wunderbyte.at/pluginfile.php/1/theme_boost_union/additionalresources/0/infoseite.jpg') no-repeat bottom center;
+              background-size: cover;
+              padding: 100px 0;
+          }
+          .stats-number {
+              font-size: 3rem;
+              font-weight: bold;
+          }
+  
+  .course-card .card-img-top, .theme-card .card-img-top {
+    height: 14em
+  }
+  
+  .card.course-card a.coursename {
+    font-size: 22px
+  }
+  
+  #theme-block-region-outside-bottom,#inst50 {
+    margin-bottom: 0px !important;
+    border-radius: 0;
+  }
+  
+  #inst50 a {
+      color: #fff !important;
+  }
+  
+  .custom-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .card1 { 
+    background-color: #1f4b89; 
+  }
+  .card2 { 
+    background-color: #6c83ae; 
+  }
+  .card3 { 
+    background-color: #98a7c2; 
+  }
+  .custom-card .icon { 
+    font-size: 3rem;
+    margin-bottom: 10px; 
+  }
+  h2.underline {
+    display: inline-block;
+    font-size: 1.8rem;
+    font-weight: bold;
+    position: relative;
+  }
+  
+  h2.underline::after {
+      content: "";
+      display: block;
+      width: 50%;
+      height: 4px;
+      background-color: #1f3b75;
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+  }
+  
+  
+    .stats-box {
+              background-color: white;
+              padding: 20px;
+              text-align: center;
+              border-radius: 10px;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+              padding: 50px;
+          }
+          .stats-container {
+              background: url('https://hlfs.wunderbyte.at/pluginfile.php/1/theme_boost_union/additionalresources/0/infoseite.jpg') no-repeat bottom center;
+              background-size: cover;
+              padding: 150px 0;
+          }
+          .stats-number {
+              font-size: 3rem;
+              font-weight: bold;
+          }
+  
+  
+  
+  @media (min-width: 768px) {
+      body:not(.editing) #page.drawers #theme-block-region-outside-bottom{
+          margin-left: -3rem;
+          margin-right: -3rem;
+          max-width: 100vw;
+      }
+  #page-footer, 
+  body:not(.backgroundimage):not(.loginbackgroundimage) #footnote{ 
+    margin-left: -3rem;
+    margin-right: -3rem;
+    max-width: 100vw;
+  }
+  }
+  body:not(.editing)  #block-region-outside-bottom {
+    max-width: 100vw;
+  }
+  
+  body:not(.editing)  #block-region-outside-bottom  .block_html.block.card {
+    max-width: 100vw;
+  }
+  #inst51 .card-body.p-3,#inst51 .card-text.content.mt-3, #inst51{
+    padding: 0px !important;
+    margin: 0px;
+    border-radius: 0px;
+    border: none;
+    color: #000
+  }
+  
+  #footnote {
+      padding-top: 40px;
+      background: #2352A2;
+      color: #fff;
+  }
+  
+  #footnote a {
+     color: #fff;
+  }
+  
+  .photo-tile-text h3 {
+    border: 2px solid white;
+    min-width: 90%;
+    width: 80%;
+    text-align: left;
+  }
+  
+  .format-tiles .course-content ul.tiles .tile.phototile.tilestyle-1 .photo-tile-text, .format-tiles .course-content ul.tiles .tile.phototile.tilestyle-2 .photo-tile-text {
+    top: calc(90% - 60px)
+  }
+  .format-tiles .course-content ul.tiles .tile.tilestyle-1, .format-tiles .course-content ul.tiles .tile.tilestyle-2 {
+      border: none;
+      border-radius: 7px;
+  }
+  
+  .login-form-submit .btn {
+    width: 100%
+  }
+  
+  .login-form-forgotpassword {
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 500;
+  }
+  
+  /* Forgot password php */
+  #page-login-forgot_password .generalbox {
+     text-align: center
+  }
+  
+  .login-container  #fitem_id_username 
+   .col-form-label.col-md-3.d-flex, 
+  .login-container  #fitem_id_submitbuttonusername .col-form-label.col-md-3.d-flex, 
+  .login-container  #fitem_id_submitbuttonemail .col-form-label.col-md-3.d-flex,
+  .login-container  #fitem_id_email .col-form-label.col-md-3.d-flex {
+    display: none !important;
+  }
+  
+  #page-login-forgot_password .btn[type="submit"] {
+    font-size: 1.2em;
+    padding: 10px 35px
+  }
+  
+  #page-login-forgot_password .form-control {
+    font-size: 1.4em;
+  }
+  
+  div.iomadlink, div.iomadlinkreports {
+      width: 180px;
+  }
+  
+  /* Forgot password php  End*/
+  
+  /* Login Form */ 
+  #page-login-index .login-divider, #page-login-index .login-languagemenu, #page-login-index .divider,
+  [data-modal-title-str*="cookiesenabled"] {
+    display: none;
+  }
+  
+  .login-container  {
+    padding: 30px 30px 5px 30px;
+  }
+  
+  .login-container #logoimage {
+    height: 120px
+  }
+  
+  .block_mycourses.block {
+    margin: auto;
+    width: 100%;
+    max-width: 1520px;
+  }
+  
+  #page-site-index .block_mycourses.block .card-body{
+      width: 100%;
+      padding-right: 15px;
+      padding-left: 15px;
+      margin-right: auto;
+      margin-left: auto;
+      margin-top: 40px;
+      margin-bottom: 40px;
+  }
+  
+  p,a, .btn, input, [type="text"],.form-control{
+   font-size: 1.1rem;
+   font-family: sans-serif;
+  }
+  
+  .list-course-card h3{
+    border-top-right-radius: 9px;
+    border-top-left-radius: 9px;
+  }
+  #page-local-wb_faq-index #topofscroll {
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+  }
+  #page-local-wb_faq-index #page-content {
+    margin-top: 0px;
+  }
+
+  #theme-block-region-outside-bottom.theme-block-region-outside-fullwidth {
+    width: unset;
+  }
+  
+  #page-login-forgot_password .login-container::before {
+    content: "";
+    display: block;
+    width: 250px;
+    height: 120px;
+    background-image: url('https://hlfs.wunderbyte.at/pluginfile.php/1/theme_boost_union/logo/0x200/1744704097/Screenshot%202025-03-13%20at%2012.51.38.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0 auto;
+  }
+  
+  
+  .stretched-link::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+      pointer-events: auto;
+      content: "";
+      background-color: rgba(0, 0, 0, 0);
+  }
+  
+  .custom-card a{
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 700;
+  }
+  
+  [id^="page-theme-boost_union-pages-page"] #region-main > div > h2::after
+  {
+    content: "";
+    display: block;
+    width: 50%;
+    height: 4px;
+    background-color: #1f3b75;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+  }
+  
+  
+  [id^="page-theme-boost_union-pages-page"] #region-main > div > h2
+  {
+    display: inline-block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    position: relative;
+  } 
+  
+  #page-course-view-tiles #page-content {
+    width: 100%;
+    max-width: 1520px;
+    margin: auto;
+  }
+  
+  .tab-pane a {
+    word-break: break-word;
+  }
+  
+  /** FAQ **/
+  
+  #page-local-wb_faq-index li.accordion-item .card {
+    padding: 0px;
+  }
+  #page-local-wb_faq-index .accordion-item {
+    margin-bottom: 20px;
+  }
+  #page-local-wb_faq-index .accordion-header .btn.btn-link {
+    padding: 20px 40px;
+    display: flex;
+    color: black !important;
+  }
+  
+  #page-local-wb_faq-index .accordion-header .btn i {
+    position: absolute;
+    right: 0;
+    top: 25px;
+  }
+  
+  #page-local-wb_faq-index .accordion-body {
+    border: none;
+  }
+  
+  #page-local-wb_faq-index .accordion-item .card {
+    border-width: 2px;
+    border-color: rgb(0 0 0 / .03);;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+  
+  #page-local-wb_faq-index button {
+    font-size: 1.8rem;
+  }
+  
+  .wb_faq-badge {
+    display: none;
+  }
+  
+  #wb_faq_searchbox>.card {
+    border: none;
+  }
+  
+  
+  .fullwidth-text-container {
+    position: absolute;
+    top: 250px;
+  }
+  .form-control.searchfaq-2 {
+    width: 400px;
+    height: 60px;
+  }
+  
+  .faq-search-container::after {
+      content: '\f002'; /* FontAwesome unicode for search icon */
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute;
+      right: 10px;
+      font-size: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: #000;
+  }
+  
+  #page-local-wb_faq-index .faq-search-container {
+      position: absolute;
+      top: 400px;
+  }
+  
+  .wb-breadcrumb {
+    display: none;
+  }
+  
+  
+  h1.underline {
+      display: inline-block;
+      font-size: 3rem;
+      font-weight: 700;
+      position: relative;
+  }
+  
+  h1.underline::after {
+      content: "";
+      display: block;
+      width: 50%;
+      height: 4px;
+      background-color: #1f3b75;
+      position: absolute;
+      left: 0;
+  }
+  h1.underline.text-white::after {
+      background-color: #fff;
+  }
+  
+  
+  
+  #page-local-wb_faq-index [aria-expanded
+  ='false'] .fa-angle-double-right::before {
+      content: "\f107" !important; /* fa-angle-down unicode */
+  }
+  #page-local-wb_faq-index [aria-expanded
+  ='true'] .fa-angle-double-right::before {
+      content: "\f106" !important; /* fa-angle-down unicode */
+  }
+  
+  .path-theme-boost_union-pages #region-main > div > h2 {
+    display: none !important;
+  }
+  
+  .custom-card a:focus {
+    outline: none !important;
+  }
+  
+  .text-shadow {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  }
+  
+    @media (min-width: 1920px) {
+    .container-xl, .container-lg, .container-md, .container-sm, .container {
+      width: 100%;
+      max-width: 1520px;
+    }
+  }
+  @media (min-width: 1620px) {
+    .container-xl, .container-lg, .container-md, .container-sm, .container {
+      max-width: 1520px;
+      width: 100%;
+    }
+  }
+  
+  .landingblock, .landingblock > section,#page-site-index, .theme-block-region-outside-, body:not(#page-local-wb_faq-index) #block-region-outside-bottom section, body:not(#page-local-wb_faq-index):not(#page-blocks-iomad_company_admin-index) {
+    background-color: #efefed;
+  }
+  
+  .landingblock > section .container {
+    background: white;
+    border-radius: 0.5rem;
+  }
+  
+  #page.drawers .main-inner {
+    width: 100%;
+    max-width: 1520px;
+  }
+  
+  .landingblock > section .container-gray {
+    padding: 0;
+    background: #efefed;
+    border-radius: 0;
+  }
+  
+  .landingblock {
+    margin-bottom: 30px;
+  }
+  .custom-card {
+    border-radius: 0.5rem;
+  }
+  
+  #block-region-outside-bottom .block.card {
+    border: none;
+  }
+  
+  #topofscroll {
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
+  
+  .format-tiles .course-content ul.tiles .tile.phototile.tilestyle-1 .photo-tile-text h3, .format-tiles .course-content ul.tiles .tile.phototile.tilestyle-2 .photo-tile-text h3 {
+    text-align: left;
+    padding-left: 20px !important;
+    background-color: #334f9a !important;
+  }
+  
+  @media (min-width: 1200px) {
+    #page-theme-boost_union-pages-page1 #topofscroll {
+      padding: 0 65px;
+    }
+  }
+  
+  
+  @media (max-width:700px) {
+  .fullwidth-text-container {
+    left: 20px;
+    }
+  #page-local-wb_faq-index .faq-search-container {
+    left: 20px;
+  }
+  .fullwidth-text-container h1 {
+    font-size: 3rem;
+  }
+  }
+
+.list-course-card {
+  border-radius: 10px;
+}     
+.list-course-card h3 {
+  border-top-left-radius: 0px;
+}
+.list-news .list-course-card h3 {
+  border-top-left-radius: 9px;
+}
+@media (max-width:768px) { 
+  .list-course-card h3 {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+  }
+
+}
+
+.list-course-card .card-left-image {
+  border-top-left-radius: 9px;
+  border-bottom-left-radius: 9px;
+}
+.card.course-card {
+  border-radius: 10px;
+
+}
+.card-img, .card-img-top  {
+  border-radius: calc(10px - 1px);
+}
+.footer h5 {
+  position: relative;
+  display: inline-block;
+}
+.footer h5::after
+ {  bottom: -4px;
+    content: "";
+    display: block;
+    height: 1px;
+    background-color: #fff;
+    position: absolute;
+    width: 130%;
+}
+.footer-logo {
+  height: 10vh;
+}

@@ -119,4 +119,6 @@ $string['wbnewsavailablecourses'] = 'All available courses';
 $string['wbnewsacompltedcourses'] = 'All completed courses';
 $string['wbnewsinprogresscourses'] = 'All active courses';
 $string['wbnewshlfsnews'] = 'wbnewshlfsnews';
+$string['wbnewslastvisitedcourses'] = 'last visited coursed';
 $string['wbnewsmycourses'] = 'My courses';
+

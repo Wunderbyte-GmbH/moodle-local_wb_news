@@ -1,19 +1,55 @@
-<div class="container">
-<h2 class="underline mb-4">Neuigkeiten</h2>
-<ul class="list-group">
-  {{#news}}
-  <li class="list-group-item">
-    <div class="d-flex justify-content-between">
-      <small class="text-muted">{{date}}</small>
-      <span class="badge bg-primary text-white">{{category}}</span>
-    </div>
-    <h5 class="mt-2 mb-1">
-      <a href="{{link}}" target="_blank">
+
+<div class="container-fluid">
+<div class="row">
+<div class="col-10 ">
+<ul class="list-unstyled list-news">
+{{#news}}
+<li class="list-course-card d-flex mb-4 flex-row align-items-stretch" role="listitem" data-region="news-content">
+  <!-- Content Section -->
+  <div class="col-md-12 d-flex flex-column justify-content-between p-0">
+    <h3 class="fw-bold p-4 text-left bg-primary text-white">{{category}}<span class="float-right date">{{date}}</span></h3>
+    <div class="card-body">
+      <h3 class="mb-2 newstitle">
         {{title}}
-      </a>
-    </h5>
-    <p class="mb-1">{{teaser}}</p>
-  </li>
-  {{/news}}
+      </h3>
+      {{#teaser}}
+      <p class="text-muted mb-2">{{teaser}}</p>
+      {{/teaser}}
+      <div class="mt-4">
+        <a class="btn btn-primary mb-4" href="{{link}}" target="_blank">mehr Informationen</a>
+      </div>
+    </div>
+  </div>
+</li>
+{{/news}}
+<a class="btn btn-primary" href="https://hlfs.hessen.de/aktuelles/neuigkeiten" target="_blank">Ältere Nachrichten</a>
 </ul>
 </div>
+<div class="col-2">
+<div class="card weather-card">
+  <div class="card-body">
+  {{#weather}}
+  <div class="weather-item">
+    <img src="{{icon}}" alt="" />
+    <strong>{{city}}</strong>: {{temp}}
+  </div>
+{{/weather}}
+  </div>
+
+</div>
+</div>
+</div>
+
+<style>
+.newstitle a {
+    font-size: 24px;
+}
+h3 .date {
+    font-weight: 400;
+    font-size: 22px;
+}
+
+.weather-card {
+    border: 1px solid #000 !important;
+}
+</style>

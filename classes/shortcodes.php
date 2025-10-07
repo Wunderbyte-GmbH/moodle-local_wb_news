@@ -259,4 +259,174 @@ class shortcodes {
 
         return $OUTPUT->render_from_template('local_wb_news/block_mycourses/slider', $templatecontext);
     }
+
+    /**
+     * Output last visited courses
+     *
+     * @param string $shortcode
+     * @param array $args
+     * @param string|null $content
+     * @param object $env
+     * @param Closure $next
+     * @return string
+     */
+    public static function wbnews_lastvisitedcourses($shortcode, $args, $content, $env, $next) {
+        global $USER, $DB, $OUTPUT, $PAGE;
+    
+        if (isguestuser() || !isloggedin()) {
+            return '';
+        }
+    
+        $limit = isset($args['limit']) ? (int)$args['limit'] : 3;
+        $renderer = $PAGE->get_renderer('core');
+    
+        // Fetch last visited unique courses
+        $sql = "SELECT DISTINCT l.courseid, MAX(l.timecreated) AS lastaccess
+                  FROM {logstore_standard_log} l
+                 WHERE l.userid = :userid
+                   AND l.courseid != 1
+                   AND l.eventname = :eventname
+              GROUP BY l.courseid
+              ORDER BY lastaccess DESC";
+        $params = [
+            'userid' => $USER->id,
+            'eventname' => '\\core\\event\\course_viewed'
+        ];
+    
+        $logrecords = $DB->get_records_sql($sql, $params, 0, $limit);
+        if (!$logrecords) {
+            return 'Keine kürzlich besuchten Kurse gefunden.';
+        }
+    
+        $coursesdata = [];
+        foreach ($logrecords as $log) {
+            if (!$DB->record_exists('course', ['id' => $log->courseid])) {
+                continue;
+            }
+            $course = get_course($log->courseid);
+            $context = \context_course::instance($course->id);
+            $exporter = new course_summary_exporter($course, ['context' => $context, 'isfavourite' => false]);
+            $formatted = $exporter->export($renderer);
+            $formatted->courseimage = helper::get_course_image($course);
+    
+            if (empty($formatted->courseimage)) {
+                $formatted->courseimage = "https://placehold.co/600x400";
+            }
+    
+            $coursesdata[] = [
+                'id' => $course->id,
+                'fullname' => $formatted->fullname,
+                'summary' => $formatted->summary,
+                'image' => $formatted->courseimage,
+                'url' => (new \moodle_url('/course/view.php', ['id' => $course->id]))->out()
+            ];
+        }
+    
+        // Pass data to Mustache template
+        $data = ['courses' => $coursesdata];
+    
+        // Render output
+        return $OUTPUT->render_from_template('local_wb_news/block_mycourses/lastvisited-view', $data);
+    }
+
+    /**
+     * Render HLFS news list and weather slider in a Moodle-compatible Mustache template.
+     *
+     * @param string $shortcode
+     * @param array $args
+     * @param string|null $content
+     * @param object $env
+     * @param Closure $next
+     * @return string
+     */
+    public static function wbnews_hlfs_news($shortcode, $args, $content, $env, $next) {
+        global $OUTPUT;
+
+        $cache = \cache::make('local_wb_news', 'hlfsnews');
+        $newsitems = $cache->get('latestnews');
+        $weatheritems = $cache->get('weather');
+
+        if ($newsitems === false || $weatheritems === false) {
+            $newsitems = [];
+            $weatheritems = [];
+
+            $url = "https://hlfs.hessen.de/";
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0");
+            $html = curl_exec($ch);
+            curl_close($ch);
+
+            if ($html) {
+                libxml_use_internal_errors(true);
+                $dom = new \DOMDocument();
+                $dom->loadHTML($html);
+                libxml_clear_errors();
+                $xpath = new \DOMXPath($dom);
+
+                // Scrape news
+                $articles = $xpath->query("//article[contains(@class, 'media-teaser__list-wrapper')]//article[contains(@class, 'hw-article')]");
+                foreach ($articles as $article) {
+                    $atag = $xpath->query(".//a[contains(@class, 'teaser--area-link')]", $article)->item(0);
+                    $link = $atag ? 'https://hlfs.hessen.de' . $atag->getAttribute('href') : '';
+
+                    $datenode = $xpath->query(".//p[contains(@class, 'date')]", $article)->item(0);
+                    $date = $datenode && $datenode->textContent ? trim($datenode->textContent) : '';
+
+                    $categorynode = $xpath->query(".//p[contains(@class, 'teaser-generic__field-pt-dateline')]", $article)->item(0);
+                    $category = $categorynode && $categorynode->textContent ? trim($categorynode->textContent) : '';
+
+                    $titlenode = $xpath->query(".//h2[contains(@class, 'headline')]", $article)->item(0);
+                    $title = $titlenode && $titlenode->textContent ? trim($titlenode->textContent) : '';
+
+                    $teasernode = $xpath->query(".//div[contains(@class, 'teasertext')]", $article)->item(0);
+                    $teaser = $teasernode && $teasernode->textContent ? trim($teasernode->textContent) : '';
+
+                    if ($title && $link) {
+                        $newsitems[] = [
+                            'date' => $date,
+                            'category' => $category,
+                            'title' => $title,
+                            'teaser' => $teaser,
+                            'link' => $link
+                        ];
+                    }
+                }
+
+                // Scrape weather
+                $carousel_items = $xpath->query("//div[@id='weather-slider']//div[contains(@class, 'carousel-item')]");
+                foreach ($carousel_items as $item) {
+                    $city_node = $xpath->query(".//span[contains(@class, 'title')]", $item)->item(0);
+                    $temp_node = $xpath->query(".//span[contains(@class, 'temp')]", $item)->item(0);
+                    $img_node = $xpath->query(".//img", $item)->item(0);
+
+                    $city = $city_node ? trim($city_node->textContent) : '';
+                    $temp = $temp_node ? trim($temp_node->textContent) : '';
+                    $icon = $img_node ? $img_node->getAttribute('src') : '';
+                    $icon = $icon ? 'https://hlfs.hessen.de' . $icon : '';
+
+                    if ($city && $temp) {
+                        $weatheritems[] = [
+                            'city' => $city,
+                            'temp' => $temp,
+                            'icon' => $icon
+                        ];
+                    }
+                }
+
+                // Cache results
+                $cache->set('latestnews', $newsitems);
+                $cache->set('weather', $weatheritems);
+            }
+        }
+
+        $templatecontext = [
+            'news' => $newsitems,
+            'weather' => $weatheritems
+        ];
+
+        return $OUTPUT->render_from_template('local_wb_news/extnews/externnews', $templatecontext);
+    }
+
 }

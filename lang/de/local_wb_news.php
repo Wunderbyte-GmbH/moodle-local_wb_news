@@ -96,3 +96,4 @@ $string['redirect'] = 'Sie werden gleich weitergeleitet';
 $string['tocourse'] = 'Zum Kurs';
 $string['wbnewscourse'] = 'Liste von Kursen';
 $string['wbnewslist'] = 'Liste von News';
+$string['wbnewslastvisitedcourses'] = 'last visited coursed';
