@@ -219,6 +219,23 @@ class shortcodes {
         if (empty($templatecontext['courses'])) {
             return '';
         }
+        $index = 0;
+        foreach ($templatecontext['courses'] as $course) {
+            $isArray = is_array($course);
+            $id = $isArray ? ($course['id'] ?? null) : ($course->id ?? null);
+            $visible = $isArray ? ($course['visible'] ?? null) : ($course->visible ?? null);
+            $hidden  = $isArray ? ($course['hidden']  ?? null) : ($course->hidden  ?? null);
+
+            if (empty($id) || $id === '0' || $id === 0 || 
+                $hidden === true || $hidden === 1 || $hidden === '1' || 
+                ($visible !== null && (string)$visible !== '1')) {
+                unset($templatecontext['courses'][$index]);
+            }
+            $index++;
+        }
+        $templatecontext['courses'] = array_values($templatecontext['courses']);
+
+
         return $OUTPUT->render_from_template('local_wb_news/block_mycourses/inprogress-view', $templatecontext);
     }
 

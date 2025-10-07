@@ -275,13 +275,13 @@
     border-top-right-radius: 9px;
     border-top-left-radius: 9px;
   }
-  #page-local-wb_faq-index #topofscroll {
+  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-page3) #topofscroll {
       margin-top: 0;
       margin-bottom: 0;
       padding-top: 0;
       padding-bottom: 0;
   }
-  #page-local-wb_faq-index #page-content {
+  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-page3) #page-content {
     margin-top: 0px;
   }
 
@@ -353,36 +353,36 @@
   
   /** FAQ **/
   
-  #page-local-wb_faq-index li.accordion-item .card {
+  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-page3) li.accordion-item .card {
     padding: 0px;
   }
-  #page-local-wb_faq-index .accordion-item {
+  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-page3) .accordion-item {
     margin-bottom: 20px;
   }
-  #page-local-wb_faq-index .accordion-header .btn.btn-link {
+  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-page3) .accordion-header .btn.btn-link {
     padding: 20px 40px;
     display: flex;
     color: black !important;
   }
   
-  #page-local-wb_faq-index .accordion-header .btn i {
+  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-page3) .accordion-header .btn i {
     position: absolute;
     right: 0;
     top: 25px;
   }
   
-  #page-local-wb_faq-index .accordion-body {
+  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-page3) .accordion-body {
     border: none;
   }
   
-  #page-local-wb_faq-index .accordion-item .card {
+  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-page3) .accordion-item .card {
     border-width: 2px;
     border-color: rgb(0 0 0 / .03);;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
   }
   
-  #page-local-wb_faq-index button {
+  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-page3) button {
     font-size: 1.8rem;
   }
   
@@ -417,7 +417,7 @@
       color: #000;
   }
   
-  #page-local-wb_faq-index .faq-search-container {
+  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-page3) .faq-search-container {
       position: absolute;
       top: 400px;
   }
@@ -449,11 +449,11 @@
   
   
   
-  #page-local-wb_faq-index [aria-expanded
+  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-page3) [aria-expanded
   ='false'] .fa-angle-double-right::before {
       content: "\f107" !important; /* fa-angle-down unicode */
   }
-  #page-local-wb_faq-index [aria-expanded
+  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-page3) [aria-expanded
   ='true'] .fa-angle-double-right::before {
       content: "\f106" !important; /* fa-angle-down unicode */
   }
@@ -536,7 +536,7 @@
   .fullwidth-text-container {
     left: 20px;
     }
-  #page-local-wb_faq-index .faq-search-container {
+  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-page3) .faq-search-container {
     left: 20px;
   }
   .fullwidth-text-container h1 {
