@@ -226,8 +226,8 @@ class shortcodes {
             $visible = $isArray ? ($course['visible'] ?? null) : ($course->visible ?? null);
             $hidden  = $isArray ? ($course['hidden']  ?? null) : ($course->hidden  ?? null);
 
-            if (empty($id) || $id === '0' || $id === 0 || 
-                $hidden === true || $hidden === 1 || $hidden === '1' || 
+            if (empty($id) || $id === '0' || $id === 0 ||
+                $hidden === true || $hidden === 1 || $hidden === '1' ||
                 ($visible !== null && (string)$visible !== '1')) {
                 unset($templatecontext['courses'][$index]);
             }
@@ -255,7 +255,6 @@ class shortcodes {
         require_once($CFG->dirroot . '/blocks/mycourses/classes/output/completed_view.php');
         require_once($CFG->dirroot . '/blocks/mycourses/locallib.php');
 
-        $mycompletion = mycourses_get_my_archive();
         $mycompletion = mycourses_get_my_archive();
 
         $availableview = new \block_mycourses\output\completed_view($mycompletion);
@@ -289,14 +288,14 @@ class shortcodes {
      */
     public static function wbnews_lastvisitedcourses($shortcode, $args, $content, $env, $next) {
         global $USER, $DB, $OUTPUT, $PAGE;
-    
+
         if (isguestuser() || !isloggedin()) {
             return '';
         }
-    
+
         $limit = isset($args['limit']) ? (int)$args['limit'] : 3;
         $renderer = $PAGE->get_renderer('core');
-    
+
         // Fetch last visited unique courses
         $sql = "SELECT DISTINCT l.courseid, MAX(l.timecreated) AS lastaccess
                   FROM {logstore_standard_log} l
@@ -309,12 +308,12 @@ class shortcodes {
             'userid' => $USER->id,
             'eventname' => '\\core\\event\\course_viewed'
         ];
-    
+
         $logrecords = $DB->get_records_sql($sql, $params, 0, $limit);
         if (!$logrecords) {
             return 'Keine kürzlich besuchten Kurse gefunden.';
         }
-    
+
         $coursesdata = [];
         foreach ($logrecords as $log) {
             if (!$DB->record_exists('course', ['id' => $log->courseid])) {
@@ -325,11 +324,11 @@ class shortcodes {
             $exporter = new course_summary_exporter($course, ['context' => $context, 'isfavourite' => false]);
             $formatted = $exporter->export($renderer);
             $formatted->courseimage = helper::get_course_image($course);
-    
+
             if (empty($formatted->courseimage)) {
                 $formatted->courseimage = "https://placehold.co/600x400";
             }
-    
+
             $coursesdata[] = [
                 'id' => $course->id,
                 'fullname' => $formatted->fullname,
@@ -338,10 +337,10 @@ class shortcodes {
                 'url' => (new \moodle_url('/course/view.php', ['id' => $course->id]))->out()
             ];
         }
-    
+
         // Pass data to Mustache template
         $data = ['courses' => $coursesdata];
-    
+
         // Render output
         return $OUTPUT->render_from_template('local_wb_news/block_mycourses/lastvisited-view', $data);
     }
