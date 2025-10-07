@@ -240,7 +240,7 @@ class shortcodes {
     }
 
     /**
-     * use wbnews to get courselist
+     * Use wbnews to get courselist
      *
      * @param string $shortcode
      * @param array $args
@@ -250,30 +250,68 @@ class shortcodes {
      * @return string
      */
     public static function wbnews_completedcourses($shortcode, $args, $content, $env, $next) {
-        global $USER, $PAGE, $OUTPUT, $CFG;
-        require_once($CFG->dirroot . '/course/externallib.php');
-        require_once($CFG->dirroot . '/blocks/mycourses/classes/output/completed_view.php');
-        require_once($CFG->dirroot . '/blocks/mycourses/locallib.php');
+        global $USER, $PAGE, $OUTPUT, $CFG, $DB;
 
-        $mycompletion = mycourses_get_my_archive();
+        try {
+            require_once($CFG->dirroot . '/course/externallib.php');
+            require_once($CFG->dirroot . '/blocks/mycourses/classes/output/completed_view.php');
+            require_once($CFG->dirroot . '/blocks/mycourses/locallib.php');
 
-        $availableview = new \block_mycourses\output\completed_view($mycompletion);
-        $formattedcourses = $availableview->export_for_template($OUTPUT);
+            // Get completed courses with error handling
+            $mycompletion = mycourses_get_my_archive();
 
-        if (empty($formattedcourses)) {
+            if (empty($mycompletion)) {
+                return '';
+            }
+
+            // Filter out courses that no longer exist in the database
+            $validcompletion = [];
+            foreach ($mycompletion as $course) {
+                if (isset($course->id)) {
+                    // Check if course still exists before processing
+                    if ($DB->record_exists('course', ['id' => $course->id])) {
+                        $validcompletion[] = $course;
+                    } else {
+                        // Log the missing course for debugging
+                        debugging("Course with ID {$course->id} not found in database, skipping from completed courses list", DEBUG_DEVELOPER);
+                    }
+                }
+            }
+
+            if (empty($validcompletion)) {
+                return '';
+            }
+
+            $availableview = new \block_mycourses\output\completed_view($validcompletion);
+            $formattedcourses = $availableview->export_for_template($OUTPUT);
+
+            if (empty($formattedcourses) || empty($formattedcourses['courses'])) {
+                return '';
+            }
+
+            $chunks = array_chunk($formattedcourses['courses'], 3);
+            $templatecontext['chunks'] = [];
+
+            foreach ($chunks as $index => $chunk) {
+                $templatecontext['chunks'][] = [
+                        'courses' => $chunk,
+                        'first' => ($index === 0),
+                        'index' => $index,
+                ];
+            }
+
+            return $OUTPUT->render_from_template('local_wb_news/block_mycourses/slider', $templatecontext);
+
+        } catch (dml_missing_record_exception $e) {
+            // Handle missing database records gracefully
+            debugging('Database record not found in wbnews_completedcourses: ' . $e->getMessage(), DEBUG_DEVELOPER);
+            return '';
+
+        } catch (Exception $e) {
+            // Catch any other exceptions to prevent breaking the frontpage
+            debugging('Error in wbnews_completedcourses: ' . $e->getMessage(), DEBUG_DEVELOPER);
             return '';
         }
-        $chunks = array_chunk($formattedcourses['courses'], 3);
-        $templatecontext['chunks'] = [];
-        foreach ($chunks as $index => $chunk) {
-            $templatecontext['chunks'][] = [
-                'courses' => $chunk,
-                'first' => ($index === 0),
-                'index' => $index,
-            ];
-        }
-
-        return $OUTPUT->render_from_template('local_wb_news/block_mycourses/slider', $templatecontext);
     }
 
     /**
