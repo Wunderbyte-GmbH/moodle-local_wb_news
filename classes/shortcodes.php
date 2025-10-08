@@ -221,10 +221,10 @@ class shortcodes {
         }
         $index = 0;
         foreach ($templatecontext['courses'] as $course) {
-            $isArray = is_array($course);
-            $id = $isArray ? ($course['id'] ?? null) : ($course->id ?? null);
-            $visible = $isArray ? ($course['visible'] ?? null) : ($course->visible ?? null);
-            $hidden  = $isArray ? ($course['hidden']  ?? null) : ($course->hidden  ?? null);
+            $isarray = is_array($course);
+            $id = $isarray ? ($course['id'] ?? null) : ($course->id ?? null);
+            $visible = $isarray ? ($course['visible'] ?? null) : ($course->visible ?? null);
+            $hidden  = $isarray ? ($course['hidden']  ?? null) : ($course->hidden  ?? null);
 
             if (empty($id) || $id === '0' || $id === 0 ||
                 $hidden === true || $hidden === 1 || $hidden === '1' ||
@@ -263,26 +263,15 @@ class shortcodes {
             if (empty($mycompletion)) {
                 return '';
             }
-
-            // Filter out courses that no longer exist in the database
-            $validcompletion = [];
-            foreach ($mycompletion as $course) {
-                if (isset($course->id)) {
-                    // Check if course still exists before processing
-                    if ($DB->record_exists('course', ['id' => $course->id])) {
-                        $validcompletion[] = $course;
-                    } else {
-                        // Log the missing course for debugging
-                        debugging("Course with ID {$course->id} not found in database, skipping from completed courses list", DEBUG_DEVELOPER);
-                    }
+            $validcompletions = new stdClass();
+            $validcompletions->mycompleted = [];
+            foreach ($mycompletion->mycompleted as $item) {
+                if ($DB->record_exists('course', ['id' => $item->courseid])) {
+                    $validcompletions->mycompleted[] = $item;
                 }
             }
 
-            if (empty($validcompletion)) {
-                return '';
-            }
-
-            $availableview = new \block_mycourses\output\completed_view($validcompletion);
+            $availableview = new \block_mycourses\output\completed_view($validcompletions);
             $formattedcourses = $availableview->export_for_template($OUTPUT);
 
             if (empty($formattedcourses) || empty($formattedcourses['courses'])) {
