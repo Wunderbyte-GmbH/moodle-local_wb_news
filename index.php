@@ -32,8 +32,8 @@ use context;
 // @codingStandardsIgnoreStart
 require('../../config.php');
 // @codingStandardsIgnoreEnd
-require_once($CFG->libdir.'/formslib.php');
-require_once($CFG->libdir.'/datalib.php');
+require_once($CFG->libdir . '/formslib.php');
+require_once($CFG->libdir . '/datalib.php');
 
 $context = \context_system::instance();
 $PAGE->set_context($context);

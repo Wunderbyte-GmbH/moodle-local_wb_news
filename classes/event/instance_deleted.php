@@ -30,7 +30,6 @@ namespace local_wb_news\event;
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class instance_deleted extends \core\event\base {
-
     /**
      * The init function
      */

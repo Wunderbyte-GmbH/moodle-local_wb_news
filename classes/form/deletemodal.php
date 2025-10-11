@@ -41,7 +41,6 @@ use context_system;
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class deletemodal extends dynamic_form {
-
     /**
      * {@inheritdoc}
      * @see moodleform::definition()
@@ -71,7 +70,6 @@ class deletemodal extends dynamic_form {
     protected function check_access_for_dynamic_submission(): void {
         // phpcs:ignore
         // TODO: capability to create advisors
-
     }
 
     /**

@@ -37,7 +37,6 @@ use context_system;
  *
  */
 class wb_news implements renderable, templatable {
-
     /**
      * News items is the array used for output.
      *
@@ -125,5 +124,4 @@ class wb_news implements renderable, templatable {
 
         return $this->return_list();
     }
-
 }

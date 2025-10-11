@@ -99,7 +99,6 @@ class addeditinstancemodal extends dynamic_form {
         ];
 
         $mform->addElement('autocomplete', 'contextids', get_string('alloweditincontext', 'local_wb_news'), $categories, $options);
-
     }
 
     /**
@@ -110,7 +109,6 @@ class addeditinstancemodal extends dynamic_form {
     protected function check_access_for_dynamic_submission(): void {
         // phpcs:ignore
         // TODO: capability to create advisors
-
     }
 
     /**
