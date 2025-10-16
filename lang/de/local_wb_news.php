@@ -45,6 +45,7 @@ $string['btnlinkparent'] = 'Öffnet den Link im übergeordneten Frame';
 $string['btnlinkself'] = 'Öffnet den Link im gleichen Frame, in dem er angeklickt wurde';
 $string['btnlinktop'] = 'Öffnet den Link im gesamten Fensterbereich';
 $string['btntext'] = 'Schaltflächentext';
+$string['cachedef_hlfsnews'] = 'HLFS News';
 $string['columns'] = 'Spalten';
 $string['confirmcopy'] = 'Bestätige das Kopieren';
 $string['confirmdelete'] = 'Bestätige das Löschen. Dieser Vorgang kann nicht rückgängig gemacht werden.';
