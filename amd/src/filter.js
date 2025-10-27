@@ -17,46 +17,12 @@
  * @copyright  Wunderbyte GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
 const SELECTORS = {
-    ALLINSTANCES: '[data-id="wb-categoryfilter-instance"]',
-    ITEMCONTAINER: '[data-id="wb-categoryfilter-items"]',
+    ROOT: '[data-id="wb-categoryfilter-instance"]',
+    ROWS: '[data-id="wb-categoryfilter-items"]',
+    ITEM: '[data-category]',
+    SLIDE: '.carousel-item'
 };
-
-function buildDropdown(categories, onSelect) {
-    const wrapper = document.createElement('div');
-    wrapper.className = 'dropdown mb-3';
-    wrapper.innerHTML = `
-<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-id="wb-categoryfilter-button">Kategorie: Alle</button>
-<ul class="dropdown-menu" data-id="wb-categoryfilter-menu"></ul>`;
-    const ul = wrapper.querySelector('[data-id="wb-categoryfilter-menu"]');
-
-    const addItem = (label, value) => {
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.className = 'dropdown-item';
-        a.href = '#';
-        a.setAttribute('data-value', value);
-        a.textContent = label;
-        li.appendChild(a);
-        ul.appendChild(li);
-    };
-
-    addItem('Alle', '__all__');
-    categories.forEach(c => addItem(c, c));
-
-    wrapper.addEventListener('click', e => {
-        const a = e.target.closest('a.dropdown-item');
-        if (!a) return;
-        e.preventDefault();
-        const value = a.getAttribute('data-value');
-        const btn = wrapper.querySelector('[data-id="wb-categoryfilter-button"]');
-        btn.textContent = 'Kategorie: ' + (value === '__all__' ? 'Alle' : a.textContent);
-        onSelect(value);
-    });
-
-    return wrapper;
-}
 
 function normalizeList(val) {
     return (val || '')
@@ -65,9 +31,68 @@ function normalizeList(val) {
         .filter(Boolean);
 }
 
-function setupInstance(container) {
-    const listRoot = container.querySelector(SELECTORS.ITEMCONTAINER) || container;
-    const items = Array.from(listRoot.querySelectorAll('[data-category]'));
+function buildDropdown(categories, onSelect) {
+    const wrap = document.createElement('div');
+    wrap.className = 'dropdown mb-3';
+    wrap.innerHTML = `
+<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" data-id="wb-categoryfilter-button">Kategorie: Alle</button>
+<ul class="dropdown-menu" data-id="wb-categoryfilter-menu"></ul>`;
+    const ul = wrap.querySelector('[data-id="wb-categoryfilter-menu"]');
+
+    const add = (label, value) => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.className = 'dropdown-item';
+        a.href = '#';
+        a.dataset.value = value;
+        a.textContent = label;
+        li.appendChild(a);
+        ul.appendChild(li);
+    };
+
+    add('Alle', '__all__');
+    categories.forEach(c => add(c, c));
+
+    wrap.addEventListener('click', e => {
+        const a = e.target.closest('a.dropdown-item');
+        if (!a) return;
+        e.preventDefault();
+        const value = a.dataset.value;
+        const btn = wrap.querySelector('[data-id="wb-categoryfilter-button"]');
+        btn.textContent = 'Kategorie: ' + (value === '__all__' ? 'Alle' : a.textContent);
+        onSelect(value);
+    });
+
+    return wrap;
+}
+
+function updateSlidesVisibility(root) {
+    const slides = Array.from(root.querySelectorAll(SELECTORS.SLIDE));
+    let firstVisible = null;
+
+    slides.forEach(slide => {
+        const row = slide.querySelector(SELECTORS.ROWS);
+        const visibleCount = row ? row.querySelectorAll(`${SELECTORS.ITEM}:not(.d-none)`).length : 0;
+        const isActive = slide.classList.contains('active');
+        const shouldHide = visibleCount === 0;
+        slide.classList.toggle('d-none', shouldHide);
+        if (shouldHide && isActive) {
+            slide.classList.remove('active');
+        }
+        if (!shouldHide && !firstVisible) {
+            firstVisible = slide;
+        }
+    });
+
+    const anyActive = slides.some(s => s.classList.contains('active') && !s.classList.contains('d-none'));
+    if (!anyActive && firstVisible) {
+        firstVisible.classList.add('active');
+    }
+}
+
+function setupOneCarousel(root) {
+    const rows = Array.from(root.querySelectorAll(SELECTORS.ROWS));
+    const items = rows.flatMap(r => Array.from(r.querySelectorAll(SELECTORS.ITEM)));
 
     const categories = Array.from(new Set(
         items.flatMap(el => normalizeList(el.getAttribute('data-category')))
@@ -80,25 +105,21 @@ function setupInstance(container) {
                 return;
             }
             const cats = normalizeList(el.getAttribute('data-category'));
-            const match = cats.includes(value);
-            el.classList.toggle('d-none', !match);
+            el.classList.toggle('d-none', !cats.includes(value));
         });
+        updateSlidesVisibility(root);
     });
 
-    container.insertBefore(dropdown, listRoot);
+    root.insertBefore(dropdown, root.firstElementChild || null);
+    updateSlidesVisibility(root);
 }
 
 export const init = () => {
-    const containers = document.querySelectorAll(SELECTORS.ALLINSTANCES);
-    containers.forEach(container => {
-        if (container.dataset.initialized) return;
-        container.dataset.initialized = 'true';
-        setupInstance(container);
-        container.addEventListener('click', e => {
-            const t = e.target;
-            if (t && t.dataset && t.dataset.action) {
-                // reserviert für spätere Aktionen; aktuell nicht benötigt
-            }
-        });
+    const roots = Array.from(document.querySelectorAll(SELECTORS.ROOT));
+    roots.forEach(root => {
+        if (root.dataset.initialized) return;
+        root.dataset.initialized = 'true';
+        setupOneCarousel(root);
     });
 };
+
