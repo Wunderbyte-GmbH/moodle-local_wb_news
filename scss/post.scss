@@ -275,13 +275,13 @@
     border-top-right-radius: 9px;
     border-top-left-radius: 9px;
   }
-  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-page3) #topofscroll {
+  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-help) #topofscroll {
       margin-top: 0;
       margin-bottom: 0;
       padding-top: 0;
       padding-bottom: 0;
   }
-  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-page3) #page-content {
+  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-help) #page-content {
     margin-top: 0px;
   }
 
@@ -353,36 +353,36 @@
   
   /** FAQ **/
   
-  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-page3) li.accordion-item .card {
+  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-help) li.accordion-item .card {
     padding: 0px;
   }
-  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-page3) .accordion-item {
+  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-help) .accordion-item {
     margin-bottom: 20px;
   }
-  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-page3) .accordion-header .btn.btn-link {
+  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-help) .accordion-header .btn.btn-link {
     padding: 20px 40px;
     display: flex;
     color: black !important;
   }
   
-  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-page3) .accordion-header .btn i {
+  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-help) .accordion-header .btn i {
     position: absolute;
     right: 0;
     top: 25px;
   }
   
-  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-page3) .accordion-body {
+  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-help) .accordion-body {
     border: none;
   }
   
-  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-page3) .accordion-item .card {
+  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-help) .accordion-item .card {
     border-width: 2px;
     border-color: rgb(0 0 0 / .03);;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
   }
   
-  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-page3) button {
+  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-help) button {
     font-size: 1.8rem;
   }
   
@@ -417,7 +417,7 @@
       color: #000;
   }
   
-  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-page3) .faq-search-container {
+  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-help) .faq-search-container {
       position: absolute;
       top: 400px;
   }
@@ -449,11 +449,11 @@
   
   
   
-  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-page3) [aria-expanded
+  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-help) [aria-expanded
   ='false'] .fa-angle-double-right::before {
       content: "\f107" !important; /* fa-angle-down unicode */
   }
-  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-page3) [aria-expanded
+  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-help) [aria-expanded
   ='true'] .fa-angle-double-right::before {
       content: "\f106" !important; /* fa-angle-down unicode */
   }
@@ -536,7 +536,7 @@
   .fullwidth-text-container {
     left: 20px;
     }
-  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-page3) .faq-search-container {
+  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-help) .faq-search-container {
     left: 20px;
   }
   .fullwidth-text-container h1 {
