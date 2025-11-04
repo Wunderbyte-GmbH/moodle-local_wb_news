@@ -10,12 +10,14 @@
         {{fullname}}
     </span>
     </div>
-    <div class="card-body course-info-container px-3" id="course-info-container-9">
+    <div class="card-body course-info-container px-3 text-center" id="course-info-container-9">
         <a href="{{viewurl}}" tabindex="-1" class="gotobutton btn btn-primary me-2">
         {{#str}} tocourse, local_wb_news {{/str}}               
         </a>
-        <button class="popupbutton btn btn-primary" data-action="courselisting-details" data-title="Course Company A.2">
-            Details
+        <button class="popupbutton btn btn-primary" data-action="courselisting-details" data-title="{{fullname}}" data-id="{{id}}"
+                        data-summary="{{summary}}"
+                    >
+            {{#str}}courselistingpopup, theme_boost_union{{/str}}
         </button>
     </div>
 </div>

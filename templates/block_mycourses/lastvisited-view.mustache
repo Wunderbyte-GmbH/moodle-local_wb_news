@@ -30,22 +30,52 @@
 <div class="row">
   {{#courses}}
   <div class="col-lg-4 mb-4 mb-md-2">
-        <div class="card course-card h-100" role="listitem" data-region="course-content" data-course-id="{{id}}">
+        <!-- <div class="card course-card h-100" role="listitem" data-region="course-content" data-course-id="{{id}}">
             <div class="position-relative">
-            <a href="{{url}}" tabindex="-1">
+            <a href="{{url}}" tabindex="-1">           
                 <div class="card-img-top" style="
                     background-image: url('{{image}}');
                     background-size: cover;
                     background-position: center;
-                    background-repeat: no-repeat;">
+                    background-repeat: no-repeat;
+                    border-radius-bottom-left: 0px;
+                    border-radius-bottom-right: 0px;
+                    ">
                     <span class="sr-only">{{fullname}}</span>
                 </div>
                 <div class="course-card-name bg-primary text-white">{{fullname}}</div>
             </a>
             </div>
+        </div> -->
+
+        <div class="card course-card mx-1 mb-2 h-100" role="listitem" data-region="course-content" data-category="{{coursecategory}}">
+            <div class="position-relative">
+            <a href="{{viewurl}}" tabindex="-1">
+                <div class="card-img-top" style="background-image: url('{{image}}');                     
+                    border-bottom-left-radius: 0px;
+                    border-bottom-right-radius: 0px;">
+                    <span class="sr-only">{{fullname}}</span>
+                </div>
+                <div class="course-card-name bg-primary text-white">{{fullname}}</div>
+            </a>
+            <span class="sr-only">
+                {{fullname}}
+            </span>
+            </div>
+            <div class="card-body course-info-container px-3 text-center" id="course-info-container-9">
+                <a href="{{url}}" tabindex="-1" class="gotobutton btn btn-primary me-2">
+                {{#str}} tocourse, local_wb_news {{/str}}               
+                </a>
+                <button class="popupbutton btn btn-primary" data-action="courselisting-details" data-title="{{fullname}}" data-id="{{id}}"
+                                data-summary="{{summary}}"
+                            >
+                    {{#str}}courselistingpopup, theme_boost_union{{/str}}
+                </button>
+            </div>
         </div>
   </div>
   {{/courses}}
+
 
   {{^courses}}
   <div class="col-12 text-center my-4">

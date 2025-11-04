@@ -35,7 +35,7 @@
     }
 }}
 
-<div id="courseCarousel-{{unique}}" class="carousel slide" data-ride="carousel" data-id="wb-categoryfilter-instance">
+<div id="courseCarousel-{{unique}}" class="carousel wb_news slide" data-ride="carousel" data-id="wb-categoryfilter-instance">
   <div class="carousel-inner">
     {{#chunks}}
       <div class="carousel-item{{#first}} active{{/first}}">
@@ -68,7 +68,9 @@
   </div>
 
 </div>
-
+{{#js}}
+require(['local_wb_news/filter'], m => m.init());
+{{/js}}
 <style>
   .carousel-item .row {
     display: flex;
