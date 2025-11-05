@@ -57,4 +57,3 @@ $shortcodes = [
         'description' => 'wbnewscourse',
     ],
 ];
-

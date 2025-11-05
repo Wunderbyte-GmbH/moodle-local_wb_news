@@ -36,7 +36,7 @@
  * @param array $options Additional options affecting file serving.
  * @return bool|void Returns false if any conditions are not met, otherwise sends the file.
  */
-function local_wb_news_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options=[]) {
+function local_wb_news_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options = []) {
     global $DB;
 
     // @codingStandardsIgnoreStart
@@ -80,4 +80,3 @@ function local_wb_news_pluginfile($course, $cm, $context, $filearea, $args, $for
     send_stored_file($file, 0, 0, true, $options); // download MUST be forced - security!
     // @codingStandardsIgnoreEnd
 }
-

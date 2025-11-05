@@ -57,7 +57,8 @@ if (
 ) {
     echo html_writer::link(
         $returnurl,
-        '<i class="fa-solid fa-arrow-left lexa-caption smallericon" style="margin-right: 8px;"></i>' . get_string('backtooverview', 'theme_lexa'),
+        '<i class="fa-solid fa-arrow-left lexa-caption smallericon" style="margin-right: 8px;"></i>' .
+            get_string('backtooverview', 'theme_lexa'),
         [
             'role' => 'button',
             'class' => 'btn mr-auto lexa-caption d-flex justify-content-start align-items-center',

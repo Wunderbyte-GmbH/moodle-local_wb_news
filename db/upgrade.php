@@ -194,7 +194,6 @@ function xmldb_local_wb_news_upgrade($oldversion) {
         // Launch change of precision for field bgimage.
         $dbman->change_field_precision($table, $field);
 
-
         // Wb_news savepoint reached.
         upgrade_plugin_savepoint(true, 2024093002, 'local', 'wb_news');
     }
@@ -246,7 +245,6 @@ function xmldb_local_wb_news_upgrade($oldversion) {
 
         // Launch change of field type to TEXT for cssclasses.
         $dbman->change_field_type($table, $field);
-
 
         // Wb_news savepoint reached.
         upgrade_plugin_savepoint(true, 2024101801, 'local', 'wb_news');

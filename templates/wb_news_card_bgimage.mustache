@@ -28,7 +28,8 @@
         "subheadline": "Image and Icon",
         "description": "Image and Icon",
         "btnlink": "https://link1.com",
-        "btntext": "Read More"
+        "btntext": "Read More",
+        "bgcolor": "white"
     }
 }}
 
@@ -44,7 +45,7 @@ style="{{#bgimage}}background-image: url({{bgimage}}); {{/bgimage}}{{#bgcolor}}b
     <div class="card-body">
     {{#icon}}
     <div class="text-center">
-        <img src="{{icon}}" class="card-icon mb-2 text-center" aria-label="{{icontext}}">
+        <img src="{{icon}}" class="card-icon mb-2 text-center" aria-label="{{icontext}}" alt="{{icontext}}">
     </div>
     {{/icon}}
     </div>

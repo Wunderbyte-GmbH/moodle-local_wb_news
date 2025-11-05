@@ -23,12 +23,15 @@
     Example context (json):
     {
         "bgimage": "/local/wb_news/img/wb.jpg",
+        "bgimagetext": "Background Image",
         "icon": "/local/wb_news/img/icon.png",
+        "icontext": "Icon",
         "headline": "News 1",
         "subheadline": "Image and Icon",
         "description": "Image and Icon",
         "btnlink": "https://link1.com",
-        "btntext": "Read More"
+        "btntext": "Read More",
+        "bgcolor": "white"
     }
 }}
 
@@ -38,12 +41,12 @@
     {{/btntext}}
     <div class="row">
     <div class="col-md-6">
-        <img class="w-100 img-fluid wb_news-headerimage" src="{{bgimage}}" aria-label="{{bgimagetext}}">
+        <img class="w-100 img-fluid wb_news-headerimage" src="{{bgimage}}" aria-label="{{bgimagetext}}" alt="{{bgimagetext}}">
     </div>
     <div class="col-md-6">
     {{#icon}}
     <div class="text-center">
-        <img src="{{icon}}" class="card-icon mb-2 text-center" aria-label="{{icontext}}">
+        <img src="{{icon}}" class="card-icon mb-2 text-center" aria-label="{{icontext}}" alt="{{icontext}}">
     </div>
     {{/icon}}
     <h5 class="card-title">{{{headline}}}</h5>

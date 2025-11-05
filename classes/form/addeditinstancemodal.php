@@ -41,7 +41,6 @@ use context_system;
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class addeditinstancemodal extends dynamic_form {
-
     /**
      * {@inheritdoc}
      * @see moodleform::definition()
@@ -100,7 +99,6 @@ class addeditinstancemodal extends dynamic_form {
         ];
 
         $mform->addElement('autocomplete', 'contextids', get_string('alloweditincontext', 'local_wb_news'), $categories, $options);
-
     }
 
     /**
@@ -111,7 +109,6 @@ class addeditinstancemodal extends dynamic_form {
     protected function check_access_for_dynamic_submission(): void {
         // phpcs:ignore
         // TODO: capability to create advisors
-
     }
 
     /**

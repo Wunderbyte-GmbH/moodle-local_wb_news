@@ -122,6 +122,8 @@ class news {
 
                 $this->name = $instance->name ?? 'noname';
                 $this->template = $instance->template ?? 'notemplate';
+                $this->columns = $instance->columns ?? 0;
+                $this->contextids = $instance->contextids ?? '';
             }
 
             foreach ($news as $newsitem) {
@@ -344,7 +346,7 @@ class news {
         $data->fullname = "$USER->firstname $USER->lastname";
         $data->timemodified = time();
 
-        // We need to keep our element intact.5
+        // We need to keep our element intact.5.
         $insertdata = clone($data);
         // Unset all unwanted arrays.
         foreach ($insertdata as $key => $value) {
@@ -525,7 +527,7 @@ class news {
             return true;
         } else {
             $data->timecreated = time();
-            $id = $DB->insert_record('local_wb_news_instance', $data, true);
+            $data->id = $DB->insert_record('local_wb_news_instance', $data, true);
 
             $event = instance_created::create([
                 'context' => context_system::instance(),

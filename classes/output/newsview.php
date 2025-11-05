@@ -36,7 +36,6 @@ use templatable;
  *
  */
 class newsview implements renderable, templatable {
-
     /**
      * Instanceid, 0 for all items
      *
@@ -103,5 +102,4 @@ class newsview implements renderable, templatable {
 
         return $this->newsitem;
     }
-
 }

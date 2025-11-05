@@ -39,7 +39,6 @@ require_once($CFG->dirroot . '/local/wb_news/lib.php');
  * Deals with local_shortcodes regarding booking.
  */
 class shortcodes {
-
     /**
      * Prints out list of previous history items in a card..
      * Arguments can be 'userid'.
