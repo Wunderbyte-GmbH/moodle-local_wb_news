@@ -17,17 +17,17 @@
               width: 100%;
               max-height: 70vh;
               height: 750px;
-              background: url('https://hlfs.wunderbyte.at/pluginfile.php/1/theme_boost_union/additionalresources/0/Hero%20Startseite.webp') no-repeat center center/cover;
+              background: url('https://lernwelt.hlfs.hessen.de/pluginfile.php/1/theme_boost_union/additionalresources/0/Hero%20Startseite.webp') no-repeat center center/cover;
           }
   .fullwidth-image.fullwidth-faq {
-              background: url('https://hlfs.wunderbyte.at/pluginfile.php/1/theme_boost_union/additionalresources/0/faqheader.png') no-repeat center center/cover;
+              background: url('https://lernwelt.hlfs.hessen.de/pluginfile.php/1/theme_boost_union/additionalresources/0/faqheader.png') no-repeat center center/cover;
        background-color: rgba(0, 0, 0, 0.03);
   }
   .fullwidth-image.fullwidth-info {
-       background:url(https://hlfs.wunderbyte.at/pluginfile.php/1/theme_boost_union/additionalresources/0/infoseite.jpg) no-repeat center center/cover
+       background:url(https://lernwelt.hlfs.hessen.de/pluginfile.php/1/theme_boost_union/additionalresources/0/infoseite.jpg) no-repeat center center/cover
   }
    .fullwidth-image.fullwidth-news {
-       background:url(https://hlfs.wunderbyte.at/pluginfile.php/1/theme_boost_union/additionalresources/0/Hero%20News.webp) no-repeat center center/cover
+       background:url(https://lernwelt.hlfs.hessen.de/pluginfile.php/1/theme_boost_union/additionalresources/0/Hero%20News.webp) no-repeat center center/cover
   }
   
           .fullwidth-image .text-block {
@@ -68,7 +68,7 @@
               padding: 50px;
           }
           .stats-container {
-              background: url('https://hlfs.wunderbyte.at/pluginfile.php/1/theme_boost_union/additionalresources/0/infoseite.jpg') no-repeat bottom center;
+              background: url('https://lernwelt.hlfs.hessen.de/pluginfile.php/1/theme_boost_union/additionalresources/0/infoseite.jpg') no-repeat bottom center;
               background-size: cover;
               padding: 100px 0;
           }
@@ -144,7 +144,7 @@
               padding: 50px;
           }
           .stats-container {
-              background: url('https://hlfs.wunderbyte.at/pluginfile.php/1/theme_boost_union/additionalresources/0/infoseite.jpg') no-repeat bottom center;
+              background: url('https://lernwelt.hlfs.hessen.de/pluginfile.php/1/theme_boost_union/additionalresources/0/infoseite.jpg') no-repeat bottom center;
               background-size: cover;
               padding: 150px 0;
           }
@@ -309,7 +309,7 @@
     display: block;
     width: 250px;
     height: 120px;
-    background-image: url('https://hlfs.wunderbyte.at/pluginfile.php/1/theme_boost_union/logo/0x200/1744704097/Screenshot%202025-03-13%20at%2012.51.38.png');
+    background-image: url('https://lernwelt.hlfs.hessen.de/pluginfile.php/1/theme_boost_union/logo/0x200/1744704097/Screenshot%202025-03-13%20at%2012.51.38.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -419,7 +419,7 @@
     height: 60px;
   }
   
-  .faq-search-container::after {
+    :is(#page-local-wb_faq-index) .faq-search-container::after {
       content: '\f002'; /* FontAwesome unicode for search icon */
       font-family: "Font Awesome 6 Free";
       font-weight: 900;
@@ -432,7 +432,7 @@
       color: #000;
   }
   
-  :is(#page-local-wb_faq-index, #page-theme-boost_union-pages-help) .faq-search-container {
+  :is(#page-local-wb_faq-index) .faq-search-container {
       position: absolute;
       top: 400px;
   }

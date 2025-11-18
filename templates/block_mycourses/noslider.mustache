@@ -1,0 +1,94 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template core_course/coursecards
+
+    This template renders the cards view for the myoverview block.
+
+    Example context (json):
+    {
+        "courses": [
+            {
+                "name": "Assignment due 1",
+                "viewurl": "https://moodlesite/course/view.php?id=2",
+                "courseimage": "https://moodlesite/pluginfile/123/course/overviewfiles/123.jpg",
+                "fullname": "course 3",
+                "hasprogress": true,
+                "progress": 10,
+                "coursecategory": "Category 1"
+            }
+        ]
+    }
+}}
+
+<div id="courseCarousel-{{uniqid}}" class="carousel slide" data-ride="carousel" data-id="wb-categoryfilter-instance">
+  <div class="carousel-inner">
+      <div class="carousel-item{{#first}} active{{/first}}">
+      <div class="container">
+        {{#chunks}}
+        <div class="row mb-4" data-id="wb-categoryfilter-items">
+          {{#courses}}
+            <div class="col-md-4 mb-4"  data-category="{{coursecategory}}">
+              {{> local_wb_news/courses/coursecard }}
+            </div>
+          {{/courses}}
+        </div>
+        {{/chunks}}
+        </div>
+      </div>
+  </div>
+</div>
+{{#js}}
+require(['local_wb_news/filter'], m => m.init());
+{{/js}}
+<style>
+  .carousel-item .row {
+    display: flex;
+    justify-content: center;
+  } 
+  .carousel-indicators {
+    position: unset;
+    margin-top: 20px;
+  }
+  .carousel-inner {
+    display: flex;
+    align-items: stretch;
+  }
+  .carousel-item:not(.active) {
+    display: none;
+  }
+  .carousel-indicators li {
+    box-sizing: content-box;
+    flex: 0 1 auto;
+    width: 30px;
+    height: 30px;
+    color: black;
+    margin-right: 3px;
+    margin-left: 3px;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: #334f9a;
+    background-clip: padding-box;
+    border-top: none;
+    border-bottom: none;
+    opacity: .5;
+    transition: opacity 0.6s ease;
+  }
+  .carousel-control-prev, .carousel-control-next {
+    height: 20px;
+  }
+</style>

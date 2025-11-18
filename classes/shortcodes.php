@@ -278,19 +278,38 @@ class shortcodes {
                 return '';
             }
 
-            $chunks = array_chunk($formattedcourses['courses'], 3);
-            $templatecontext['chunks'] = [];
+            if ($args['slider'] == 1) {
+                $chunks = array_chunk($formattedcourses['courses'], 3);
+                $templatecontext['chunks'] = [];
 
-            foreach ($chunks as $index => $chunk) {
-                $templatecontext['chunks'][] = [
-                        'courses' => $chunk,
-                        'first' => ($index === 0),
-                        'index' => $index,
-                ];
+                foreach ($chunks as $index => $chunk) {
+                    $templatecontext['chunks'][] = [
+                            'courses' => $chunk,
+                            'first' => ($index === 0),
+                            'index' => $index,
+                    ];
+                }
+
+                return $OUTPUT->render_from_template('local_wb_news/block_mycourses/slider', $templatecontext);
+            } else {
+                $courses = $formattedcourses['courses'];
+                $tripleCourses = array_merge(
+                    $courses,
+                    $courses,
+                    $courses
+                );
+                $chunks = array_chunk($tripleCourses, 1000);
+                $templatecontext['chunks'] = [];
+
+                foreach ($chunks as $index => $chunk) {
+                    $templatecontext['chunks'][] = [
+                            'courses' => $chunk,
+                            'first' => ($index === 0),
+                            'index' => $index,
+                    ];
+                }
+                return $OUTPUT->render_from_template('local_wb_news/block_mycourses/noslider', $templatecontext);
             }
-
-            return $OUTPUT->render_from_template('local_wb_news/block_mycourses/slider', $templatecontext);
-
         } catch (dml_missing_record_exception $e) {
             // Handle missing database records gracefully
             debugging('Database record not found in wbnews_completedcourses: ' . $e->getMessage(), DEBUG_DEVELOPER);
