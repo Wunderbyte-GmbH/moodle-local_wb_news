@@ -67,23 +67,29 @@ function handleClickEvent(event) {
     // eslint-disable-next-line no-console
     console.log(event.target);
 
-    // Get event target.
-    if (event.target && event.target.dataset.action) {
+    const actionButton = event.target.closest('[data-action]');
 
-        const action = event.target.dataset.action;
+    if (!actionButton || !event.currentTarget.contains(actionButton)) {
+        return;
+    }
+
+    // Get event target.
+    if (actionButton && actionButton.dataset.action) {
+
+        const action = actionButton.dataset.action;
 
         switch (action) {
             case 'add':
-                addeditformModal(event.target);
+                addeditformModal(actionButton);
                 break;
             case 'edit':
-                addeditformModal(event.target);
+                addeditformModal(actionButton);
                 break;
             case 'delete':
-                deleteModal(event.target);
+                deleteModal(actionButton);
                 break;
             case 'copy':
-                copyModal(event.target);
+                copyModal(actionButton);
                 break;
             default:
                 // eslint-disable-next-line no-console
