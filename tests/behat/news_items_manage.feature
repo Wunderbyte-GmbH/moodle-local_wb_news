@@ -36,7 +36,7 @@ Feature: Test management of the wb_news instance items.
     And I log in as "admin"
     When I visit "/local/wb_news/index.php"
     ## Add the instance item
-    And I click on ".wb-news-addeditbutton.fa-plus" "css_element"
+    And I click on ".wb-news-addeditbutton .fa-plus" "css_element"
     And I wait "1" seconds
     And I set the field "Headline" to "Simple Headline"
     And I set the field "Subheadline" to "Simple Subheadline"
@@ -51,7 +51,7 @@ Feature: Test management of the wb_news instance items.
     And I should see "Simple Subheadline" in the ".wb-news-container" "css_element"
     And I should see "Simple Description" in the ".wb-news-container" "css_element"
     ## Duplicate the instance item and set an advanced fields
-    And I click on ".wb-news-container .wb-news-copybutton.fa-copy" "css_element"
+    And I click on ".wb-news-container .wb-news-copybutton .fa-copy" "css_element"
     And I wait "1" seconds
     And the field "Headline" matches value "Simple Headline"
     And the field "Lower comes first" matches value "2"
@@ -84,7 +84,7 @@ Feature: Test management of the wb_news instance items.
     And the image at "//div[contains(@class, 'wb-news-container')]//img[contains(@class, 'wb_news-headerimage') and contains(@src, 'pluginfile.php') and contains(@src, '/local_wb_news/bgimage/') and @alt='I1 adv image alt text']" "xpath_element" should be identical to "local/wb_news/tests/fixtures/image_sample.png"
     And the image at "//div[contains(@class, 'wb-news-container')]//img[contains(@class, 'card-icon') and contains(@src, 'pluginfile.php') and contains(@src, '/local_wb_news/icon/') and @alt='I1 adv icon alt text']" "xpath_element" should be identical to "local/wb_news/tests/fixtures/icon_sample.png"
     ## Delete simple instance item (1st one)
-    And I click on ".wb-news-container .wb-news-deletebutton.fa-trash" "css_element"
+    And I click on ".wb-news-container .wb-news-deletebutton .fa-trash" "css_element"
     And I should see "Confirm deletion of this news item" in the ".modal.show .modal-header" "css_element"
     And I press "Save changes"
     And I should not see "Simple Headline" in the ".wb-news-container" "css_element"

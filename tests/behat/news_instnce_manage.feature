@@ -44,7 +44,7 @@ Feature: Test management of the wb_news instance.
     And I click on "button[data-target^='#instance-']" "css_element"
     And "//div[contains(@class, 'wb-news-container')]" "xpath_element" should exist
     ## Edit the instance
-    And I click on ".wb-news-addeditbutton.fa-edit" "css_element"
+    And I click on ".wb-news-addeditbutton .fa-edit" "css_element"
     And I wait "1" seconds
     And I set the field "Name" to "News instance 1"
     And the field "Columns" matches value "6"
@@ -69,7 +69,7 @@ Feature: Test management of the wb_news instance.
     ## View the instance
     Then I should see "Instance 0" in the "[data-id=\"wb-news-all-instances-container\"]" "css_element"
     ## Edit the instance
-    And I click on ".wb-news-addeditbutton.fa-edit" "css_element"
+    And I click on ".wb-news-addeditbutton .fa-edit" "css_element"
     And I wait "1" seconds
     And I set the field "Name" to "News instance 0"
     And I set the field "Template" to "Tabs template"
@@ -83,7 +83,7 @@ Feature: Test management of the wb_news instance.
     And I click on "button[data-target^='#instance-']" "css_element"
     And "//ul[contains(@id, 'wb_news_tab-')]" "xpath_element" should exist
     ## Delete the instance
-    And I click on ".wb-news-deletebutton.fa-trash" "css_element"
+    And I click on ".wb-news-deletebutton .fa-trash" "css_element"
     And I should see "Confirm deletion of this news item" in the ".modal.show .modal-header" "css_element"
     And I press "Save changes"
     And I should not see "News instance 0" in the "[data-id=\"wb-news-all-instances-container\"]" "css_element"
