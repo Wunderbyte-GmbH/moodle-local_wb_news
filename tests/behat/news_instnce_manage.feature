@@ -32,7 +32,7 @@ Feature: Test management of the wb_news instance.
     And I wait "1" seconds
     And I set the field "Name" to "Instance 1"
     And I set the field "Template" to "Grid template"
-    And I set the field "Columns" to "6"
+    And I set the field "Columns" to "3"
     And I expand the "Allow editing in ..." autocomplete
     And I click on "Cat 1" "text" in the "//div[contains(@id, 'fitem_id_contextids_')]//ul[contains(@class, 'form-autocomplete-suggestions')]" "xpath_element"
     And I click on "Category 1" "text" in the "//div[contains(@id, 'fitem_id_contextids_')]//ul[contains(@class, 'form-autocomplete-suggestions')]" "xpath_element"
@@ -47,7 +47,7 @@ Feature: Test management of the wb_news instance.
     And I click on ".wb-news-addeditbutton .fa-edit" "css_element"
     And I wait "1" seconds
     And I set the field "Name" to "News instance 1"
-    And the field "Columns" matches value "6"
+    And the field "Columns" matches value "3"
     And I should see "Cat 1" in the "//div[contains(@id, 'fitem_id_contextids_')]//div[contains(@class, 'form-autocomplete-multiple')]" "xpath_element"
     And I should see "Category 1" in the "//div[contains(@id, 'fitem_id_contextids_')]//div[contains(@class, 'form-autocomplete-multiple')]" "xpath_element"
     And I set the field "Template" to "Tabs template"
