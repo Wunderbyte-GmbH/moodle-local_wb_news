@@ -210,7 +210,6 @@ class shortcodes {
         global $USER, $PAGE, $OUTPUT, $CFG;
         require_once($CFG->dirroot . '/course/externallib.php');
         require_once($CFG->dirroot . '/blocks/mycourses/classes/output/inprogress_view.php');
-        //require_once($CFG->dirroot . '/blocks/mycourses/locallib.php');
 
         $mycompletion = helper::get_my_inprogress();
 
@@ -270,16 +269,14 @@ class shortcodes {
                     $validcompletions->mycompleted[] = $item;
                 }
             }
-
             $unique = [];
             foreach ($validcompletions->mycompleted as $item) {
                 $unique[$item->courseid] = $item;
             }
             $validcompletions->mycompleted = array_values($unique);
 
-            $availableview = new \block_mycourses\output\completed_view($validcompletions);
+            $availableview = new \block_mycourses\output\completed_view($validcompletions->mycompleted);
             $formattedcourses = $availableview->export_for_template($OUTPUT);
-
             if (empty($formattedcourses) || empty($formattedcourses['courses'])) {
                 return '';
             }
@@ -295,7 +292,6 @@ class shortcodes {
                             'index' => $index,
                     ];
                 }
-
                 return $OUTPUT->render_from_template('local_wb_news/block_mycourses/slider', $templatecontext);
             } else {
                 $courses = $formattedcourses['courses'];
