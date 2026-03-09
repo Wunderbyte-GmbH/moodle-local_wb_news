@@ -41,7 +41,7 @@
       <div class="carousel-item{{#first}} active{{/first}}">
         <div class="row">
           {{#courses}}
-            <div class="col-lg-4" data-id="wb-categoryfilter-items">
+            <div class="col-lg-4 mb-2" data-id="wb-categoryfilter-items">
               {{> local_wb_news/courses/coursecard }}
             </div>
           {{/courses}}
@@ -90,8 +90,8 @@ require(['local_wb_news/filter'], m => m.init());
   .carousel-indicators li {
     box-sizing: content-box;
     flex: 0 1 auto;
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     color: black;
     margin-right: 3px;
     margin-left: 3px;

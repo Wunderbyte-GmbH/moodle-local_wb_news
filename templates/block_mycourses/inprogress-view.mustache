@@ -90,12 +90,15 @@
 
 
 {{#js}}
-require(['jquery', 'core/custom_interaction_events'], function($, customEvents) {
+require(['jquery', 'core/custom_interaction_events', 'theme_boost_union/courselistingdetailsmodal'], function($, customEvents, modal) {
     var root = $('#inprogress-view-{{uniqid}}');
     customEvents.define(root, [customEvents.events.activate]);
     root.on(customEvents.events.activate, '[data-toggle="btns"] > .btn', function() {
         root.find('.btn.active').removeClass('active');
     });
+    if (!document.querySelector('#page-site-index')) {
+        modal.init();
+    }
 });
 {{/js}}
 

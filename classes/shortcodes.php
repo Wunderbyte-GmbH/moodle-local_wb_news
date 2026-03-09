@@ -24,9 +24,9 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 namespace local_wb_news;
-
+use block_mycourses\helper;
 use local_wb_news\output\wb_news;
-use local_wb_news\helper;
+use local_wb_news\helper as local_helper;
 use stdClass;
 use core_course\external\course_summary_exporter;
 use Throwable;
@@ -52,7 +52,6 @@ class shortcodes {
      * @return string
      */
     public static function wbnews($shortcode, $args, $content, $env, $next) {
-
         global $USER, $PAGE, $OUTPUT;
 
         // If the id argument was not passed on, we have a fallback in the connfig.
@@ -114,7 +113,7 @@ class shortcodes {
             $exporter = new course_summary_exporter($course, ['context' => $context, 'isfavourite' => false]);
 
             $formattedcourse = $exporter->export($renderer);
-            $formattedcourse->courseimage = helper::get_course_image($course);
+            $formattedcourse->courseimage = local_helper::get_course_image($course);
 
             $formattedcourses[] = $formattedcourse;
             if (!$formattedcourse->courseimage) {
@@ -157,9 +156,9 @@ class shortcodes {
 
         require_once($CFG->dirroot . '/course/externallib.php');
         require_once($CFG->dirroot . '/blocks/mycourses/classes/output/inprogress_view.php');
-        require_once($CFG->dirroot . '/blocks/mycourses/locallib.php');
+        //require_once($CFG->dirroot . '/blocks/mycourses/locallib.php');
 
-        $mycompletion = mycourses_get_my_completion();
+        $mycompletion = helper::get_my_archive();
 
         $availableview = new \block_mycourses\output\inprogress_view($mycompletion);
         $templatecontext = $availableview->export_for_template($OUTPUT);
@@ -184,9 +183,10 @@ class shortcodes {
         return '';
         require_once($CFG->dirroot . '/course/externallib.php');
         require_once($CFG->dirroot . '/blocks/mycourses/classes/output/available_view.php');
-        require_once($CFG->dirroot . '/blocks/mycourses/locallib.php');
+        //require_once($CFG->dirroot . '/blocks/mycourses/locallib.php');
 
-        $mycompletion = mycourses_get_my_completion();
+        $mycompletion = helper::get_my_archive();
+
 
         $availableview = new \block_mycourses\output\available_view($mycompletion);
         $templatecontext = $availableview->export_for_template($OUTPUT);
@@ -210,9 +210,9 @@ class shortcodes {
         global $USER, $PAGE, $OUTPUT, $CFG;
         require_once($CFG->dirroot . '/course/externallib.php');
         require_once($CFG->dirroot . '/blocks/mycourses/classes/output/inprogress_view.php');
-        require_once($CFG->dirroot . '/blocks/mycourses/locallib.php');
+        //require_once($CFG->dirroot . '/blocks/mycourses/locallib.php');
 
-        $mycompletion = mycourses_get_my_completion();
+        $mycompletion = helper::get_my_inprogress();
 
         $availableview = new \block_mycourses\output\inprogress_view($mycompletion);
         $templatecontext = $availableview->export_for_template($OUTPUT);
@@ -255,10 +255,10 @@ class shortcodes {
         try {
             require_once($CFG->dirroot . '/course/externallib.php');
             require_once($CFG->dirroot . '/blocks/mycourses/classes/output/completed_view.php');
-            require_once($CFG->dirroot . '/blocks/mycourses/locallib.php');
+            //require_once($CFG->dirroot . '/blocks/mycourses/locallib.php');
 
             // Get completed courses with error handling
-            $mycompletion = mycourses_get_my_archive();
+            $mycompletion = helper::get_my_archive();
 
             if (empty($mycompletion)) {
                 return '';
@@ -270,6 +270,12 @@ class shortcodes {
                     $validcompletions->mycompleted[] = $item;
                 }
             }
+
+            $unique = [];
+            foreach ($validcompletions->mycompleted as $item) {
+                $unique[$item->courseid] = $item;
+            }
+            $validcompletions->mycompleted = array_values($unique);
 
             $availableview = new \block_mycourses\output\completed_view($validcompletions);
             $formattedcourses = $availableview->export_for_template($OUTPUT);
@@ -294,8 +300,6 @@ class shortcodes {
             } else {
                 $courses = $formattedcourses['courses'];
                 $tripleCourses = array_merge(
-                    $courses,
-                    $courses,
                     $courses
                 );
                 $chunks = array_chunk($tripleCourses, 1000);
@@ -369,7 +373,7 @@ class shortcodes {
             $context = \context_course::instance($course->id);
             $exporter = new course_summary_exporter($course, ['context' => $context, 'isfavourite' => false]);
             $formatted = $exporter->export($renderer);
-            $formatted->courseimage = helper::get_course_image($course);
+            $formatted->courseimage = local_helper::get_course_image($course);
 
             if (empty($formatted->courseimage)) {
                 $formatted->courseimage = "https://placehold.co/600x400";
