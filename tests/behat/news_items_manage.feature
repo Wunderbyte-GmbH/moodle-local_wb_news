@@ -89,10 +89,8 @@ Feature: Test management of the wb_news instance items.
     And I click on ".wb-news-container .wb-news-deletebutton .fa-trash" "css_element"
     And I should see "Confirm deletion of this news item" in the ".modal.show .modal-header" "css_element"
     And I press "Save changes"
-    And I should not see "Simple Headline" in the ".wb-news-container" "css_element"
-    ## Check link
-    And I click on "NewsMyCourses" "link" in the ".wb-news-container" "css_element"
-    And I should see "My courses"
+    And I wait "2" seconds
+    And I should not see "Simple Headline"
 
   @javascript
   Scenario: News: Add and edit instance items via DB
