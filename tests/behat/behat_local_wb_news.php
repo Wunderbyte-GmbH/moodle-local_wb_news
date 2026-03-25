@@ -79,7 +79,9 @@ class behat_local_wb_news extends behat_base {
             $cohortids[] = (int) $cohort->id;
         }
 
-        $newsitems = $DB->get_records('local_wb_news', ['headline' => $headline]);
+        $sql = "SELECT * FROM {local_wb_news} WHERE " . $DB->sql_compare_text('headline') . " = ?";
+        $newsitems = $DB->get_records_sql($sql, [$headline]);
+
         if (empty($newsitems)) {
             throw new \Exception("No news item with headline '$headline' found in the database.");
         }
