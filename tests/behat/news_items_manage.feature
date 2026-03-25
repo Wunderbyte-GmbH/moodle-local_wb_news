@@ -38,6 +38,7 @@ Feature: Test management of the wb_news instance items.
     ## Add the instance item
     And I click on ".wb-news-addeditbutton .fa-plus" "css_element"
     And I wait "1" seconds
+    And I expand all fieldsets
     And I set the field "Headline" to "Simple Headline"
     And I set the field "Subheadline" to "Simple Subheadline"
     And I set the field "Description" to "Simple Description"
@@ -53,6 +54,7 @@ Feature: Test management of the wb_news instance items.
     ## Duplicate the instance item and set an advanced fields
     And I click on ".wb-news-container .wb-news-copybutton .fa-copy" "css_element"
     And I wait "1" seconds
+    And I expand all fieldsets
     And the field "Headline" matches value "Simple Headline"
     And the field "Lower comes first" matches value "2"
     And I set the field "Headline" to "Adv Headline"

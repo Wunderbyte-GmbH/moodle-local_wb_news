@@ -24,12 +24,7 @@
  */
 
 require_once(__DIR__ . '/../../../../lib/behat/behat_base.php');
-
-use Behat\Behat\Context\Step\Given;
-use local_shopping_cart\local\cartstore;
-use local_shopping_cart\shopping_cart;
 use Behat\Gherkin\Node\TableNode;
-use Behat\Behat\Hook\Scope\AfterScenarioScope;
 
 /**
  * Behat functions.
@@ -58,5 +53,44 @@ class behat_local_wb_news extends behat_base {
         }
         $pagerecord->content = "[wbnews instance=" . $instanceid . "]";
         $DB->update_record('page', $pagerecord);
+    }
+
+    /**
+     * Set a cohort restriction on one or more news items identified by headline.
+     *
+     * Supports a comma-separated list of cohort names for the MATCH_ALL scenario,
+     * e.g. "Premium A,Premium B".
+     *
+     * @param string $headline    headline of the news item in the DB
+     * @param string $cohortnames comma-separated cohort name(s) to restrict to
+     * @param string $mode        "any" or "all"
+     * @Given /^the news item "([^"]*)" has a cohort restriction for "([^"]*)" with match mode "([^"]*)"$/
+     */
+    public function news_item_has_cohort_restriction(
+        string $headline,
+        string $cohortnames,
+        string $mode
+    ): void {
+        global $DB;
+
+        $cohortids = [];
+        foreach (array_map('trim', explode(',', $cohortnames)) as $name) {
+            $cohort = $DB->get_record('cohort', ['name' => $name], '*', MUST_EXIST);
+            $cohortids[] = (int) $cohort->id;
+        }
+
+        $newsitems = $DB->get_records('local_wb_news', ['headline' => $headline]);
+        if (empty($newsitems)) {
+            throw new \Exception("No news item with headline '$headline' found in the database.");
+        }
+
+        $mode = ($mode === 'all') ? 'all' : 'any';
+        foreach ($newsitems as $newsitem) {
+            $newsitem->restrictions = json_encode([
+                'cohorts'      => $cohortids,
+                'cohortsmatch' => $mode,
+            ]);
+            $DB->update_record('local_wb_news', $newsitem);
+        }
     }
 }
