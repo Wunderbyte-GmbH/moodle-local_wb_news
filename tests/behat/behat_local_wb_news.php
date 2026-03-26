@@ -56,6 +56,59 @@ class behat_local_wb_news extends behat_base {
     }
 
     /**
+     * Embed a news instance as an HTML block on the site home page.
+     *
+     * The block is inserted directly into the database so that no browser
+     * interaction is required. The shortcode [wbnews instance=ID] is placed
+     * inside an HTML block in the 'side-pre' region of the site home.
+     *
+     * @param string $instancename name of the local_wb_news_instance record
+     * @Given /^news instance "([^"]*)" has been added as an HTML block on the site home$/
+     */
+    public function news_instance_added_as_html_block_on_site_home(string $instancename): void {
+        global $DB;
+
+        if (!$instanceid = $DB->get_field('local_wb_news_instance', 'id', ['name' => $instancename])) {
+            throw new \Exception('The specified news instance with name "' . $instancename . '" does not exist');
+        }
+
+        $context = \context_course::instance(SITEID);
+
+        $config         = new \stdClass();
+        $config->text   = '[wbnews instance=' . $instanceid . ']';
+        $config->format = FORMAT_HTML;
+
+        $record                    = new \stdClass();
+        $record->blockname         = 'html';
+        $record->parentcontextid   = $context->id;
+        $record->showinsubcontexts = 0;
+        $record->pagetypepattern   = 'site-index';
+        $record->subpagepattern    = null;
+        $record->defaultregion     = 'side-pre';
+        $record->defaultweight     = 0;
+        $record->configdata        = base64_encode(serialize($config));
+        $record->timecreated       = time();
+        $record->timemodified      = time();
+        $DB->insert_record('block_instances', $record);
+    }
+
+    /**
+     * Remove a user from a cohort.
+     *
+     * @param string $username username of the user to remove
+     * @param string $cohortidnumber idnumber of the cohort
+     * @Given /^user "([^"]*)" is removed from cohort "([^"]*)"$/
+     */
+    public function user_is_removed_from_cohort(string $username, string $cohortidnumber): void {
+        global $DB;
+
+        $user = $DB->get_record('user', ['username' => $username], '*', MUST_EXIST);
+        $cohort = $DB->get_record('cohort', ['idnumber' => $cohortidnumber], '*', MUST_EXIST);
+
+        cohort_remove_member($cohort->id, $user->id);
+    }
+
+    /**
      * Set a cohort restriction on one or more news items identified by headline.
      *
      * Supports a comma-separated list of cohort names for the MATCH_ALL scenario,
