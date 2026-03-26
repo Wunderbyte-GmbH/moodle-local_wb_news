@@ -10,7 +10,7 @@ jobs:
   ci:
     uses: Wunderbyte-GmbH/catalyst-moodle-workflows/.github/workflows/ci.yml@main
     with:
-      min_php: '7.4'
+      min_php: '8.1'
 
       # If you need to install additional plugins as dependencies
       extra_plugin_runners: |
