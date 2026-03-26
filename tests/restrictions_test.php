@@ -31,7 +31,7 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace local_wb_news\tests;
+namespace local_wb_news;
 
 use advanced_testcase;
 use local_wb_news\local\restrictions\cohort as cohort_restriction;

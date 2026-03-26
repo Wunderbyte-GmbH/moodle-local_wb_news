@@ -52,6 +52,8 @@ class cohort extends base {
 
     /**
      * {@inheritdoc}
+     *
+     * @param MoodleQuickForm $mform the form to add fields to
      */
     public function add_form_fields(MoodleQuickForm $mform): void {
         global $CFG;
@@ -85,6 +87,9 @@ class cohort extends base {
 
     /**
      * {@inheritdoc}
+     *
+     * @param stdClass $data submitted form data
+     * @return array restriction key/value pairs, or empty array if no cohorts selected
      */
     public function process_form_data(stdClass $data): array {
         $cohortids = array_values(array_unique(array_filter(
@@ -108,6 +113,9 @@ class cohort extends base {
 
     /**
      * {@inheritdoc}
+     *
+     * @param stdClass $data form data object to populate with defaults
+     * @param array    $restrictions decoded restrictions array for this item
      */
     public function set_form_defaults(stdClass $data, array $restrictions): void {
         $data->restrictioncohorts = array_map('intval', (array)($restrictions['cohorts'] ?? []));
@@ -118,6 +126,10 @@ class cohort extends base {
 
     /**
      * {@inheritdoc}
+     *
+     * @param stdClass $user         the user record to evaluate
+     * @param array    $restrictions decoded restrictions array for this item
+     * @return bool true if the user satisfies the cohort restriction
      */
     public function user_matches(stdClass $user, array $restrictions): bool {
         global $CFG;
