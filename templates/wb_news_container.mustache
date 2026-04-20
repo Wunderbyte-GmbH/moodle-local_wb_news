@@ -46,7 +46,7 @@
 {{#editmode}}
     <div class="text-center">
         <div class="wb-news-addeditbutton btn btn-primary"
-            data-action="add"
+            data-action="add" data-bs-action="add"
             data-isinstance="true">
             {{#str}} addinstance, local_wb_news {{/str}}
         </div>
@@ -55,28 +55,28 @@
 {{#instances}}
     {{#instancenameonindex}}
     <div class="my-4">
-    <button class="btn btn-primary btn-collapse mr-2" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#instance-{{instanceid}}" data-bs-target="#instance-{{instanceid}}" aria-expanded="false">
+    <button class="btn btn-primary btn-collapse mr-2 me-2" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#instance-{{instanceid}}" data-bs-target="#instance-{{instanceid}}" aria-expanded="false">
     <i class="fa fa-chevron-down"></i>
     <i class="fa fa-chevron-up"></i>
     </button>
     <div class="wb-news-addeditbutton btn btn-secondary"
-    data-action="add"
+    data-action="add" data-bs-action="add"
     data-instanceid="{{instanceid}}">
     <i class="fa fa-plus fa-solid fa-plus"></i>
     </div>
     <div class="wb-news-addeditbutton btn btn-secondary"
-        data-action="edit"
+        data-action="edit" data-bs-action="edit"
         data-id="{{instanceid}}"
         data-isinstance="true">
         <i class="fa fa-edit fa-solid fa-pen"></i>
     </div>
     <div class="wb-news-deletebutton btn btn-secondary"
-        data-action="delete"
+        data-action="delete" data-bs-action="delete"
         data-id="{{instanceid}}"
         data-isinstance="true">
         <i class="fa fa-trash fa-solid fa-trash-can"></i>
     </div>
-    <span class="h4 ml-2">{{instancenameonindex}}</span> <span>{{shortcode}}</span>
+    <span class="h4 ml-2 ms-2">{{instancenameonindex}}</span> <span>{{shortcode}}</span>
     </div>
     {{/instancenameonindex}}
     <div id="instance-{{instanceid}}" class="card-body {{#instancenameonindex}}collapse{{/instancenameonindex}}">
