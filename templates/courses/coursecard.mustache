@@ -37,11 +37,11 @@
     <div class="position-relative">
     <a href="{{viewurl}}" tabindex="-1">
         <div class="card-img-top" style="background-image: url('{{courseimage}}')">
-            <span class="sr-only">{{fullname}}</span>
+            <span class="sr-only visually-hidden">{{fullname}}</span>
         </div>
         <div class="course-card-name bg-primary text-white">{{fullname}}</div>
     </a>
-    <span class="sr-only">
+    <span class="sr-only visually-hidden">
         {{fullname}}
     </span>
     </div>
@@ -49,7 +49,7 @@
         <a href="{{viewurl}}" tabindex="-1" class="gotobutton btn btn-primary me-2">
         {{#str}} tocourse, local_wb_news {{/str}}               
         </a>
-        <button class="popupbutton btn btn-primary" data-action="courselisting-details" data-title="Course Company A.2">
+        <button class="popupbutton btn btn-primary" data-action="courselisting-details" data-bs-action="courselisting-details" data-title="Course Company A.2">
             Details
         </button>
     </div>

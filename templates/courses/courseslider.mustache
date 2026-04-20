@@ -35,7 +35,7 @@
     }
 }}
 
-<div id="courseCarousel-{{unique}}" class="carousel slide" data-ride="carousel">
+<div id="courseCarousel-{{unique}}" class="carousel slide" data-ride="carousel" data-bs-ride="carousel">
   <div class="carousel-inner">
     {{#chunks}}
       <div class="carousel-item{{#first}} active{{/first}}">
@@ -52,18 +52,18 @@
 
   <ol class="carousel-indicators">
     {{#chunks}}
-      <li data-target="#courseCarousel-{{unique}}" data-slide-to="{{index}}" class="{{#first}}active{{/first}}"></li>
+      <li data-target="#courseCarousel-{{unique}}" data-bs-target="#courseCarousel-{{unique}}" data-slide-to="{{index}}" data-bs-slide-to="{{index}}" class="{{#first}}active{{/first}}"></li>
     {{/chunks}}
   </ol>
 
   <div class="carousel-controls">
-    <a class="carousel-control-prev" href="#courseCarousel-{{unique}}" role="button" data-slide="prev">
+    <a class="carousel-control-prev" href="#courseCarousel-{{unique}}" role="button" data-slide="prev" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
+      <span class="sr-only visually-hidden">Previous</span>
     </a>
-    <a class="carousel-control-next" href="#courseCarousel-{{unique}}" role="button" data-slide="next">
+    <a class="carousel-control-next" href="#courseCarousel-{{unique}}" role="button" data-slide="next" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
+      <span class="sr-only visually-hidden">Next</span>
     </a>
   </div>
 

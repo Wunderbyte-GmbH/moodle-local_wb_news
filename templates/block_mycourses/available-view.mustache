@@ -40,14 +40,14 @@
                                 <div class="col-md-2 d-flex align-items-center mb-sm-3 mb-md-0">
                                     <a href="{{url}}" tabindex="-1" class="h-100">
                                         <div class="card-img dashboard-list-img mw-100 h-100" style='background-image: url("{{{courseimage}}}");'>
-                                            <span class="sr-only">{{fullname}}</span>
+                                            <span class="sr-only visually-hidden">{{fullname}}</span>
                                         </div>
                                     </a>
                                 </div>
                                 <div class="col-md-9 d-flex flex-column">
-                                        <a href="{{url}}" class="aalink fullname mr-2 mb-1">
+                                        <a href="{{url}}" class="aalink fullname mr-2 me-2 mb-1">
                                             {{> core_course/favouriteicon }}
-                                            <span class="sr-only">
+                                            <span class="sr-only visually-hidden">
                                                 {{#str}}aria:coursename, core_course{{/str}}
                                             </span>
                                             {{{fullname}}}
