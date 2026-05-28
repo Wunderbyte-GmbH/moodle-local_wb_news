@@ -154,6 +154,10 @@ class shortcodes {
     public static function wbnews_mycourses($shortcode, $args, $content, $env, $next) {
         global $USER, $PAGE, $OUTPUT, $CFG;
 
+        if (\core_plugin_manager::instance()->get_plugin_info('block_mycourses') === null) {
+            return '';
+        }
+
         require_once($CFG->dirroot . '/course/externallib.php');
         require_once($CFG->dirroot . '/blocks/mycourses/classes/output/inprogress_view.php');
         require_once($CFG->dirroot . '/blocks/mycourses/locallib.php');
@@ -180,7 +184,11 @@ class shortcodes {
      */
     public static function wbnews_availablecourses($shortcode, $args, $content, $env, $next) {
         global $USER, $PAGE, $OUTPUT, $CFG;
-        return '';
+
+        if (\core_plugin_manager::instance()->get_plugin_info('block_mycourses') === null) {
+            return '';
+        }
+
         require_once($CFG->dirroot . '/course/externallib.php');
         require_once($CFG->dirroot . '/blocks/mycourses/classes/output/available_view.php');
         require_once($CFG->dirroot . '/blocks/mycourses/locallib.php');
@@ -207,6 +215,11 @@ class shortcodes {
      */
     public static function wbnews_inprogresscourses($shortcode, $args, $content, $env, $next) {
         global $USER, $PAGE, $OUTPUT, $CFG;
+
+        if (\core_plugin_manager::instance()->get_plugin_info('block_mycourses') === null) {
+            return '';
+        }
+
         require_once($CFG->dirroot . '/course/externallib.php');
         require_once($CFG->dirroot . '/blocks/mycourses/classes/output/inprogress_view.php');
         require_once($CFG->dirroot . '/blocks/mycourses/locallib.php');
@@ -233,6 +246,11 @@ class shortcodes {
      */
     public static function wbnews_completedcourses($shortcode, $args, $content, $env, $next) {
         global $USER, $PAGE, $OUTPUT, $CFG;
+
+        if (\core_plugin_manager::instance()->get_plugin_info('block_mycourses') === null) {
+            return '';
+        }
+        
         require_once($CFG->dirroot . '/course/externallib.php');
         require_once($CFG->dirroot . '/blocks/mycourses/classes/output/completed_view.php');
         require_once($CFG->dirroot . '/blocks/mycourses/locallib.php');
