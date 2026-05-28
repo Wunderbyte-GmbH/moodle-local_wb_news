@@ -277,3 +277,4 @@ class shortcodes {
         return $OUTPUT->render_from_template('local_wb_news/block_mycourses/slider', $templatecontext);
     }
 }
+
