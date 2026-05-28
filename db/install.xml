@@ -27,6 +27,7 @@
         <FIELD NAME="lightmode" TYPE="int" LENGTH="2" NOTNULL="false" SEQUENCE="false" COMMENT="Light Mode"/>
         <FIELD NAME="cssclasses" TYPE="text" LENGTH="medium" NOTNULL="false" SEQUENCE="false" COMMENT="Extra CSS classes"/>
         <FIELD NAME="json" TYPE="char" LENGTH="1000" NOTNULL="true" SEQUENCE="false" COMMENT="Json"/>
+        <FIELD NAME="restrictions" TYPE="text" LENGTH="medium" NOTNULL="false" SEQUENCE="false" COMMENT="JSON encoded visibility restrictions"/>
         <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Time created"/>
         <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Time modified"/>
       </FIELDS>

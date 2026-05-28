@@ -24,6 +24,7 @@
 namespace local_wb_news\form;
 use core_tag_tag;
 use local_wb_news\news;
+use local_wb_news\local\restrictions\manager as restrictions_manager;
 use context;
 use core_form\dynamic_form;
 use moodle_url;
@@ -153,6 +154,10 @@ class addeditmodal extends dynamic_form {
 
         $mform->addElement('text', 'cssclasses', get_string('cssclasses', 'local_wb_news'));
         $mform->setType('cssclasses', PARAM_TEXT);
+
+        $mform->addElement('header', 'restrictionshdr', get_string('restrictions', 'local_wb_news'));
+
+        restrictions_manager::add_form_fields($mform);
 
         $mform->addElement('hidden', 'bgcolor', '');
         $mform->setType('bgcolor', PARAM_TEXT);
@@ -447,10 +452,14 @@ class addeditmodal extends dynamic_form {
             if (!empty($id)) {
                 $data->tags = core_tag_tag::get_item_tags_array('local_wb_news', 'local_wb_news', $id);
             }
+
+            $restrictions = restrictions_manager::decode_restrictions($data->restrictions ?? null);
+            restrictions_manager::set_form_defaults($data, $restrictions);
         } else {
             $data = new \stdClass();
             $data->instanceid = $instanceid;
             $data->btnlinkattributes = '';
+            restrictions_manager::set_form_defaults($data, []);
         }
 
         $data->btnlinkattributes = explode(',', $data->btnlinkattributes);

@@ -28,6 +28,7 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->libdir . '/filelib.php');
 
+use local_wb_news\local\restrictions\manager as restrictions_manager;
 use stdClass;
 use context_system;
 
@@ -44,14 +45,14 @@ class news {
      *
      * @var int
      */
-    const IMAGEMODE_HEADER = 0;
+    public const IMAGEMODE_HEADER = 0;
 
     /**
      * IMAGEMODE_BACKGROUND
      *
      * @var int
      */
-    const IMAGEMODE_BACKGROUND = 1;
+    public const IMAGEMODE_BACKGROUND = 1;
 
     /**
      * Array of instances.
@@ -160,6 +161,8 @@ class news {
      */
     public function return_list_of_news() {
 
+        global $USER;
+
         $returnarray = [];
 
         $isactive = false;
@@ -168,6 +171,10 @@ class news {
                 $isactive = true;
             }
             if (empty($news->userid)) {
+                continue;
+            }
+
+            if (!$this->can_user_see_news_item((int)$news->id, $USER)) {
                 continue;
             }
 
@@ -184,7 +191,7 @@ class news {
             $returnarray[0]['active'] = true;
         }
 
-        if (!$isactive) {
+        if (!$isactive && !empty($returnarray[0])) {
             $returnarray[0]['active'] = true;
         }
 
@@ -251,6 +258,32 @@ class news {
         $news = $this->news[$id] ?? null;
 
         return $news ?? null;
+    }
+
+    /**
+     * Check whether a user may view a news item.
+     *
+     * @param int $id
+     * @param \stdClass|null $user
+     * @return bool
+     */
+    public function can_user_see_news_item(int $id, ?\stdClass $user = null): bool {
+        global $USER;
+
+        if ($user === null) {
+            $user = $USER;
+        }
+
+        $newsitem = $this->get_news_item($id);
+        if (empty($newsitem)) {
+            return false;
+        }
+
+        if (has_capability('local/wb_news:manage', context_system::instance(), $user)) {
+            return true;
+        }
+
+        return restrictions_manager::user_matches($newsitem, $user);
     }
 
     /**
@@ -345,6 +378,8 @@ class news {
 
         $data->fullname = "$USER->firstname $USER->lastname";
         $data->timemodified = time();
+
+        $data->restrictions = restrictions_manager::build_restrictions_json($data);
 
         // We need to keep our element intact.5.
         $insertdata = clone($data);

@@ -24,6 +24,7 @@
  */
 
 use local_wb_news\output\newsview;
+use local_wb_news\news;
 
 require_once(__DIR__ . '/../../config.php'); // phpcs:ignore moodle.Files.RequireLogin.Missing
 
@@ -45,6 +46,11 @@ $PAGE->set_pagelayout('standard');
 $PAGE->set_context($context);
 $url = new moodle_url('/local/wb_news/newsview.php', ['id' => $id, 'instanceid' => $instanceid]);
 $PAGE->set_url($url);
+
+$news = news::getinstance($instanceid);
+if (!$news->can_user_see_news_item($id)) {
+    throw new moodle_exception('restrictednewsitem', 'local_wb_news');
+}
 
 $newsview = new newsview($id, $instanceid);
 $PAGE->set_title($newsview->return_headline());

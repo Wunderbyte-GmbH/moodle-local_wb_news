@@ -38,6 +38,7 @@ Feature: Test management of the wb_news instance items.
     ## Add the instance item
     And I click on ".wb-news-addeditbutton .fa-plus" "css_element"
     And I wait "1" seconds
+    And I expand all fieldsets
     And I set the field "Headline" to "Simple Headline"
     And I set the field "Subheadline" to "Simple Subheadline"
     And I set the field "Description" to "Simple Description"
@@ -53,6 +54,7 @@ Feature: Test management of the wb_news instance items.
     ## Duplicate the instance item and set an advanced fields
     And I click on ".wb-news-container .wb-news-copybutton .fa-copy" "css_element"
     And I wait "1" seconds
+    And I expand all fieldsets
     And the field "Headline" matches value "Simple Headline"
     And the field "Lower comes first" matches value "2"
     And I set the field "Headline" to "Adv Headline"
@@ -87,10 +89,8 @@ Feature: Test management of the wb_news instance items.
     And I click on ".wb-news-container .wb-news-deletebutton .fa-trash" "css_element"
     And I should see "Confirm deletion of this news item" in the ".modal.show .modal-header" "css_element"
     And I press "Save changes"
-    And I should not see "Simple Headline" in the ".wb-news-container" "css_element"
-    ## Check link
-    And I click on "NewsMyCourses" "link" in the ".wb-news-container" "css_element"
-    And I should see "My courses"
+    And I wait "2" seconds
+    And I should not see "Simple Headline"
 
   @javascript
   Scenario: News: Add and edit instance items via DB

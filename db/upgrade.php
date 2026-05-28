@@ -264,5 +264,19 @@ function xmldb_local_wb_news_upgrade($oldversion) {
         upgrade_plugin_savepoint(true, 2024122004, 'local', 'wb_news');
     }
 
+    if ($oldversion < 2026032500) {
+        // Define field restrictions to be added to local_wb_news.
+        $table = new xmldb_table('local_wb_news');
+        $field = new xmldb_field('restrictions', XMLDB_TYPE_TEXT, 'medium', null, null, null, null, 'json');
+
+        // Conditionally launch add field restrictions.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Wb_news savepoint reached.
+        upgrade_plugin_savepoint(true, 2026032500, 'local', 'wb_news');
+    }
+
     return true;
 }
