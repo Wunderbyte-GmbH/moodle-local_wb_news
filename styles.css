@@ -653,7 +653,7 @@
     align-items: stretch;
 }
 
-.carousel-item:not(.active) {
+.carousel-item:not(.active):not(.carousel-item-next):not(.carousel-item-prev) {
     display: none;
 }
 
