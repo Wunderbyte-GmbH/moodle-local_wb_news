@@ -62,6 +62,7 @@ class addeditinstancemodal extends dynamic_form {
         $options = [
             'local_wb_news/wb_news_masonry' => get_string('masonrytemplate', 'local_wb_news'),
             'local_wb_news/wb_news_slider' => get_string('slidertemplate', 'local_wb_news'),
+            'local_wb_news/wb_news_hero' => get_string('herotemplate', 'local_wb_news'),
             'local_wb_news/wb_news_tabs' => get_string('tabstemplate', 'local_wb_news'),
             'local_wb_news/wb_news_grid' => get_string('gridtemplate', 'local_wb_news'),
             'local_wb_news/wb_news_blog' => get_string('blogtemplate', 'local_wb_news'),

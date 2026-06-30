@@ -68,6 +68,7 @@ $string['form_submit'] = 'Submit';
 $string['form_title'] = 'Title';
 $string['gridtemplate'] = 'Grid template';
 $string['headline'] = 'Headline';
+$string['herotemplate'] = 'Hero template';
 $string['icon'] = 'Icon';
 $string['icontext'] = 'Icon alt text';
 $string['imagecolumntemplate'] = 'Image Column';

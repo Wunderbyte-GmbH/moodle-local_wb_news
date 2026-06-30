@@ -645,6 +645,9 @@ class news {
             case 'local_wb_news/wb_news_slider':
                 $instanceitem['slidertemplate'] = true;
                 break;
+            case 'local_wb_news/wb_news_hero':
+                $instanceitem['herotemplate'] = true;
+                break;
             case 'local_wb_news/wb_news_tabs':
                 $instanceitem['tabstemplate'] = true;
                 break;

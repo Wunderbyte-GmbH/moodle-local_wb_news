@@ -680,3 +680,121 @@
 .wb-news-copybutton {
     color: #fff !important;
 }
+
+/* Hero. */
+
+.wb_news_hero .wb_news_hero_item {
+    position: relative;
+    overflow: hidden;
+}
+
+.wb_news_hero .image-container {
+    position: relative;
+}
+
+.wb_news_hero .image-container img {
+    object-fit: cover;
+    border-radius: 0px;
+}
+
+.wb_news_hero .wb_news_hero_box {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 50%;
+    max-width: 50%;
+    border: 0;
+    border-radius: 0;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, .25);
+    background-color: rgba(255, 255, 255, .92);
+}
+
+.wb_news_hero .wb_news_hero_box.wb_news-light {
+    background-color: rgba(0, 0, 0, .55);
+}
+
+@media (max-width: 767.98px) {
+    .wb_news_hero .wb_news_hero_box {
+        position: static;
+        transform: none;
+        width: 100%;
+        max-width: none;
+    }
+}
+
+
+.wb_news_hero {
+  position: relative;
+  max-width: 100%;
+  padding: 0;
+}
+
+.wb_news_hero_item {
+  position: relative;
+  overflow: hidden;
+}
+
+.wb_news_hero_item .image-container {
+  position: relative;
+}
+
+.wb_news_hero_item img {
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.wb_news_hero_box {
+  position: absolute;
+  top: 50%;
+  right: 64px;
+  transform: translateY(-50%);
+  width: min(520px, calc(100% - 128px));
+  border: 0;
+  border-radius: 0;
+  background: #fff;
+  color: #1f1f1f;
+  box-shadow: none;
+}
+
+.wb_news_hero_box .card-body {
+  padding: 32px;
+}
+
+.wb_news_hero_box h1 {
+  margin: 0 0 16px;
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 1.05;
+  font-weight: 800;
+}
+
+.wb_news_hero_box p {
+  margin-bottom: 24px;
+}
+
+.wb_news_hero_box .btn {
+  margin-top: 0 !important;
+  border-radius: 0;
+  font-weight: 700;
+}
+
+.wb_news_hero_box .btn + .btn {
+  margin-left: 8px;
+}
+
+@media (max-width: 768px) {
+  .wb_news_hero_item img {
+    height: 280px;
+  }
+
+  .wb_news_hero_box {
+    position: static;
+    transform: none;
+    width: 100%;
+  }
+
+  .wb_news_hero_box .card-body {
+    padding: 24px;
+  }
+}
