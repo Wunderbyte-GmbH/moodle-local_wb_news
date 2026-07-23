@@ -38,17 +38,18 @@
 }}
 
 <div class="card h-100 wb_news_card_infoslides{{#lightmode}} wb_news-light{{/lightmode}}{{#cssclasses}} {{cssclasses}}{{/cssclasses}} text-center justify-content-center infoslide" style="background-color: {{{bgcolor}}}; border: none;">
-<div class="infoslideimg d-flex align-items-start justify-content-center" style="height: 260px">
     {{#headerimage}}
-    <img class="w-100 img-fluid wb_news-headerimage" style="object-fit: contain; max-height: 60%;
-    z-index: 99;" src="{{headerimage}}" aria-label="{{headerimagetext}}" alt="{{headerimagetext}}">
+    <div class="infoslideimg d-flex align-items-start justify-content-center" style="height: 260px">
+        <img class="w-100 img-fluid wb_news-headerimage" style="object-fit: contain; max-height: 60%;
+        z-index: 99;" src="{{headerimage}}" aria-label="{{headerimagetext}}" alt="{{headerimagetext}}">
+    </div>
     {{/headerimage}}
     {{#bgimage}}
-    <img class="w-100 img-fluid wb_news-headerimage" style="object-fit: contain; max-height: 60%;
-    z-index: 99;"  src="{{bgimage}}" aria-label="{{bgimagetext}}" alt="{{bgimagetext}}">
+    <div class="infoslideimg d-flex align-items-start justify-content-center" style="height: 260px">
+        <img class="w-100 img-fluid wb_news-headerimage" style="object-fit: contain; max-height: 60%;
+        z-index: 99;"  src="{{bgimage}}" aria-label="{{bgimagetext}}" alt="{{bgimagetext}}">
+    </div>
     {{/bgimage}}
-</div>
-
 
     <div class="card-body pt-0">
         <div     {{#tags.0}}class="mb-2" {{/tags.0}}>
@@ -59,16 +60,21 @@
         <img src="{{icon}}" class="card-icon mb-2 text-center" aria-label="{{icontext}}" alt="{{icontext}}">
     </div>
     {{/icon}}
-    <h5 class="card-title">{{{headline}}}</h5>
+    <h5 class="card-title pt-2">{{{headline}}}</h5>
     <h6 class="card-subtitle mb-2 font-weight-light">{{{subheadline}}}</h6>
+        {{#description}}
+        <p class="text-left">
+            {{{description}}}
+        </p>
+        {{/description}}
     </div>
-    <div class="card-footer">
     {{#btntext}}
+    <div class="card-footer">
         <a href="{{btnlink}}" class="btn btn-dark mt-auto gradienthover" id="infoslidebutton" {{#btnlinktarget}}target="{{.}}"{{/btnlinktarget}} {{#btnlinkrel}}rel="{{.}}"{{/btnlinkrel}}>{{btntext}}
            <i class="fa-solid fa-arrow-right ml-2"></i>
         </a>
-    {{/btntext}}
     </div>
+    {{/btntext}}
     {{#editmode}}
         {{> local_wb_news/editsinglenews}}
     {{/editmode}}

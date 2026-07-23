@@ -65,6 +65,28 @@ class shortcodes {
         $news = new wb_news($instance);
 
         $data = $news->return_list();
+
+        // If a max argument is given, order news by latest (timecreated desc) and limit.
+        if (!empty($args['max']) && isset($data['instances'][0]['news'])) {
+            $max = (int)$args['max'];
+            $newsitems = $data['instances'][0]['news'];
+
+            usort($newsitems, function ($a, $b) {
+                return ($b['timecreated'] ?? 0) <=> ($a['timecreated'] ?? 0);
+            });
+
+            $newsitems = array_slice($newsitems, 0, $max);
+
+            // Re-index slider helpers after slicing.
+            foreach ($newsitems as $index => &$item) {
+                $item['sliderindex'] = $index;
+                $item['slideactive'] = ($index === 0);
+            }
+            unset($item);
+
+            $data['instances'][0]['news'] = array_values($newsitems);
+        }
+
         if (empty($data["instances"][0]["news"])) {
             $out = get_string('novalidinstance', 'local_wb_news', $instance);
         } else {
@@ -139,123 +161,5 @@ class shortcodes {
         }
         $out = $OUTPUT->render_from_template('local_wb_news/courses/' . $template, $templatecontext);
         return $out . implode("<br>", $warnings);
-    }
-
-    /**
-     * use wbnews to get courselist
-     *
-     * @param string $shortcode
-     * @param array $args
-     * @param string|null $content
-     * @param object $env
-     * @param Closure $next
-     * @return string
-     */
-    public static function wbnews_mycourses($shortcode, $args, $content, $env, $next) {
-        global $USER, $PAGE, $OUTPUT, $CFG;
-
-        require_once($CFG->dirroot . '/course/externallib.php');
-        require_once($CFG->dirroot . '/blocks/mycourses/classes/output/inprogress_view.php');
-        require_once($CFG->dirroot . '/blocks/mycourses/locallib.php');
-
-        $mycompletion = mycourses_get_my_completion();
-
-        $availableview = new \block_mycourses\output\inprogress_view($mycompletion);
-        $templatecontext = $availableview->export_for_template($OUTPUT);
-        if (empty($templatecontext['courses'])) {
-            return '';
-        }
-        return $OUTPUT->render_from_template('local_wb_news/block_mycourses/inprogress-view', $templatecontext);
-    }
-
-    /**
-     * use wbnews to get courselist
-     *
-     * @param string $shortcode
-     * @param array $args
-     * @param string|null $content
-     * @param object $env
-     * @param Closure $next
-     * @return string
-     */
-    public static function wbnews_availablecourses($shortcode, $args, $content, $env, $next) {
-        global $USER, $PAGE, $OUTPUT, $CFG;
-        return '';
-        require_once($CFG->dirroot . '/course/externallib.php');
-        require_once($CFG->dirroot . '/blocks/mycourses/classes/output/available_view.php');
-        require_once($CFG->dirroot . '/blocks/mycourses/locallib.php');
-
-        $mycompletion = mycourses_get_my_completion();
-
-        $availableview = new \block_mycourses\output\available_view($mycompletion);
-        $templatecontext = $availableview->export_for_template($OUTPUT);
-        if (empty($templatecontext['courses'])) {
-            return '';
-        }
-        return $OUTPUT->render_from_template('local_wb_news/block_mycourses/available-view', $templatecontext);
-    }
-
-    /**
-     * use wbnews to get courselist
-     *
-     * @param string $shortcode
-     * @param array $args
-     * @param string|null $content
-     * @param object $env
-     * @param Closure $next
-     * @return string
-     */
-    public static function wbnews_inprogresscourses($shortcode, $args, $content, $env, $next) {
-        global $USER, $PAGE, $OUTPUT, $CFG;
-        require_once($CFG->dirroot . '/course/externallib.php');
-        require_once($CFG->dirroot . '/blocks/mycourses/classes/output/inprogress_view.php');
-        require_once($CFG->dirroot . '/blocks/mycourses/locallib.php');
-
-        $mycompletion = mycourses_get_my_completion();
-
-        $availableview = new \block_mycourses\output\inprogress_view($mycompletion);
-        $templatecontext = $availableview->export_for_template($OUTPUT);
-        if (empty($templatecontext['courses'])) {
-            return '';
-        }
-        return $OUTPUT->render_from_template('local_wb_news/block_mycourses/inprogress-view', $templatecontext);
-    }
-
-    /**
-     * use wbnews to get courselist
-     *
-     * @param string $shortcode
-     * @param array $args
-     * @param string|null $content
-     * @param object $env
-     * @param Closure $next
-     * @return string
-     */
-    public static function wbnews_completedcourses($shortcode, $args, $content, $env, $next) {
-        global $USER, $PAGE, $OUTPUT, $CFG;
-        require_once($CFG->dirroot . '/course/externallib.php');
-        require_once($CFG->dirroot . '/blocks/mycourses/classes/output/completed_view.php');
-        require_once($CFG->dirroot . '/blocks/mycourses/locallib.php');
-
-        $mycompletion = mycourses_get_my_archive();
-        $mycompletion = mycourses_get_my_archive();
-
-        $availableview = new \block_mycourses\output\completed_view($mycompletion);
-        $formattedcourses = $availableview->export_for_template($OUTPUT);
-
-        if (empty($formattedcourses)) {
-            return '';
-        }
-        $chunks = array_chunk($formattedcourses['courses'], 3);
-        $templatecontext['chunks'] = [];
-        foreach ($chunks as $index => $chunk) {
-            $templatecontext['chunks'][] = [
-                'courses' => $chunk,
-                'first' => ($index === 0),
-                'index' => $index,
-            ];
-        }
-
-        return $OUTPUT->render_from_template('local_wb_news/block_mycourses/slider', $templatecontext);
     }
 }
