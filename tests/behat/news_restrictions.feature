@@ -7,7 +7,13 @@ Feature: Cohort-based visibility restrictions on news items.
   bypass all restrictions regardless of cohort membership.
 
   Background:
-    Given the following "users" exist:
+    # Moodle 5.2 ships the classic site home disabled by default (enablemyhome = 0)
+    # and index.php then redirects to /my/ even with redirect=0. These scenarios
+    # place the news block on the site home, so enable it explicitly; the setting
+    # is simply unused on older Moodle versions.
+    Given the following config values are set as admin:
+      | enablemyhome | 1 |
+    And the following "users" exist:
       | username          | firstname | lastname |
       | student_member    | Student   | Member   |
       | student_nonmember | Student   | Other    |
