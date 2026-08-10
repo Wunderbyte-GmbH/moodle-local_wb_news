@@ -675,8 +675,9 @@
     transition: opacity 0.6s ease;
 }
 
-.wb-news-addeditbutton,
-.wb-news-deletebutton,
-.wb-news-copybutton {
-    color: #fff !important;
+/* Type + double class outweighs theme button rules incl. :hover without needing important. */
+div.wb-news-addeditbutton.btn,
+div.wb-news-deletebutton.btn,
+div.wb-news-copybutton.btn {
+    color: #fff;
 }
