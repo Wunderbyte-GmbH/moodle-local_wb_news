@@ -54,13 +54,13 @@
         {{/btntext}}
         {{^dontshowarrows}}
             <div class="row mt-4 justify-content-center">
-                <a class="carousel-control-prev mt-4 mr-2" href="#wb_news_carousel-{{instanceid}}" role="button" data-slide="prev">
+                <a class="carousel-control-prev mt-4 mr-2 me-2" href="#wb_news_carousel-{{instanceid}}" role="button" data-slide="prev" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" title="{{#str}} previous, local_wb_news {{/str}}"></span>
-                    <span class="sr-only">{{#str}} previous, local_wb_news {{/str}}</span>
+                    <span class="sr-only visually-hidden">{{#str}} previous, local_wb_news {{/str}}</span>
                 </a>
-                <a class="carousel-control-next mt-4 ml-2" href="#wb_news_carousel-{{instanceid}}" role="button" data-slide="next">
+                <a class="carousel-control-next mt-4 ml-2 ms-2" href="#wb_news_carousel-{{instanceid}}" role="button" data-slide="next" data-bs-slide="next">
                     <span class="carousel-control-next-icon" title="{{#str}} next, local_wb_news {{/str}}"></span>
-                    <span class="sr-only">{{#str}} next, local_wb_news {{/str}}</span>
+                    <span class="sr-only visually-hidden">{{#str}} next, local_wb_news {{/str}}</span>
                 </a>
             </div>
         {{/dontshowarrows}}

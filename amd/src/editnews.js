@@ -67,16 +67,16 @@ function handleClickEvent(event) {
     // eslint-disable-next-line no-console
     console.log(event.target);
 
-    const actionButton = event.target.closest('[data-action]');
+    const actionButton = event.target.closest('[data-bs-action], [data-action]');
 
     if (!actionButton || !event.currentTarget.contains(actionButton)) {
         return;
     }
 
     // Get event target.
-    if (actionButton && actionButton.dataset.action) {
+    if (actionButton && (actionButton.dataset.bsAction || actionButton.dataset.action)) {
 
-        const action = actionButton.dataset.action;
+        const action = actionButton.dataset.bsAction || actionButton.dataset.action;
 
         switch (action) {
             case 'add':

@@ -67,7 +67,7 @@ if (
             get_string('backtooverview', 'theme_lexa'),
         [
             'role' => 'button',
-            'class' => 'btn mr-auto lexa-caption d-flex justify-content-start align-items-center',
+            'class' => 'btn mr-auto me-auto lexa-caption d-flex justify-content-start align-items-center',
             'style' => 'width: fit-content;',
         ]
     );
