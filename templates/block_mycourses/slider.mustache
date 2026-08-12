@@ -35,14 +35,14 @@
     }
 }}
 
-<div id="courseCarousel-{{uniqid}}" class="carousel slide" data-ride="carousel" data-id="wb-categoryfilter-instance">
+<div id="courseCarousel-{{uniqid}}" class="carousel slide"{{#autoplay}} data-ride="carousel"{{/autoplay}} data-id="wb-categoryfilter-instance">
   <div class="carousel-inner">
     {{#chunks}}
       <div class="carousel-item{{#first}} active{{/first}}">
       <div class="container px-0 px-md-3">
         <div class="row" data-id="wb-categoryfilter-items">
           {{#courses}}
-            <div class="col-lg-4 mb-2"  data-category="{{coursecategory}}">
+            <div class="{{colclass}}{{^colclass}}col-lg-4{{/colclass}} mb-2"  data-category="{{coursecategory}}">
               {{> local_wb_news/courses/coursecard }}
             </div>
           {{/courses}}

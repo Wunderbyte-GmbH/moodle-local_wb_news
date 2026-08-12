@@ -281,8 +281,15 @@ class shortcodes {
                 return '';
             }
 
-            if ($args['slider'] == 1) {
-                $chunks = array_chunk($formattedcourses['courses'], 3);
+            $courses = $formattedcourses['courses'];
+            $limit = (int)($args['limit'] ?? 0);
+            if ($limit > 0) {
+                $courses = array_slice($courses, 0, $limit);
+            }
+
+            if (($args['slider'] ?? 0) == 1) {
+                $items = max(1, (int)($args['items'] ?? 3));
+                $chunks = array_chunk($courses, $items);
                 $templatecontext['chunks'] = [];
 
                 foreach ($chunks as $index => $chunk) {
@@ -292,13 +299,11 @@ class shortcodes {
                             'index' => $index,
                     ];
                 }
+                $templatecontext['autoplay'] = (($args['autoplay'] ?? 1) == 1);
+                $templatecontext['colclass'] = $items === 1 ? 'col-12' : 'col-lg-4';
                 return $OUTPUT->render_from_template('local_wb_news/block_mycourses/slider', $templatecontext);
             } else {
-                $courses = $formattedcourses['courses'];
-                $tripleCourses = array_merge(
-                    $courses
-                );
-                $chunks = array_chunk($tripleCourses, 1000);
+                $chunks = array_chunk($courses, 1000);
                 $templatecontext['chunks'] = [];
 
                 foreach ($chunks as $index => $chunk) {
