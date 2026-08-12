@@ -137,6 +137,7 @@ class shortcodes {
         } else {
             $template = $args['template'];
         }
+        $templatecontext['detailsinline'] = (($args['detailsmode'] ?? '') === 'inline');
         $out = $OUTPUT->render_from_template('local_wb_news/courses/' . $template, $templatecontext);
         return $out . implode("<br>", $warnings);
     }
@@ -165,6 +166,7 @@ class shortcodes {
         if (empty($templatecontext['courses'])) {
             return '';
         }
+        $templatecontext['detailsinline'] = (($args['detailsmode'] ?? '') === 'inline');
         return $OUTPUT->render_from_template('local_wb_news/block_mycourses/inprogress-view', $templatecontext);
     }
 
@@ -234,6 +236,7 @@ class shortcodes {
         }
         $templatecontext['courses'] = array_values($templatecontext['courses']);
 
+        $templatecontext['detailsinline'] = (($args['detailsmode'] ?? '') === 'inline');
 
         return $OUTPUT->render_from_template('local_wb_news/block_mycourses/inprogress-view', $templatecontext);
     }
@@ -286,6 +289,7 @@ class shortcodes {
             if ($limit > 0) {
                 $courses = array_slice($courses, 0, $limit);
             }
+            $templatecontext['detailsinline'] = (($args['detailsmode'] ?? '') === 'inline');
 
             if (($args['slider'] ?? 0) == 1) {
                 $items = max(1, (int)($args['items'] ?? 3));
@@ -390,7 +394,10 @@ class shortcodes {
         }
 
         // Pass data to Mustache template
-        $data = ['courses' => $coursesdata];
+        $data = [
+            'courses' => $coursesdata,
+            'detailsinline' => (($args['detailsmode'] ?? '') === 'inline'),
+        ];
 
         // Render output
         return $OUTPUT->render_from_template('local_wb_news/block_mycourses/lastvisited-view', $data);

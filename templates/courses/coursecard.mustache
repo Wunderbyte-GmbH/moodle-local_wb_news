@@ -15,11 +15,19 @@
 <a href="{{viewurl}}" tabindex="-1" class="gotobutton btn btn-primary me-2">
         {{#str}} tocourse, local_wb_news {{/str}}               
         </a>
+        {{^detailsinline}}
         <button class="popupbutton btn btn-primary" data-action="courselisting-details" data-title="{{fullname}}" data-id="{{id}}"
                         data-summary="{{summary}}"
                     >
             {{#str}}courselistingpopup, theme_boost_union{{/str}}
         </button>
+        {{/detailsinline}}
+        {{#detailsinline}}
+        <details class="wb-course-details">
+            <summary class="popupbutton btn btn-primary">{{#str}}courselistingpopup, theme_boost_union{{/str}}</summary>
+            <div class="wb-course-details-text">{{{summary}}}</div>
+        </details>
+        {{/detailsinline}}
         </div>
     </div>
 </div>
