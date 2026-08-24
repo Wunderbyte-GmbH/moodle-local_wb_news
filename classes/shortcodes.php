@@ -162,7 +162,7 @@ class shortcodes {
         $mycompletion = helper::get_my_archive();
 
         $availableview = new \block_mycourses\output\inprogress_view($mycompletion);
-        $templatecontext = $availableview->export_for_template($OUTPUT);
+        $templatecontext = $availableview->export_for_template($PAGE->get_renderer('core'));
         if (empty($templatecontext['courses'])) {
             return '';
         }
@@ -191,7 +191,7 @@ class shortcodes {
 
 
         $availableview = new \block_mycourses\output\available_view($mycompletion);
-        $templatecontext = $availableview->export_for_template($OUTPUT);
+        $templatecontext = $availableview->export_for_template($PAGE->get_renderer('core'));
         if (empty($templatecontext['courses'])) {
             return '';
         }
@@ -216,7 +216,7 @@ class shortcodes {
         $mycompletion = helper::get_my_inprogress();
 
         $availableview = new \block_mycourses\output\inprogress_view($mycompletion);
-        $templatecontext = $availableview->export_for_template($OUTPUT);
+        $templatecontext = $availableview->export_for_template($PAGE->get_renderer('core'));
         if (empty($templatecontext['courses'])) {
             return '';
         }
@@ -279,7 +279,7 @@ class shortcodes {
             $validcompletions->mycompleted = array_values($unique);
 
             $availableview = new \block_mycourses\output\completed_view($validcompletions->mycompleted);
-            $formattedcourses = $availableview->export_for_template($OUTPUT);
+            $formattedcourses = $availableview->export_for_template($PAGE->get_renderer('core'));
             if (empty($formattedcourses) || empty($formattedcourses['courses'])) {
                 return '';
             }
