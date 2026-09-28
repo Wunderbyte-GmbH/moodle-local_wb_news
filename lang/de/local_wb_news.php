@@ -85,6 +85,7 @@ $string['name'] = 'Name';
 $string['news_created'] = 'Neuigkeiteneintrag erstellt';
 $string['news_deleted'] = 'Neuigkeiteneintrag entfernt';
 $string['news_updated'] = 'Neuigkeiteneintrag aktualisiert';
+$string['newsidforshortcode'] = 'Diese ID im select-Parameter des Shortcodes verwenden';
 $string['next'] = 'Weiter';
 $string['novalidhexcolor'] = 'Das ist kein gültiger Hex-Code';
 $string['novalidinstance'] = 'Das ist keine verfügbare Instanz mit der id {$a}';
@@ -102,6 +103,7 @@ $string['restrictioncohortsmatchall'] = 'Benutzer muss in allen ausgewaehlten Ko
 $string['restrictioncohortsmatchany'] = 'Benutzer muss in mindestens einer ausgewaehlten Kohorte sein';
 $string['restrictionnocohorts'] = 'Keine Kohorten verfuegbar';
 $string['restrictions'] = 'Einschraenkungen';
+$string['shortcodeselecthelp'] = 'Optional: [wbnews instance={$a} count=3 select="newest,ID,random"] - Regel pro Karte: newest, oldest, random oder eine News-ID';
 $string['tocourse'] = 'Zum Kurs';
 $string['wbnewscourse'] = 'Liste von Kursen';
 $string['wbnewslist'] = 'Liste von News';

@@ -156,17 +156,20 @@ class news {
     /**
      * Returns a list of news from the current instance.
      *
+     * @param array $selection optional list of slot rules, see select_news()
      * @return array
      *
      */
-    public function return_list_of_news() {
+    public function return_list_of_news(array $selection = []) {
 
         global $USER;
 
         $returnarray = [];
 
+        $newsitems = empty($selection) ? $this->news : $this->select_news($selection);
+
         $isactive = false;
-        foreach ($this->news as $news) {
+        foreach ($newsitems as $news) {
             if (!empty($news->active)) {
                 $isactive = true;
             }
@@ -196,6 +199,103 @@ class news {
         }
 
         return $returnarray;
+    }
+
+    /**
+     * Picks news items according to a list of slot rules.
+     *
+     * Every rule fills one slot. Possible rules:
+     * - "newest": the most recently created item not yet shown
+     * - "oldest": the oldest item not yet shown
+     * - "random": a random item not yet shown
+     * - a numeric news id: exactly this item (if it belongs to this instance)
+     * Fixed ids are resolved first, so they are never picked twice by the other rules.
+     * The returned items keep the order of the rules. Slots which cannot be filled are skipped.
+     *
+     * @param array $selection list of rules
+     * @return array
+     */
+    public function select_news(array $selection): array {
+
+        global $USER;
+
+        // Only pick from items the user can see, so hidden items don't leave empty slots.
+        $available = array_filter(
+            $this->news,
+            fn($news) => !empty($news->userid) && $this->can_user_see_news_item((int)$news->id, $USER)
+        );
+        $slots = [];
+
+        // Fixed ids first, they must not be taken away by newest or random.
+        foreach ($selection as $index => $rule) {
+            if (is_numeric($rule) && isset($available[(int)$rule])) {
+                $slots[$index] = $available[(int)$rule];
+                unset($available[(int)$rule]);
+            }
+        }
+
+        // Sort the remaining items from newest to oldest.
+        uasort($available, fn($a, $b) => [$b->timecreated, $b->id] <=> [$a->timecreated, $a->id]);
+
+        foreach ($selection as $index => $rule) {
+            if (isset($slots[$index]) || empty($available)) {
+                continue;
+            }
+            switch ($rule) {
+                case 'newest':
+                    $id = array_key_first($available);
+                    break;
+                case 'oldest':
+                    $id = array_key_last($available);
+                    break;
+                case 'random':
+                    $id = array_rand($available);
+                    break;
+                default:
+                    continue 2;
+            }
+            $slots[$index] = $available[$id];
+            unset($available[$id]);
+        }
+
+        ksort($slots);
+        return $slots;
+    }
+
+    /**
+     * Builds the list of slot rules from the shortcode arguments "count" and "select".
+     *
+     * Examples:
+     * - count=3 (or max=3) -> the three newest items
+     * - count=3 select=random -> three random items
+     * - select="newest,12,random" -> newest item, item with id 12, one random item
+     * - count=4 select="newest,random" -> newest item, three random items (last rule is repeated)
+     *
+     * @param array $args shortcode arguments
+     * @return array list of rules, empty if all items should be shown
+     */
+    public static function parse_selection(array $args): array {
+
+        $rules = [];
+        if (!empty($args['select'])) {
+            $rules = array_values(array_filter(
+                array_map(fn($rule) => strtolower(trim($rule)), explode(',', $args['select'])),
+                fn($rule) => $rule !== ''
+            ));
+        }
+        // The older "max" argument is kept as an alias for count.
+        $count = $args['count'] ?? $args['max'] ?? null;
+        $count = isset($count) ? max(0, (int)$count) : count($rules);
+
+        if (empty($count)) {
+            return [];
+        }
+        if (empty($rules)) {
+            $rules = ['newest'];
+        }
+        // Pad with the last rule or cut off, so we have exactly $count rules.
+        $rules = array_pad($rules, $count, end($rules));
+        return array_slice($rules, 0, $count);
     }
 
     /**
@@ -381,7 +481,7 @@ class news {
 
         $data->restrictions = restrictions_manager::build_restrictions_json($data);
 
-        // We need to keep our element intact.5.
+        // We need to keep our element intact.
         $insertdata = clone($data);
         // Unset all unwanted arrays.
         foreach ($insertdata as $key => $value) {
@@ -567,7 +667,7 @@ class news {
             $event = instance_created::create([
                 'context' => context_system::instance(),
                 'userid' => $USER->id,
-                'objectid' => $data->id,
+                'objectid' => $id,
             ]);
 
             $event->trigger();
@@ -605,10 +705,11 @@ class news {
     /**
      * Returns the instance as a renderable array.
      *
+     * @param array $selection optional list of slot rules, see select_news()
      * @return array
      *
      */
-    public function return_instance() {
+    public function return_instance(array $selection = []) {
 
         global $PAGE;
 
@@ -624,8 +725,9 @@ class news {
                 ) && has_capability('local/wb_news:manage', context_system::instance()),
         ];
 
+        $instanceitem['news'] = [];
         if (!empty($this->news)) {
-            $instanceitem['news'] = $this->return_list_of_news();
+            $instanceitem['news'] = $this->return_list_of_news($selection);
         }
 
         foreach ($instanceitem['news'] as $index => &$item) {

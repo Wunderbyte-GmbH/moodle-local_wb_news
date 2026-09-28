@@ -89,10 +89,11 @@ class wb_news implements renderable, templatable {
     /**
      * Returns the items of this class.
      *
+     * @param array $selection optional list of slot rules, see news::select_news()
      * @return array
      *
      */
-    public function return_list() {
+    public function return_list(array $selection = []) {
 
         global $PAGE;
 
@@ -108,7 +109,7 @@ class wb_news implements renderable, templatable {
 
         return [
             'instances' => [
-                $news->return_instance(),
+                $news->return_instance($selection),
             ],
         ];
     }
