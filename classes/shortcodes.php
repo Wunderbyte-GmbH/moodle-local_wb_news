@@ -26,6 +26,7 @@
 namespace local_wb_news;
 
 use local_wb_news\output\wb_news;
+use local_wb_news\news;
 use local_wb_news\helper;
 use stdClass;
 use core_course\external\course_summary_exporter;
@@ -40,8 +41,12 @@ require_once($CFG->dirroot . '/local/wb_news/lib.php');
  */
 class shortcodes {
     /**
-     * Prints out list of previous history items in a card..
-     * Arguments can be 'userid'.
+     * Renders one or all news instances.
+     * Arguments:
+     * - instance: id of the news instance (0 or missing for all instances)
+     * - count: number of items to show (optional, "max" is an alias)
+     * - select: comma separated rules per item: newest, oldest, random or a news id (optional),
+     *   e.g. [wbnews instance=1 count=3 select="newest,12,random"]
      *
      * @param string $shortcode
      * @param array $args
@@ -64,28 +69,9 @@ class shortcodes {
 
         $news = new wb_news($instance);
 
-        $data = $news->return_list();
-
-        // If a max argument is given, order news by latest (timecreated desc) and limit.
-        if (!empty($args['max']) && isset($data['instances'][0]['news'])) {
-            $max = (int)$args['max'];
-            $newsitems = $data['instances'][0]['news'];
-
-            usort($newsitems, function ($a, $b) {
-                return ($b['timecreated'] ?? 0) <=> ($a['timecreated'] ?? 0);
-            });
-
-            $newsitems = array_slice($newsitems, 0, $max);
-
-            // Re-index slider helpers after slicing.
-            foreach ($newsitems as $index => &$item) {
-                $item['sliderindex'] = $index;
-                $item['slideactive'] = ($index === 0);
-            }
-            unset($item);
-
-            $data['instances'][0]['news'] = array_values($newsitems);
-        }
+        // Optional: only show some items, e.g. count=3 select="newest,12,random".
+        $selection = empty($instance) ? [] : news::parse_selection($args);
+        $data = $news->return_list($selection);
 
         if (empty($data["instances"][0]["news"])) {
             $out = get_string('novalidinstance', 'local_wb_news', $instance);
