@@ -1,0 +1,410 @@
+/* ============================================================
+   HLFS Lernwelt — Mobile App Remote Theme CSS (mobilecssurl)
+   Canonical version — deploy this file to the Moodle server and
+   point "Mobile appearance → CSS" at it. After every change:
+   bump the ?v= cache-buster in the setting and pull-to-refresh.
+   ============================================================ */
+
+/* Hide the side-blocks drawer button */
+.tab-home core-block-side-blocks-button,
+.tab-home core-block-side-blocks {
+    display: none;
+}
+
+/* Hide the "Website" section headline on the start page */
+page-core-sitehome-index ion-item-divider.course-section {
+    display: none;
+}
+
+/* --- Section headings: bold + blue underline ----------------------- */
+core-format-text .content-section h2.underline {
+    font-weight: 700;
+    display: inline-block;
+    border-bottom: 3px solid #1f4b89;
+    padding-bottom: 4px;
+}
+
+/* --- Layout containers: full width, no stray padding --------------- */
+core-format-text .content-section .row,
+core-format-text .content-section [class*="col-"] {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* --- Start page: list flush to the navigation ---------------------- */
+page-core-sitehome-index ion-list.list-item-limited-width {
+    padding-top: 0 !important;
+}
+page-core-sitehome-index .core-course-module-list-wrapper {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* --- Hero: full width, directly under the navigation (verified) ---- */
+page-core-sitehome-index ion-card.activity-card:has(.hlfs-hero) {
+    margin: 0 0 8px !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+page-core-sitehome-index ion-card.activity-card:has(.hlfs-hero) ion-item {
+    margin: 0 !important;
+    width: 100% !important;
+    --padding-start: 0;
+    --padding-end: 0;
+    --inner-padding-start: 0;
+    --inner-padding-end: 0;
+}
+page-core-sitehome-index ion-card.activity-card:has(.hlfs-hero) ion-item::part(native) {
+    padding-inline-start: 0 !important;
+    padding-inline-end: 0 !important;
+}
+page-core-sitehome-index ion-card.activity-card:has(.hlfs-hero) .activity-main,
+page-core-sitehome-index ion-card.activity-card:has(.hlfs-hero) .activity-title,
+page-core-sitehome-index ion-card.activity-card:has(.hlfs-hero) p.item-heading {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.hlfs-hero,
+.hlfs-hero p {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.hlfs-hero .core-adapted-img-container {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+.hlfs-hero img {
+    display: block;
+    width: 100% !important;
+    height: auto;
+    border-radius: 0 !important;
+    margin: 0 !important;
+}
+
+/* No expand/zoom button on the hero */
+.hlfs-hero .core-image-viewer-icon {
+    display: none !important;
+}
+
+/* --- Tiles: symmetric margins (verified L=R) ----------------------- */
+page-core-sitehome-index ion-card.activity-card:has(.hlfs-tiles) .activity-main,
+page-core-sitehome-index ion-card.activity-card:has(.hlfs-tiles) .activity-title,
+page-core-sitehome-index ion-card.activity-card:has(.hlfs-tiles) p.item-heading {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+page-core-sitehome-index ion-card.activity-card:has(.hlfs-tiles) ion-item::part(native) {
+    padding-inline-start: 16px !important;
+    padding-inline-end: 16px !important;
+}
+page-core-sitehome-index ion-card.activity-card:has(.hlfs-tiles) ion-item {
+    --inner-padding-start: 0 !important;
+    --inner-padding-end: 0 !important;
+}
+.hlfs-tiles {
+    margin: 16px 0 !important;
+    padding: 0 !important;
+}
+
+/* --- Uniform horizontal padding for ALL section cards -------------- */
+page-core-sitehome-index ion-card.activity-card ion-item {
+    --inner-padding-start: 0;
+    --inner-padding-end: 0;
+}
+/* Equal inner width for all content label cards (makes course cards
+   identical across the three sections) */
+page-core-sitehome-index ion-card.activity-card:has(.content-section) .activity-main,
+page-core-sitehome-index ion-card.activity-card:has(.content-section) .activity-title,
+page-core-sitehome-index ion-card.activity-card:has(.content-section) p.item-heading {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* --- Course cards: one look for ALL templates ---------------------- */
+core-format-text .content-section .list-course-card,
+core-format-text .content-section .course-card {
+    border-radius: 12px !important;
+    overflow: hidden;
+    margin: 0 auto 20px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    text-align: center;
+    border: 1px solid #dee2e6;
+}
+
+/* Images: fill the tile, keep aspect ratio, uniform height
+   (covers <img>, .card-img-top and background-div variants) */
+core-format-text .content-section .list-course-card img,
+core-format-text .content-section .course-card .card-img-top,
+core-format-text .content-section .list-course-card div[style*="background"],
+core-format-text .content-section .course-card div[style*="background"] {
+    display: block;
+    width: 100% !important;
+    height: 180px !important;
+    min-height: 0 !important;
+    object-fit: cover;
+    object-position: center;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
+/* Course description in cards: clamp to 2 lines AND reserve the space,
+   so every card has identical height regardless of text length */
+core-format-text .content-section .course-card [class*="clamp"],
+core-format-text .content-section .list-course-card [class*="clamp"] {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    min-height: 2.9em;
+    margin: 0 12px !important;
+}
+
+/* When the card has the inline Details element (detailsmode=inline),
+   the description lives in the overlay — hide the always-on paragraph
+   so the card shows only image / title / buttons */
+core-format-text .content-section .course-card:has(.wb-course-details) [class*="clamp"],
+core-format-text .content-section .list-course-card:has(.wb-course-details) [class*="clamp"] {
+    display: none !important;
+    min-height: 0 !important;
+}
+
+/* Card links: no underline (carousel template wraps titles in <a>) */
+core-format-text .content-section .course-card a,
+core-format-text .content-section .list-course-card a {
+    text-decoration: none !important;
+}
+
+/* Course name: identical bar everywhere */
+core-format-text .content-section .list-course-card h3,
+core-format-text .content-section .list-course-card h4,
+core-format-text .content-section .course-card .course-card-name {
+    display: block;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 8px !important;
+    background: #1f4b89 !important;
+    color: #ffffff !important;
+    text-align: center !important;
+    font-size: 1.15rem !important;
+    font-weight: 700;
+}
+
+/* Button area: centered, no template padding (covers all wrappers,
+   incl. the list template's .mt-3.pl-4 div) */
+core-format-text .content-section .course-card .course-info-container,
+core-format-text .content-section .course-card .course-info-container > div,
+core-format-text .content-section .list-course-card div:has(> a.btn),
+core-format-text .content-section .course-card div:has(> a.btn) {
+    padding: 12px 0 !important;
+    margin: 0 !important;
+    text-align: center !important;
+}
+/* Aktuelle-Kurse template: space beneath the buttons */
+core-format-text .content-section .list-course-card {
+    padding-bottom: 14px !important;
+}
+
+/* Buttons: identical spacing everywhere */
+core-format-text .content-section .list-course-card .btn,
+core-format-text .content-section .course-card .btn {
+    margin: 0 6px !important;
+}
+
+/* "Zum Kurs" blue — anchors only (never the Details summary!) */
+core-format-text .content-section .course-card .gotobutton,
+core-format-text .content-section .course-card a.btn,
+core-format-text .content-section .list-course-card a.btn {
+    background: #1f4b89 !important;
+    border-color: #1f4b89 !important;
+    color: #ffffff !important;
+}
+
+/* "Details" grey — all template variants, outranks the blue rules */
+core-format-text .popupbutton,
+core-format-text [data-action="courselisting-details"],
+core-format-text .content-section .list-course-card summary.btn,
+core-format-text .content-section .course-card summary.btn,
+core-format-text .content-section .list-course-card .popupbutton,
+core-format-text .content-section .course-card .popupbutton {
+    background: #e9ecef !important;
+    border-color: #ced4da !important;
+    color: #333333 !important;
+}
+
+/* --- "Zur Übersicht" styled like the native Meine-Kurse card ------- */
+core-format-text .hlfs-overview {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #ffffff;
+    color: #3a3a3a !important;
+    border: 1px solid #dee2e6;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 4px 0 16px;
+    font-weight: 500;
+    font-size: 1rem;
+    text-decoration: none !important;
+}
+core-format-text .hlfs-overview i,
+core-format-text .hlfs-overview ion-icon {
+    font-size: 1.3rem;
+    color: #3a3a3a;
+}
+
+/* Hide the native frontpage item cards (e.g. "Meine Kurse") on the
+   start page — reachable via the bottom-nav tab anyway. Cleaner
+   alternative: remove the items in Website-Administration →
+   Startseite → Einstellungen ("Startseitenelemente, wenn angemeldet"). */
+page-core-sitehome-index ion-list > ion-card {
+    display: none !important;
+}
+
+/* --- Inline "Details" disclosure in course cards (wb_news
+       detailsmode=inline): description opens as an overlay on the card,
+       buttons never move ------------------------------------------------ */
+core-format-text .content-section .course-card,
+core-format-text .content-section .list-course-card {
+    position: relative;
+}
+core-format-text .wb-course-details,
+core-format-text .wb-course-details[open] {
+    display: inline-block !important;
+    vertical-align: middle;
+    margin: 0 6px !important;
+    position: static;
+}
+core-format-text .wb-course-details summary {
+    list-style: none;
+    cursor: pointer;
+    margin: 0 !important;
+    position: relative;
+    z-index: 6;
+}
+core-format-text .wb-course-details summary::-webkit-details-marker {
+    display: none;
+}
+core-format-text .wb-course-details .wb-course-details-text {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.97);
+    padding: 16px;
+    text-align: left;
+    font-size: 0.95rem;
+    overflow: auto;
+    z-index: 5;
+}
+
+/* --- Dashboard: HTML blocks styled like start-page sections ---------
+   (verified: cards render at the same proportions as the start page) */
+page-core-courses-dashboard ion-card.addon-block-html {
+    margin: 0 0 8px !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+page-core-courses-dashboard ion-card.addon-block-html ion-item-divider,
+page-core-courses-dashboard ion-card.addon-block-html ion-card-header {
+    display: none !important;
+}
+page-core-courses-dashboard ion-card.addon-block-html ion-item {
+    --inner-padding-start: 0 !important;
+    --inner-padding-end: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+}
+page-core-courses-dashboard ion-card.addon-block-html ion-item::part(native) {
+    padding-inline-start: 0 !important;
+    padding-inline-end: 0 !important;
+}
+page-core-courses-dashboard ion-card.addon-block-html .activity-main,
+page-core-courses-dashboard ion-card.addon-block-html .activity-title {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+/* Same side inset as the start-page cards (29px edges, verified equal) */
+page-core-courses-dashboard ion-card.addon-block-html .content-section .course-card,
+page-core-courses-dashboard ion-card.addon-block-html .content-section .list-course-card {
+    width: calc(100% - 34px) !important;
+}
+page-core-courses-dashboard ion-card.addon-block-html .content-section div:not(.course-card):not(.list-course-card):not([class*="card"]):not(.wb-course-details-text),
+page-core-courses-dashboard ion-card.addon-block-html .content-section ul {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* --- Carousel / paged-content dot navigation ----------------------- */
+core-format-text [data-region="paged-content-pagination"] {
+    margin-top: 20px;
+}
+core-format-text [data-region="paged-content-pagination"] .page-link {
+    font-size: 0;
+}
+
+/* --- Wissensbasis Bootstrap carousel: dot navigation ---------------- */
+/* App lacks Bootstrap's carousel CSS: the <ol> showed its "1. 2. 3."
+   markers and sat directly on the cards. Static round dots instead. */
+core-format-text .carousel-indicators {
+    position: static !important;
+    margin: 16px 0 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+    display: flex !important;
+    justify-content: center;
+    gap: 8px;
+}
+core-format-text .carousel-indicators li {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #c5cbd3 !important;
+    text-indent: -9999px;
+    overflow: hidden;
+    border: 0 !important;
+}
+core-format-text .carousel-indicators li.active {
+    background: #1f4b89 !important;
+}
+
+/* --- Wissensbasis carousel: Pfeile ausgeblendet (Design) -------------
+   Gewischt wird ueber die App selbst (ab App-Version 1.0.4); die Punkte
+   bleiben sichtbar, damit erkennbar ist, dass man wischen kann. */
+core-format-text .carousel-control-prev,
+core-format-text .carousel-control-next {
+    display: none !important;
+}
+
+/* --- Buttons je Umgebung ------------------------------------------- */
+/* Die App oeffnet nur ihr bekannte Moodle-URLs nativ; eigene Skripte landen im In-App-Browser.
+   Deshalb traegt der Block beide Links, und diese Datei (nur App) dreht die Sichtbarkeit um. */
+.wbn-web-only { display: none !important; }
+.wbn-app-only { display: inline-block !important; }
+
+.modified {
+    display: none !important;
+}
+
+/* --- Textseiten ohne "Vorherige/Naechste Aktivitaet" --------------- */
+/* Opt-in: nur Seiten, deren Inhalt die Klasse hlfs-no-nav traegt (z.B.
+   <div class="container pt-4 content-section hlfs-no-nav">). Echte Kurse
+   behalten ihre Navigation. */
+/* Die App haengt die Navigation zur Laufzeit direkt an ion-content (ausserhalb
+   von addon-mod-page-index) - deshalb an der Seite selbst ansetzen. */
+page-addon-mod-page-index:has(.hlfs-no-nav) core-course-module-navigation {
+    display: none !important;
+}

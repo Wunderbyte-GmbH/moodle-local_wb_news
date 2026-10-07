@@ -42,7 +42,10 @@
         {{#chunks}}
         <div class="row mb-4" data-id="wb-categoryfilter-items">
           {{#courses}}
-            <div class="card course-card mx-1 mb-2 h-100"  data-category="{{coursecategory}}">
+            {{! Spalte, keine Karte: coursecard.mustache bringt die Karte selbst mit -
+                mit den Karten-Klassen hier entstand eine Karte in der Karte.
+                Gleiche Struktur wie in slider.mustache. }}
+            <div class="{{colclass}}{{^colclass}}col-lg-4{{/colclass}} mb-2" data-category="{{coursecategory}}">
               {{> local_wb_news/courses/coursecard }}
             </div>
           {{/courses}}
