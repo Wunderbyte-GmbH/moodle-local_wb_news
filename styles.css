@@ -678,6 +678,7 @@
 .wb-news-addeditbutton,
 .wb-news-deletebutton,
 .wb-news-copybutton {
+    /* stylelint-disable-next-line declaration-no-important */
     color: #fff !important;
 }
 
@@ -694,7 +695,7 @@
 
 .wb_news_hero .image-container img {
     object-fit: cover;
-    border-radius: 0px;
+    border-radius: 0;
 }
 
 .wb_news_hero .wb_news_hero_box {
@@ -725,75 +726,77 @@
 
 
 .wb_news_hero {
-  position: relative;
-  max-width: 100%;
-  padding: 0;
+    position: relative;
+    max-width: 100%;
+    padding: 0;
 }
 
 .wb_news_hero_item {
-  position: relative;
-  overflow: hidden;
+    position: relative;
+    overflow: hidden;
 }
 
 .wb_news_hero_item .image-container {
-  position: relative;
+    position: relative;
 }
 
 .wb_news_hero_item img {
-  width: 100%;
-  object-fit: cover;
-  display: block;
+    width: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .wb_news_hero_box {
-  position: absolute;
-  top: 50%;
-  right: 64px;
-  transform: translateY(-50%);
-  width: min(520px, calc(100% - 128px));
-  border: 0;
-  border-radius: 0;
-  background: #fff;
-  color: #1f1f1f;
-  box-shadow: none;
+    position: absolute;
+    top: 50%;
+    right: 64px;
+    transform: translateY(-50%);
+    /* stylelint-disable-next-line csstree/validator */
+    width: min(520px, calc(100% - 128px));
+    border: 0;
+    border-radius: 0;
+    background: #fff;
+    color: #1f1f1f;
+    box-shadow: none;
 }
 
 .wb_news_hero_box .card-body {
-  padding: 32px;
+    padding: 32px;
 }
 
 .wb_news_hero_box h1 {
-  margin: 0 0 16px;
-  line-height: 1.05;
-  font-weight: 700;
+    margin: 0 0 16px;
+    line-height: 1.05;
+    font-weight: 700;
 }
 
 .wb_news_hero_box p {
-  margin-bottom: 24px;
+    margin-bottom: 24px;
 }
 
 .wb_news_hero_box .btn {
-  margin-top: 0 !important;
-  border-radius: 0;
-  font-weight: 700;
+    /* stylelint-disable-next-line declaration-no-important */
+    margin-top: 0 !important;
+    border-radius: 0;
+    font-weight: 700;
 }
 
 .wb_news_hero_box .btn + .btn {
-  margin-left: 8px;
+    margin-left: 8px;
 }
 
 @media (max-width: 768px) {
-  .wb_news_hero_item img {
-    height: 280px;
-  }
+    .wb_news_hero_item img {
+        height: 280px;
+    }
 
-  .wb_news_hero_box {
-    position: static;
-    transform: none;
-    width: 100%;
-  }
+    .wb_news_hero_box {
+        position: static;
+        transform: none;
+        width: 100%;
+    }
 
-  .wb_news_hero_box .card-body {
-    padding: 24px;
-  }
+    .wb_news_hero_box .card-body {
+        padding: 24px;
+    }
 }
