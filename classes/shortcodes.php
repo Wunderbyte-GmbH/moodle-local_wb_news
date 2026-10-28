@@ -199,6 +199,50 @@ class shortcodes {
     }
 
     /**
+     * HLFS: render courses as ONE Bootstrap carousel (block_mycourses/slider template),
+     * shared by wbnewscompletedcourses, wbnewsinprogresscourses and wbnewslastvisitedcourses.
+     *
+     * Supported shortcode args: items (cards per slide, default 3), autoplay (default 1),
+     * detailsmode=inline. Courses may come in block_mycourses shape (url/image) or in
+     * coursecard shape (viewurl/courseimage); both key sets are filled so the
+     * courses/coursecard partial renders either.
+     *
+     * @param array $courses
+     * @param array $args
+     * @return string
+     */
+    private static function render_courses_slider(array $courses, array $args): string {
+        global $OUTPUT;
+
+        $normalised = [];
+        foreach ($courses as $course) {
+            $course = (array)$course;
+            $course['viewurl'] = $course['viewurl'] ?? ($course['url'] ?? '');
+            $course['url'] = $course['url'] ?? $course['viewurl'];
+            $course['courseimage'] = $course['courseimage'] ?? ($course['image'] ?? '');
+            $course['image'] = $course['image'] ?? $course['courseimage'];
+            $normalised[] = $course;
+        }
+
+        $items = max(1, (int)($args['items'] ?? 3));
+        $templatecontext = [
+            'detailsinline' => (($args['detailsmode'] ?? '') === 'inline'),
+            'chunks' => [],
+        ];
+        foreach (array_chunk($normalised, $items) as $index => $chunk) {
+            $templatecontext['chunks'][] = [
+                'courses' => $chunk,
+                'first' => ($index === 0),
+                'index' => $index,
+            ];
+        }
+        $templatecontext['autoplay'] = (($args['autoplay'] ?? 1) == 1);
+        $templatecontext['colclass'] = $items === 1 ? 'col-12' : 'col-lg-4';
+
+        return $OUTPUT->render_from_template('local_wb_news/block_mycourses/slider', $templatecontext);
+    }
+
+    /**
      * use wbnews to get courselist
      *
      * @param string $shortcode
@@ -235,6 +279,17 @@ class shortcodes {
             $index++;
         }
         $templatecontext['courses'] = array_values($templatecontext['courses']);
+
+        // HLFS: optional limit (was documented but not implemented before).
+        $limit = (int)($args['limit'] ?? 0);
+        if ($limit > 0) {
+            $templatecontext['courses'] = array_slice($templatecontext['courses'], 0, $limit);
+        }
+
+        // HLFS: slider=1 renders the same carousel as wbnewscompletedcourses.
+        if (($args['slider'] ?? 0) == 1) {
+            return self::render_courses_slider($templatecontext['courses'], $args);
+        }
 
         $templatecontext['detailsinline'] = (($args['detailsmode'] ?? '') === 'inline');
 
@@ -292,20 +347,7 @@ class shortcodes {
             $templatecontext['detailsinline'] = (($args['detailsmode'] ?? '') === 'inline');
 
             if (($args['slider'] ?? 0) == 1) {
-                $items = max(1, (int)($args['items'] ?? 3));
-                $chunks = array_chunk($courses, $items);
-                $templatecontext['chunks'] = [];
-
-                foreach ($chunks as $index => $chunk) {
-                    $templatecontext['chunks'][] = [
-                            'courses' => $chunk,
-                            'first' => ($index === 0),
-                            'index' => $index,
-                    ];
-                }
-                $templatecontext['autoplay'] = (($args['autoplay'] ?? 1) == 1);
-                $templatecontext['colclass'] = $items === 1 ? 'col-12' : 'col-lg-4';
-                return $OUTPUT->render_from_template('local_wb_news/block_mycourses/slider', $templatecontext);
+                return self::render_courses_slider($courses, $args);
             } else {
                 $chunks = array_chunk($courses, 1000);
                 $templatecontext['chunks'] = [];
@@ -391,6 +433,11 @@ class shortcodes {
                 'image' => $formatted->courseimage,
                 'url' => (new \moodle_url('/course/view.php', ['id' => $course->id]))->out()
             ];
+        }
+
+        // HLFS: slider=1 renders the same carousel as wbnewscompletedcourses.
+        if (($args['slider'] ?? 0) == 1) {
+            return self::render_courses_slider($coursesdata, $args);
         }
 
         // Pass data to Mustache template
