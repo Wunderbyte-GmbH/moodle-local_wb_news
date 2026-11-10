@@ -111,6 +111,15 @@ page-core-sitehome-index ion-card.activity-card:has(.hlfs-tiles) ion-item {
     padding: 0 !important;
 }
 
+/* --- No separator lines between the start-page label cards ----------
+   The app draws a 1px bottom border on every activity card of the site
+   home; with five separate labels that shows as lines between hero,
+   tiles and the course sections (live, 2026-11-10). */
+page-core-sitehome-index ion-card.activity-card {
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
 /* --- Uniform horizontal padding for ALL section cards -------------- */
 page-core-sitehome-index ion-card.activity-card ion-item {
     --inner-padding-start: 0;
@@ -367,8 +376,10 @@ core-format-text .carousel-indicators {
     display: flex !important;
     justify-content: center;
     gap: 8px;
+    max-width: 100%;
 }
 core-format-text .carousel-indicators li {
+    flex: 0 0 10px;
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -380,7 +391,14 @@ core-format-text .carousel-indicators li {
 core-format-text .carousel-indicators li.active {
     background: #1f4b89 !important;
 }
-
+/* Fallback for many slides (e.g. 24 in-progress courses, seen on live
+   2026-11-10): a non-wrapping row of all dots is the widest min-content in
+   the label card and stretched the whole section past the viewport.
+   Show at most 12 dots (12 x 10px + 11 x 8px = 208px fits every phone);
+   the shortcodes should use limit= so this never kicks in. */
+core-format-text .carousel-indicators li:nth-child(n+13) {
+    display: none !important;
+}
 /* --- Wissensbasis carousel: Pfeile ausgeblendet (Design) -------------
    Gewischt wird ueber die App selbst (ab App-Version 1.0.4); die Punkte
    bleiben sichtbar, damit erkennbar ist, dass man wischen kann. */
